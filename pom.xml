@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>top.kexcellent.code</groupId>
-    <artifactId>algorithm</artifactId>
+    <artifactId>algorithm-cheat</artifactId>
     <version>1.0.0</version>
     <packaging>pom</packaging>
     <name>${project.artifactId}:${project.version}</name>
