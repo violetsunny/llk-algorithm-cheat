@@ -7,7 +7,7 @@
 
 ![random-list](../images/random-list.png)
 
-### 解法
+### 解法：复制 + 拆分
 
 - 第一步，在每个节点的后面插入复制的节点；
   ![random-list-step1.png](../images/random-list-step1.png)
@@ -43,7 +43,7 @@ public class Solution {
         RandomListNode cur = pHead;
         while (cur != null) {
             RandomListNode node = new RandomListNode(cur.label);
-            node.next = cur.next;
+            node.next = cur.next;//复制节点
             cur.next = node;
             cur = node.next;
         }
@@ -52,12 +52,12 @@ public class Solution {
         while (cur != null) {
             RandomListNode clone = cur.next;
             if (cur.random != null) {
-                clone.random = cur.random.next;
+                clone.random = cur.random.next;//复制random
             }
             cur = clone.next;
         }
 
-        cur = pHead;
+        cur = pHead;//用来拆分时中转
         RandomListNode cloneHead = pHead.next;
         while (cur.next != null) {
             RandomListNode clone = cur.next;
@@ -66,7 +66,7 @@ public class Solution {
             }
             cur = clone;
         }
-        return cloneHead;
+        return cloneHead;//cloneHead是复制的链表，pHead就是原来的链表
     }
 }
 ```

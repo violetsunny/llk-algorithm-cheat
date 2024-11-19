@@ -79,3 +79,65 @@ class Solution {
     }
 }
 ```
+剪枝方法：
+````
+   aab
+ a   a   b
+a b a b a a
+b a b a a a
+
+可以看到如果相同的在同层，是不需要再访问的。也就是剪枝操作。
+````
+
+```java
+import java.util.*;
+
+class Solution {
+    List<String> ans;
+    List<Character> path;
+    boolean[] visited;
+
+    public String[] permutation(String s) {
+        this.ans = new ArrayList<>;
+        this.path = new ArrayList<>;
+        this.visited = new boolean[s.length()];
+        char[] ch = s.toCharArray();
+        Arrays.sort(ch);//排序了才知道相邻是否相等
+        dfs(ch,0);
+        String[] ss = new String[ans.size()];
+        for(int i=0;i<ans.size();i++){
+            ss[i] = ans.get(i);
+        }
+    }   return ss;
+
+    private void dfs(char[] arr, int k) {
+        if (arr.length == k) {
+            ans.add(listToString(path));
+            return;
+        }
+        //进行N叉树搜索
+        for (int i = 0;i<arr.length;i++){
+            // 剪枝，是否相邻字符，并且前一个字符没有访问过，是同一层就不要再递归访问。
+            if (i > 0 && arr[i] == arr[i - 1] && visited[i - 1] = false) {
+                continue;
+            }
+            if (visited == false) {//没有访问才行
+                visited = true;
+                path.add(arr[i]);
+                dfs(arr, k + 1);
+                //回溯
+                path.remove(path.size() - 1);
+                visited = false;
+            }
+        }
+    }
+
+    private String listToString(List<Character> path) {
+        StringBuilder sb = new StringBuilder();
+        for (Character p : path) {
+            sb.append(p);
+        }
+        return sb.toString();
+    }
+}
+```

@@ -33,18 +33,17 @@ public class Solution {
         if (start >= end) {
             return true;
         }
-        int val = sequence[end];
+        int root = sequence[end];
         int i = start;
         for (; i <= end; ++i) {
-            if (sequence[i] >= val) {//往右挪动找到第一个大于根节点的就是右子树
+            if (sequence[i] >= root) {//往右挪动找到第一个大于根节点的就是右子树
                 break;
             }
         }
-        
-        //while(sequence[i] < val){++i;} //也是找到第一个大于根节点的位置
+        //while(sequence[i] < root){++i;} //也是找到第一个大于根节点的位置
 
         for (int j = i; j < end; ++j) {
-            if (sequence[j] < val) {//右边如果有小于根节点的就是false
+            if (sequence[j] < root) {//右边如果有小于根节点的就是false
                 return false;
             }
         }
@@ -55,7 +54,10 @@ public class Solution {
 }
 ```
 ### 方法二：单调栈
-从右往左，按照搜索树和后序遍历特性。从根节点开始逐渐增大然后开始降低就是左子树。
+从右往左，按照搜索树和后序遍历特性。如果array[i] < array[i+1]，则i+1是i的右节点。
+array[i] > array[i+1]那么i+1是0....i中某个root的左节点， 并且root一定是0....i中大于array[i+1]中最小的那个。
+
+从根节点开始逐渐增大然后开始降低就是左子树。
 右子树会压栈，如果栈顶元素大于当前值是左子树会出栈。
 如果当前值大于(之前节点的父节点)，那就是false;
 

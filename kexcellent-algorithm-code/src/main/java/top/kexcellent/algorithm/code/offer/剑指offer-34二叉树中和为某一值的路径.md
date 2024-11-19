@@ -5,7 +5,7 @@
 
 输入一颗二叉树的根节点和一个整数，打印出二叉树中跟节点到叶子结点路径中国所有值的和等于输入整数值的所有路径。路径定义为从树的根结点开始往下一直到叶结点所经过的结点形成一条路径。(注意: 在返回值的`list`中，数组长度大的数组靠前)
 
-### 解法
+### 解法：深度优先dfs + 回溯
 
 ```java
 import java.util.ArrayList;
@@ -55,7 +55,7 @@ public class Solution {
             findPath(root.left, target, list);
             findPath(root.right, target, list);
         }
-        list.remove(list.size() - 1);
+        list.remove(list.size() - 1);//回溯
     }
 }
 ```

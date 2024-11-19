@@ -73,7 +73,8 @@ public class Codec {
         String[] vals = data.split(",");
         int i = 0;
         TreeNode root = new TreeNode(Integer.valueOf(vals[i++]));
-        Deque<TreeNode> q = new ArrayDeque<>();
+        //Deque<TreeNode> q = new ArrayDeque<>();
+        Queue<TreeNode> q = new LinkedList<>();
         q.offer(root);
         while (!q.isEmpty()) {
             TreeNode node = q.poll();
