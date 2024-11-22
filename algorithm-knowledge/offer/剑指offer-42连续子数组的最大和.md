@@ -44,7 +44,7 @@ class Solution {
         int ans = Integer.MIN_VALUE;
         int f = 0;
         for (int x : nums) {
-            f = Math.max(f, 0) + x;
+            f = Math.max(f, 0) + x;//Math.max(f, 0) 也是 f>0?f:0
             ans = Math.max(ans, f);
         }
         return ans;

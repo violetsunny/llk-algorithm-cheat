@@ -4,7 +4,7 @@
 
 如何得到一个数据流中的中位数？如果从数据流中读出奇数个数值，那么中位数就是所有数值排序之后位于中间的数值。如果从数据流中读出偶数个数值，那么中位数就是所有数值排序之后中间两个数的平均值。我们使用`Insert()`方法读取数据流，使用`GetMedian()`方法获取当前读取数据的中位数。
 
-### 解法
+### 解法：大根堆 + 小根堆
 
 利用大根堆存放较小的一半元素，小根堆存放较大的一半元素。维持大小堆的元素个数差不超过 1。
 
@@ -57,3 +57,28 @@ public class Solution {
     }
 }
 ```
+
+````java
+public class Solution {
+    PriorityQueue<Integer> min = new PriorityQueue<>();
+    PriorityQueue<Integer> max = new PriorityQueue<>((x,y)->y-x);
+    
+    public void addNum(int num){
+        if(min.size() = max.size()){
+            min.add(num);
+            max.add(min.poll());
+        } else {
+            max.add(num);
+            min.add(max.poll());
+        }
+    }
+    
+    public int findMedian(){
+        if(min.size() = max.size()){
+            return (min.peek() + max.peek())/2.0;
+        } else {
+            return (double)max.peek();
+        }
+    }
+}
+````

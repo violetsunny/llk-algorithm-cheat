@@ -5,7 +5,7 @@
 
 ### 解法
 
-#### 解法一
+#### 解法一：快排
 
 利用快排中的 partition 思想。
 
@@ -86,6 +86,17 @@ class Solution {
     }
 
     private int[] quickSort(int l, int r) {
+        int i = partition(arr,i,r);//找到排序后的中间点
+        if (k < i) {
+            return quickSort(l, i - 1);
+        }
+        if (k > i) {
+            return quickSort(i + 1, r);
+        }
+        return Arrays.copyOf(arr, k);
+    }
+
+    private int partition(int[] arr,int l,int r){
         int i = l, j = r;
         while (i < j) {
             while (i < j && arr[j] >= arr[l]) {
@@ -97,15 +108,9 @@ class Solution {
             swap(i, j);
         }
         swap(i, l);
-        if (k < i) {
-            return quickSort(l, i - 1);
-        }
-        if (k > i) {
-            return quickSort(i + 1, r);
-        }
-        return Arrays.copyOf(arr, k);
+        return i;
     }
-
+    
     private void swap(int i, int j) {
         int t = arr[i];
         arr[i] = arr[j];
@@ -114,7 +119,7 @@ class Solution {
 }
 ````
 
-#### 解法二
+#### 解法二：大根堆
 
 利用大根堆，存储最小的 k 个数，最后返回即可。
 

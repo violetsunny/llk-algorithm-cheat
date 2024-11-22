@@ -14,7 +14,7 @@
 示例 2:
 输入: nums = [-2,0,-1]
 输出: 0
-解释: 结果不能为 2, 因为 [-2,-1] 不是子数组。
+解释: 结果不能为 2, 因为 [-2,-1] 不是连续子数组。
 ```
 
 
@@ -41,7 +41,7 @@ class Solution {
         }
 
         a = 1;
-        for(int i=n-1;i>=0;i--){//反着再来一遍，为了防止负数的情况
+        for(int i=n-1;i>=0;i--){//反着再来一遍，为了在有负数的情况可以负负得正
             a *= nums[i];
             max = Math.max(a,max);
             if(a == 0){
@@ -50,6 +50,26 @@ class Solution {
         }
 
         return max;
+    }
+}
+````
+题解: 由于当前最小可能是负数，再下一次有负数的情况相乘后可能就是最大。
+````java
+class Solution {
+    public int maxProduct(int[] nums) {
+        long maxF = nums[0], minF = nums[0];
+        int ans = nums[0];
+        int length = nums.length;
+        for (int i = 1; i < length; ++i) {
+            long mx = maxF, mn = minF;
+            maxF = Math.max(mx * nums[i], Math.max(nums[i], mn * nums[i]));
+            minF = Math.min(mn * nums[i], Math.min(nums[i], mx * nums[i]));
+            if(minF<-1<<31){
+                minF=nums[i];
+            }
+            ans = Math.max((int)maxF, ans);
+        }
+        return ans;
     }
 }
 ````
