@@ -44,7 +44,7 @@
 - 算500000中其实会把10000，200等都会算一遍，就可以保存起来避免重复计算。
 
 
-时间复杂度 $O(\log n)$。
+时间复杂度: $O(\log n)$。
 
 
 ```java
@@ -98,9 +98,9 @@ bit 是当前位；cur = (n / bit)%10 , low = n % bit, high = n / bit / 10
 
 </pre>
 <P>公式：</P>
-- cur > 1 => $(high + 1) * bit$
-- cur = 1 => $(high * bit)+(1 + low)$
-- cur = 0 => $high * bit$
+- cur > 1  => $(high + 1) * bit$
+- cur == 1 => $(high * bit)+(1 + low)$
+- cur == 0 => $high * bit$
 
 ````java
 class Solution {
@@ -111,11 +111,11 @@ class Solution {
     while (bit <= n) {
       long cur = (n / bit) % 10;
       long low = n % bit;
-      long high = n / bit / 10;
+      long high = (n / bit) / 10;
 
       if (cur > 1) {
         sum += (high + 1) * bit;
-      } else if (cur = 1) {
+      } else if (cur == 1) {
         sum += (high * bit) + (1 + low);
       } else {
         sum += high * bit;
