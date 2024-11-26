@@ -6,6 +6,8 @@ package top.kexcellent.back.code;
 
 import org.apache.commons.lang3.StringUtils;
 
+import java.util.ArrayDeque;
+import java.util.Deque;
 import java.util.regex.Pattern;
 
 /**
@@ -81,12 +83,20 @@ public class Yuxiaor {
         }
     }
 
+    private final static String deviceProvinceKey = "Vehicle:province:";
+    private final static String deviceProvinceKey2 = "Vehicle:province:";
     public static void main(String[] args) {
         int[] dist = {9,3,5,4,5,4,6,1,5,5,4,6,5,5,4,2,1};
         int[] search = {5,4,6,5,5,4};
 //        System.out.println(indexOf(dist,search));
 //        System.out.println("---------------");
         System.out.println(indexOf2(dist,search));
+
+        System.out.println(deviceProvinceKey == deviceProvinceKey2);
+
+        Deque<Integer> q = new ArrayDeque<>();
+        q.push(1);//在顶部添加元素
+        q.offer(2);//末尾放入i
     }
 
 //    public static void main(String[] args) {

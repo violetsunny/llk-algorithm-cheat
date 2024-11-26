@@ -53,14 +53,18 @@ class Solution {
         List<Integer>[] bucket=new List[n+1];
         for(int key:map.keySet()){
             int times=map.get(key);
-            if(bucket[times]==null) bucket[times]=new ArrayList<>();
+            if(bucket[times]==null) {
+                bucket[times]=new ArrayList<>();
+            }
             bucket[times].add(key);
         }
         //由于频率就是下标，从后向前遍历桶数组，直到遍历完或获取k个数字
         int[] ans=new int[k];
         int index=0;
         for(int i=n;i>=0&&index<k;i--){
-            if(bucket[i]==null) continue;
+            if(bucket[i]==null) {
+                continue;
+            }
             while(!bucket[i].isEmpty()){
                 ans[index++]=bucket[i].getLast();
                 bucket[i].removeLast();
