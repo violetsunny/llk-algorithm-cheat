@@ -98,9 +98,9 @@ class Solution {
         int i = 1;
         long count = 9;
         while (count < n) {
-            n = (int)(n - count);
+            n = (int)(n - count);//找到减去后剩下的n
             bit = bit * 10;
-            i++;
+            i++;//第几位
             count = bit * i * 9;
         }
         long num = bit + (n - 1) / i;//找到哪个数字

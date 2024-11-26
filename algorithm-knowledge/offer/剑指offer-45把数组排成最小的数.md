@@ -45,8 +45,8 @@ class Solution {
     public String minNumber(int[] nums) {
         return Arrays.stream(nums)
             .mapToObj(String::valueOf)
-            .sorted((a, b) -> (a + b).compareTo(b + a))
-            .reduce((a, b) -> a + b)
+            .sorted((a, b) -> (a + b).compareTo(b + a))//比较这两个字符拼接后ASCII码比较大小
+            .reduce((a, b) -> a + b)//拼接收集
             .orElse("");
     }
 }
