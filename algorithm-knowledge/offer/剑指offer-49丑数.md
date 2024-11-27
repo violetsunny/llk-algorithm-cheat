@@ -14,7 +14,7 @@ edit_url: https://github.com/doocs/leetcode/edit/main/lcof/%E9%9D%A2%E8%AF%95%E9
 
 <p>我们把只包含质因子 2、3 和 5 的数称作丑数（Ugly Number）。求按从小到大的顺序的第 n 个丑数。</p>
 
-<p>&nbsp;</p>
+<p>&nbsp;其实就是，丑数是乘2 乘3 乘5 得到的。</p>
 
 <p><strong>示例:</strong></p>
 
@@ -76,6 +76,8 @@ class Solution {
 
 ### 方法二：动态规划
 
+丑数是乘2 乘3 乘5 得到的。
+
 我们定义数组 $dp$，其中 $dp[i-1]$ 表示第 $i$ 个丑数，那么第 $n$ 个丑数就是 $dp[n - 1]$。最小的丑数是 $1$，所以 $dp[0]=1$。
 
 定义 $3$ 个指针 $p_2$, $p_3$ 和 $p_5$，表示下一个丑数是当前指针指向的丑数乘以对应的质因数。初始时，三个指针的值都指向 $0$。
@@ -96,8 +98,8 @@ class Solution {
         int p2 = 0, p3 = 0, p5 = 0;
         for (int i = 1; i < n; ++i) {
             int next2 = dp[p2] * 2, next3 = dp[p3] * 3, next5 = dp[p5] * 5;
-            dp[i] = Math.min(next2, Math.min(next3, next5));
-            if (dp[i] == next2) ++p2;
+            dp[i] = Math.min(next2, Math.min(next3, next5));//找出最小的
+            if (dp[i] == next2) ++p2;//如果相等就是这个，再+1才能变大
             if (dp[i] == next3) ++p3;
             if (dp[i] == next5) ++p5;
         }

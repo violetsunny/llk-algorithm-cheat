@@ -6,15 +6,13 @@
 
 假设字符串中只包含从 `a` 到 `z`的字符。
 
-### 解法
-
-动态规划。
+### 解法: 动态规划
 
 `res[i]` 表示以 `s[i]` 字符结尾的最长不重复字符串的长度。判断 `s[i]`：
 
 - 若 `s[i]` 在前面没出现过，那么 `res[i] = res[i - 1] + 1`；
 - 若 `s[i]` 在前面有出现过，判断它上一次出现的位置 `index` 到 `i` 的距离 `d` 与 `res[i - 1]` 的大小关系：
-    - 若 `d <= res[i - 1]`，说明它被包含在 `res[i - 1]` 构成的子串中，那么 `res[i] = d`；
+    - 若 `d <= res[i - 1]`，说明它被包含在 `res[i - 1]` 构成的子串中，那么 `res[i] = i - index`；
     - 若 `d > res[i - 1]`，说明它在 `res[i - 1]` 构成的子串的左侧，那么 `res[i] = res[i - 1] + 1`。
 
 需要用一个数组 t 记录一下当前出现的字符在哪个位置。
@@ -36,27 +34,55 @@ class Solution {
         for (int i = 0; i < 26; ++i) {
             t[i] = -1;
         }
-        t[chars[0] - 'a'] = 0;
+        t[chars[0] - 'a'] = 0;//存储下标
         int n = chars.length;
         int[] res = new int[n];
-        res[0] = 1;
-        int max = res[0];
+        res[0] = 1;//至少一个
+        int max = res[0];//比较每次不重复子串的最大长度
         for (int i = 1; i < n; ++i) {
             int index = t[chars[i] - 'a'];
             int d = i - index;
-            res[i] = (index == -1 || d > res[i - 1])
-                    ? res[i - 1] + 1
-                    : d;
-
-            t[chars[i] - 'a'] = i;
+            res[i] = (index == -1 || d > res[i - 1]) ? res[i - 1] + 1 : d;//没有出现过和d>res[i - 1]上次结果，都要+1
+            t[chars[i] - 'a'] = i;//更新下标，出现过也会更新到最新的下标值
             max = Math.max(max, res[i]);
         }
         return max;
     }
 }
 ```
-### 解法二
+空间优化
+```java
+class Solution {
+    
+    public int longestSubstringWithoutDuplication(String s) {
+        if (s == null || s.length() == 0) {
+            return 0;
+        }
+        char[] chars = s.toCharArray();
+        int[] t = new int[26];
+        for (int i = 0; i < 26; ++i) {
+            t[i] = -1;
+        }
+        t[chars[0] - 'a'] = 0;//存储下标
+        int n = chars.length;
+        int a = 1;
+        int max = a;//比较每次不重复子串的最大长度
+        for (int i = 1; i < n; ++i) {
+            int index = t[chars[i] - 'a'];
+            int d = i - index;
+            a = (index == -1 || d > a) ? a + 1 : d;//用之前a判断后，再重新赋值给当前a
+            t[chars[i] - 'a'] = i;//更新下标，出现过也会更新到最新的下标值
+            max = Math.max(max, a);
+        }
+        return max;
+    }
+}
+```
+
+### 解法二：滑动窗口
+
 滑动窗口：l,r r右移动，如果有重复字符l右移动
+
 ```java
 class Solution {
     public int lengthOfLongestSubstring(String s) {

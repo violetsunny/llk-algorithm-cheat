@@ -8,7 +8,7 @@
 
 给定一个棋盘及其上面的礼物，请计算你最多能拿到多少价值的礼物？
 
-### 解法
+### 解法：动态规划+最值
 
 写出递推式，res 表示获得的最大礼物。
 
@@ -62,18 +62,36 @@ class Solution {
     }
 }
 ```
-空间优化，只能往右和往下，所以可以用个两行数组即可。i & 1 偶数为0奇数为1，再^1则偶数为1奇数为0
+空间优化，只能往右和往下，所以可以用个两行数组即可。i & 1 偶数为0奇数为1，再^1则偶数为1奇数为0。
+
 ```java
 class Solution {
     public int maxValue(int[][] grid) {
-        int m = grid.length, n = grid[0].length;
-        int[][] f = new int[2][n + 1];
+        int m = grid.length;
+        int n = grid[0].length;
+        int[][] f = new int[2][n + 1];//过程中只需要用到上面一行的数据即可，因为上面已经是累加后的结果，所以用2行数据操作即可。
         for (int i = 1; i <= m; ++i) {
             for (int j = 1; j <= n; ++j) {
                 f[i & 1][j] = Math.max(f[i & 1 ^ 1][j], f[i & 1][j - 1]) + grid[i - 1][j - 1];
             }
         }
-        return f[m & 1][n];
+        return f[m & 1][n];//m & 1其实是计算奇偶数
+    }
+}
+```
+但是其只需要一行即可，当前计算用过去的那一行。
+```java
+class Solution {
+    public int maxValue(int[][] grid) {
+        int m = grid.length;
+        int n = grid[0].length;
+        int[] dp = new int[n + 1];//过程中只需要用到前一次的数据即可。按照行计算
+        for (int i = 1; i <= m; ++i) {
+            for (int j = 1; j <= n; ++j) {
+                dp[j] = Math.max(dp[j], dp[j - 1]) + grid[i - 1][j - 1];
+            }
+        }
+        return dp[n];//m+1 多用一位计算，可以不用初始计算，直接 grid[i - 1][j - 1]
     }
 }
 ```
