@@ -15,7 +15,7 @@
 输出：4
 ```
 
-### 解法
+### 解法：找数模板
 
 找出第一个 k 和最后一个 k 出现的位置。
 
@@ -107,7 +107,7 @@ class Solution {
 输出：3
 ```
 
-### 解法
+### 解法：二分查找
 
 找出第一个与下标不对应的数字即可。
 
@@ -133,15 +133,12 @@ class Solution {
         while (start <= end) {
             int mid = start + ((end - start) >> 1);
             if (nums[mid] != mid) {
-                if (mid == 0 || nums[mid - 1] == mid - 1) {
-                    return mid;
-                }
-                end = mid - 1;
+                end = mid;
             } else {
                 start = mid + 1;
             }
         }
-        return start == n ? n : -1;
+        return num[start] == start ? start+1 : start;
 
     }
 }
