@@ -57,11 +57,11 @@ public class MergeSort {
         }
 
         // 初始化索引，用于遍历临时数组和原数组
-        int i = 0, j = 0, k = left;
+        int i = 0, j = 0, k = left;//左侧开始
 
         // 比较左右子数组的元素，将较小的元素依次放入原数组中
         while (i < n1 && j < n2) {
-            if (leftArray[i] <= rightArray[j]) {
+            if (leftArray[i] <= rightArray[j]) {//右边比左边大
                 arr[k] = leftArray[i];
                 i++;
             } else {
