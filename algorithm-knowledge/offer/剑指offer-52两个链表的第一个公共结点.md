@@ -17,7 +17,7 @@ B:     b1 → b2 → b3
 输出第一个公共节点c1
 ```
 
-### 解法
+### 解法: 步差
 
 先遍历两链表，求出两链表的长度，再求长度差 `|n1 - n2|`。
 
@@ -77,3 +77,32 @@ class Solution {
     }
 }
 ```
+### 解法: 走两遍
+A 到头走 B;</br>
+B 到头走 A;</br>
+最终会相遇
+````java
+class Solution {
+
+    /**
+     * 求两链表第一个公共节点
+     *
+     * @param headA 链表A
+     * @param headB 链表B
+     * @return 第一个公共节点
+     */
+    public ListNode findFirstCommonNode(ListNode headA, ListNode headB) {
+        if (headA == null || headB == null) {
+            return null;
+        }
+        ListNode A = headA;
+        ListNode B = headB;
+        while(A!=B){
+            A = A == null ? headB : A.next;
+            B = B == null ? headA : B.next;
+        }
+        
+        return A;
+    }
+}
+````
