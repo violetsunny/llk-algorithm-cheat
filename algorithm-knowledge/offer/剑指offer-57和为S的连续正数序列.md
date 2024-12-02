@@ -1,57 +1,4 @@
-## [57. 和为 s 的两个数字](https://leetcode.cn/problems/he-wei-sde-liang-ge-shu-zi-lcof/)
-
-
-### 题目描述
-
-输入一个数组和一个数字 s，在数组中查找两个数，使得它们的和正好是 s。
-
-如果有多对数字的和等于 s，输出任意一对即可。
-
-你可以认为每组输入中都至少含有一组满足条件的输出。
-
-**样例**
-
-```
-输入：[1,2,3,4] , sum=7
-
-输出：[3,4]
-```
-
-### 解法
-
-利用 set 记录元素即可。
-
-```java
-import java.util.HashSet;
-import java.util.Set;
-
-class Solution {
-    /**
-     * 在数组中找出和为target的两个数
-     *
-     * @param nums 数组
-     * @param target 目标和
-     * @return 满足条件的两个数构成的数组
-     */
-    public int[] findNumbersWithSum(int[] nums, int target) {
-        if (nums == null || nums.length < 2) {
-            return null;
-        }
-        int n = nums.length;
-        Set<Integer> set = new HashSet<>();
-        for (int i = 0; i < n; ++i) {
-            if (set.contains(target - nums[i])) {
-                return new int[] {target- nums[i], nums[i]};
-            }
-            set.add(nums[i]);
-        }
-        return null;
-    }
-}
-```
-
 ## [57 - II. 和为 s 的连续正数序列](https://leetcode.cn/problems/he-wei-sde-lian-xu-zheng-shu-xu-lie-lcof/)
-
 
 ### 题目描述
 
@@ -67,7 +14,7 @@ class Solution {
 输出：[[1,2,3,4,5],[4,5,6],[7,8]]
 ```
 
-### 解法
+### 解法：滑动窗口
 
 用两个指针 `p, q` 指示序列的最小值和最大值。如果序列和大于 s，则从序列中去掉较小的值，即 `++p`；如果序列和小于 s，则序列向右再包含一个数字，即 `++q`。
 
@@ -107,6 +54,48 @@ class Solution {
             }
             ++q;
             curSum += q;
+        }
+        return res;
+    }
+
+    private List<Integer> getList(int from, int to) {
+        List<Integer> res = new ArrayList<>();
+        for (int i = from; i <= to; ++i) {
+            res.add(i);
+        }
+        return res;
+    }
+}
+```
+帅地简单写法
+```java
+class Solution {
+
+    /**
+     * 找出和为sum的连续正整数序列
+     *
+     * @param sum 和
+     * @return 结果列表
+     */
+    public List<List<Integer>> findContinuousSequence(int target) {
+        List<List<Integer>> res = new ArrayList<>();
+        int i = 1;
+        int j = 1;
+        int sum = 1;
+        while(i<target/2){
+            if(sum < target){
+                j++;
+                sum = sum + j;
+            }else if(sum > target){
+                i--;
+                sum = sum - i;
+            }else {
+                res.add(getList(i,j));
+                sum = sum - i;//减去左边
+                i++;//都移动检查下一个窗口
+                j++;
+                sum = sum + j;//加上右边
+            }
         }
         return res;
     }

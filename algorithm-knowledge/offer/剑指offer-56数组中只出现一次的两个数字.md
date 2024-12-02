@@ -56,31 +56,62 @@ class Solution {
             }
         }
         return res;
+    }
+
+    private int indexOf1(int val) {
+        int index = 0;
+        while ((val & 1) == 0) {//找到不同位数下标，就是第几位不同
+            val = val >> 1;
+            ++index;
+        }
+        return index;
+    }
+
+    private boolean isBit1(int val, int index) {
+        for (int i = 0; i < index; ++i) {
+            val = val >> 1;//当前数找到位数下标
+        }
+        return (val & 1) == 1;
+    }
+}
+
+```
+帅地的简单写法
+````java
+class Solution {
+
+    public int[] findNumsAppearOnce(int[] nums) {
+        if (nums == null || nums.length < 2) {
+            return null;
+        }
+        int xorRes = 0;
+        for (int e : nums) {
+            xorRes ^= e;//异或后剩两个不同的数异或
+        }
+        int[] res = new int[2];
+        int m = indexOfM(xorRes);//找下标
+        for (int e : nums) {
+            if (isBit1(e, m)) {
+                res[0] ^= e;//拆开计算
+            } else {
+                res[1] ^= e;
+            }
+        }
+        return res;
 
 
     }
 
-    private int indexOf1(int val) {
-//        int index = 0;
-//        while ((val & 1) == 0) {//找到不同位数下标，就是第几位不同
-//            val = val >> 1;
-//            ++index;
-//        }
-//        return index;
+    private int indexOfM(int val) {
         int m = 1;
         while((m & val) == 0){
-            m = m << 1; //左移找到第一个不同位的位置，换算成数字
+            m = m << 1; //左移找到第一个不同位的位置的数
         }
         return m;
     }
 
-    private boolean isBit1(int val, int index) {
-//        for (int i = 0; i < index; ++i) {
-//            val = val >> 1;//当前数找到位数下标
-//        }
-//        return (val & 1) == 1;
-        return (val & index) == 1;//然后进行与&操作看是否为1，然后就可以拆开了。
+    private boolean isBit1(int val, int m) {
+        return (val & m) == 1;//然后进行与&操作看是否为1，然后就可以拆开了。
     }
 }
-```
-
+````

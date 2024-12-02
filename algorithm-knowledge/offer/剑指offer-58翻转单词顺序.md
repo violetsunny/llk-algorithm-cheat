@@ -17,7 +17,7 @@
 输出："student. a am I"
 ```
 
-### 解法
+### 解法:split join 函数
 
 先对字符串按空格切割成数组，再逆序数组后，最后将元素拼接并返回。
 
@@ -45,6 +45,34 @@ class Solution {
         String t = arr[p];
         arr[p] = arr[q];
         arr[q] = t;
+    }
+}
+```
+### 解法: 循环
+```java
+class Solution {
+    /**
+     * 翻转单词
+     *
+     * @param s 字符串
+     * @return 翻转后的字符串
+     */
+    public String reverseWords(String s) {
+        if (s == null || s.length() < 2) {
+            return s;
+        }
+        s = s.trim();//去除前后空格
+        StringBuilder sb = new StringBuilder();
+        int n = s.length()-1;
+        int i = n;
+        int j = n;
+        while(i>=0){
+            while(s.charAt(i)!=' '){i--;}
+            sb.append(s.substring(i+1,j+1)+" ");
+            while(i>=0 && s.charAt(i)==' '){i--;}
+            j = i;
+        }
+        return sb.toString().trim();//去除append造成的空格
     }
 }
 ```

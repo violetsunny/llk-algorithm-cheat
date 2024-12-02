@@ -108,7 +108,7 @@ class Solution {
                 q.poll();
             }
             while (!q.isEmpty() && nums[q.peekLast()] <= nums[i]) {
-                q.pollLast();//只留下大的
+                q.pollLast();//只留下当前窗口中比num[i]大的
             }
             q.offer(i);//末尾放入
             if (i >= k - 1) {

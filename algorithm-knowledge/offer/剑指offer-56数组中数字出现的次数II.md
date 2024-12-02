@@ -48,3 +48,36 @@ class Solution {
     }
 }
 ```
+帅地简单写法
+```java
+class Solution {
+    /**
+     * 找出数组中只出现一次的数字，其它数字都出现三次
+     *
+     * @param nums 数字
+     * @return 只出现一次的数字
+     */
+    public int findNumberAppearingOnce(int[] nums) {
+        if (nums == null || nums.length == 0) {
+            return 0;
+        }
+        int[] bits = new int[32];
+        int n = nums.length;
+        int m = 1;
+        int res = 0;
+        for(int i = 0;i<32;i++){
+            for(int num:nums){
+                if((num & m) != 0){
+                    bits[i]++;
+                }
+            }
+            bits[i] = bits[i] % 3;
+            res = res + bits[i] * m;//转十进制
+            m = m << 1;//左移一位比较
+        }
+        return res;
+    }
+}
+```
+
+### 解法：状态机
