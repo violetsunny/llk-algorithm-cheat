@@ -84,11 +84,11 @@ class Solution {
         int sum = 1;
         while(i<target/2){
             if(sum < target){
-                j++;
-                sum = sum + j;
+                j++;//右边移动
+                sum = sum + j;//加上右边
             }else if(sum > target){
-                i--;
-                sum = sum - i;
+                sum = sum - i;//减去左边
+                i++;//左边移动
             }else {
                 res.add(getList(i,j));
                 sum = sum - i;//减去左边

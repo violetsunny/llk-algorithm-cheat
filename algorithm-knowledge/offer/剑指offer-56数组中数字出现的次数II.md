@@ -67,7 +67,7 @@ class Solution {
         int res = 0;
         for(int i = 0;i<32;i++){
             for(int num:nums){
-                if((num & m) != 0){
+                if((num & m) != 0){//不等于0加1
                     bits[i]++;
                 }
             }
