@@ -86,7 +86,7 @@ class Solution {
 
         //另一个种方式
         for(int i=n;i<len+n;i++){
-            sb.append(str.charAt(i%len));//len取余
+            sb.append(str.charAt(i%len));//len取余，超过len的i又回到n之前
         }
         return sb.toString();
     }
