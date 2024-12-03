@@ -46,7 +46,7 @@ class Solution {
             if ((s.charAt(i) >= '0' && s.charAt(i) <= '9')) {
                 int preNum = s.charAt(i) - '0';
                 if (numFlag) {
-                    preNum = 10 * num + preNum;
+                    preNum = 10 * num + preNum;//进位
                 }
                 num = preNum;
                 numFlag = true;

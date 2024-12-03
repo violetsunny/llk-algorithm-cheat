@@ -52,19 +52,19 @@ public class Solution {
         while (cur != null) {
             RandomListNode clone = cur.next;
             if (cur.random != null) {
-                clone.random = cur.random.next;//复制random
+                clone.random = cur.random.next;//必须是random.next 这才是复制的那个node
             }
             cur = clone.next;
         }
 
         cur = pHead;//用来拆分时中转
-        RandomListNode cloneHead = pHead.next;
+        RandomListNode cloneHead = pHead.next;//这个必须要写，不然就找不到克隆的头了
         while (cur.next != null) {
             RandomListNode clone = cur.next;
             if(clone!=null){
-              cur.next = clone.next;//从克隆节点下一节点给原来节点，原来节点下一节点给克隆节点，依次往后拆开。
+              cur.next = clone.next;//从克隆节点下一节点给原来节点。
             }
-            cur = clone;
+            cur = clone;//克隆节点和原来节点交换，下次拆的就是原来节点下一节点给克隆节点，然后一次循环。
         }
         return cloneHead;//cloneHead是复制的链表，pHead就是原来的链表
     }
