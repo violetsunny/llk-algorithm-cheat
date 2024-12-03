@@ -50,7 +50,7 @@ class Solution {
 }
 ```
 ### 解法：双指针
-
+左右指针移动，但是前提是必须有序。
 ```java
 
 import java.util.Arrays;

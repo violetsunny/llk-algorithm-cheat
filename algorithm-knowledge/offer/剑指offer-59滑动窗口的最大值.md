@@ -19,7 +19,7 @@
 输出: [4, 4, 6, 6, 6, 5]
 ```
 
-### 解法
+### 解法：双向队列
 
 利用双向队列，保证队列头部存放的是最大值的下标，当队列头部下标过期时弹出。
 
@@ -89,14 +89,14 @@ class Solution {
 <strong>输出: </strong><code>[3,3,5,5,6,7] 
 <strong>解释: 
 </strong></code>
-  滑动窗口的位置                最大值
----------------               -----
-[1  3  -1] -3  5  3  6  7       3
- 1 [3  -1  -3] 5  3  6  7       3
- 1  3 [-1  -3  5] 3  6  7       5
- 1  3  -1 [-3  5  3] 6  7       5
- 1  3  -1  -3 [5  3  6] 7       6
- 1  3  -1  -3  5 [3  6  7]      7 </pre>
+  滑动窗口的位置                最大值             队列
+---------------               -----             -----
+[1  3  -1] -3  5  3  6  7       3               [3 -1]
+ 1 [3  -1  -3] 5  3  6  7       3               [3 -1 -3]
+ 1  3 [-1  -3  5] 3  6  7       5               [5]
+ 1  3  -1 [-3  5  3] 6  7       5               [5 3]
+ 1  3  -1  -3 [5  3  6] 7       6               [6]
+ 1  3  -1  -3  5 [3  6  7]      7 </pre>        [7]
 ```java
 class Solution {
     public int[] maxSlidingWindow(int[] nums, int k) {
@@ -105,14 +105,14 @@ class Solution {
         Deque<Integer> q = new ArrayDeque<>();
         for (int i = 0; i < n; ++i) {
             if (!q.isEmpty() && i - q.peek() + 1 > k) {
-                q.poll();
+                q.poll();//如果i和头元素下标大于k,右移，剔除左边元素
             }
             while (!q.isEmpty() && nums[q.peekLast()] <= nums[i]) {
-                q.pollLast();//只留下当前窗口中比num[i]大的
+                q.pollLast();//从后往前，剔除小于nums[i]的数。这样当前数就是后面窗口最大值，保证头元素最大
             }
             q.offer(i);//末尾放入
             if (i >= k - 1) {
-                ans[i - k + 1] = nums[q.peek()];
+                ans[i - k + 1] = nums[q.peek()];//头元素最大
             }
         }
         return ans;

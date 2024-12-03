@@ -66,19 +66,20 @@ class Solution {
     public double[] dicesProbability(int n) {
         int[][] f = new int[n + 1][6 * n + 1];
         for (int j = 1; j <= 6; ++j) {
-            f[1][j] = 1;
+            f[1][j] = 1;//初始值
         }
-        for (int i = 2; i <= n; ++i) {
-            for (int j = i; j <= 6 * i; ++j) {
-                for (int k = 1; k <= 6; ++k) {
-                    if (j >= k) {
-                        f[i][j] += f[i - 1][j - k];
+        for (int i = 2; i <= n; ++i) {//n个
+            for (int j = i; j <= 6 * i; ++j) {//6n可能性
+                for (int k = 1; k <= 6; ++k) {//1-6
+                    if (k > j) {
+                        break;//越界不需要计算，也是比如j=2，说明最多也就是1，2
                     }
+                    f[i][j] += f[i - 1][j - k];
                 }
             }
         }
-        double m = Math.pow(6, n);
-        double[] ans = new double[5 * n + 1];
+        double m = Math.pow(6, n);//6^n
+        double[] ans = new double[5 * n + 1];//n-6n
         for (int j = n; j <= 6 * n; ++j) {
             ans[j - n] = f[n][j] / m;
         }
@@ -132,3 +133,22 @@ class Solution {
 <!-- solution:end -->
 
 <!-- problem:end -->
+
+## 帅地解法
+<p>定义：</p>
+
+dp[i][j] 是 当骰子的个数为i，点数为j,有dp[i][j]种组合。
+$dp[i][j] / 6 ^ n$
+
+<p>状态转移公式：</p>
+
+$dp[i][j] = dp[i-1][j-1] + dp[i-1][j-2] + dp[i-1][j-3] + dp[i-1][j-4] + dp[i-1][j-5] + dp[i-1][j-6];$
+就是i比i-1多一个骰子，投一个点或者两个点，三个点...六个点等等。
+
+<p>初始值：</p>
+
+$dp[1][1]=1;dp[1][2]=1;...dp[1][6]=1;$当一个骰子时只有一种组合。
+
+
+
+
