@@ -40,7 +40,7 @@ public class CountingSort {
     }
 
     public static void main(String[] args) {
-        int[] arr = {170, 45, 75, 90, 802, 24, 2, 66, 3, 2, 0, 1, 992, 9999};
+        int[] arr = {170, 45, 75, 90, 802, 24, 2, 66, 3, 2, 0,-1,-3,-3, 1, 992, 9999};
         countingSort(arr);
         for (int i : arr) {
             System.out.print(i + " ");

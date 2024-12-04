@@ -144,17 +144,17 @@ public class Solution {
      */
     public ArrayList<Integer> GetLeastNumbers_Solution(int[] input, int k) {
         ArrayList<Integer> res = new ArrayList<>();
-        if (input == null || input.length == 0 || input.length < k || k < 1) {
+        if (input == null || input.length < k || k < 1) {
             return res;
         }
 
-        PriorityQueue<Integer> maxHeap = new PriorityQueue<>(k, Comparator.reverseOrder());
+        PriorityQueue<Integer> maxHeap = new PriorityQueue<>(k, Comparator.reverseOrder());//大根堆
         System.out.println(maxHeap.size());
         for (int e : input) {
             if (maxHeap.size() < k) {
                 maxHeap.add(e);
             } else {
-                if (maxHeap.peek() > e) {
+                if (maxHeap.peek() > e) {//如果比堆顶数据大的数就丢弃，比堆顶小就将堆顶弹出后放入。
                     maxHeap.poll();
                     maxHeap.add(e);
                 }
