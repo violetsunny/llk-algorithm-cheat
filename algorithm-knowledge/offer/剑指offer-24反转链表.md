@@ -79,14 +79,14 @@ class Solution {
             return head;
         }
         ListNode cur = head;//借助一个指针
-        ListNode pre = null;
+        ListNode pre = null;//要弄一个前置节点
         while(cur!=null){
-            ListNode temp = cur.next;
-            cur.next = pre;
-            pre = cur;
-            cur = temp;
+            ListNode temp = cur.next;//把next节点拎出来
+            cur.next = pre;//当前指向前置
+            pre = cur;//当前变成下一次的前置
+            cur = temp;//next变成下次的当前
         }
-        return pre;
+        return pre;//pre是最后的，cur是null
     }
 }
 ```

@@ -97,7 +97,7 @@ class Solution {
         }
         ListNode A = headA;
         ListNode B = headB;
-        while(A!=B){
+        while(A!=B){//如果没有的话，最后会相交在null，null也能跳出来
             A = A == null ? headB : A.next;
             B = B == null ? headA : B.next;
         }
