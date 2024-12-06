@@ -74,9 +74,38 @@ class Solution {
 ```
 ### 解法: 集合
 帅地写法:
+
 如果要成为顺子，要满足两个条件：
 1. 不存在重复的数，大小王除外
-2. 最大值-最小值<5,大小王除外
-```java
+2. 最大值 - 最小值 < 5,大小王除外
 
+```java
+import java.util.*;
+
+class Solution {
+
+    /**
+     * 判断是否是连续的数字
+     *
+     * @param numbers 数组
+     * @return 是否是顺子
+     */
+    public boolean isContinuous(int[] numbers) {
+        Set<Integer> visted = new HashSet<>();
+        int min=20;
+        int max=-1;
+        for(int num:numbers){
+            if(num==0){
+                continue;
+            }
+            if(visted.contains(num)){
+                return false;
+            }
+            visted.add(num);
+            min = Math.min(min,num);
+            max = Math.max(max,num);
+        }
+        return max - min < 5;// 0 6 7 0 9 true. 9-6=3 < 5
+    }
+}
 ```
