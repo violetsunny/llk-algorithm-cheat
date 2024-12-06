@@ -56,7 +56,7 @@ class Solution {
         }
 
         int res = 0;
-        while (x > res) {
+        while (x > res) {//后面往前，前面的往后
             res = res * 10 + x % 10;
             x /= 10;
         }

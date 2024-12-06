@@ -27,7 +27,7 @@
 进阶：你能实现时间复杂度为 O(n) ，空间复杂度为 O(1) 的解决方案吗？
 
 ## 解法一：遍历找最大最小
-找打最大值和最小值，在这之间找到大于最小小于最大的就可以
+找到最大值和最小值，在这之间找到大于最小小于最大的就可以
 ````java
 class Solution {
     public boolean increasingTriplet(int[] nums) {

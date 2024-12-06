@@ -25,6 +25,10 @@ package top.kexcellent.algorithm.code.sort;
  */
 public class FastRowSort {
 
+    public void sort(int[] arr){
+        qsort(arr, 0, arr.length - 1);
+    }
+
     /**
      * 将数组拆分，递归进行二分查找
      */
