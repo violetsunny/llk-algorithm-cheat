@@ -63,6 +63,9 @@ class Solution {
 }
 ```
 
+### 解法: 替换
+
+这个是只给要删除节点
 ````java
 class Solution {
     /**
@@ -71,6 +74,8 @@ class Solution {
      * @param node 要删除的节点
      */
     public void deleteNode(ListNode node) {
+        //想删除当前，但是不知道前面的没办法重新指向。
+        //那我们就把后面那个顶替当前的，删后面那个。
         node.val = node.next.val;
         node.next = node.next.next;
     }
