@@ -55,7 +55,7 @@ class Solution {
         if (head == null || head.next == null) {
             return head;
         }
-        ListNode node = reverseList(head.next);
+        ListNode node = reverseList(head.next);//递归到最后
         head.next.next = head;//就是从后往前依次转
         head.next = null;
         return node;

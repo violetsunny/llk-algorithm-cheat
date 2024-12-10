@@ -29,6 +29,8 @@
 
 进阶：你可以想出一个时间复杂度小于 O(n2) 的算法吗？
 
+### 解法：hash映射
+
 ````java
 class Solution {
     public int[] twoSum(int[] nums, int target) {
