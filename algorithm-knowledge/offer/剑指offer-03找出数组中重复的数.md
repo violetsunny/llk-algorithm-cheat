@@ -68,7 +68,7 @@ class Solution {
 }
 ```
 
-## 3.2 不修改数组找出重复的数字
+## [3.2不修改数组找出重复的数字](https://leetcode.cn/problems/find-the-duplicate-number/description/)
 
 ### 题目描述
 

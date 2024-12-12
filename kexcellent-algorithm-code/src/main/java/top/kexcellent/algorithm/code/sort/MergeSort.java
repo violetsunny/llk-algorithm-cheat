@@ -17,78 +17,62 @@ public class MergeSort {
      * @param arr
      * @return
      */
-    public static void mergeSort(int[] arr) {
+    public void mergeSort(int[] arr) {
         if (arr == null) {
             return;
         }
         mergeSort(arr, 0, arr.length - 1);
     }
 
-    private static void mergeSort(int[] arr, int left, int right) {
-        if (left < right) {
-            int mid = left + (right - left) / 2;
-
-            // 对左半部分数组进行归并排序
-            mergeSort(arr, left, mid);
-
-            // 对右半部分数组进行归并排序
-            mergeSort(arr, mid + 1, right);
-
-            // 合并已经排好序的左半部分和右半部分数组
-            merge(arr, left, mid, right);
+    private void mergeSort(int[] arr, int left, int right) {
+        if (left >= right) {
+            return;
         }
+        int mid = left + (right - left) / 2;
+
+        // 对左半部分数组进行归并排序
+        mergeSort(arr, left, mid);
+
+        // 对右半部分数组进行归并排序
+        mergeSort(arr, mid + 1, right);
+
+        // 合并已经排好序的左半部分和右半部分数组
+        merge(arr, left, mid, right);
     }
 
-    private static void merge(int[] arr, int left, int mid, int right) {
-        // 分别定义左右两个子数组的长度
-        int n1 = mid - left + 1;
-        int n2 = right - mid;
-
-        // 创建临时数组来存放左右子数组的元素
-        int[] leftArray = new int[n1];
-        int[] rightArray = new int[n2];
-
-        // 将原数组中的元素复制到临时数组中
-        for (int i = 0; i < n1; i++) {
-            leftArray[i] = arr[left + i];
-        }
-        for (int i = 0; i < n2; i++) {
-            rightArray[i] = arr[mid + 1 + i];
-        }
-
-        // 初始化索引，用于遍历临时数组和原数组
-        int i = 0, j = 0, k = left;//左侧开始
+    private void merge(int[] arr, int left, int mid, int right) {
+        // 创建临时数组
+        int[] temp = new int[right - left + 1];
+        int i = left, j = mid + 1, k = 0;
 
         // 比较左右子数组的元素，将较小的元素依次放入原数组中
-        while (i < n1 && j < n2) {
-            if (leftArray[i] <= rightArray[j]) {//右边比左边大
-                arr[k] = leftArray[i];
-                i++;
+        while (i <= mid && j <= right) {
+            if (arr[i] <= arr[j]) {
+                temp[k++] = arr[i++];
             } else {
-                arr[k] = rightArray[j];
-                j++;
+                temp[k++] = arr[j++];
             }
-            k++;
         }
-
         // 如果左子数组还有剩余元素，将其全部放入原数组中
-        while (i < n1) {
-            arr[k] = leftArray[i];
-            i++;
-            k++;
+        while (i <= mid) {
+            temp[k++] = arr[i++];
+        }
+        // 如果右子数组还有剩余元素，将其全部放入原数组中
+        while (j <= right) {
+            temp[k++] = arr[j++];
         }
 
-        // 如果右子数组还有剩余元素，将其全部放入原数组中
-        while (j < n2) {
-            arr[k] = rightArray[j];
-            j++;
-            k++;
+        // 将临时数组 t 中的元素复制回原始数组 nums 的相应位置
+        k = 0;
+        for(int m = left; m <= right; m++) {
+            arr[m] = temp[k++];
         }
     }
 
     public static void main(String[] args) {
         int[] arr = {12, 34, 5, 2, 38, 45, 6, 23, 4, 67, 3, 8, 56};
-        mergeSort(arr);
+        MergeSort mergeSort = new MergeSort();
+        mergeSort.mergeSort(arr);
         System.out.println("Sorted array: ");
         for (int i : arr) {
             System.out.print(i + " ");

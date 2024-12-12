@@ -68,22 +68,24 @@ public class FastRowSort {
 //    }
 
     /**
-     * 这个好懂一点，比较交换
+     *  方式是一样的，不过这个好懂一点，比较交换
+     *  按照最右侧的元素为基准，返回基准值在low~high范围中的位置 左指针要先移动
+     *  如果是最左为基准，需要右指针先移动
      */
     private int partition(int[] arr, int low, int high) {
-        // 选择最后一个元素作为基准元素
-        int pivot = arr[high];
-        int i = low - 1;
-        for (int j = low; j < high; j++) {
-            // 如果当前元素小于等于基准元素，则将其与i+1位置的元素交换
-            if (arr[j] <= pivot) {
+        int baseVal = arr[high];//以右侧为基准点
+        int i = low;
+        int j = high;
+        while (i < j) {
+            while (i < j && arr[i] <= baseVal) {//从左侧找到第一个大于基准点的数
                 i++;
-                swap(arr, i, j);
             }
+            while (i < j && arr[j] >= baseVal) {//从右侧找到第一个小于基准点的数
+                j--;
+            }
+            swap(arr,i, j);//交换
         }
-        // 将基准元素放到正确的位置上（i+1的位置）
-        i++;
-        swap(arr, i, high);
+        swap(arr,i, high);//partition和基准位交换
         return i;
     }
 

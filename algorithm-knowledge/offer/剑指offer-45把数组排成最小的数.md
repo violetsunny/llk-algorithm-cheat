@@ -46,7 +46,7 @@ class Solution {
         return Arrays.stream(nums)
             .mapToObj(String::valueOf)
             .sorted((a, b) -> (a + b).compareTo(b + a))//比较这两个字符拼接后ASCII码比较大小
-            .reduce((a, b) -> a + b)//拼接收集
+            .reduce((a, b) -> a.equals("0")?a:a + b)//拼接收集
             .orElse("");
     }
 }
@@ -54,3 +54,50 @@ class Solution {
 
 ### 解法：快排
 代码按照快排模板。
+```java
+class Solution {
+    public String minNumber(int[] nums) {
+        qSort(nums,0,nums.length-1);
+        String res = "";
+        for(int num:nums){
+            if(!res.equals("0")){
+                res += num;
+            }
+        }
+        return res;
+    }
+    
+    private void qSort(int[] nums,int low,int high){
+        if(low > high){
+            return;
+        }
+        int partition = partition(nums,low,high);
+        qSort(nums,low,partition-1);
+        qSort(nums,partition+1,high);
+    }
+    
+    private int partition(int[] nums,int low,int high){
+        int base = nums[high];
+        int i = low;
+        int j = high;
+        while(i < j){
+            while(i < j && (nums[i]+""+base).compareTo(base+""+nums[i])<=0){
+                i++;
+            }
+            while(i < j && (nums[j]+""+base).compareTo(base+""+nums[j])>=0){
+                j--;
+            }
+            swap(nums,i,j);
+        }
+        swap(nums,i,high);
+        return i;
+    }
+    
+    private void swap(int[] nums,int i,int j){
+        int temp = nums[i];
+        nums[i] = nums[j];
+        nums[j] = temp;
+    }
+}
+```
+
