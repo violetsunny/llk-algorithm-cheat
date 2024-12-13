@@ -106,7 +106,7 @@ class Solution {
         }
         
         k=0;
-        for (int m = left; m < right; m++) {
+        for (int m = left; m <= right; m++) {
             index[m] = tempIndex[k];//赋给原来数组
             nums[m] = temp[k];//赋给原来数组
             k++;

@@ -36,7 +36,7 @@ public class Solution {
     }
 }
 ```
-最优写法
+最优写法：O(1)
 ```java
 class Solution {
     public int maxSubArray(int[] nums) {
