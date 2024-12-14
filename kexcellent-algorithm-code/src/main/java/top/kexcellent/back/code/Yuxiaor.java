@@ -97,6 +97,11 @@ public class Yuxiaor {
         Deque<Integer> q = new ArrayDeque<>();
         q.push(1);//在顶部添加元素
         q.offer(2);//末尾放入i
+
+        String s = "aaabb".substring(0,0);
+        System.out.println(s);
+        String s1 = "aaabb".substring(3,5);
+        System.out.println(s1);
     }
 
 //    public static void main(String[] args) {
