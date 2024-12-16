@@ -6,8 +6,7 @@ package top.kexcellent.back.code;
 
 import org.apache.commons.lang3.StringUtils;
 
-import java.util.ArrayDeque;
-import java.util.Deque;
+import java.util.*;
 import java.util.regex.Pattern;
 
 /**
@@ -102,6 +101,10 @@ public class Yuxiaor {
         System.out.println(s);
         String s1 = "aaabb".substring(3,5);
         System.out.println(s1);
+
+        Set<Integer> set = new HashSet<>();
+        List<Integer> list = new ArrayList<>();
+
     }
 
 //    public static void main(String[] args) {
