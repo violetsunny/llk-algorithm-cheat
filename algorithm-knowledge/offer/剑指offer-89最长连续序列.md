@@ -21,7 +21,7 @@
 - 0 <= nums.length <= 105
 - -109 <= nums[i] <= 109
 
-### 解法： 加减
+### 解法： 脑筋题
 只需要对每个开头的数进行循环，直到这个序列不再连续，因此复杂度是O(n)。 以题解中的序列举例:
 
 [100，4，200，1，3，4，2]
@@ -37,31 +37,32 @@
 4. 元素1是开头，因为没有0，且以1开头的序列长度为4，因为依次累加，2，3，4都存在;
 5. 元素3不是开头，因为2存在，过;
 6. 元素2不是开头，因为1存在，过。
+
+看着循环两次，但是判断头节点的$if(!set.contains(num-1))$ 只会有一次。
+
 ````java
 class Solution {
     public int longestConsecutive(int[] nums) {
-        Set<Integer> num_set = new HashSet<Integer>();
-        for (int num : nums) {
-            num_set.add(num);
+        Set<Integer> set = new HashSet<>();
+        for(int num:nums){
+            set.add(num);//去重
         }
 
-        int longestStreak = 0;
+        int max = 0;//最大的数
+        for(int num:set){
+            if(!set.contains(num-1)){//判断当前是不是头，不是头就跳过
+                int cur = 1;//头
+                int curNum = num;
 
-        for (int num : num_set) {
-            if (!num_set.contains(num - 1)) {
-                int currentNum = num;
-                int currentStreak = 1;
-
-                while (num_set.contains(currentNum + 1)) {
-                    currentNum += 1;
-                    currentStreak += 1;
+                while(set.contains(++curNum)){//是否包含num的下一个数
+                    cur++;//包括+1
                 }
 
-                longestStreak = Math.max(longestStreak, currentStreak);
+                max = Math.max(cur,max);//最大值
             }
         }
 
-        return longestStreak;
+        return max;
     }
 }
 ````
