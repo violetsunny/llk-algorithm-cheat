@@ -30,26 +30,30 @@
 </pre>
 
 ## 解法：贪心
-对于金额 i，我们可以从任意一个面值的硬币 cjc_jcj 出发（只要 i≥cj），如果选择了面值为 cj 的硬币，则问题转化为子问题，即剩下的金额 i−cj：
+对于金额 i，我们可以从任意一个面值的硬币 cj c_j cj 出发（只要 i≥cj），如果选择了面值为 cj 的硬币，则问题转化为子问题，即剩下的金额 i−cj：
 <pre>
-dp[i]=min(dp[i−cj]+1)  for each cj in coins
+dp[i]=min(dp[i],dp[i−cj]+1)  for each cj in coins
 </pre>
 通过迭代的方式，从金额 1 到 n 逐步填充 dp[] 数组，每次选择最优解。
+
 ````java
 class Solution {
-    public int coin(int[] coins,int sum){
-        if(sum <= 0){
-            return 1;
+    public int coin(int[] coins, int amount) {
+        if (amount == 0) {
+            return 0;
         }
-        int p = Integer.MAX_VALUE;
-        for(int i=0;i<coins.length;i++){
-            p = Math.min(p,coin(coins,sum-coins[i])+1);
+        int max = amount + 1;
+        int[] dp = new int[amount + 1];
+        Arrays.fill(dp, max);//初始化最大值，最大肯定amount+1
+        dp[0] = 0;//从1开始，0位置要初始为0
+        for (int i = 1; i <= amount; i++) {//先填充amount之前的数，才能计算amount
+            for (int j = 0; j < coins.length; j++) {
+                if (i >= coins[j]) {
+                    dp[i] = Math.min(dp[i], dp[i - coins[j]] + 1);//各个面值比较
+                }
+            }
         }
-
-        if(p == Integer.MAX_VALUE){
-            p = -1;
-        }
-        return p;
+        return dp[amount] > amount ? -1 : dp[amount];
     }
 }
 
