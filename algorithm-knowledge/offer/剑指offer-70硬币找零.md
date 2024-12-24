@@ -64,10 +64,9 @@ class Solution {
         return dp[amount] > amount ? -1 : dp[amount];
     }
 }
-
 ````
 
-## 解法：递归+记忆化搜索
+## 解法：贪心+递归+记忆化搜索
 F(S)=F(S−C)+1; 递归所有可能性，拿到最小的，并且将重复计算过的值存储，方便下次继续算。
 
 ````java
