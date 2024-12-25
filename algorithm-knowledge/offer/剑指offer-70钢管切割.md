@@ -39,16 +39,17 @@ class Solution {
 ````
 
 ## 解法：动态规划
-
+1. $f(i)$ 表示i的最大价值。
+2. 状态转移方程: $f(i) = MAX(f(i-j)+price(j))[0, i]$; 1到根号i之间 $[0, i]$
+3. 边界：$f(0)=0$
 ````java
 class Solution {
     public int cut(int[] price, int size) {
         int[] dp = new int[size + 1];
-        dp[0] = 0;
         for (int i = 1; i <= n; i++) {//为什么不直接i=n开始，因为需要[1,n]去填充前面f(i)的值
             int max = Integer.MIN_VALUE;
-            for (int j = 0; j < i; j++) {//[1, 根号i]
-                max = Math.max(max, dp[i] + price[j]);//i=n时,取[1, 根号n]之间最小的数+1
+            for (int j = 0; j < i; j++) {//
+                max = Math.max(max, dp[i-j] + price[j]);//i=n时,取[1, 根号n]之间最小的数+1
             }
             dp[i] = max;
         }
