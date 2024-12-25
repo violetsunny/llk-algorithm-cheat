@@ -46,10 +46,10 @@ class Solution {
 class Solution {
     public int cut(int[] price, int size) {
         int[] dp = new int[size + 1];
-        for (int i = 1; i <= n; i++) {//为什么不直接i=n开始，因为需要[1,n]去填充前面f(i)的值
+        for (int i = 1; i <= size; i++) {//为什么不直接i=size开始，因为需要[1,size]去填充前面f(i)的值
             int max = Integer.MIN_VALUE;
             for (int j = 0; j < i; j++) {//0-i之间
-                max = Math.max(max, dp[i-j] + price[j]);//i=n时,取[1, n]之间最小的数
+                max = Math.max(max, dp[i-j] + price[j]);//i=size时,取[1, size]之间最小的数
             }
             dp[i] = max;
         }
