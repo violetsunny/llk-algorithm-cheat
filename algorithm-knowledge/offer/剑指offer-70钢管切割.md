@@ -48,12 +48,12 @@ class Solution {
         int[] dp = new int[size + 1];
         for (int i = 1; i <= n; i++) {//为什么不直接i=n开始，因为需要[1,n]去填充前面f(i)的值
             int max = Integer.MIN_VALUE;
-            for (int j = 0; j < i; j++) {//
-                max = Math.max(max, dp[i-j] + price[j]);//i=n时,取[1, 根号n]之间最小的数+1
+            for (int j = 0; j < i; j++) {//0-i之间
+                max = Math.max(max, dp[i-j] + price[j]);//i=n时,取[1, n]之间最小的数
             }
             dp[i] = max;
         }
-        return dp[size];
+        return dp[size];//所以要从1开始
     }
 }
 ````
