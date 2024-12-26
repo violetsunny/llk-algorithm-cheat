@@ -44,6 +44,12 @@
 
 ### 解法：记忆化深度优先搜索+回溯
 
+关系式：
+````
+memo[i][j]=max{memo[x][y]}+1
+其中 (x,y) 与 (i,j) 在矩阵中相邻，并且 matrix[x][y]>matrix[i][j]
+````
+
 ```java
 import java.util.Arrays;
 
@@ -89,4 +95,78 @@ class Solution {
 }
 ```
 
-### 解法：拓扑排序
+### 解法：动态规划+拓扑排序
+1. memo[i][j] 表示i行j列的值在路径中最长的递增序列长度。
+2. 关系式：
+````
+memo[i][j]=max{memo[x][y]}+1
+其中 (x,y) 与 (i,j) 在矩阵中相邻，并且 matrix[x][y]>matrix[i][j]
+````
+3. 边界：至少一个
+
+
+>找到出度为0的是数也就是局部最大值，往次大值递推。能够循环最多的次数也就是路径最长的递增序列。
+
+````java
+import java.util.*;
+
+class Solution {
+    // 定义四个方向的偏移量，分别表示上、下、左、右
+    public int[][] dirs = {{-1, 0}, {1, 0}, {0, -1}, {0, 1}};
+
+    public int longestIncreasingPath(int[][] matrix) {
+        // 检查矩阵是否为空
+        if (matrix == null || matrix.length == 0 || matrix[0].length == 0) {
+            return 0;
+        }
+        int rows = matrix.length;// 矩阵的行数
+        int columns = matrix[0].length;// 矩阵的列数
+        
+        // 存储每个位置的出度，出度表示可以向比它大的元素移动的方向的数量
+        int[][] outdegrees = new int[rows][columns];
+        // 计算每个位置的出度
+        for (int i = 0; i < rows; ++i) {
+            for (int j = 0; j < columns; ++j) {
+                for (int[] dir : dirs) {
+                    int newRow = i + dir[0], newColumn = j + dir[1];
+                    // 判断相邻位置是否在矩阵范围内且比当前位置的值大
+                    if (newRow >= 0 && newRow < rows && newColumn >= 0 && newColumn < columns && matrix[newRow][newColumn] > matrix[i][j]) {
+                        ++outdegrees[i][j];
+                    }
+                }
+            }
+        }
+        // 存储出度为 0 的位置
+        Queue<int[]> queue = new LinkedList<int[]>();
+        for (int i = 0; i < rows; ++i) {
+            for (int j = 0; j < columns; ++j) {
+                if (outdegrees[i][j] == 0) {//出度为0，表示局部最大值，也就是当前值在四个相邻方向上是最大的
+                    queue.offer(new int[]{i, j});
+                }
+            }
+        }
+        int ans = 0;
+        // 拓扑排序
+        while (!queue.isEmpty()) {
+            ++ans;
+            int size = queue.size();
+            for (int i = 0; i < size; ++i) {
+                int[] cell = queue.poll();
+                int row = cell[0], column = cell[1];
+                // 检查相邻位置是否在矩阵范围内且比当前位置的值小
+                for (int[] dir : dirs) {
+                    int newRow = row + dir[0], newColumn = column + dir[1];
+                    if (newRow >= 0 && newRow < rows && newColumn >= 0 && newColumn < columns && matrix[newRow][newColumn] < matrix[row][column]) {
+                        --outdegrees[newRow][newColumn];//如果当前比相邻的大，就减一
+                        // 如果出度减为 0，则将其加入队列
+                        if (outdegrees[newRow][newColumn] == 0) {//找到次大值，依次从最大值往次大值递推
+                            queue.offer(new int[]{newRow, newColumn});
+                        }
+                    }
+                }
+            }
+        }
+        return ans;
+    }
+}
+````
