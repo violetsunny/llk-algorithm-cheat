@@ -147,7 +147,7 @@ class Solution {
         }
         int ans = 0;
         // 拓扑排序
-        while (!queue.isEmpty()) {
+        while (!queue.isEmpty()) {//广度优先搜索(BFS)
             ++ans;
             int size = queue.size();
             for (int i = 0; i < size; ++i) {
