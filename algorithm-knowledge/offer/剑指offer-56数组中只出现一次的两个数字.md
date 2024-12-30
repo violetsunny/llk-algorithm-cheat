@@ -1,5 +1,4 @@
-## [56 - I. 数组中数字出现的次数](https://leetcode.cn/problems/shu-zu-zhong-shu-zi-chu-xian-de-ci-shu-lcof/)
-
+## [56 - I. 数组中数字出现的次数](https://leetcode.cn/problems/single-number-iii/description/)
 
 ### 题目描述
 
@@ -58,7 +57,7 @@ class Solution {
         return res;
     }
 
-    private int indexOf1(int val) {
+    private int indexOf1(int val) {//int m = val & -val;//x 的二进制表示中最低位那个 1
         int index = 0;
         while ((val & 1) == 0) {//找到不同位数下标，就是第几位不同
             val = val >> 1;
@@ -92,10 +91,10 @@ class Solution {
         int[] res = new int[2];
         int m = indexOfM(xorRes);//找下标
         for (int e : nums) {
-            if (isBit1(e, m)) {
+            if ((e & m) == 1) {//然后进行与&操作看是否为1，然后就可以拆开了
                 res[0] ^= e;//拆开计算
             } else {
-                res[1] ^= e;
+                res[1] ^= e;//也可以：res[1] = res[0] ^ xorRes,因为xorRes本来就是e0 ^ e1来的
             }
         }
         return res;
@@ -109,10 +108,10 @@ class Solution {
             m = m << 1; //左移找到第一个不同位的位置的数
         }
         return m;
-    }
 
-    private boolean isBit1(int val, int m) {
-        return (val & m) == 1;//然后进行与&操作看是否为1，然后就可以拆开了。
+        // 防止溢出  x 的二进制表示中最低位那个 1
+        //return (val == Integer.MIN_VALUE ? val : val & (-val));
     }
+    
 }
 ````

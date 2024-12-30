@@ -1,4 +1,4 @@
-## [56 - II. 数组中数字出现的次数 II](https://leetcode.cn/problems/shu-zu-zhong-shu-zi-chu-xian-de-ci-shu-ii-lcof/)
+## [56 - II. 数组中数字出现的次数 II](https://leetcode.cn/problems/single-number-ii/description/)
 
 
 ### 题目描述
@@ -25,26 +25,21 @@ class Solution {
      * @param nums 数字
      * @return 只出现一次的数字
      */
-    public int findNumberAppearingOnce(int[] nums) {
+    public int singleNumber(int[] nums) {
         if (nums == null || nums.length == 0) {
             return 0;
         }
-        int[] bits = new int[32];
-        int n = nums.length;
-        for (int i = 0; i < n; ++i) {
-            int val = nums[i];
-            for (int j = 0; j < 32; ++j) {
-                bits[j] += (val & 1);//求出位数上1 0 相加的
-                val = val >> 1;//移位
-            }
-        }
-        int res = 0;
+        int ans = 0;
         for (int i = 0; i < 32; ++i) {
-            if (bits[i] % 3 != 0) {//相加后的结果 %3
-                res += Math.pow(2, i);//翻译为10进制
+            int total = 0;
+            for (int num: nums) {
+                total += ((num >> i) & 1);//得到 num 的第 i 个二进制位
+            }
+            if (total % 3 != 0) {
+                ans |= (1 << i);//转二进制
             }
         }
-        return res;
+        return ans;
     }
 }
 ```
@@ -57,7 +52,7 @@ class Solution {
      * @param nums 数字
      * @return 只出现一次的数字
      */
-    public int findNumberAppearingOnce(int[] nums) {
+    public int singleNumber(int[] nums) {
         if (nums == null || nums.length == 0) {
             return 0;
         }
@@ -80,4 +75,54 @@ class Solution {
 }
 ```
 
-### 解法：状态机
+### 解法：数字电路设计优化(有限状态自动机)
+O(n) O(1)
+````
+按照和3取余数为 0,1,2 即：00 01 10
+异或运算：x ^ 0 = x​ ， x ^ 1 = ~x
+与运算：x & 0 = 0 ， x & 1 = x
+
+计算 one 方法：
+
+设当前状态为 two one ，此时输入二进制位 n 。如下图所示，通过对状态表的情况拆分，可推出 one 的计算方法为：
+
+if two == 0:
+  if n == 0:
+    one = one
+  if n == 1:
+    one = ~one
+if two == 1:
+    one = 0
+引入 异或运算 ，可将以上拆分简化为：
+
+if two == 0:
+    one = one ^ n
+if two == 1:
+    one = 0
+引入 与运算 ，可继续简化为：
+
+one = one ^ n & ~two
+
+修改为新 one 后，得到了新的状态图。观察发现，可以使用同样的方法计算 two ，即：
+
+two = two ^ n & ~one
+
+以上是对数字的二进制中 “一位” 的分析，而 int 类型的其他 31 位具有相同的运算规则，因此可将以上公式直接套用在 32 位数上。
+
+遍历完所有数字后，各二进制位都处于状态 00 和状态 01 （取决于 “只出现一次的数字” 的各二进制位是 1 还是 0 ），而此两状态是由 one 来记录的（此两状态下 twos 恒为 0 ），因此返回 ones 即可。
+````
+<img src="../images/状态转换表.png">
+<img src="../images/状态转换图.png">
+
+````java
+class Solution {
+    public int singleNumber(int[] nums) {
+        int a = 0, b = 0;
+        for (int num : nums) {
+            a = (a ^ num) & ~b;
+            b = (b ^ num) & ~a;//b一直为0
+        }
+        return a;
+    }
+}
+````
