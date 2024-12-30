@@ -100,8 +100,70 @@ class Solution {
 
 ````java
 class Solution {
+    int n;
+    List<List<Integer>> adj;
     public boolean canFinish(int numCourses, int[][] prerequisites) {
-        
+        n = numCourses;
+        adj = new ArrayList<>();
+        for(int i=0;i<numCourses;i++){
+            adj.add(new ArrayList<>());
+        }
+
+        for(int[] prerequisite : prerequisites){
+            addEdge(prerequisite[1],prerequisite[0]);
+        }
+
+        return topoSort();
+    }
+
+    private void addEdge(int k,int v){
+        adj.get(k).add(v);
+    }
+
+    private boolean topoSort(){
+        int[] in = new int[n];
+        int[] visted = new int[n];
+
+        for(int i=0;i<n;i++){
+            List<Integer> list = adj.get(i);
+            for(int j:list){
+                in[j]++;
+            }
+        }
+
+        Stack<Integer> stack = new Stack<>();
+        for(int i=0;i<n;i++){
+            if(in[i] == 0){
+                dfs(i,stack,visted);
+            }
+        }
+//        if(stack.size()!=n){
+//            return false;
+//        }
+//
+//        int[] order = new int[n];
+//        int index=0;
+//        while(!stack.isEmpty()){
+//            order[index++] = stack.pop();
+//        }
+
+        return stack.size()==n;
+    }
+
+    private void dfs(int i,Stack<Integer> stack,int[] visted){
+        visted[i] = 1;
+
+        List<Integer> list = adj.get(i);
+        for(int j:list){
+            if(visted[j] ==0){
+                dfs(j,stack,visted);
+            } else if(visted[j] ==1){
+                return;
+            }
+        }
+
+        visted[i] = 2;
+        stack.push(i);
     }
 }
 ````

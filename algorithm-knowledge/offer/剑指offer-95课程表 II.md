@@ -101,8 +101,60 @@ class Solution {
 
 ````java
 class Solution {
+    int n;
+    List<List<Integer>> adj;
     public int[] findOrder(int numCourses, int[][] prerequisites) {
-        
+        n = numCourses;
+        adj = new ArrayList<>();
+        for(int i=0;i<numCourses;i++){
+            adj.add(new ArrayList<>());
+        }
+
+        for(int[] prerequisite : prerequisites){
+            addEdge(prerequisite[1],prerequisite[0]);
+        }
+
+        return topoSort();
+    }
+
+    private void addEdge(int k,int v){
+        adj.get(k).add(v);
+    }
+
+    public int[] topoSort(){
+        int[] in = new int[n];
+        for(int i=0;i<n;i++){
+            List<Integer> list = adj.get(i);
+            for(int j : list){
+                in[j]++;//入度
+            }
+        }
+
+        Queue<Integer> queue = new LinkedList<>();
+        //入度为0
+        for(int i=0;i<n;i++){
+            if(in[i]==0){
+                queue.offer(i);
+            }
+        }
+
+        List<Integer> order = new ArrayList<>();
+        while(!queue.isEmpty()){
+            int num = queue.poll();
+            order.add(num);
+
+            List<Integer> list = adj.get(num);
+            for(int i : list){
+                if(--in[i] == 0){
+                    queue.offer(i);
+                }
+            }
+        }
+
+        if(order.size()!=n){
+            return new int[0];
+        }
+        return order.stream().mapToInt(Integer::intValue).toArray();
     }
 }
 ````
