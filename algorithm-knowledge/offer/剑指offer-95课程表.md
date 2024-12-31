@@ -81,7 +81,7 @@ class Solution {
 
             // 遍历该顶点的邻居
             for (int v : adj.get(u)) {
-                // 减少邻居的入度
+                // 减少指向节点的入度
                 if (--inDegree[v] == 0) {// 入度为0放入拓扑队列中
                     queue.offer(v);
                 }
@@ -121,15 +121,7 @@ class Solution {
     }
 
     private boolean topoSort(){
-        int[] in = new int[n];
         int[] visted = new int[n];
-
-        for(int i=0;i<n;i++){
-            List<Integer> list = adj.get(i);
-            for(int j:list){
-                in[j]++;
-            }
-        }
 
         Stack<Integer> stack = new Stack<>();
         for(int i=0;i<n;i++){

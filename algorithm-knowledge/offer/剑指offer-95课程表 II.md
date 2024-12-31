@@ -63,7 +63,7 @@ class Solution {
 
     public int[] topoSort() {
         int[] visited = new int[n];// 访问标记数组 0=未搜索，1=搜索中，2=已完成
-        int[] topOrder = new int[n]; // 存储拓扑排序的结果
+        
         Stack<Integer> stack = new Stack<>();
         for (int i = 0; i < n; i++) {
             if (visited[i] == 0) {
@@ -74,7 +74,8 @@ class Solution {
         if (stack.size() != n) {
             return new int[0];
         }
-        
+
+        int[] topOrder = new int[n]; // 存储拓扑排序的结果
         int index = 0;
         while (!stack.isEmpty()) {
             topOrder[index++] = stack.pop();
@@ -145,7 +146,7 @@ class Solution {
 
             List<Integer> list = adj.get(num);
             for(int i : list){
-                if(--in[i] == 0){
+                if(--in[i] == 0){//放入节点后，指向节点入度要减去
                     queue.offer(i);
                 }
             }
