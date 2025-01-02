@@ -26,30 +26,30 @@
 ````java
 class Solution {
     public int maxPoints(int[][] points) {
-                int n = points.length;
+        int n = points.length;
         if (n <= 2) {
             return n;
         }
 
-        int max=0;
-        for(int i=0;i<n-1;i++){
-            for(int j=i+1;j<n;j++){
-                int[] vec = createV(points[i],points[j]);
+        int max = 0;
+        for (int i = 0; i < n - 1; i++) {
+            for (int j = i + 1; j < n; j++) {
+                int[] vec = createV(points[i], points[j]);
                 int mex2 = 2;
-                for(int k=0;k<n;k++){
-                    if(k==i || k==j){
+                for (int k = 0; k < n; k++) {
+                    if (k == i || k == j) {
                         continue;
                     }
-                    int[] vec1 = createV(points[i],points[k]);
+                    int[] vec1 = createV(points[i], points[k]);
 
-                    if(cross(vec,vec1) == 0){
+                    if (cross(vec, vec1) == 0) {
                         mex2++;
                     }
                 }
 
-                max = Math.max(max,mex2);
+                max = Math.max(max, mex2);
 
-                if(max > n/2){
+                if (max > n / 2) {
                     return max;
                 }
             }
@@ -59,13 +59,13 @@ class Solution {
     }
 
     //构建向量
-    private int[] createV(int[] points1,int[] points2){
-        return new int[]{points1[0]-points2[0],points1[1]-points2[1]};
+    private int[] createV(int[] points1, int[] points2) {
+        return new int[]{points1[0] - points2[0], points1[1] - points2[1]};
     }
 
     //叉积
-    private int cross(int[] points1,int[] points2){
-        return points1[0]*points2[1] - points2[0]*points1[1];
+    private int cross(int[] points1, int[] points2) {
+        return points1[0] * points2[1] - points2[0] * points1[1];
     }
 }
 ````
@@ -108,7 +108,7 @@ class Solution {
                 map.put(key, map.getOrDefault(key, 0) + 1);
             }
             int maxn = 0;
-            for (Map.Entry<Integer, Integer> entry: map.entrySet()) {
+            for (Map.Entry<Integer, Integer> entry : map.entrySet()) {
                 int num = entry.getValue();
                 maxn = Math.max(maxn, num + 1);
             }

@@ -31,6 +31,15 @@
 
 
 ### 解法：位运算
+1.n & (n-1): 
+
+8 & 7 => 1000 & 0111 = 0
+
+2.(n & -n):
+
+由于负数是按照补码规则在计算机中存储的，−n 的二进制表示为 n 的二进制表示的每一位取反再加上 1
+
+8 & -8 => 00001000 &  (11110111 + 1 = 11111000) = 1000
 ````java
 class Solution {
     public boolean isPowerOfTwo(int n) {
@@ -44,6 +53,7 @@ class Solution {
 ````
 
 ### 解法：数学-约数
+如果是2的幂，肯定也是2最大幂的因子
 ````java
 class Solution {
     public boolean isPowerOfTwo(int n) {
