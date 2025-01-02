@@ -52,7 +52,7 @@ class Solution {
             if ((n & i) != 0) {
                 ++cnt;
             }
-            i <<= 1;
+            i <<= 1;//左移1位替换
         }
         return cnt;
     }
@@ -90,7 +90,7 @@ class Solution {
         int cnt = 0;
         while (n != 0) {
             ++cnt;
-            n &= (n - 1);
+            n &= (n - 1);//这是消除二进制中最后一位1的方法
         }
         return cnt;
     }

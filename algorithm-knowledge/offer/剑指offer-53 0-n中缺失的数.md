@@ -41,12 +41,12 @@ class Solution {
         while (start <= end) {
             int mid = start + ((end - start) >> 1);
             if (nums[mid] != mid) {
-                end = mid;
+                end = mid - 1;
             } else {
                 start = mid + 1;
             }
         }
-        return num[start] == start ? start+1 : start;
+        return nums[start] == start ? start+1 : start;
 
     }
 }
