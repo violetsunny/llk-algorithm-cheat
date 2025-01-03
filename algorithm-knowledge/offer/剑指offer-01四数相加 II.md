@@ -13,7 +13,8 @@
 两个元组如下：
 1. (0, 0, 0, 1) -> nums1[0] + nums2[0] + nums3[0] + nums4[1] = 1 + (-2) + (-1) + 2 = 0
 2. (1, 1, 0, 0) -> nums1[1] + nums2[1] + nums3[0] + nums4[0] = 2 + (-1) + (-1) + 0 = 0
-   示例 2：
+   
+示例 2：
 
 输入：nums1 = [0], nums2 = [0], nums3 = [0], nums4 = [0]
 输出：1
@@ -36,14 +37,14 @@ class Solution {
         Map<Integer,Integer> mapping = new HashMap<>();
         for(int a:nums1){
             for(int b:nums2){
-                mapping.put(a+b,mapping.getOrDefault(a+b,0)+1);
+                mapping.put(a+b,mapping.getOrDefault(a+b,0)+1);//num1 + num2
             }
         }
 
         int res=0;
         for(int a:nums3){
             for(int b:nums4){
-                res += mapping.getOrDefault(-a-b,0);
+                res += mapping.getOrDefault(-a-b,0);//-num3 -num4 组成key如果能找到,说明相加后是负数的相等
             }
         }
         return res;

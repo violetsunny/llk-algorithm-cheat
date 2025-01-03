@@ -4,13 +4,9 @@ difficulty: 中等
 edit_url: https://github.com/doocs/leetcode/edit/main/lcof/%E9%9D%A2%E8%AF%95%E9%A2%9849.%20%E4%B8%91%E6%95%B0/README.md
 ---
 
-<!-- problem:start -->
-
 # [丑数](https://leetcode.cn/problems/chou-shu-lcof/)
 
 ## 题目描述
-
-<!-- description:start -->
 
 <p>我们把只包含质因子 2、3 和 5 的数称作丑数（Ugly Number）。求按从小到大的顺序的第 n 个丑数。</p>
 
@@ -31,11 +27,8 @@ edit_url: https://github.com/doocs/leetcode/edit/main/lcof/%E9%9D%A2%E8%AF%95%E9
 
 <p>注意：本题与主站 264 题相同：<a href="https://leetcode.cn/problems/ugly-number-ii/">https://leetcode.cn/problems/ugly-number-ii/</a></p>
 
-<!-- description:end -->
 
 ## 解法
-
-<!-- solution:start -->
 
 ### 方法一：优先队列（最小堆）
 
@@ -43,7 +36,6 @@ edit_url: https://github.com/doocs/leetcode/edit/main/lcof/%E9%9D%A2%E8%AF%95%E9
 
 时间复杂度 $O(n \times \log n)$，空间复杂度 $O(n)$。
 
-<!-- tabs:start -->
 
 ```java
 class Solution {
@@ -68,11 +60,6 @@ class Solution {
 }
 ```
 
-<!-- tabs:end -->
-
-<!-- solution:end -->
-
-<!-- solution:start-->
 
 ### 方法二：动态规划
 
@@ -88,7 +75,6 @@ class Solution {
 
 时间复杂度 $O(n)$，空间复杂度 $O(n)$。
 
-<!-- tabs:start -->
 
 ```java
 class Solution {
@@ -107,9 +93,3 @@ class Solution {
     }
 }
 ```
-
-<!-- tabs:end -->
-
-<!-- solution:end -->
-
-<!-- problem:end -->
