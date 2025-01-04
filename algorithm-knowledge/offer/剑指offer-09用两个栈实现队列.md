@@ -85,7 +85,7 @@ class MyQueue {
  */
 ```
 
-## 9.2 用两个队列实现栈
+## [09.2 用两个队列实现栈](https://leetcode.cn/problems/implement-stack-using-queues/description/)
 
 来源：[LeetCode](https://leetcode.cn/problems/implement-stack-using-queues/)
 
@@ -132,14 +132,15 @@ class MyStack {
 
     /** Removes the element on top of the stack and returns that element. */
     public int pop() {
-        if (q1.isEmpty()) {
-            while (q2.size() > 1) {//q2放q1，大于1停止可以取q2最后一个
+        if (q1.isEmpty()) {//q1是空的，从q2取。并将长度多于1的数放入q1中
+            while (q2.size() > 1) {//q2放q1，等于1停止可以取q2最后一个
                 q1.offer(q2.poll());
             }
             return q2.poll();
         }
 
-        while (q1.size() > 1) {//q1放q2，大于1停止可以取q1最后一个
+        //q1不是空的，从q1取。并将多于1的数放入q2中
+        while (q1.size() > 1) {//q1放q2，等于1停止可以取q1最后一个
             q2.offer(q1.poll());
         }
         return q1.poll();
