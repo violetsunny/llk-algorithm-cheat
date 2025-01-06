@@ -81,12 +81,12 @@ class Solution {
         }
         ListNode temp = head;
         int count = 0;//从0开始，因为null算了一个
-        whiel(temp != null){
+        while(temp != null) {
             temp = temp.next;
             count++;
         }
         int[] res = new int[count];
-        while(head != null){
+        while(head != null) {
             res[--count]=head.val;//从后往前赋值，--count因为下标从0开始
             head = head.next;
         }
