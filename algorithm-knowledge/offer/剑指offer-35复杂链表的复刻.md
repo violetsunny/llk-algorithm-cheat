@@ -20,53 +20,58 @@
 
 ```java
 /*
-public class RandomListNode {
-    int label;
-    RandomListNode next = null;
-    RandomListNode random = null;
+// Definition for a Node.
+class Node {
+    int val;
+    Node next;
+    Node random;
 
-    RandomListNode(int label) {
-        this.label = label;
+    public Node(int val) {
+        this.val = val;
+        this.next = null;
+        this.random = null;
     }
 }
 */
-public class Solution {
-    /**
-     * 复杂链表的复制
-     * @param pHead 链表头结点
-     * @return 复制的链表
-     */
-    public RandomListNode Clone(RandomListNode pHead) {
-        if (pHead == null) {
-            return null;
-        }
-        RandomListNode cur = pHead;
-        while (cur != null) {
-            RandomListNode node = new RandomListNode(cur.label);
-            node.next = cur.next;//复制节点
-            cur.next = node;
-            cur = node.next;
-        }
 
-        cur = pHead;
-        while (cur != null) {
-            RandomListNode clone = cur.next;
-            if (cur.random != null) {
-                clone.random = cur.random.next;//必须是random.next 这才是复制的那个node
-            }
-            cur = clone.next;
-        }
-
-        cur = pHead;//用来拆分时中转
-        RandomListNode cloneHead = pHead.next;//这个必须要写，不然就找不到克隆的头了
-        while (cur.next != null) {
-            RandomListNode clone = cur.next;
-            if(clone!=null){
-              cur.next = clone.next;//从克隆节点下一节点给原来节点。
-            }
-            cur = clone;//克隆节点和原来节点交换，下次拆的就是原来节点下一节点给克隆节点，然后一次循环。
-        }
-        return cloneHead;//cloneHead是复制的链表，pHead就是原来的链表
+class Solution {
+  public Node copyRandomList(Node head) {
+    if(head == null){
+      return null;
     }
+    Node preHead = head;
+    while(preHead!=null){
+      Node node = new Node(preHead.val);
+      Node temp = preHead.next;
+      preHead.next = node;//复制节点
+      node.next = temp;//原来的下一个接着复制节点后面
+
+      preHead = temp;
+    }
+
+    preHead = head;
+    while(preHead!=null){
+      Node random = preHead.random;
+      if(random!=null){
+        preHead.next.random = random.next;//必须是random.next 这才是复制的那个node
+      }
+      preHead = preHead.next.next;
+    }
+
+    preHead = head;
+    Node pre = head.next;//这个必须要写，不然就找不到克隆的头了
+    Node pretemp = pre;
+    while(preHead!=null){
+      Node temp = preHead.next.next;//下下一个就是原来的节点
+      preHead.next = temp;//给原来的上个节点
+      preHead = temp;//原来节点的替换
+      if(temp!=null){
+        pretemp.next = temp.next;//复制的节点给复制的上个节点
+        pretemp = temp.next;//复制节点的替换
+      }
+    }
+
+    return pre;
+  }
 }
 ```

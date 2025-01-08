@@ -56,9 +56,9 @@ class Solution {
             return head;
         }
         ListNode node = reverseList(head.next);//递归到最后
-        head.next.next = head;//就是从后往前依次转
-        head.next = null;
-        return node;
+        head.next.next = head;//当前下一个的下一个指向当前，
+        head.next = null;//当前的下一个改为null
+        return node;//返回最后节点
     }
 }
 ```
@@ -78,7 +78,7 @@ class Solution {
         if (head == null || head.next == null) {
             return head;
         }
-        ListNode cur = head;//借助一个指针
+        ListNode cur = head;//拿出当前节点
         ListNode pre = null;//要弄一个前置节点
         while(cur!=null){
             ListNode temp = cur.next;//把next节点拎出来

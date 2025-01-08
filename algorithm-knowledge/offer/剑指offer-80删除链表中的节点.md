@@ -46,7 +46,7 @@ class Solution {
         //想删除当前，但是不知道前面的没办法重新指向。
         //那我们就把后面那个顶替当前的，删后面那个。
         node.val = node.next.val;
-        node.next = node.next.next;
+        node.next = node.next.next;//这个 node.next.next很重要，node = node.next是不行的，节点没有少，需要下下一个换掉下一个
     }
 }
 ````
