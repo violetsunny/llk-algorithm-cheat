@@ -52,7 +52,7 @@ class Solution {
 }
 ```
 
-#### 解法二：双指针
+#### 解法二：双指针（二分查找）
 
 利用指针 `start`,`end` 指向数组的首尾，如果 `nums[start] < nums[end]`，说明数组是递增数组，直接返回 `nums[start]`。否则进行如下讨论。
 

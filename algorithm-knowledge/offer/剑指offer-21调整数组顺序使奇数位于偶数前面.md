@@ -88,8 +88,8 @@ public class Solution {
 }
 ```
 
-#### 解法三
-双指针交换
+#### 解法三：双指针交换（快排）
+
 ```java
 import java.util.Arrays;
 
