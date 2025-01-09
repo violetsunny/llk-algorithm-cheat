@@ -48,7 +48,7 @@ class Solution {
     }
 }
 ```
-### 解法: 遍历+双指针
+### 解法: 双指针
 ```java
 class Solution {
     /**
