@@ -60,7 +60,7 @@ class Solution {
             cur = cur.next;
         }
 
-        temp2.next = null;//这个很重要，需要将cur的next给null,不然可能会循环引用
+        temp2.next = null;//这个很重要，需要将cur的next给null,不然程序会认为链表没有完成
         temp.next = pre2.next;//pre的尾加上pre2的头
         return pre.next;
     }

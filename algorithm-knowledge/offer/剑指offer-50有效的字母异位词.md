@@ -40,4 +40,4 @@ class Solution {
 }
 ````
 
-进阶：Unicode 一个字符可能对应多个字节的问题，可以用Map<Character, Integer>维护，这样多出现的次数也能操作。
+进阶：Unicode 一个字符可能对应多个字节的问题，可以用Map<Character, Integer>维护，这样避免字符造成的 **离散未知** 的问题。

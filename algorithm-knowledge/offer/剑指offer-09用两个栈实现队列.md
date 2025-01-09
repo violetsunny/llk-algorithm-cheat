@@ -38,40 +38,34 @@ queue.empty(); // returns false
 ```java
 class MyQueue {
 
-    private Stack<Integer> s1;
-    private Stack<Integer> s2;
+    Stack<Integer> stack1;
+    Stack<Integer> stack2;
 
-    /** Initialize your data structure here. */
     public MyQueue() {
-        s1 = new Stack<>();
-        s2 = new Stack<>();
+        stack1 = new Stack<>();
+        stack2 = new Stack<>();
     }
 
-    /** Push element x to the back of queue. */
     public void push(int x) {
-        s1.push(x);
+        stack1.push(x);
     }
 
-    /** Removes the element from in front of queue and returns that element. */
     public int pop() {
-        int t = peek();//交换放到s2中后，将s2反过来的数弹出
-        s2.pop();
-        return t;
+        peek();//先交换保证stack2有数
+        return stack2.pop();
     }
 
-    /** Get the front element. */
     public int peek() {
-        if (s2.isEmpty()) {
-            while (!s1.isEmpty()) {//s1 s2交换
-                s2.push(s1.pop());
+        if(stack2.isEmpty()){//空的才需要将stack1放入，否则stack2还是之前的队列顺序不能放入
+            while(!stack1.isEmpty()){
+                stack2.push(stack1.pop());
             }
         }
-        return s2.peek();
+        return stack2.peek();
     }
 
-    /** Returns whether the queue is empty. */
     public boolean empty() {
-        return s1.isEmpty() && s2.isEmpty();
+        return stack1.isEmpty() && stack2.isEmpty();
     }
 }
 
@@ -81,90 +75,6 @@ class MyQueue {
  * obj.push(x);
  * int param_2 = obj.pop();
  * int param_3 = obj.peek();
- * boolean param_4 = obj.empty();
- */
-```
-
-## [09.2 用两个队列实现栈](https://leetcode.cn/problems/implement-stack-using-queues/description/)
-
-来源：[LeetCode](https://leetcode.cn/problems/implement-stack-using-queues/)
-
-### 题目描述
-
-使用队列实现栈的下列操作：
-
-- push(x) -- 元素 x 入栈
-- pop() -- 移除栈顶元素
-- top() -- 获取栈顶元素
-- empty() -- 返回栈是否为空
-
-**注意:**
-
-- 你只能使用队列的基本操作-- 也就是 `push to back`, `peek/pop from front`, `size`, 和 `is empty` 这些操作是合法的。
-- 你所使用的语言也许不支持队列。 你可以使用 list 或者 deque（双端队列）来模拟一个队列 , 只要是标准的队列操作即可。
-- 你可以假设所有操作都是有效的（例如, 对一个空的栈不会调用 pop 或者 top 操作）。
-
-### 解法
-
-- 出栈时，先将队列的元素依次移入另一个队列中，直到队列剩下一个元素。将该元素出队即可。
-- 进栈时，将元素压入不为空的那一个队列即可。如果两队列都为空，随便压入其中一个队列。
-
-```java
-class MyStack {
-
-    private Queue<Integer> q1;
-    private Queue<Integer> q2;
-
-    /** Initialize your data structure here. */
-    public MyStack() {
-        q1 = new LinkedList<>();
-        q2 = new LinkedList<>();
-    }
-
-    /** Push element x onto stack. */
-    public void push(int x) {
-        if (empty() || q2.isEmpty()) {//q2不为空放q2,q2为空放q1
-            q1.offer(x);
-        } else {
-            q2.offer(x);
-        }
-    }
-
-    /** Removes the element on top of the stack and returns that element. */
-    public int pop() {
-        if (q1.isEmpty()) {//q1是空的，从q2取。并将长度多于1的数放入q1中
-            while (q2.size() > 1) {//q2放q1，等于1停止可以取q2最后一个
-                q1.offer(q2.poll());
-            }
-            return q2.poll();
-        }
-
-        //q1不是空的，从q1取。并将多于1的数放入q2中
-        while (q1.size() > 1) {//q1放q2，等于1停止可以取q1最后一个
-            q2.offer(q1.poll());
-        }
-        return q1.poll();
-    }
-
-    /** Get the top element. */
-    public int top() {
-        int val = pop();//取出最后一个并删除
-        push(val);//最后一个重新放入
-        return val;
-    }
-
-    /** Returns whether the stack is empty. */
-    public boolean empty() {
-        return q1.isEmpty() && q2.isEmpty();
-    }
-}
-
-/**
- * Your MyStack object will be instantiated and called as such:
- * MyStack obj = new MyStack();
- * obj.push(x);
- * int param_2 = obj.pop();
- * int param_3 = obj.top();
  * boolean param_4 = obj.empty();
  */
 ```
