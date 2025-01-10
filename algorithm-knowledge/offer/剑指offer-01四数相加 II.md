@@ -29,7 +29,7 @@
 - 1 <= n <= 200
 - -228 <= nums1[i], nums2[i], nums3[i], nums4[i] <= 228
 
-## 解法：hash映射
+### 解法：哈希映射
 
 ````java
 class Solution {

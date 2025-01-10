@@ -98,8 +98,8 @@ class Solution {
     boolean[] visited;
 
     public String[] permutation(String s) {
-        this.ans = new ArrayList<>;
-        this.path = new ArrayList<>;
+        this.ans = new ArrayList<>();
+        this.path = new ArrayList<>();
         this.visited = new boolean[s.length()];
         char[] ch = s.toCharArray();
         Arrays.sort(ch);//排序了才知道相邻是否相等
@@ -108,7 +108,8 @@ class Solution {
         for(int i=0;i<ans.size();i++){
             ss[i] = ans.get(i);
         }
-    }   return ss;
+        return ss;
+    }   
 
     private void dfs(char[] arr, int k) {
         if (arr.length == k) {
