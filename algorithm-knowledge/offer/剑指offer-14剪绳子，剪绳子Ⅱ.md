@@ -59,7 +59,7 @@ class Solution {
 }
 ```
 
-#### 解法二 贪心算法
+#### 解法二 贪心算法 + 数学
 
 时间复杂度`O(1)`，空间复杂度`O(1)`。
 
@@ -70,9 +70,10 @@ class Solution {
 
 **证明：**
 
-- 当 n>=5 时，可以证明 2(n-2)>n，并且 3(n-3)>n。也就是说，当绳子剩下长度大于或者等于 5 的时候，可以把它剪成长度为 3 或者 2 的绳子段。
-- 当 n>=5 时，3(n-3)>=2(n-2)，因此，应该尽可能多地剪长度为 3 的绳子段。
+- 当 n>5 时，可以证明 2(n-2)>n，3(n-3)>n，并且3(n-3)>=2(n-2)。也就是说，当绳子剩下长度大于 5 的时候，可以把它尽量剪成长度为 3 的绳子段就是$3^m$，剪完后可能会余1或2，（1）余1的时候因该和3合并，就是$3^{(m-1)} \times 4$；（2）余2的时候就是5的情况，还是拆开来不合并，就是 $3^m \times 2$。
+- 当 n=5 时，应该尽可能多地剪长度为 3 的绳子段，所以剪成$3 \times 2$。
 - 当 n=4 时，剪成两根长度为 2 的绳子，其实没必要剪，只是题目的要求是至少要剪一刀。
+- 当 n=3或者2时，n-1;
 
 ```java
 class Solution {
@@ -95,7 +96,11 @@ class Solution {
         int timesOf2 = (length - timesOf3 * 3) >> 1;//剩下的能有多少个2
         return (int) (Math.pow(2, timesOf2) * Math.pow(3, timesOf3));
     }
-
+}
+```
+帅地易懂写法
+```java
+class Solution {
     /**
      * 易懂写法
      * @param length
@@ -109,11 +114,11 @@ class Solution {
         int timesOf3 = length / 3;//能有多少个3
         int mod = length % 3;
         if(mod == 0){
-            return (int)Math.pow(3, timesOf3);
+            return (int)Math.pow(3, timesOf3);//刚好都是3
         } else if(mod == 1){
-            return (int)Math.pow(3, timesOf3 - 1) * 4;
+            return (int)Math.pow(3, timesOf3 - 1) * 4;//余1，和3合并
         } else {
-            return (int)Math.pow(3, timesOf3) * 2;
+            return (int)Math.pow(3, timesOf3) * 2;//余2，拆开不合并
         }
     }
 }
@@ -173,15 +178,31 @@ class Solution {
         if (n < 4) {
             return n - 1;
         }
+        int timesOf3 = n / 3;
         if (n % 3 == 0) {
-            return qpow(3, n / 3);
+            return (int) qpow(3, timesOf3);
         }
         if (n % 3 == 1) {//结果可能超过
-            return (int) (4L * qpow(3, n / 3 - 1) % mod);
+            return (int) (4L * qpow(3, timesOf3 - 1) % mod);
         }
-        return 2 * qpow(3, n / 3) % mod;
+        return (int) (2L * qpow(3, timesOf3) % mod);
     }
 
+    /**
+     * 有个推导公式： 必要条件 a < p
+     * res(n) = a^n % mod = ((a^(n-1) % mod) * (a % mod)) % mod
+     *        = ((a^(n-1) % mod) * a) % mod  而其中 res(n-1) = a^(n-1) % mod
+     * 所以：
+     * res(n) = res(n-1) * a % mod
+     * res(1) = 1 * a % mod
+     * 
+     * 所以，在求a^n % mod时，可以在循环中直接res = res * a % mod;
+     * 
+     * O(logN)
+     * @param a
+     * @param n
+     * @return
+     */
     private int qpow(long a, long n) {
         long ans = 1;
         for (; n > 0; n >>= 1) {
@@ -191,6 +212,16 @@ class Solution {
             a = a * a % mod;
         }
         return (int) ans;
+    }
+    
+    //有个推导公式： res(n) = res(n-1) * a % mod;
+    // O(n)
+    private long pow(int a,int n){
+        long res = 1;
+        for(int i=1;i<=n;i++){
+            res = res * a % mod;
+        }
+        return res;
     }
 }
 ```

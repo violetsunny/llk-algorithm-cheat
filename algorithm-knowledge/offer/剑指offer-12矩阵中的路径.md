@@ -70,6 +70,7 @@ class Solution {
                 && !visited[i][j] && matrix[i][j] == str.charAt(pathLength)) {
             ++pathLength;
             visited[i][j] = true;
+            //matrix[i][j] = '*';//也可以通过修改值来判断，减少开辟visited空间
             hasPath = hasPath(matrix, str, i + 1, j, visited, pathLength)
                     || hasPath(matrix, str, i - 1, j, visited, pathLength)
                     || hasPath(matrix, str, i, j + 1, visited, pathLength)
@@ -77,6 +78,7 @@ class Solution {
             if (!hasPath) {
                 --pathLength;
                 visited[i][j] = false;
+                //matrix[i][j] = str.charAt(pathLength);
             }
         }
         return hasPath;

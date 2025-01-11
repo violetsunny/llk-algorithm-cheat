@@ -95,7 +95,7 @@ class Solution {
     }
 }
 ```
-其他写法
+帅地写法
 ```java
 class Solution {
 
@@ -113,14 +113,39 @@ class Solution {
             y = -y;
             base = 1/base;
         }
-        while(y!=0){
-            if(y%2==1){
-                res = res*base;
+        while(y != 0){
+            if(y % 2 == 1){
+                res = res * base;
             }
             base = base * base;
             y = y / 2;
         }
         return res;
+    }
+}
+```
+优秀写法
+```java
+class Solution {
+
+    /**
+     * 计算数值的整数次方
+     *
+     * @param base 底数
+     * @param exponent 指数
+     * @return 数值的整数次方
+     */
+    public double myPow(double base, int exponent) {
+        double res = 1;
+        //如果直接用会把exponent覆盖，影响最后负数判断，而且需要取绝对值才能正常操作
+        int n = Math.abs(exponent);//long n = -exponent;//负数在负可能会超过int最大值，比如int exponent = -2147483648;-exponent =2147483648超过int最大值2147483647。 
+        for (; n > 0; n >>= 1) {
+            if ((n & 1) == 1) {
+                res = res * base;
+            }
+            base = base * base;
+        }
+        return exponent > 0 ? res : 1 / res;
     }
 }
 ```
