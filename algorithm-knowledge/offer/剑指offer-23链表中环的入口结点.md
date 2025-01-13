@@ -6,7 +6,7 @@
 
 给一个链表，若其中包含环，请找出该链表的环的入口结点，否则，输出`null`。
 
-### 解法：快慢指针
+### 解法：双指针(快慢指针)
 
 - 先利用快慢指针。若能相遇，说明存在环，且相遇点一定是在环上；若没有相遇，说明不存在环，返回 `null`。
 - 固定当前相遇点，用一个指针继续走，同时累积结点数。计算出环的结点个数 `cnt`。
@@ -30,7 +30,7 @@ public class Solution {
      * @param pHead 链表头
      * @return 环的入口点
      */
-    public ListNode EntryNodeOfLoop(ListNode pHead) {
+    public ListNode detectCycle(ListNode pHead) {
         if (pHead == null || pHead.next == null) {
             return null;
         }
@@ -75,3 +75,23 @@ public class Solution {
     }
 }
 ```
+
+### 解法：哈希表
+
+````java
+public class Solution {
+    public ListNode detectCycle(ListNode head) {
+        ListNode pos = head;
+        Set<ListNode> visited = new HashSet<ListNode>();
+        while (pos != null) {
+            if (visited.contains(pos)) {
+                return pos;
+            } else {
+                visited.add(pos);
+            }
+            pos = pos.next;
+        }
+        return null;
+    }
+}
+````

@@ -17,7 +17,7 @@
 输出："student. a am I"
 ```
 
-### 解法:split join 函数
+### 解法:split join 函数API
 
 先对字符串按空格切割成数组，再逆序数组后，最后将元素拼接并返回。
 
@@ -61,17 +61,21 @@ class Solution {
         if (s == null || s.length() < 2) {
             return s;
         }
-        s = s.trim();//去除前后空格
+        int i = s.length() - 1;
+        int j = s.length() - 1;
         StringBuilder sb = new StringBuilder();
-        int n = s.length()-1;
-        int i = n;
-        int j = n;
-        while(i>=0){
-            while(s.charAt(i)!=' '){i--;}
-            sb.append(s.substring(i+1,j+1)+" ");
-            while(i>=0 && s.charAt(i)==' '){i--;}
-            j = i;
+        while(i >= 0) {
+            while(i >= 0 && s.charAt(i) == ' '){//去除空格
+                i--;
+            }
+            j = i;//挪动j
+            while(i >= 0 && s.charAt(i) != ' '){//找到非空格
+                i--;
+            }
+            sb.append(s.substring(i+1,j+1) + " ");
+            j = i;//挪动j
         }
+
         return sb.toString().trim();//去除append造成的空格
     }
 }

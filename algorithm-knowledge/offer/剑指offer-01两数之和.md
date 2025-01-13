@@ -50,3 +50,51 @@ class Solution {
 }
 
 ````
+
+### 解法：双指针
+
+````java
+class Solution {
+    public int[] twoSum(int[] numbers, int target) {
+        int start = 0;
+        int end = numbers.length - 1;
+        while(start<end){
+            int sum = numbers[start]+numbers[end];
+            if(sum == target){
+                return new int[]{start,end};
+            } else if(sum > target){
+                end--;
+            } else {
+                start++;
+            }
+
+        }
+        return new int[0];
+    }
+}
+````
+
+### 解法：二分查找
+更通用,非递增序列也能用
+````java
+class Solution {
+    public int[] twoSum(int[] numbers, int target) {
+        for (int i = 0; i < numbers.length; i++) {
+            int start = i + 1;
+            int end = numbers.length - 1;
+            while (start <= end) {//要等于，因为需要拿到中间数值
+                int mid = start + (end - start) / 2;
+                int sum = numbers[i] + numbers[mid];
+                if (target == sum) {
+                    return new int[]{i, mid};
+                } else if (sum > target) {
+                    end = mid - 1;
+                } else {
+                    start = mid + 1;
+                }
+            }
+        }
+        return new int[0];
+    }
+}
+````
