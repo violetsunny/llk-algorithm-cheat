@@ -6,14 +6,16 @@ package top.kexcellent.algorithm.code.sort;
 
 import java.util.*;
 
-/**拓扑排序是针对有向无环图（Directed Acyclic Graph, DAG）的一种排序算法，
+/**
+ * 拓扑排序是针对有向无环图（Directed Acyclic Graph, DAG）的一种排序算法，
  * 它会将图中的所有顶点排成一个线性序列，使得对于任何一条有向边U -> V，顶点U都在顶点V的前面。
  * 入度：多少箭头指向该顶点，别人指向它
  * 出度：该顶点有多少箭头指向其他顶点，它指向别人
- *
+ * <p>
  * 这种排序不是唯一的,不同的结构结果不一样。拓扑排序常用于任务调度、课程规划等场景。
- *
+ * <p>
  * 在Java中，拓扑排序通常使用深度优先搜索（DFS）或广度优先搜索（BFS）实现。
+ *
  * @author kanglele
  * @version $Id: TopoSort, v 0.1 2024/12/26 15:10 kanglele Exp $
  */
@@ -81,7 +83,7 @@ public class TopoSort {
         List<Integer> topOrder = new ArrayList<>(); // 存储拓扑排序的结果
         Stack<Integer> stack = new Stack<>();
         for (int i = 0; i < n; i++) {
-            if (visited[i]==0) {
+            if (visited[i] == 0) {
                 dfs(i, visited, stack);
             }
         }
@@ -97,12 +99,12 @@ public class TopoSort {
         return topOrder;
     }
 
-    private void dfs(int i,int[] visited,Stack<Integer> stack){
+    private void dfs(int i, int[] visited, Stack<Integer> stack) {
         visited[i] = 1;
         for (int neighbor : adj.get(i)) {
-            if (visited[neighbor]==0) {
+            if (visited[neighbor] == 0) {
                 dfs(neighbor, visited, stack);
-            } else if (visited[neighbor]==1) {//指向正在搜索中的，肯定就是有环了
+            } else if (visited[neighbor] == 1) {//指向正在搜索中的，肯定就是有环了
                 return;
             }
         }

@@ -6,6 +6,7 @@ package top.kexcellent.algorithm.code;
 
 /**
  * 简单存储是否存在的bitmap
+ *
  * @author kanglele
  * @version $Id: BitMap, v 0.1 2024/11/12 11:02 kanglele Exp $
  */
@@ -39,6 +40,6 @@ public class BitMap {
         int byteIndex = index / 8;
         int bitIndex = index % 8;
         // 检查指定字节的指定位是否为1
-        return ((bits[byteIndex] & (1 << bitIndex))!= 0);
+        return ((bits[byteIndex] & (1 << bitIndex)) != 0);
     }
 }

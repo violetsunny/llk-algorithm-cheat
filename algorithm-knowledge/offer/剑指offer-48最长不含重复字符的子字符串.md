@@ -92,12 +92,12 @@ class Solution {
         for (int i = 0; i < n; ++i) {
             char c = s.charAt(i);
             while (ss[c]) {
-              //如果存在就false,j++往右挪动一位
+              //如果当前窗口中存在相同的，j就往右挪动一位，并重新初始为false，直到窗口中字符不重复
               ss[s.charAt(j++)] = false;
             }
+            ss[c] = true;
             //当前i减去j挪到的位置就是不同字符的大小
             ans = Math.max(ans, i - j + 1);
-            ss[c] = true;
         }
         return ans;
     }

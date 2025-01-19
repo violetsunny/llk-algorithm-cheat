@@ -6,6 +6,7 @@ package top.kexcellent.algorithm.code;
 
 /**
  * 可以存储多种状态的bitmap
+ *
  * @author kanglele
  * @version $Id: BitMapMuiti, v 0.1 2024/11/12 11:03 kanglele Exp $
  */
@@ -15,9 +16,8 @@ public class BitMapMulti {
     private long size;
 
     /**
-     *
      * @param stateNum 多少种状态类型：开关就是2，红绿黄就是3。。。
-     * @param length 初始化长度
+     * @param length   初始化长度
      */
     public BitMapMulti(int stateNum, int length) {
         if (stateNum > 1 && length > 0) {
@@ -25,9 +25,9 @@ public class BitMapMulti {
             stateBitNum = 64 - Long.numberOfLeadingZeros(stateNum - 1);
             // 计算需要多少个long来存储这些位
             long numOfOneLong = 64 / stateBitNum;
-            if (length > numOfOneLong * Integer.MAX_VALUE){
+            if (length > numOfOneLong * Integer.MAX_VALUE) {
                 throw new RuntimeException("初始化的位图过大，无法存储！！！");
-                }
+            }
             this.elementData = new long[(int) (length / numOfOneLong) + 1];
         } else {
             throw new RuntimeException("位图类的初始化传入参数值中没有负整数！！！");
