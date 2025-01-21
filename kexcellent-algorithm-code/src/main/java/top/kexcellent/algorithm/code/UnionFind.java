@@ -6,6 +6,7 @@ package top.kexcellent.algorithm.code;
 
 /**
  * 并查集，解决朋友圈个数问题
+ *
  * @author kanglele
  * @version $Id: UnionFind, v 0.1 2024/11/6 23:48 user Exp $
  */
@@ -28,7 +29,7 @@ public class UnionFind {
 
     // 找到一个数的根
     private int find(int x) {
-        while(elements[x] != -1) {
+        while (elements[x] != -1) {
             x = elements[x];
         }
         return x;
@@ -41,11 +42,11 @@ public class UnionFind {
         // y的根
         int rooty = find(y);
         // 如果不是同一个根就连起来
-        if(rootx != rooty) {
+        if (rootx != rooty) {
             // 矮树向高树合并
-            if(heights[rootx] > heights[rooty]) {
+            if (heights[rootx] > heights[rooty]) {
                 elements[rooty] = rootx;
-            } else if(heights[rootx] < heights[rooty]) {
+            } else if (heights[rootx] < heights[rooty]) {
                 elements[rootx] = rooty;
             } else {
                 // 如果高度相同，随便合并
@@ -60,8 +61,8 @@ public class UnionFind {
     // 计算形成了多少颗树
     public int count() {
         int count = 0;
-        for(int i=0; i<elements.length; i++) {
-            if(elements[i] == -1) {//-1就是每个树的根节点
+        for (int i = 0; i < elements.length; i++) {
+            if (elements[i] == -1) {//-1就是每个树的根节点
                 count++;
             }
         }
@@ -70,11 +71,11 @@ public class UnionFind {
 
     // 打印并查集
     public void print() {
-        for(int i=0; i<elements.length; i++) {
+        for (int i = 0; i < elements.length; i++) {
             System.out.print(elements[i] + " ");
         }
         System.out.println();
-        for(int i=0; i<heights.length; i++) {
+        for (int i = 0; i < heights.length; i++) {
             System.out.print(heights[i] + " ");
         }
         System.out.println();
@@ -119,7 +120,7 @@ class UnionFindUpgrade {
 
     // 查找元素的根节点，进行路径压缩优化
     public int findWithPathCompression(int x) {
-        if (x!= parent[x]) {
+        if (x != parent[x]) {
             parent[x] = findWithPathCompression(parent[x]);
         }
         return parent[x];
@@ -129,7 +130,7 @@ class UnionFindUpgrade {
     public void unionByRank(int x, int y) {
         int rootX = findWithPathCompression(x);
         int rootY = findWithPathCompression(y);
-        if (rootX!= rootY) {
+        if (rootX != rootY) {
             if (rank[rootX] > rank[rootY]) {
                 parent[rootY] = rootX;
             } else if (rank[rootX] < rank[rootY]) {
