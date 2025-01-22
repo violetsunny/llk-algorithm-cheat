@@ -9,26 +9,42 @@ package top.kexcellent.back.code;
  * @version $Id: AlgoTest, v 0.1 2025/1/13 10:31 kanglele Exp $
  */
 public class AlgoTest {
-    public boolean isSubsequence(String s, String t) {
-        if(t.length()<s.length()){
-            return false;
+    public int maxProfit(int[] prices) {
+        int minprice = Integer.MAX_VALUE;
+        int maxprofit = 0;
+        for (int i = 0; i < prices.length; i++) {
+            minprice = Math.min(minprice,prices[i]);
+            maxprofit = Math.max(maxprofit,prices[i] - minprice);
         }
-        int n = t.length()-1;
-        int m = s.length()-1;
-        int j = 0;
-        for(int i=0;i<=n;i++,n--){
-            if(j<=m && s.charAt(j)==t.charAt(i)){
-                j++;
-            }
-            if(j<=m && s.charAt(m)==t.charAt(n)){
-                m--;
-            }
+        return maxprofit;
+    }
+
+    public int maxProfit2(int[] prices) {
+        int ans = 0;
+        int n = prices.length;
+        for (int i = 1; i < n; ++i) {
+            ans += Math.max(0, prices[i] - prices[i - 1]);//卖出有利可图，就进行操作
         }
-        return (j-1)==m;
+        return ans;
+    }
+
+    public int maxProfit3(int[] prices) {
+        int f0 = 0;
+        int f1 = Integer.MIN_VALUE;
+        for (int p : prices) {
+            int newF0 = Math.max(f0, f1 + p);
+            int newF1 = Math.max(f1, f0 - p);
+            f0 = newF0;
+            f1 = newF1;
+        }
+        return f0;
     }
 
     public static void main(String[] args) {
         AlgoTest algoTest = new AlgoTest();
-        algoTest.isSubsequence("abc","ahbgdc");
+        int[] nums = new int[]{10,12,34,7,8,5,9,12,20,21};
+        System.out.println(algoTest.maxProfit(nums));
+        System.out.println(algoTest.maxProfit2(nums));
+        System.out.println(algoTest.maxProfit3(nums));
     }
 }
