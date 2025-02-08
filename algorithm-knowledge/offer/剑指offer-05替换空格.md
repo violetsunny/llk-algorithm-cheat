@@ -17,7 +17,7 @@
 
 ### 解法
 
-#### 解法一：正则匹配
+### 解法一：正则匹配
 
 利用正则匹配替换。
 
@@ -36,7 +36,32 @@ class Solution {
 }
 ```
 
-#### 解法二：遍历+增加长度替换
+### 解法二：遍历
+
+```java
+class Solution {
+
+    /**
+     * 将字符串中的所有空格替换为%20
+     *
+     * @param str 字符串
+     * @return 替换后的字符串
+     */
+    public String replaceSpaces(StringBuffer str) {
+        StringBuilder sb = new StringBuilder();
+        for(int i=0;i<str.length();i++){
+            if(str.charAt(i) == ' '){
+                sb.append("%20");
+            } else {
+                sb.append(str.charAt(i));
+            }
+        }
+        return sb.toString();
+    }
+}
+```
+
+### 解法三：遍历+增加长度替换
 
 先遍历原字符串，遇到空格，则在原字符串末尾 `append` 任意两个字符，如两个空格。
 
