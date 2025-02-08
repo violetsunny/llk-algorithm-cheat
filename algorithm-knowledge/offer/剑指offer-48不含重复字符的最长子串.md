@@ -1,4 +1,4 @@
-## [48. 最长不含重复字符的子字符串](https://leetcode.cn/problems/zui-chang-bu-han-zhong-fu-zi-fu-de-zi-zi-fu-chuan-lcof/)
+## [48. 不含重复字符的最长子串](https://leetcode.cn/problems/zui-chang-bu-han-zhong-fu-zi-fu-de-zi-zi-fu-chuan-lcof/)
 
 ### 题目描述
 
@@ -6,7 +6,7 @@
 
 假设字符串中只包含从 `a` 到 `z`的字符。
 
-### 解法: 动态规划 + 哈希表
+### 解法一: 动态规划 + 哈希表
 
 `res[i]` 表示以 `s[i]` 字符结尾的最长不重复字符串的长度。判断 `s[i]`：
 
@@ -25,7 +25,7 @@ class Solution {
      * @param s 字符串
      * @return 最长不重复字符子串
      */
-    public int longestSubstringWithoutDuplication(String s) {
+    public int lengthOfLongestSubstring(String s) {
         if (s == null || s.length() == 0) {
             return 0;
         }
@@ -54,7 +54,7 @@ class Solution {
 ```java
 class Solution {
     
-    public int longestSubstringWithoutDuplication(String s) {
+    public int lengthOfLongestSubstring(String s) {
         if (s == null || s.length() == 0) {
             return 0;
         }
@@ -87,7 +87,8 @@ class Solution {
 class Solution {
     public int lengthOfLongestSubstring(String s) {
         boolean[] ss = new boolean[128];
-        int ans = 0, j = 0;
+        int max = 0;
+        int j = 0;
         int n = s.length();
         for (int i = 0; i < n; ++i) {
             char c = s.charAt(i);
@@ -97,9 +98,9 @@ class Solution {
             }
             ss[c] = true;
             //当前i减去j挪到的位置就是不同字符的大小
-            ans = Math.max(ans, i - j + 1);
+            max = Math.max(max, i - j + 1);
         }
-        return ans;
+        return max;
     }
 }
 ```

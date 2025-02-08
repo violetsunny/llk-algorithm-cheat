@@ -85,7 +85,8 @@ class Solution {
 }
 ```
 其他写法：
-<pre><strong>输入:</strong> <em>nums</em> = <code>[1,3,-1,-3,5,3,6,7]</code>, 和 <em>k</em> = 3
+<pre>
+<strong>输入:</strong> <em>nums</em> = <code>[1,3,-1,-3,5,3,6,7]</code>, 和 <em>k</em> = 3
 <strong>输出: </strong><code>[3,3,5,5,6,7] 
 <strong>解释: 
 </strong></code>
@@ -96,13 +97,14 @@ class Solution {
  1  3 [-1  -3  5] 3  6  7       5               [5]
  1  3  -1 [-3  5  3] 6  7       5               [5 3]
  1  3  -1  -3 [5  3  6] 7       6               [6]
- 1  3  -1  -3  5 [3  6  7]      7 </pre>        [7]
+ 1  3  -1  -3  5 [3  6  7]      7               [7]
+</pre>
 ```java
 class Solution {
     public int[] maxSlidingWindow(int[] nums, int k) {
         int n = nums.length;
-        int[] ans = new int[n - k + 1];//大小为n-k+1
-        Deque<Integer> q = new ArrayDeque<>();
+        int[] ans = new int[n - k + 1];//大小为n-k+1,本身还有一个最大值，所以要多出一个
+        Deque<Integer> q = new ArrayDeque<>();//为了计算大小，这个放的是下标
         for (int i = 0; i < n; ++i) {
             if (!q.isEmpty() && i - q.peek() + 1 > k) {
                 q.poll();//如果i和头元素下标大于k,右移，剔除左边元素
@@ -111,8 +113,8 @@ class Solution {
                 q.pollLast();//从后往前，剔除小于nums[i]的数。这样当前数就是后面窗口最大值，保证头元素最大
             }
             q.offer(i);//末尾放入
-            if (i >= k - 1) {
-                ans[i - k + 1] = nums[q.peek()];//头元素最大
+            if (i + 1 - k >= 0) {//因为i从0开始
+                ans[i + 1 - k] = nums[q.peek()];//头元素最大
             }
         }
         return ans;
