@@ -18,7 +18,7 @@
 <strong>输出:</strong> 6
 <strong>解释:</strong> 节点 2 和节点 8 的最近公共祖先是 6。
 </pre>
-### 方法一：一次遍历
+### 解法一：遍历
 
 从上到下遍历二叉树，找到第一个值位于 $[p.val,.. q.val]$ 之间的结点即可。既可以用迭代实现，也可以用递归实现。
 
@@ -35,19 +35,22 @@
  */
 class Solution {
     public TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
-        while (true) {
-            if (root.val < p.val && root.val < q.val) {
+        // 二叉搜索树的中序遍历是升序的,即左根右，左比根小，根比右小
+        while (root != null) {
+            if (root.val < p.val && root.val < q.val) {//root小于p又小于q，说明在右子树
                 root = root.right;
-            } else if (root.val > p.val && root.val > q.val) {
+            } else if (root.val > p.val && root.val > q.val) {//root大于p又大于q，说明在左子树
                 root = root.left;
             } else {
-                return root;
+                return root;//都不在说明，一个在左一个在右，最近的就是当前根
             }
         }
+        
+        return root;
     }
 }
 ```
-### 方法二：递归
+### 解法二：递归
 ```java
 /**
  * Definition for a binary tree node.
@@ -60,13 +63,14 @@ class Solution {
  */
 class Solution {
     public TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
-        if (root.val < p.val && root.val < q.val) {
+        // 二叉搜索树的中序遍历是升序的,即左根右，左比根小，根比右小
+        if (root.val < p.val && root.val < q.val) {//root小于p又小于q，说明在右子树
             return lowestCommonAncestor(root.right, p, q);
         }
-        if (root.val > p.val && root.val > q.val) {
+        if (root.val > p.val && root.val > q.val) {//root大于p又大于q，说明在左子树
             return lowestCommonAncestor(root.left, p, q);
         }
-        return root;
+        return root;//都不在说明，一个在左一个在右，最近的就是当前根
     }
 }
 ```

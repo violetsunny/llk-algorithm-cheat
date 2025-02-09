@@ -84,7 +84,8 @@ class Solution {
     }
 }
 ```
-其他写法：
+
+#### 帅地写法：
 <pre>
 <strong>输入:</strong> <em>nums</em> = <code>[1,3,-1,-3,5,3,6,7]</code>, 和 <em>k</em> = 3
 <strong>输出: </strong><code>[3,3,5,5,6,7] 

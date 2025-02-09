@@ -41,8 +41,6 @@ edit_url: https://github.com/doocs/leetcode/edit/main/lcof/%E9%9D%A2%E8%AF%95%E9
 
 ## 解法
 
-<!-- solution:start -->
-
 ### 方法一：动态规划
 
 我们定义 $f[i][j]$ 表示投掷 $i$ 个骰子，点数和为 $j$ 的方案数。那么我们可以写出状态转移方程：
@@ -58,8 +56,6 @@ $$
 最终，我们要求的答案即为 $\frac{f[n][j]}{6^n}$，其中 $n$ 为骰子个数，而 $j$ 的取值范围为 $[n, 6n]$。
 
 时间复杂度 $O(n^2)$，空间复杂度 $O(6n)$。其中 $n$ 为骰子个数。
-
-<!-- tabs:start -->
 
 ```java
 class Solution {
@@ -88,18 +84,10 @@ class Solution {
 }
 ```
 
-
-<!-- tabs:end -->
-
-<!-- solution:end -->
-
-<!-- solution:start-->
-
 ### 方法二：动态规划（空间优化）
 
 我们可以发现，上述方法中的 $f[i][j]$ 的值仅与 $f[i-1][j-k]$ 有关，因此我们可以使用滚动数组的方式，将空间复杂度优化至 $O(6n)$。
 
-<!-- tabs:start -->
 
 ```java
 class Solution {
@@ -128,17 +116,12 @@ class Solution {
 }
 ```
 
-<!-- tabs:end -->
-
-<!-- solution:end -->
-
-<!-- problem:end -->
-
-## 帅地解法
+#### 帅地解法
 <p>定义：</p>
 
 dp[i][j] 是 当骰子的个数为i，点数为j,有dp[i][j]种组合。
-$dp[i][j] / 6 ^ n$
+
+$\frac{dp[i][j]}{6^n}$
 
 <p>状态转移公式：</p>
 
@@ -147,8 +130,30 @@ $dp[i][j] = dp[i-1][j-1] + dp[i-1][j-2] + dp[i-1][j-3] + dp[i-1][j-4] + dp[i-1][
 
 <p>初始值：</p>
 
-$dp[1][1]=1;dp[1][2]=1;...dp[1][6]=1;$当一个骰子时只有一种组合。
+$dp[1][1]=1;dp[1][2]=1;...dp[1][6]=1;$当一个骰子时投一个点或者两个点，三个点。。。其实只有一种组合。
 
 
-
-
+````java
+class Solution {
+    public double[] dicesProbability(int n) {
+        int[][] dp = new int[n+1][6*n+1];
+        for(int i=1;i<=6;i++){
+            dp[1][i] = 1;
+        }
+        for(int i=2;i<=n;i++){
+            for(int j=i;j<=6*n;j++){
+                for(int k=1;k<=6;k++){
+                    if(j<k){break;}
+                    dp[i][j] += dp[i-n][j-k];
+                }
+            }
+        }
+        double[] d = new double[6*n - n + 1];
+        double sum = Math.pow(6,n);
+        for(int i=n;i<=6*n;i++){
+            d[i-n] = d[n][i] / sum;
+        }
+        return d;
+    }
+}
+````

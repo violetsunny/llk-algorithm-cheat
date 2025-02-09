@@ -17,7 +17,7 @@
 
 ### 解法
 
-#### 解法一
+#### 解法一：环形链表（循环数组）
 
 利用循环数组存放每个数字，每走一步，判断对应位置的数是否是 `-1`，`-1` 的话不计步数，这样一直走 `m` 步。将该位数字置为 `-1`。
 
@@ -70,7 +70,7 @@ class Solution {
 }
 ```
 
-#### 解法二
+#### 解法二：数学（约瑟夫环问题）
 
 我们这样分析：
 
@@ -153,6 +153,27 @@ class Solution {
             res = (res + m) % i;
         }
         return res;
+    }
+}
+```
+
+#### 帅地写法
+```java
+class Solution {
+
+    /**
+     * 求圆圈最后一个数字
+     *
+     * @param n n个数 [0..n-1]
+     * @param m 每次删除第 m 个数
+     * @return 最后一个数字
+     */
+    public int lastRemaining(int n, int m) {
+        if (n == 0) {
+            return 0;
+        }
+        //递归从上往下 f(i) = (f(i - 1) + m) % i;
+        return (lastRemaining(n-1,m) + m) % n;
     }
 }
 ```

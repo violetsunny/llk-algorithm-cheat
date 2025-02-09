@@ -67,7 +67,7 @@ class Solution {
     }
 }
 ```
-帅地简单写法
+#### 帅地简单写法
 ```java
 class Solution {
 

@@ -35,6 +35,8 @@
 ### 解法：贪心
 股票买卖，多次交易，只要有利可图就行买卖，也就是只要能提供正向价值就操作。
 
+这个好理解点
+
 ````java
 class Solution {
     /**
@@ -68,13 +70,17 @@ class Solution {
     public int maxProfit(int[] prices) {
         int f0 = 0;
         int f1 = Integer.MIN_VALUE;
+        // ？？ 没看懂这么写的原理
         for (int p : prices) {
-            int newF0 = Math.max(f0, f1 + p);
-            int newF1 = Math.max(f1, f0 - p);
-            f0 = newF0;
+            int newF0 = Math.max(f0, f1 + p);//为什么能累加上呢？
+            int newF1 = Math.max(f1, f0 - p);//记录反向落差
+            f0 = newF0;//交换成新的值
             f1 = newF1;
         }
         return f0;
+        //   10, 12,34, 7, 8, 5, 9, 12,20,21
+        //f0 0   2  24 24 25  25 29 32 40 41  ？？？
+        //f1 -10-10-10 17 17  20 20 20 20 20  上升不变，下降时记录反向落差
     }
 }
 ````
