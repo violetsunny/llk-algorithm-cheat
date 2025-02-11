@@ -83,7 +83,27 @@ class Solution {
         for(int i=0;i<n;i++){
             sb.append(str.charAt(i));
         }
+        return sb.toString();
+    }
 
+}
+```
+```java
+class Solution {
+
+    /**
+     * 左旋转字符串
+     *
+     * @param str 字符串
+     * @param n 左旋的位数
+     * @return 旋转后的字符串
+     */
+    public String leftRotateString(String str, int n) {
+        if (str == null || n < 1 || n > str.length()) {
+            return str;
+        }
+        StringBuilder sb = new StringBuilder();
+        int len = str.length();
         //另一个种方式
         for(int i=n;i<len+n;i++){
             sb.append(str.charAt(i%len));//len取余，超过len的i又回到n之前

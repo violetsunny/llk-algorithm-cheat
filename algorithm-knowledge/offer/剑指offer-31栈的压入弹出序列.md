@@ -1,4 +1,4 @@
-## [31. 栈的压入、弹出序列](https://leetcode.cn/problems/zhan-de-ya-ru-dan-chu-xu-lie-lcof/)
+## [31. 栈的压入、弹出序列](https://leetcode.cn/problems/validate-stack-sequences/description/)
 
 
 ### 题目描述
@@ -65,6 +65,8 @@ public class Solution {
     }
 }
 ```
+
+#### 更好的写法
 如果压入和弹出相等，那按照push压入就能按照pop弹出。
 ```java
 import java.util.Deque;
