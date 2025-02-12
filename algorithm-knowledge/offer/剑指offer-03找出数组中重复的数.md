@@ -37,7 +37,7 @@ class Solution {
      * @param nums 数组
      * @return 其中一个重复的元素
      */
-    public int duplicateInArray(int[] nums) {
+    public int findDuplicate(int[] nums) {
         int n = nums.length;
 
         // 若存在数组元素不在[0, n-1] 的范围内，直接返回-1
@@ -110,14 +110,20 @@ class Solution {
      * @param nums 数组
      * @return 重复的元素
      */
-    public int duplicateInArray(int[] nums) {
+    public int findDuplicate(int[] nums) {
         if (nums == null || nums.length < 2) {
             return 0;
         }
         int start = 1, end = nums.length - 1;
         while (start <= end) {
             int mid = start + ((end - start) >> 1);
-            int cnt = getCountRange(nums, start, mid);
+            int cnt = 0;
+            // 计算整个数组中有多少个数的取值在[from, to] 之间
+            for (int e : nums) {
+                if (e >= start && e <= mid) {
+                    ++cnt;
+                }
+            }
             if (start == end) {
                 if (cnt > 1) {
                     // 找到重复的数字
@@ -133,23 +139,6 @@ class Solution {
         }
         return 0;
     }
-
-    /**
-     * 计算整个数组中有多少个数的取值在[from, to] 之间
-     *
-     * @param nums 数组
-     * @param from 左边界
-     * @param to 右边界
-     * @return 数量
-     */
-    private int getCountRange(int[] nums, int from, int to) {
-        int cnt = 0;
-        for (int e : nums) {
-            if (e >= from && e <= to) {
-                ++cnt;
-            }
-        }
-        return cnt;
-    }
+    
 }
 ```

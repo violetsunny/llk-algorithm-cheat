@@ -1073,10 +1073,10 @@ class Solution {
         while (end - start > 1) {
             int mid = start + ((end - start) >> 1);
             //不需要
-//            if (nums[start] == nums[end] && nums[mid] == nums[start]) {
-//                // 三个数都相等，只能在[start, end)区间遍历，找出最小值
-//                return findMin(nums, start, end);
-//            }
+            if (nums[start] == nums[end] && nums[mid] == nums[start]) {
+                // 三个数都相等，只能在[start, end)区间遍历，找出最小值
+                return findMin(nums, start, end);
+            }
             if (nums[mid] >= nums[start]) {
                 start = mid;
             } else {
