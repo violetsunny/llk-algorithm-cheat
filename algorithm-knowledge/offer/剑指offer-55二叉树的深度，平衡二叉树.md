@@ -1,4 +1,4 @@
-## [55 - I. 二叉树的深度](https://leetcode.cn/problems/er-cha-shu-de-shen-du-lcof/)
+## [55 - I. 二叉树的深度](https://leetcode.cn/problems/maximum-depth-of-binary-tree/description/)
 
 ### 题目描述
 

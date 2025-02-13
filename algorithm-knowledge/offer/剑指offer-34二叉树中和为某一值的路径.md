@@ -26,36 +26,27 @@ import java.util.ArrayList;
  */
 public class Solution {
 
-    private ArrayList<ArrayList<Integer>> res = new ArrayList<>();
-
-    /**
-     * 找出二叉树中和为某一值的路径（必须从根节点到叶节点）
-     *
-     * @param root  二叉树的根结点
-     * @param target 目标值
-     * @return 结果list
-     */
-    public ArrayList<ArrayList<Integer>> FindPath(TreeNode root, int target) {
-        findPath(root, target, new ArrayList<>());
+    List<List<Integer>> res = new ArrayList<>();
+    List<Integer> list = new ArrayList<>();
+    public List<List<Integer>> pathSum(TreeNode root, int targetSum) {
+        findPath(root,targetSum);
         return res;
     }
 
-    private void findPath(TreeNode root, int target, ArrayList<Integer> list) {
-        if (root == null) {
-            return;
-        }
-        if (target < 0) {
+    private void findPath(TreeNode root, int targetSum){
+        if(root == null){
             return;
         }
         list.add(root.val);
-        target -= root.val;
-        if (target == 0 && root.left == null && root.right == null) {
+        targetSum = targetSum - root.val;
+        if(targetSum==0 && root.left==null && root.right==null){//必须从根节点到叶节点
             res.add(new ArrayList<>(list));
         } else {
-            findPath(root.left, target, list);
-            findPath(root.right, target, list);
+            //深度搜索
+            findPath(root.left,targetSum);
+            findPath(root.right,targetSum);
         }
-        list.remove(list.size() - 1);//回溯
+        list.remove(list.size()-1);//回溯
     }
 }
 ```
