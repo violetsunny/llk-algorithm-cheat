@@ -23,15 +23,29 @@
 ````java
 class Solution {
     public int findKthLargest(int[] nums, int k) {
-        Queue<Integer> max = new PriorityQueue<Integer>((x,y)->y-x);
-        for(int num:nums){
+        Queue<Integer> max = new PriorityQueue<Integer>((x, y) -> y - x);
+        for (int num : nums) {
             max.add(num);
         }
-        int res=0;
-        for(int i=0;i<k;i++){
+        int res = 0;
+        for (int i = 0; i < k; i++) {
             res = max.poll();
         }
         return res;
+    }
+}
+````
+````java
+class Solution {
+    public int findKthLargest(int[] nums, int k) {
+        Queue<Integer> min = new PriorityQueue<>();
+        for (int num : nums) {
+            min.add(num);
+            if (min.size() > k) {
+                min.poll();
+            }
+        }
+        return min.peek();
     }
 }
 ````

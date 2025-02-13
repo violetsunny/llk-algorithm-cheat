@@ -5,7 +5,7 @@
 
 从上往下打印出二叉树的每个节点，同层节点从左至右打印。
 
-### 解法
+### 解法：层序遍历
 
 层序遍历，先将根节点进入队列。
 
@@ -34,7 +34,7 @@ public class Solution {
      * @param root 二叉树根节点
      * @return 结果list
      */
-    public List<Integer> PrintFromTopToBottom(TreeNode root) {
+    public List<Integer> levelOrder(TreeNode root) {
         ArrayList<Integer> list = new ArrayList<>();
         if (root == null) {
             return list;
@@ -57,14 +57,14 @@ public class Solution {
 }
 ```
 
-## [32 - II. 从上到下打印二叉树 II](https://leetcode.cn/problems/cong-shang-dao-xia-da-yin-er-cha-shu-ii-lcof/)
+## [32 - II. 从上到下打印二叉树 II](https://leetcode.cn/problems/binary-tree-level-order-traversal/description/)
 
 
 ### 题目描述
 
 从上到下按层打印二叉树，同一层结点从左至右输出。每一层输出一行。
 
-### 解法
+### 解法：多行层序遍历
 
 与上一题类似，只不过需要用变量记录每一层要打印多少个节点。
 
@@ -89,8 +89,8 @@ public class Solution {
      * @param pRoot 二叉树根节点
      * @return 结果list
      */
-    ArrayList<ArrayList<Integer> > Print(TreeNode pRoot) {
-        ArrayList<ArrayList<Integer>> list = new ArrayList<>();
+    public List<List<Integer> > Print(TreeNode pRoot) {
+        List<List<Integer>> list = new ArrayList<>();
         if (pRoot == null) {
             return list;
         }
@@ -99,7 +99,7 @@ public class Solution {
         queue.offer(pRoot);
         while (!queue.isEmpty()) {
             int num = queue.size();
-            ArrayList<Integer> res = new ArrayList<>();
+            List<Integer> res = new ArrayList<>();
             for (int i = 0; i < num; ++i) {
                 TreeNode node = queue.poll();
                 res.add(node.val);
@@ -118,7 +118,7 @@ public class Solution {
 }
 ```
 
-## [32 - III. 从上到下打印二叉树 III](https://leetcode.cn/problems/cong-shang-dao-xia-da-yin-er-cha-shu-iii-lcof/)
+## [32 - III. 从上到下打印二叉树 III](https://leetcode.cn/problems/binary-tree-zigzag-level-order-traversal/description/)
 
 
 ### 题目描述
@@ -143,7 +143,7 @@ public class Solution {
 4 5 6 7
 ```
 
-### 解法
+### 解法：S型遍历（锯齿形层序遍历）
 
 对于上述二叉树：
 
@@ -170,48 +170,89 @@ public class TreeNode {
 public class Solution {
     /**
      * 按之字形打印二叉树
-     * @param pRoot 二叉树的根节点
+     * @param root 二叉树的根节点
      * @return 结果list
      */
-    public ArrayList<ArrayList<Integer>> Print(TreeNode pRoot) {
-        ArrayList<ArrayList<Integer>> res = new ArrayList<>();
-        if (pRoot == null) {
-            return res;
-        }
-        Stack<TreeNode> stack1 = new Stack<>();
-        Stack<TreeNode> stack2 = new Stack<>();
-        stack1.push(pRoot);
-        int i = 1;
-        Stack<TreeNode> stack = stack1;
-        while (!stack.isEmpty()) {
-            ArrayList<Integer> list = new ArrayList<>();
-            while (!stack.isEmpty()) {
-                TreeNode node = stack.pop();
-                list.add(node.val);
-                if (i % 2 == 1) {
-                    if (node.left != null) {
-                        stack2.push(node.left);
-                    }
-                    if (node.right != null) {
-                        stack2.push(node.right);
-                    }
-                } else {
-                    if (node.right != null) {
-                        stack1.push(node.right);
-                    }
-                    if (node.left != null) {
-                        stack1.push(node.left);
-                    }
-                }
-            }
-            res.add(list);
-            ++i;
-            stack = stack1.isEmpty() ? stack2 : stack1;
+    public List<List<Integer>> zigzagLevelOrder(TreeNode root) {
+        List<List<Integer>> list = new ArrayList<>();
+        if (root == null) {
+            return list;
         }
 
-        return res;
+        Stack<TreeNode> stack1 = new Stack<>();
+        Stack<TreeNode> stack2 = new Stack<>();
+
+        stack1.push(root);
+        while (!stack1.isEmpty()) {
+            List<Integer> array = new ArrayList<>();
+            while (!stack1.isEmpty()) {
+                TreeNode ptr = stack1.pop();
+                array.add(ptr.val);
+                if (ptr.left != null) {
+                    stack2.push(ptr.left);
+                }
+                if (ptr.right != null) {
+                    stack2.push(ptr.right);
+                }
+            }
+            if(!array.isEmpty()){
+                list.add(array);
+            }
+
+            List<Integer> array2 = new ArrayList<>();
+            while (!stack2.isEmpty()) {
+                TreeNode ptr = stack2.pop();
+                array2.add(ptr.val);
+                if (ptr.right != null) {
+                    stack1.push(ptr.right);
+                }
+                if (ptr.left != null) {
+                    stack1.push(ptr.left);
+                }
+            }
+            if(!array2.isEmpty()){
+                list.add(array2);
+            }
+
+        }
+
+        return list;
     }
 
 }
 ```
 ps: 也可以在第二个上面直接用标记sum++，根据sum%2==0,偶数可以LinkedList.addFirst();操作
+
+````java
+class Solution {
+    public List<List<Integer>> zigzagLevelOrder(TreeNode root) {
+        Queue<TreeNode> queue = new LinkedList<>();
+        List<List<Integer>> res = new ArrayList<>();
+        if (root != null) {
+            queue.add(root);
+        }
+        int sum = 0;
+        while (!queue.isEmpty()) {
+            List<Integer> tmp = new LinkedList<>();
+            for (int i = queue.size(); i > 0; i--) {
+                TreeNode node = queue.poll();
+                if (sum % 2 == 0) {
+                    tmp.addLast(node.val);
+                } else {
+                    tmp.addFirst(node.val);
+                }
+                if (node.left != null) {
+                    queue.add(node.left);
+                }
+                if (node.right != null) {
+                    queue.add(node.right);
+                }
+            }
+            res.add(tmp);
+            sum++;
+        }
+        return res;
+    }
+}
+
+````

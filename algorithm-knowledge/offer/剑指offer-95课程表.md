@@ -44,7 +44,7 @@ class Solution {
 
         int m = prerequisites.length;
         for(int[] pre : prerequisites){
-            addEdge(pre[1],pre[0]);
+            addEdge(pre[1],pre[0]);//pre[0]依赖pre[1]
         }
 
         return topoSort();
@@ -56,19 +56,19 @@ class Solution {
     }
 
     public boolean topoSort() {
-        int[] inDegree = new int[n]; // 存储每个顶点的入度
+        int[] in = new int[n]; // 存储每个顶点的入度
 
         // 计算每个顶点的入度
         for (int i = 0; i < n; i++) {
-            List<Integer> neighbors = adj.get(i);
-            for (int neighbor : neighbors) {
-                inDegree[neighbor]++;
+            List<Integer> list = adj.get(i);
+            for (int v : list) {
+                in[v]++;
             }
         }
 
         Queue<Integer> queue = new LinkedList<>();
-        for (int i = 0; i < inDegree.length; i++) {
-            if (inDegree[i] == 0) {//将入度为 0 的顶点加入队列，相同入度的顶点按照大小排序
+        for (int i = 0; i < in.length; i++) {
+            if (in[i] == 0) {//将入度为 0 的顶点加入队列，相同入度的顶点按照大小排序
                 queue.offer(i);
             }
         }
@@ -82,7 +82,7 @@ class Solution {
             // 遍历该顶点的邻居
             for (int v : adj.get(u)) {
                 // 减少指向节点的入度
-                if (--inDegree[v] == 0) {// 入度为0放入拓扑队列中
+                if (--in[v] == 0) {// 入度为0放入拓扑队列中
                     queue.offer(v);
                 }
             }
@@ -102,59 +102,51 @@ class Solution {
 class Solution {
     int n;
     List<List<Integer>> adj;
+
     public boolean canFinish(int numCourses, int[][] prerequisites) {
-        n = numCourses;
-        adj = new ArrayList<>();
-        for(int i=0;i<numCourses;i++){
+        this.n = numCourses;
+        this.adj = new ArrayList<>();
+        for (int i = 0; i < numCourses; i++) {
             adj.add(new ArrayList<>());
         }
 
-        for(int[] prerequisite : prerequisites){
-            addEdge(prerequisite[1],prerequisite[0]);
+        for (int[] pre : prerequisites) {
+            addEdge(pre[1], pre[0]);
         }
 
         return topoSort();
     }
 
-    private void addEdge(int k,int v){
+    private void addEdge(int k, int v) {
         adj.get(k).add(v);
     }
 
-    private boolean topoSort(){
-        int[] visted = new int[n];
+    private boolean topoSort() {
+        int[] visited = new int[n];// 访问标记数组 0=未搜索，1=搜索中，2=已完成
 
         Stack<Integer> stack = new Stack<>();
-        for(int i=0;i<n;i++){
-            if(in[i] == 0){
-                dfs(i,stack,visted);
+        for (int i = 0; i < n; i++) {
+            if (in[i] == 0) {
+                dfs(i, stack, visited);
             }
         }
-//        if(stack.size()!=n){
-//            return false;
-//        }
-//
-//        int[] order = new int[n];
-//        int index=0;
-//        while(!stack.isEmpty()){
-//            order[index++] = stack.pop();
-//        }
 
-        return stack.size()==n;
+        return stack.size() == n;
     }
 
-    private void dfs(int i,Stack<Integer> stack,int[] visted){
-        visted[i] = 1;
+    private void dfs(int i, Stack<Integer> stack, int[] visited) {
+        visited[i] = 1;
 
         List<Integer> list = adj.get(i);
-        for(int j:list){
-            if(visted[j] ==0){
-                dfs(j,stack,visted);
-            } else if(visted[j] ==1){
+        for (int j : list) {
+            if (visited[j] == 0) {
+                dfs(j, stack, visited);
+            } else if (visited[j] == 1) {
                 return;
             }
         }
 
-        visted[i] = 2;
+        visited[i] = 2;
         stack.push(i);
     }
 }
