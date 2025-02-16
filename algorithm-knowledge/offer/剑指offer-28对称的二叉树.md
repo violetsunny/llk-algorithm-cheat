@@ -1,5 +1,5 @@
 ## [28. 对称的二叉树](https://leetcode.cn/problems/dui-cheng-de-er-cha-shu-lcof/)
-
+同[101. 对称二叉树](https://leetcode.cn/problems/symmetric-tree/description/)
 
 ### 题目描述
 
@@ -51,6 +51,7 @@ class Solution {
         if (root1 == null || root2 == null || root1.val != root2.val) {
             return false;
         }
+        //root1的左和root2右比，root1的右和root2的左比
         return isSymmetric(root1.left, root2.right) && isSymmetric(root1.right, root2.left);
     }
 }

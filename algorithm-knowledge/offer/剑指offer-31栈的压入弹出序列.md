@@ -1,5 +1,5 @@
-## [31. 栈的压入、弹出序列](https://leetcode.cn/problems/validate-stack-sequences/description/)
-
+## [31. 栈的压入、弹出序列](https://leetcode.cn/problems/zhan-de-ya-ru-dan-chu-xu-lie-lcof/)
+同[946.验证栈序列](https://leetcode.cn/problems/validate-stack-sequences/description/)
 
 ### 题目描述
 

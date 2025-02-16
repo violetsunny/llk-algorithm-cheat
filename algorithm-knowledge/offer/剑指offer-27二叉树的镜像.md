@@ -1,4 +1,6 @@
 ## [27. 二叉树的镜像](https://leetcode.cn/problems/er-cha-shu-de-jing-xiang-lcof/)
+同[翻转二叉树
+](https://leetcode.cn/problems/invert-binary-tree/description/)
 
 ### 题目描述
 
@@ -61,18 +63,25 @@ class Solution {
  *     int val;
  *     TreeNode left;
  *     TreeNode right;
- *     TreeNode(int x) { val = x; }
+ *     TreeNode() {}
+ *     TreeNode(int val) { this.val = val; }
+ *     TreeNode(int val, TreeNode left, TreeNode right) {
+ *         this.val = val;
+ *         this.left = left;
+ *         this.right = right;
+ *     }
  * }
  */
 class Solution {
-    public void mirror(TreeNode root) {
-        if (root == null || (root.left == null && root.right == null)) {
-            return;
+    public TreeNode invertTree(TreeNode root) {
+        if(root == null){
+            return root;
         }
-        TreeNode left = mirror(root.left);
-        TreeNode right = mirror(root.right);
+        TreeNode right = invertTree(root.right);
+        TreeNode left = invertTree(root.left);
         root.left = right;
         root.right = left;
+        return root;
     }
 }
 ```

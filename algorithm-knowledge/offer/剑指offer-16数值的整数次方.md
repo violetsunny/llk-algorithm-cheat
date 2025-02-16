@@ -1,5 +1,5 @@
 ## [16. 数值的整数次方](https://leetcode.cn/problems/shu-zhi-de-zheng-shu-ci-fang-lcof/)
-
+同[50. Pow(x, n)](https://leetcode.cn/problems/powx-n/description/)
 ### 题目描述
 
 实现函数 double Power(double base, int exponent)，求 base 的 exponent 次方。
@@ -33,7 +33,7 @@
 #### 解法一
 
 时间复杂度 `O(N)`。
-
+超时！
 ```java
 class Solution {
 
@@ -68,34 +68,6 @@ class Solution {
 
 递归求解，每次 exponent 缩小一半，时间复杂度为 `O(log N)`。
 
-```java
-class Solution {
-
-    /**
-     * 计算数值的整数次方
-     *
-     * @param base 底数
-     * @param exponent 指数
-     * @return 数值的整数次方
-     */
-    public double Power(double base, int exponent) {
-        if (exponent == 0) {
-            return 1;
-        }
-        if (exponent == 1) {
-            return base;
-        }
-
-        double res = Power(base, Math.abs(exponent) >> 1);
-        res *= res;
-        if ((exponent & 1) == 1) {//奇数的时候多乘一次base
-            res *= base;
-        }
-        return exponent > 0 ? res : 1 / res;
-    }
-}
-```
-
 #### 帅地写法
 ```java
 class Solution {
@@ -109,44 +81,19 @@ class Solution {
      */
     public double myPow(double base, int exponent) {
         double res = 1;
-        long y = exponent;
-        if(y<0){
-            y = -y;
+        long y = exponent;//如果直接用会把exponent覆盖，影响最后负数判断，而且需要取绝对值才能正常操作
+        if(y < 0){
+            y = -y;//long y = -exponent;//负数在负可能会超过int最大值，比如int exponent = -2147483648;-exponent =2147483648超过int最大值2147483647。 
             base = 1/base;
         }
         while(y != 0){
-            if(y % 2 == 1){
+            if(y % 2 == 1){ // (y & 1) == 1
                 res = res * base;
             }
             base = base * base;
-            y = y / 2;
+            y = y / 2;// y = y >> 1;
         }
         return res;
-    }
-}
-```
-优秀写法
-```java
-class Solution {
-
-    /**
-     * 计算数值的整数次方
-     *
-     * @param base 底数
-     * @param exponent 指数
-     * @return 数值的整数次方
-     */
-    public double myPow(double base, int exponent) {
-        double res = 1;
-        //如果直接用会把exponent覆盖，影响最后负数判断，而且需要取绝对值才能正常操作
-        int n = Math.abs(exponent);//long n = -exponent;//负数在负可能会超过int最大值，比如int exponent = -2147483648;-exponent =2147483648超过int最大值2147483647。 
-        for (; n > 0; n >>= 1) {
-            if ((n & 1) == 1) {
-                res = res * base;
-            }
-            base = base * base;
-        }
-        return exponent > 0 ? res : 1 / res;
     }
 }
 ```

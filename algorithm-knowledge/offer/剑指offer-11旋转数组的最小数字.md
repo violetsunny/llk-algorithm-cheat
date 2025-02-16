@@ -1,5 +1,5 @@
-## [11. 旋转数组的最小数字](https://leetcode.cn/problems/find-minimum-in-rotated-sorted-array-ii/description/)
-
+## [11. 旋转数组的最小数字](https://leetcode.cn/problems/xuan-zhuan-shu-zu-de-zui-xiao-shu-zi-lcof/)
+同[154. 寻找旋转排序数组中的最小值 II](https://leetcode.cn/problems/find-minimum-in-rotated-sorted-array-ii/description/)
 ### 题目描述
 
 把一个数组最开始的若干个元素搬到数组的末尾，我们称之为数组的旋转。
