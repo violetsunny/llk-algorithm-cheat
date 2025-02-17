@@ -1,5 +1,5 @@
 ## [07. 重建二叉树](https://leetcode.cn/problems/zhong-jian-er-cha-shu-lcof/)
-
+同：[105. 从前序与中序遍历序列构造二叉树](https://leetcode.cn/problems/construct-binary-tree-from-preorder-and-inorder-traversal/description/)
 ### 题目描述
 
 输入一棵二叉树前序遍历和中序遍历的结果，请重建该二叉树。

@@ -1,5 +1,5 @@
-## [63. 买卖股票的最佳时机](https://leetcode.cn/problems/best-time-to-buy-and-sell-stock/description/)
-
+## [63. 股票的最大利润](https://leetcode.cn/problems/gu-piao-de-zui-da-li-run-lcof/)
+同：[121. 买卖股票的最佳时机](https://leetcode.cn/problems/best-time-to-buy-and-sell-stock/description/)
 
 ### 题目描述
 
@@ -51,7 +51,7 @@ class Solution {
      */
     public int maxProfit(int[] prices) {
         int minprice = Integer.MAX_VALUE;
-        int maxprofit = 0;
+        int maxprofit = Integer.MIN_VALUE;
         for (int i = 0; i < prices.length; i++) {
             minprice = Math.min(minprice,prices[i]);
             maxprofit = Math.max(maxprofit,prices[i] - minprice);

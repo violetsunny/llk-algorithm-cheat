@@ -1,5 +1,5 @@
 ## [10- II. 青蛙跳台阶问题](https://leetcode.cn/problems/qing-wa-tiao-tai-jie-wen-ti-lcof/)
-
+同：[70. 爬楼梯](https://leetcode.cn/problems/climbing-stairs/description/)
 ### 题目描述
 
 一只青蛙一次可以跳上`1`级台阶，也可以跳上`2`级。求该青蛙跳上一个`n`级的台阶总共有多少种跳法（先后次序不同算不同的结果）。

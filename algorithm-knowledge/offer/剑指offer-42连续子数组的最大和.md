@@ -1,5 +1,5 @@
 ## [42. 连续子数组的最大和](https://leetcode.cn/problems/lian-xu-zi-shu-zu-de-zui-da-he-lcof/)
-
+同：[53. 最大子数组和](https://leetcode.cn/problems/maximum-subarray/description/)
 ### 题目描述
 
 输入一个**非空**整型数组，数组里的数可能为正，也可能为负。
@@ -10,10 +10,10 @@
 ### 解法: 动态规划法
 
 
-res[i] 表示以第 i 个数字结尾的子数组的最大和，那么求出 `max(res[i])` 即可。
+$res[i]$ 表示以第 $i$ 个数字结尾的子数组的最大和，那么求出 $max(res[i])$ 即可。
 
-- `res[i] = array[i]`, if `res[i - 1] < 0`
-- `res[i] = res[i - 1] + array[i]`, if `res[i - 1] >= 0`
+- if `res[i - 1] < 0`,`res[i] = array[i]`,
+- if `res[i - 1] >= 0`,`res[i] = res[i - 1] + array[i]`
 
 ```java
 public class Solution {
@@ -36,17 +36,31 @@ public class Solution {
     }
 }
 ```
-最优写法：O(1)
+
+#### 最优写法：O(1)
 ```java
 class Solution {
     public int maxSubArray(int[] nums) {
         int ans = Integer.MIN_VALUE;
         int f = 0;
         for (int x : nums) {
-            f = Math.max(f, 0) + x;//Math.max(f, 0) 也是 f>0?f:0
+            f = Math.max(f, 0) + x;//f为上一个值，Math.max(f, 0) 也是 f>0?f:0
             ans = Math.max(ans, f);
         }
         return ans;
+    }
+}
+```
+```java
+class Solution {
+    public int maxSubArray(int[] nums) {
+        int pre = 0;
+        int max = nums[0];
+        for(int num:nums){
+            pre = Math.max(num,pre + num);
+            max = Math.max(max,pre);
+        }
+        return max;
     }
 }
 ```

@@ -1,5 +1,5 @@
 ## [10- I. 斐波那契数列](https://leetcode.cn/problems/fei-bo-na-qi-shu-lie-lcof/)
-
+同：[509. 斐波那契数](https://leetcode.cn/problems/fibonacci-number/description/)
 ### 题目描述
 
 输入一个整数 n ，求斐波那契数列的第 n 项。

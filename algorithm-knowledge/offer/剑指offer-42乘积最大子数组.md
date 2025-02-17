@@ -23,6 +23,29 @@
 - -10 <= nums[i] <= 10
 - nums 的任何子数组的乘积都 保证 是一个 32-位 整数
 
+### 解法：动态规划
+题解: 由于当前最小可能是负数，再下一次有负数的情况相乘后可能就是最大。
+````java
+class Solution {
+    public int maxProduct(int[] nums) {
+        long maxF = nums[0], minF = nums[0];
+        int ans = nums[0];
+        int length = nums.length;
+        for (int i = 1; i < length; ++i) {
+            long mx = maxF, mn = minF;
+            maxF = Math.max(mx * nums[i], Math.max(nums[i], mn * nums[i]));
+            minF = Math.min(mn * nums[i], Math.min(nums[i], mx * nums[i]));
+            if (minF < -1 << 31) {
+                minF = nums[i];
+            }
+            ans = Math.max((int) maxF, ans);
+        }
+        return ans;
+    }
+}
+````
+
+### 解法：正反相乘
 ````java
 class Solution {
     public int maxProduct(int[] nums) {
@@ -50,26 +73,6 @@ class Solution {
         }
 
         return max;
-    }
-}
-````
-题解: 由于当前最小可能是负数，再下一次有负数的情况相乘后可能就是最大。
-````java
-class Solution {
-    public int maxProduct(int[] nums) {
-        long maxF = nums[0], minF = nums[0];
-        int ans = nums[0];
-        int length = nums.length;
-        for (int i = 1; i < length; ++i) {
-            long mx = maxF, mn = minF;
-            maxF = Math.max(mx * nums[i], Math.max(nums[i], mn * nums[i]));
-            minF = Math.min(mn * nums[i], Math.min(nums[i], mx * nums[i]));
-            if(minF<-1<<31){
-                minF=nums[i];
-            }
-            ans = Math.max((int)maxF, ans);
-        }
-        return ans;
     }
 }
 ````

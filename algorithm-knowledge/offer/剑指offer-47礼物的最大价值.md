@@ -47,7 +47,7 @@ class Solution {
     }
 }
 ```
-优化版本
+#### 优化版本
 ```java
 class Solution {
     public int maxValue(int[][] grid) {
@@ -85,7 +85,7 @@ class Solution {
     public int maxValue(int[][] grid) {
         int m = grid.length;
         int n = grid[0].length;
-        int[] dp = new int[n + 1];//过程中只需要用到前一次的数据即可。按照行计算
+        int[] dp = new int[n + 1];//过程中只需要用到前一次的数据即可。按照行计算,不需要初始化，0就是最小的
         for (int i = 1; i <= m; ++i) {
             for (int j = 1; j <= n; ++j) {
                 dp[j] = Math.max(dp[j], dp[j - 1]) + grid[i - 1][j - 1];

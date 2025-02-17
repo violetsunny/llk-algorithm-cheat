@@ -1,5 +1,5 @@
 ## [37. 序列化二叉树](https://leetcode.cn/problems/xu-lie-hua-er-cha-shu-lcof/)
-
+同：[297. 二叉树的序列化与反序列化](https://leetcode.cn/problems/serialize-and-deserialize-binary-tree/description/)
 ## 题目描述
 
 <p>请实现两个函数，分别用来序列化和反序列化二叉树。</p>
