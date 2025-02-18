@@ -33,8 +33,8 @@ class Solution {
      * @return 多少种跳法
      */
     public int JumpFloor(int target) {
-        if (target <= 1) {
-            return 1;
+        if (target < 2) {
+            return target;
         }
         int a = 1, b = 2;
         for (int i = 3; i <= target; ++i) {
