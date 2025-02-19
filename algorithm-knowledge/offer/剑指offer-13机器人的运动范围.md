@@ -56,19 +56,16 @@ class Solution {
     }
 
     private int getCount(int threshold, int rows, int cols, int i, int j, boolean[][] visited) {
-        if (check(threshold, rows, cols, i, j, visited)) {
-            visited[i][j] = true;
-            return 1 + getCount(threshold, rows, cols, i + 1, j, visited)
-                    + getCount(threshold, rows, cols, i - 1, j, visited)
-                    + getCount(threshold, rows, cols, i, j + 1, visited)//i-1 j-1 可以不用搜索，因为这个threshold规则
-                    + getCount(threshold, rows, cols, i, j - 1, visited);
+        if (i < 0 || i >= rows || j < 0 && j >= cols
+                || visited[i][j] || (getDigitSum(i) + getDigitSum(j) > threshold)) {
+            return 0;
         }
-        return 0;
-    }
-
-    private boolean check(int threshold, int rows, int cols, int i, int j, boolean[][] visited) {
-        return i >= 0 && i < rows && j >= 0 && j < cols
-                && !visited[i][j] && (getDigitSum(i) + getDigitSum(j) <= threshold);
+        
+        visited[i][j] = true;//因为是能访问到所有格子，所以不能还原，会重复加
+        return 1 + getCount(threshold, rows, cols, i + 1, j, visited)
+                + getCount(threshold, rows, cols, i - 1, j, visited)
+                + getCount(threshold, rows, cols, i, j + 1, visited)//i-1 j-1 可以不用搜索，因为这个threshold规则
+                + getCount(threshold, rows, cols, i, j - 1, visited);
     }
 
     private int getDigitSum(int val) {

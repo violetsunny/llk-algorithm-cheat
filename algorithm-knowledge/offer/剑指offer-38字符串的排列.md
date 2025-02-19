@@ -79,7 +79,8 @@ class Solution {
     }
 }
 ```
-剪枝方法：
+
+### 回溯，剪枝方法：
 ````
    aab
  a   a   b
@@ -103,7 +104,10 @@ class Solution {
         this.visited = new boolean[s.length()];
         char[] ch = s.toCharArray();
         Arrays.sort(ch);//排序了才知道相邻是否相等
-        dfs(ch,0);
+        
+        //回溯
+        backtrack(ch,0);
+        
         String[] ss = new String[ans.size()];
         for(int i=0;i<ans.size();i++){
             ss[i] = ans.get(i);
@@ -111,7 +115,7 @@ class Solution {
         return ss;
     }   
 
-    private void dfs(char[] arr, int k) {
+    private void backtrack(char[] arr, int k) {
         if (arr.length == k) {
             ans.add(listToString(path));
             return;
@@ -122,14 +126,15 @@ class Solution {
             if (i > 0 && arr[i] == arr[i - 1] && visited[i - 1] = false) {
                 continue;
             }
-            if (visited == false) {//没有访问才行
-                visited = true;
-                path.add(arr[i]);
-                dfs(arr, k + 1);
-                //回溯
-                path.remove(path.size() - 1);
-                visited = false;
+            if (visited) {//没有访问才行
+                continue;
             }
+            visited = true;
+            path.add(arr[i]);
+            backtrack(arr, k + 1);
+            //回溯
+            path.remove(path.size() - 1);
+            visited = false;
         }
     }
 
