@@ -57,7 +57,7 @@ class Solution {
         for (int i = 1; i <= amount; i++) {//先填充amount之前的数，才能计算amount
             for (int j = 0; j < coins.length; j++) {
                 if (i >= coins[j]) {
-                    dp[i] = Math.min(dp[i], dp[i - coins[j]] + 1);//各个面值比较
+                    dp[i] = Math.min(dp[i], dp[i - coins[j]] + 1);//各个面值比较,注意当前选择了coins[j]，所以是要 +1
                 }
             }
         }
@@ -67,7 +67,7 @@ class Solution {
 ````
 
 ## 解法：记忆化搜索
-F(S)=F(S−C)+1; 递归所有可能性，拿到最小的，并且将重复计算过的值存储，方便下次继续算。
+$F(S)=F(S−C)+1;$ 递归所有可能性，拿到最小的，并且将重复计算过的值存储，方便下次继续算。
 
 ````java
 class Solution {

@@ -1,5 +1,5 @@
 ## [19. 正则表达式匹配](https://leetcode.cn/problems/zheng-ze-biao-da-shi-pi-pei-lcof/)
-
+同：[10. 正则表达式匹配](https://leetcode.cn/problems/regular-expression-matching/description/)
 
 ### 题目描述
 
@@ -23,7 +23,7 @@ p="a*"
 ```
 
 
-### 解法
+### 解法：动态规划
 
 判断模式中第二个字符是否是 `*`：
 
@@ -85,61 +85,51 @@ class Solution {
 #### 帅地的比较好理解的写法：动态规划
 
 判断字符串是否与模式串匹配
-- p[j] = '.' 或 s[i] : 
-   - dp[i][j]=dp[i-1][j-1];
-- p[j] = '*' ：
-   - p[j-1] != s[i] : 
-      - dp[i][j]=dp[i][j-2]; //`*`代表0个，就是i和j-2比,例如a 和 as`*`
-   - p[j-1] = s[i] :
-      - dp[i][j]=dp[i][j-1]; //`*`代表1个，就是i和j-1比,例如aa 和 aa`*`
-      - dp[i][j]=dp[i][j-2]; //`*`代表0个，例如a 和 aa`*`
-      - dp[i][j]=dp[i-1][j]; //`*`代表多个，就是`*`可以指向多个j-1的字符，
-                                          i和j的相等就是i-1和j的相等，因为j又是`*`所以看的是i-1和j-1，
-                                          因为会有多个，所以是i-1和`*`比，
-                                          所以应该i-1往前走，一直到`*`代表0或1为止。
+- $p[j] == '.' || p[j] == s[i]$ : 
+   - $dp[i][j]=dp[i-1][j-1]$;
+
+- $p[j] == '*'$ ：
+   - $p[j-1] != s[i]$ : 
+      - $dp[i][j]=dp[i][j-2];$ //`*`代表 0 个，就是 i 和 j-2 比,例如 a 和 as`*`
+   - $p[j-1] == s[i] || p[j-1] == '.' $:
+      - $dp[i][j]=dp[i][j-1];$ //`*`代表 1 个，就是 i 和 j-1 比,例如 aa 和 aa`*`
+      - $dp[i][j]=dp[i][j-2];$ //`*`代表 0 个，例如a 和 aa`*`
+      - $dp[i][j]=dp[i-1][j];$ //`*`代表多个，就是`*`可以指向多个 j-1 的字符，
+                                          i 和 j 的相等就是 i-1 和 j 的相等，因为 j 又是`*`所以看的是 i-1 和 j-1 ，
+                                          因为会有多个，所以是 i-1 和 `*` 比，
+                                          所以应该 i-1 往前走，一直到 `*` 代表 0 或 1 为止。
                                           例如：aaaa 和 a`*`
 
-```java
-class Solution {
 
-    /**
-     *
-     * @param s 字符串
-     * @param p 模式串
-     * @return 是否匹配
-     */
+````java
+class Solution {
     public boolean isMatch(String s, String p) {
-      if (s == null || p == null) {
-          return false;
-      }
-      int n = s.length();
-      int m = p.length();
-      boolean[][] dp = new boolean[n+1][m+1];
-      dp[0][0]=true;
-      dp[0][1]=false;
-      //特殊情况，s是0，p是a*a*...也是可以的
-      for(int j=2;j<=m;j++){
-          if(p.charAt(j-1)=='*'){
-              dp[0][j]=dp[0][j-2];
-          }
-      }
-      
-      //正常循环
-      for(int i=1;i<=n;i++){
-          for(int j=1;j<=m;j++){
-            if(s.charAt(i-1)==p.charAt(j-1) || p.charAt(j-1)=='.'){
-                dp[i][j]=dp[i-1][j-1];
+        int m = s.length();
+        int n = p.length();
+        boolean[][] dp = new boolean[m + 1][n + 1];
+        dp[0][0] = true;//默认第一个true
+        //初始化值和特殊情况 s="" p="a*a*"
+        for (int j = 2; j <= n; j++) {
+            if (p.charAt(j - 1) == '*') {
+                dp[0][j] = dp[0][j - 2];
             }
-            if(p.charAt(j-1)=='*') {
-                dp[i][j] = dp[i][j - 2];
-                if (p.charAt(j - 2) == s.charAt(i - 1) || p.charAt(j - 2) == '.') {
-                  dp[i][j] = dp[i][j] || dp[i][j - 1] || dp[i - 1][j];
+        }
+        // 循环匹配 从1 - length
+        for (int i = 1; i <= m; i++) {
+            for (int j = 1; j <= n; j++) {
+                if (s.charAt(i - 1) == p.charAt(j - 1) || p.charAt(j - 1) == '.') {
+                    dp[i][j] = dp[i - 1][j - 1];
+                }
+                if (p.charAt(j - 1) == '*') {
+                    dp[i][j] = dp[i][j - 2];
+                    if (s.charAt(i - 1) == p.charAt(j - 2) || p.charAt(j - 2) == '.') {
+                        dp[i][j] = dp[i][j] || dp[i][j - 1] || dp[i - 1][j];
+                    }
                 }
             }
-          }
-      }
-        
-      return dp[n][m];
+        }
+
+        return dp[m][n];
     }
 }
-```
+````

@@ -31,15 +31,15 @@
 
 - 你能将算法的时间复杂度降低到 O(n log(n)) 吗?
 
-### 解法：动态规划
+### 解法：动态规划 + 双指针
 
 O(n^2)
 
-1. 定义 dp[i] 为考虑前 i 个元素
+1. 定义 dp[i] 为考虑前 i 个元素，以第i个数字结尾的最长上升子序列的长度。
 2. 如果 $nums[i]>nums[j]$ , $dp[i]=Max(d[j])+1$ , 否则 $dp[i]=1$ 。
     - 状态方程：$dp[i]=max(dp[j])+1$ ,其中 0≤j<i 且 num[j]<num[i] ;
     - $length = Max(dp[i])$ ;最长序列长度就是dp[i]中最大值
-3. 边界$dp[i]=1$;
+3. 边界$dp[i]=1$;含义是每个元素都至少可以单独成为子序列，此时长度都为1。
 
 ````java
 class Solution {
@@ -51,7 +51,7 @@ class Solution {
         dp[0] = 1;
         int max = 1;
         for (int i = 0; i < nums.length; i++) {//填充dp[i]0-n之间的数据
-            dp[i] = 1;
+            dp[i] = 1;//每次重新移动要重置为1.
             for (int j = 0; j < i; j++) {
                 if (nums[j] < nums[i]) {//如果nums[j]<nums[i]，就是dp[j]+1
                     dp[i] = Math.max(dp[i], dp[j] + 1);

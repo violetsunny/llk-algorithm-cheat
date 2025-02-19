@@ -26,13 +26,28 @@
 - 0 <= nums[i] <= 400
 
 ### 解法：动态规划
-我们定义 $dp[i]$ 表示前 i 间房屋能偷窃到的最高总金额。
+1. 我们定义 $dp[i]$ 表示前 i 间房屋能偷窃到的最高总金额。
+2. 转移方程：$dp[i]=max(dp[i−2]+nums[i],dp[i−1])$
+3. 定义边界：$d[0] = nums[0], d[1] = MAX(nums[0],nums[1])$
 
-转移方程：$dp[i]=max(dp[i−2]+nums[i],dp[i−1])$
+````java
+class Solution {
+    public int rob(int[] nums) {
+        if (nums.length == 1) {
+            return nums[0];
+        }
+        int[] dp = new int[nums.length];
+        dp[0] = nums[0];
+        dp[1] = Math.max(nums[0], nums[1]);//选择0，1中价值最大的
+        for (int i = 2; i < nums.length; i++) {
+            dp[i] = Math.max(dp[i - 2] + nums[i], dp[i - 1]);//往前两步的和 + 当前，和往前一步的和对比哪个价值更大。本质就是每次都选择价值最大的进行
+        }
+        return dp[nums.length - 1];
+    }
+}
+````
 
-定义边界：$d[0] = nums[0], d[1] = MAX(nums[0],nums[1])$
-
-
+#### 优化写法
 ````java
 class Solution {
     public int rob(int[] nums) {

@@ -1,4 +1,4 @@
-# [递增的三元子序列](https://leetcode.cn/problems/increasing-triplet-subsequence/description/)
+## [递增的三元子序列](https://leetcode.cn/problems/increasing-triplet-subsequence/description/)
 
 给你一个整数数组 nums ，判断这个数组中是否存在长度为 3 的递增子序列。
 
@@ -26,7 +26,7 @@
 ````
 进阶：你能实现时间复杂度为 O(n) ，空间复杂度为 O(1) 的解决方案吗？
 
-## 解法一：遍历找最大最小
+### 解法一：遍历找最大最小
 找到最大值和最小值，在这之间找到大于最小小于最大的就可以
 ````java
 class Solution {
@@ -55,7 +55,7 @@ class Solution {
 }
 ````
 
-## 解法二：贪心
+### 解法二：贪心
 遍历过程中将最小的给first，次小的给second，找到比second大的就行
 ````java
 class Solution {

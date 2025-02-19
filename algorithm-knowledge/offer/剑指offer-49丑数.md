@@ -5,7 +5,7 @@ edit_url: https://github.com/doocs/leetcode/edit/main/lcof/%E9%9D%A2%E8%AF%95%E9
 ---
 
 # [丑数](https://leetcode.cn/problems/chou-shu-lcof/)
-
+同：[264. 丑数 II](https://leetcode.cn/problems/ugly-number-ii/description/)
 ## 题目描述
 
 <p>我们把只包含质因子 2、3 和 5 的数称作丑数（Ugly Number）。求按从小到大的顺序的第 n 个丑数。</p>
@@ -81,15 +81,28 @@ class Solution {
     public int nthUglyNumber(int n) {
         int[] dp = new int[n];
         dp[0] = 1;
-        int p2 = 0, p3 = 0, p5 = 0;
-        for (int i = 1; i < n; ++i) {
-            int next2 = dp[p2] * 2, next3 = dp[p3] * 3, next5 = dp[p5] * 5;
-            dp[i] = Math.min(next2, Math.min(next3, next5));//找出最小的
-            if (dp[i] == next2) ++p2;//如果相等就是这个，再+1才能变大
-            if (dp[i] == next3) ++p3;
-            if (dp[i] == next5) ++p5;
+        int p2 = 0;
+        int p3 = 0;
+        int p5 = 0;
+        for(int i=1;i<n;i++){
+            //都乘一次
+            int f2 = dp[p2] * 2;
+            int f3 = dp[p3] * 3;
+            int f5 = dp[p5] * 5;
+            int f = Math.min(f2,Math.min(f3,f5));//获得当前最小的放入，按照从小到大
+            dp[i] = f;
+            if(f == f2){//哪个是说明当前使用了，加1后进入下一次
+                p2++;
+            }
+            if(f == f3){
+                p3++;
+            }
+            if(f == f5){
+                p5++;
+            }
         }
-        return dp[n - 1];
+
+        return dp[n-1];
     }
 }
 ```
