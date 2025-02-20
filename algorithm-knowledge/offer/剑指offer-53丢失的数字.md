@@ -86,8 +86,8 @@ class Solution {
     }
 }
 ````
-高斯求和公式：
-total = n*(n+1)/2
+
+$高斯求和公式： total = n*(n+1)/2$
 ````java
 class Solution {
     public int missingNumber(int[] nums) {

@@ -5,7 +5,42 @@
 
 数组中有一个数字出现的次数超过数组长度的一半，请找出这个数字。例如输入一个长度为 9 的数组 `{1,2,3,2,2,2,5,4,2}`。由于数字 2 在数组中出现了 5 次，超过数组长度的一半，因此输出 2。如果不存在则输出 0。
 
-### 解法一: 利用快排中的 partition 思想
+### 解法一：排序
+
+````java
+class Solution {
+    public int majorityElement(int[] nums) {
+        Arrays.sort(nums);
+        int mid = nums.length/2;
+        return nums[mid];
+    }
+}
+````
+
+### 解法二: 数学-摩尔斯投票法（Boyer-Moore）
+既然相同的超过一半，相同相加，那不同的相减最后肯定大于0。
+```java
+class Solution {
+    public int majorityElement(int[] nums) {
+        int cnt = 0, m = 0;
+        for (int v : nums) {
+            if (cnt == 0) {
+                m = v;
+            }
+            //相同相加，不同相减。最后大余1的剩下的就是结果
+            if(m == v){
+                cnt++;
+            } else {
+                cnt--;
+            }
+            //cnt += (m == v ? 1 : -1);
+        }
+        return m;
+    }
+}
+```
+
+### 解法三: 利用快排中的 partition 思想
 
 数组中有一个数字出现次数超过了数组长度的一半，那么排序后，数组中间的数字一定就是我们要找的数字。我们随机选一个数字，利用 partition() 函数，使得比选中数字小的数字都排在它左边，比选中数字大的数字都排在它的右边。
 
@@ -93,7 +128,8 @@ public class Solution {
 }
 ```
 
-### 解法二:利用多数投票算法
+
+### 解法四:利用多数投票算法
 
 利用多数投票算法，从头到尾遍历数组，遇到两个不一样的数就把这两个数同时除去。减去的两个数可能都不是 majority，也可能一个是 majority 另一个不是，但是因为 majority 总数大于一半，所以这么删完最后剩下的肯定是 majority。
 
@@ -146,30 +182,6 @@ public class Solution {
         }
 
         return cnt * 2 > array.length;
-    }
-}
-```
-
-### 解法三: 摩尔斯投票法
-既然相同的超过一半，相同相加，那不同的相减最后肯定大于0。
-```java
-class Solution {
-    public int majorityElement(int[] nums) {
-        int cnt = 0, m = 0;
-        for (int v : nums) {
-            if (cnt == 0) {
-                m = v;
-                cnt = 1;
-            } else {
-                if(m == v){
-                    cnt++;
-                } else {
-                    cnt--;
-                }
-                //cnt += (m == v ? 1 : -1);
-            }
-        }
-        return m;
     }
 }
 ```

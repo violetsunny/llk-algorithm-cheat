@@ -1,5 +1,5 @@
 ## [14- I. 剪绳子](https://leetcode.cn/problems/jian-sheng-zi-lcof/)
-
+同：[343. 整数拆分](https://leetcode.cn/problems/integer-break/description/)
 
 ### 题目描述
 
@@ -19,7 +19,7 @@
 
 ### 解法
 
-#### 解法一：动态规划法
+#### 解法一：动态规划
 
 时间复杂度`O(n²)`，空间复杂度`O(n)`。
 

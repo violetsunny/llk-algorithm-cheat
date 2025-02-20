@@ -1,4 +1,5 @@
 ## [45. 把数组排成最小的数](https://leetcode.cn/problems/ba-shu-zu-pai-cheng-zui-xiao-de-shu-lcof/)
+同：[179. 最大数](https://leetcode.cn/problems/largest-number/description/)
 
 ### 题目描述
 
@@ -39,7 +40,8 @@ class Solution {
     }
 }
 ```
-简单写法：
+
+#### 简单写法：
 ```java
 class Solution {
     public String minNumber(int[] nums) {
@@ -57,43 +59,43 @@ class Solution {
 ```java
 class Solution {
     public String minNumber(int[] nums) {
-        qSort(nums,0,nums.length-1);
+        qSort(nums, 0, nums.length - 1);
         String res = "";
-        for(int num:nums){
-            if(!res.equals("0")){
+        for (int num : nums) {
+            if (!res.equals("0")) {
                 res += num;
             }
         }
         return res;
     }
-    
-    private void qSort(int[] nums,int low,int high){
-        if(low > high){
+
+    private void qSort(int[] nums, int low, int high) {
+        if (low > high) {
             return;
         }
-        int partition = partition(nums,low,high);
-        qSort(nums,low,partition-1);
-        qSort(nums,partition+1,high);
+        int partition = partition(nums, low, high);
+        qSort(nums, low, partition - 1);
+        qSort(nums, partition + 1, high);
     }
-    
-    private int partition(int[] nums,int low,int high){
+
+    private int partition(int[] nums, int low, int high) {
         int base = nums[high];
         int i = low;
         int j = high;
-        while(i < j){
-            while(i < j && (nums[i]+""+base).compareTo(base+""+nums[i])<=0){
+        while (i < j) {
+            while (i < j && (nums[i] + "" + base).compareTo(base + "" + nums[i]) <= 0) {
                 i++;
             }
-            while(i < j && (nums[j]+""+base).compareTo(base+""+nums[j])>=0){
+            while (i < j && (nums[j] + "" + base).compareTo(base + "" + nums[j]) >= 0) {
                 j--;
             }
-            swap(nums,i,j);
+            swap(nums, i, j);
         }
-        swap(nums,i,high);
+        swap(nums, i, high);
         return i;
     }
-    
-    private void swap(int[] nums,int i,int j){
+
+    private void swap(int[] nums, int i, int j) {
         int temp = nums[i];
         nums[i] = nums[j];
         nums[j] = temp;

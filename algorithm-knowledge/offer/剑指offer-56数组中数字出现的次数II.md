@@ -1,4 +1,5 @@
-## [56 - II. 数组中数字出现的次数 II](https://leetcode.cn/problems/single-number-ii/description/)
+## [面试题 56 - II. 数组中数字出现的次数 II](https://leetcode.cn/problems/shu-zu-zhong-shu-zi-chu-xian-de-ci-shu-ii-lcof/)
+同：[137. 只出现一次的数字 II](https://leetcode.cn/problems/single-number-ii/description/)
 
 
 ### 题目描述
@@ -29,21 +30,25 @@ class Solution {
         if (nums == null || nums.length == 0) {
             return 0;
         }
-        int ans = 0;
-        for (int i = 0; i < 32; ++i) {
-            int total = 0;
-            for (int num: nums) {
-                total += ((num >> i) & 1);//得到 num 的第 i 个二进制位
-            }
-            if (total % 3 != 0) {
-                ans |= (1 << i);//转二进制
+        int[] bits = new int[32];
+        for (int num : nums) {
+            for (int i = 0; i < 32; i++) {
+                bits[i] = bits[i] + (num & 1);//计算num在当前位是否是1
+                num = num >> 1;//右移1位
             }
         }
-        return ans;
+
+        int res = 0;
+        for (int i = 0; i < 32; i++) {
+            if (bits[i] % 3 != 0) {//如果和3取余不是0，说明就是那个唯一数的第i位
+                res = res | (1 << i);//先二进制移位，按位或可以将之前的二进制位合并，也就是最后的数
+            }
+        }
+        return res;
     }
 }
 ```
-#### 帅地简单写法
+#### 帅地写法
 ```java
 class Solution {
     /**
@@ -56,19 +61,19 @@ class Solution {
         if (nums == null || nums.length == 0) {
             return 0;
         }
-        int[] bits = new int[32];
         int n = nums.length;
         int m = 1;
         int res = 0;
-        for(int i = 0;i<32;i++){
-            for(int num:nums){
-                if((num & m) != 0){//不等于0加1
-                    bits[i]++;
+        for(int i = 0;i<32;i++) {
+            int total = 0;
+            for(int num:nums) {
+                if((num & m) != 0){//不等于0加1。就是第1位多少个1加上，第2位多少个1加上
+                    total++;
                 }
             }
-            bits[i] = bits[i] % 3;
-            res = res + bits[i] * m;//转十进制
-            m = m << 1;//左移一位比较
+            total = total % 3;//能不能被3整除，要么0要么1
+            res = res + total * m;//转十进制
+            m = m << 1;//左移一位比较，就是乘2的次方
         }
         return res;
     }

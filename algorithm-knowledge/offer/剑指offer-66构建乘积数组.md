@@ -1,5 +1,5 @@
 ## [66. 构建乘积数组](https://leetcode.cn/problems/gou-jian-cheng-ji-shu-zu-lcof/)
-
+同：[238. 除自身以外数组的乘积](https://leetcode.cn/problems/product-of-array-except-self/description/)
 
 ### 题目描述
 
@@ -19,11 +19,11 @@
 
 - 能不能只使用常数空间？（除了输出的数组之外）
 
-### 解法
+### 解法:双遍历
 
 把 B 的每个元素 `B[i]` 看成两半的乘积，即 `A[0]xA[1]x...xA[i-1]` 和 `A[i+1]xA[i+2]xA[n-1]`。
 
-- 对于左半部分：B[i] = B[i - 1] \* A[i - 1]
+- 对于左半部分：$B[i] = B[i - 1] \times A[i - 1]$
 
 ```java
 class Solution {
@@ -42,10 +42,10 @@ class Solution {
             res[i] = res[i-1]*nums[i-1];
         }
         //再反哺i+1到n的
-        int t = 1;
+        int next = 1;
         for(int i=nums.length-1;i>0;i--){
-            t = t*nums[i];
-            res[i-1] = t*res[i-1];
+            next = next*nums[i];
+            res[i-1] = next*res[i-1];
         }
 
         return res;

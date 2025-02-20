@@ -36,10 +36,10 @@
 ````java
 class Solution {
     public boolean isPowerOfThree(int n) {
-        while(n!=0 && n%3==0){//余数为0继续除3，不然就不是
-            n/=3;
+        while (n != 0 && n % 3 == 0) {//余数为0继续除3，不然就不是
+            n /= 3;
         }
-        return n==1;//能整除最后结果是1
+        return n == 1;//能整除最后结果是1
     }
 }
 ````
