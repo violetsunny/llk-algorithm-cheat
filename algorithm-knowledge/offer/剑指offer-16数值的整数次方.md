@@ -68,6 +68,15 @@ class Solution {
 
 递归求解，每次 exponent 缩小一半，时间复杂度为 `O(log N)`。
 
+````
+x ^ 13
+13 =  1   1   0   1
+   = x^8 x^4 x^0 x^1
+   
+通过 x >> 1 来移动，然后通过 x & 1 判断是否有1。
+等于1，res * x; 过程中x也是变大的，每一次移动 x = x ^ 2 = x * x;
+````
+
 #### 帅地写法
 ```java
 class Solution {
@@ -87,10 +96,10 @@ class Solution {
             base = 1/base;
         }
         while(y != 0){
-            if(y % 2 == 1){ // (y & 1) == 1
+            if(y % 2 == 1){ // (y & 1) == 1 存在就需要 res * base
                 res = res * base;
             }
-            base = base * base;
+            base = base * base;// base逐渐变大，每移动一次base ^ 2 = base * base;
             y = y / 2;// y = y >> 1;
         }
         return res;

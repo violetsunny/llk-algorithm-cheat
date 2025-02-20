@@ -192,7 +192,7 @@ class Solution {
     }
 
     /**
-     * 有个推导公式： 必要条件 a < p
+     * 有个推导公式： 必要条件 a < mod
      * res(n) = a^n % mod = ((a^(n-1) % mod) * (a % mod)) % mod
      *        = ((a^(n-1) % mod) * a) % mod  而其中 res(n-1) = a^(n-1) % mod
      * 所以：
