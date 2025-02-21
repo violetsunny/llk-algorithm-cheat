@@ -90,7 +90,7 @@ class Solution {
         int cnt = 0;
         while (n != 0) {
             ++cnt;
-            n &= (n - 1);//这是消除二进制中最后一位1的方法
+            n = n & (n - 1);//这是消除二进制中最后一位1的方法
         }
         return cnt;
     }

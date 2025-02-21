@@ -1,5 +1,5 @@
 ## [48. 不含重复字符的最长子串](https://leetcode.cn/problems/zui-chang-bu-han-zhong-fu-zi-fu-de-zi-zi-fu-chuan-lcof/)
-
+同:[3. 无重复字符的最长子串](https://leetcode.cn/problems/longest-substring-without-repeating-characters/description/)
 ### 题目描述
 
 请从字符串中找出一个最长的不包含重复字符的子字符串，计算该最长子字符串的长度。

@@ -1,5 +1,5 @@
 ## [30. 包含 min 函数的栈](https://leetcode.cn/problems/bao-han-minhan-shu-de-zhan-lcof/)
-
+同：[155. 最小栈](https://leetcode.cn/problems/min-stack/description/)
 
 ### 题目描述
 

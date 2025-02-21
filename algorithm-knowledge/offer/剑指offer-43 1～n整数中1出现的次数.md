@@ -1,4 +1,5 @@
 # [1 ～ n 整数中 1 出现的次数](https://leetcode.cn/problems/1nzheng-shu-zhong-1chu-xian-de-ci-shu-lcof/)
+同：[233. 数字 1 的个数](https://leetcode.cn/problems/number-of-digit-one/description/)
 
 ## 题目描述
 
@@ -34,7 +35,7 @@
 
 ## 解法
 
-### 方法一：数位 DP
+### 方法一：动态规划（数位DP）
 - 比如510223中1的个数，就是500000中1的个数+10000中1的个数+200中1的个数+20中1的个数+3中1的个数。
   500000就是第6位0-5，后面5位都是0-9。
 - 依次拆解</br>
@@ -49,36 +50,39 @@
 
 ```java
 class Solution {
-    private int[] a = new int[12];
-    private Integer[][] f = new Integer[12][12];
+    private int[] a = new int[12];//最多12位，每位的数
+    private int[][] dp = new int[12][12];
 
     public int countDigitOne(int n) {
-        int i = -1;
-        for (; n > 0; n /= 10) {
-            a[++i] = n % 10;
+        int i = 0;//多少位
+        for (; n > 0; n /= 10) {//初始化每位的数
+            a[i++] = n % 10;
         }
         return dfs(i, 0, true);
     }
 
-    private int dfs(int pos, int cnt, boolean limit) {
+    private int dfs(int pos, int cnt, boolean limit) {//是否收到n限制，比如123，如果120了后面只能到121，122，123。否则像10可以到99
         if (pos < 0) {
             return cnt;
         }
-        if (!limit && f[pos][cnt] != null) {
-            return f[pos][cnt];
+        if (!limit && dp[pos][cnt] != 0) {
+            return dp[pos][cnt];
         }
         int up = limit ? a[pos] : 9;
         int ans = 0;
         for (int i = 0; i <= up; ++i) {
             ans += dfs(pos - 1, cnt + (i == 1 ? 1 : 0), limit && i == up);
         }
-        return f[pos][cnt] = ans;
+        dp[pos][cnt] = ans;
+        return ans;
     }
 }
 ```
+
+
 ### 方法二：数学公式
-<pre>
-bit 是当前位；cur = (n / bit)%10 , low = n % bit, high = n / bit / 10 
+````
+bit 是当前位；cur = (n / bit) % 10 , low = n % bit, high = n / bit / 10 
 501223中1.
 如果bit是百位上，cur=(501223/100)%10=2,low=501223%100=223,high=501223/100/10=501;
 5 0 1 2 2 3
@@ -96,8 +100,10 @@ bit 是当前位；cur = (n / bit)%10 , low = n % bit, high = n / bit / 10
  cur    
 0-4 * 0-9999
 
-</pre>
+````
+
 <P>公式：</P>
+$cur = (n / bit) \% 10 $, $low = n \% bit$, $high = n / bit / 10$
 - cur > 1  => $(high + 1) * bit$
 - cur == 1 => $(high * bit)+(1 + low)$
 - cur == 0 => $high * bit$
@@ -109,9 +115,9 @@ class Solution {
     long bit = 1;
     long sum = 0;
     while (bit <= n) {
-      long cur = (n / bit) % 10;
-      long low = n % bit;
-      long high = (n / bit) / 10;
+      long cur = (n / bit) % 10;//当前位
+      long low = n % bit;//低位
+      long high = (n / bit) / 10;//高位
 
       if (cur > 1) {
         sum += (high + 1) * bit;

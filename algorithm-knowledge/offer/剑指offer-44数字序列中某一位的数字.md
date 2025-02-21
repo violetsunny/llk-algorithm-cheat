@@ -1,4 +1,5 @@
 ## [44. 数字序列中某一位的数字](https://leetcode.cn/problems/shu-zi-xu-lie-zhong-mou-yi-wei-de-shu-zi-lcof/)
+同：[400. 第 N 位数字](https://leetcode.cn/problems/nth-digit/description/)
 
 ### 题目描述
 
@@ -74,7 +75,7 @@ public class Solution {
 
 时间复杂度 $O(\log_{10} n)$，空间复杂度 $O(1)$。其中 $n$ 为给定的数字。
 ````
-例如：n = 1000位; 1-9是9个，10-99是90个，100-999是900个....类推
+例如：n = 1000位; 1-9是9个，10-99是90个*2=180，100-999是900个*3=2700....类推
 1000 > 9 => n-9=991;
 991 > (90*2) => 991-(90*2)=811;
 811 < (900*3) => 811;
@@ -101,10 +102,10 @@ class Solution {
             n = (int)(n - count);//找到减去后剩下的n
             bit = bit * 10;
             i++;//第几位
-            count = bit * i * 9;
+            count = bit * i * 9;//比如10-99 180个
         }
-        long num = bit + (n - 1) / i;//找到哪个数字
-        int idx = (n - 1) % i;//找到下标
+        long num = bit + (n - 1) / i;//找到哪个数字，因为从0开始所以当前n-1，i表示当前几位数字：3位，每个数字长度3，所以要/3。又是从第几位的数字往后数
+        int idx = (n - 1) % i;//找到下标，比如3位，肯定是3的余数
         int res = String.valueOf(num).charAt(idx) - '0';
 //        int res = (int)(num / Math.pow(10, i - idx - 1)) % 10;
         return res;

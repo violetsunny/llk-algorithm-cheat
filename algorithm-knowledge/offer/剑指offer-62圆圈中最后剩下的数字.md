@@ -1,5 +1,5 @@
 ## [62. 圆圈中最后剩下的数字](https://leetcode.cn/problems/yuan-quan-zhong-zui-hou-sheng-xia-de-shu-zi-lcof/)
-
+同：[1823. 找出游戏的获胜者](https://leetcode.cn/problems/find-the-winner-of-the-circular-game/description/)
 
 ### 题目描述
 
@@ -15,9 +15,7 @@
 输出：3
 ```
 
-### 解法
-
-#### 解法一：环形链表（循环数组）
+### 解法一：环形链表（循环数组）
 
 利用循环数组存放每个数字，每走一步，判断对应位置的数是否是 `-1`，`-1` 的话不计步数，这样一直走 `m` 步。将该位数字置为 `-1`。
 
@@ -57,7 +55,7 @@ class Solution {
             }
 
             ++cnt;
-            nums[e] = -1;
+            nums[e] = -1;// 用-1标注删除
             s = e;
         }
         for (int i = 0; i < n; ++i) {
@@ -70,34 +68,35 @@ class Solution {
 }
 ```
 
-#### 解法二：数学（约瑟夫环问题）
+### 解法二：数学（约瑟夫环问题）(推荐)
 
 我们这样分析：
 
-第一次被删除的圆圈的编号是 `m-1`。那么剩下的数字依次是：
+第一次被删除的圆圈的编号是 `m`。那么剩下的数字依次是：
 
 ```
-0   1   2   3  ...  m-2   m  ...  n-1
+1   2   3  ...  m-2   m-1  m+1 ...  n
 ```
 
-由于下一次（共有 `n-1` 个数）是从 m 开始，因此我们对 m 的编号改为 0，依次改：
+由于下一次（共有 `n-1` 个数）是从 m+1 开始，因此我们对 m+1 的编号改为 1，依次改：
 
 ```
 old ->  new
 
-m   ->  0
 m+1 ->  1
 m+2 ->  2
 .
 .
 .
-n-1 ->  n-1-m
-0   ->  n-m
-1   ->  n-m+1
+n-1 ->  n-m-1
+n   ->  n-m
+1   ->  n-m+1    
 .
 .
 .
 m-2 ->  n-2
+m-1 ->  n-1
+m   ->  n    ---m是删除的数
 ```
 
 我们假设子问题 `x'` 是最终解，那么对应到原问题 `x` 应该是什么呢？
@@ -105,20 +104,21 @@ m-2 ->  n-2
 ```
 new ->  old
 
-0   ->  m
-1   ->  m+1
-2   ->  m+2
+1   ->  m
+2   ->  m+1
+3   ->  m+2
 .
 .
 .
-n-1-m   ->  n-1
-n-m ->  0
-n-m+1   ->  1
+n-1-m ->  n
+n-m   ->  1
+n-m+1 ->  2
 .
 .
 .
-n-2 ->  m-2
-
+n-1   ->  m-2
+n     ->  m-1
+ 
 x'  ->  x
 ```
 
@@ -177,3 +177,24 @@ class Solution {
     }
 }
 ```
+
+### 解法三：模拟 + 队列
+
+````java
+class Solution {
+    public int findTheWinner(int n, int k) {
+        Queue<Integer> queue = new ArrayDeque<Integer>();
+        for (int i = 1; i <= n; i++) {
+            queue.offer(i);// 先放入
+        }
+        while (queue.size() > 1) {
+            for (int i = 1; i < k; i++) {//跳到第k个删掉
+                queue.offer(queue.poll());
+            }
+            queue.poll();
+        }
+        return queue.peek();
+    }
+}
+
+````

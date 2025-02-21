@@ -1,4 +1,5 @@
 ## [25. 合并两个排序的链表](https://leetcode.cn/problems/he-bing-liang-ge-pai-xu-de-lian-biao-lcof/)
+同：[21. 合并两个有序链表](https://leetcode.cn/problems/merge-two-sorted-lists/description/)
 
 ### 题目描述
 

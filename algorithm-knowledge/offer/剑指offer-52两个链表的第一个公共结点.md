@@ -1,5 +1,5 @@
 ## [52. 两个链表的第一个公共节点](https://leetcode.cn/problems/liang-ge-lian-biao-de-di-yi-ge-gong-gong-jie-dian-lcof/)
-
+同:[160. 相交链表](https://leetcode.cn/problems/intersection-of-two-linked-lists/description/)
 ### 题目描述
 
 输入两个链表，找出它们的第一个公共结点。

@@ -1,5 +1,5 @@
 ## [35. 复杂链表的复制](https://leetcode.cn/problems/fu-za-lian-biao-de-fu-zhi-lcof/)
-
+同：[138. 随机链表的复制](https://leetcode.cn/problems/copy-list-with-random-pointer/description/)
 
 ### 题目描述
 

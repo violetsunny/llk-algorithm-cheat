@@ -1,5 +1,5 @@
 ## [24. 反转链表](https://leetcode.cn/problems/fan-zhuan-lian-biao-lcof/)
-
+同:[206. 反转链表](https://leetcode.cn/problems/reverse-linked-list/description/)
 ### 题目描述
 
 输入一个链表，反转链表后，输出新链表的表头。

@@ -1,5 +1,5 @@
 ## 23 链表中环的入口结点
-
+同：[142. 环形链表 II](https://leetcode.cn/problems/linked-list-cycle-ii/description/)
 来源：[AcWing](https://www.acwing.com/problem/content/15/)
 
 ### 题目描述

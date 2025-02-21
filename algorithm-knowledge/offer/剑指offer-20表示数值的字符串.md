@@ -1,5 +1,5 @@
 ## [20. 表示数值的字符串](https://leetcode.cn/problems/biao-shi-shu-zhi-de-zi-fu-chuan-lcof/)
-
+同：[65. 有效数字](https://leetcode.cn/problems/valid-number/description/)
 
 ### 题目描述
 
@@ -25,7 +25,7 @@
 输出: true
 ```
 
-### 解法
+### 解法: 正则匹配
 
 利用正则表达式匹配即可。
 
@@ -55,7 +55,7 @@ public class Solution {
 }
 ```
 
-### 解法二
+### 解法二：有限状态机
 针对情况赋值变量
 
 ```java
@@ -66,39 +66,79 @@ public class Solution {
      * @return
      */
     public boolean isNumeric(char[] str) {
-        if(str == null || str.length==0){
+        if (str == null || str.length == 0) {
             return false;
         }
         int n = str.length;
         boolean isdot = false;
         boolean iseorE = false;
         boolean isnume = false;
-        
-        for(int i =0;i<n;i++){
-            if(str[i]>='0'&&str[i]<='9'){
+
+        for (int i = 0; i < n; i++) {
+            if (str[i] >= '0' && str[i] <= '9') {
                 isnume = true;
-            } else if(str[i]=='.'){
+            } else if (str[i] == '.') {
                 //不能重复. e/E
-                if(isdot || iseorE){
+                if (isdot || iseorE) {
                     return false;
                 }
                 isdot = true;
-                
-            } else if(str[i]=='e' || str[i]=='E'){
-                if(isdot || iseorE || !isnume){
+
+            } else if (str[i] == 'e' || str[i] == 'E') {
+                if (isdot || iseorE || !isnume) {
                     return false;
                 }
                 iseorE = true;
                 isnume = false;
-            } else if(str[i]=='-' || str[i]=='+'){
-                if(i!=0 && str[i-1]!='e' && str[i-1]!='E'){
+            } else if (str[i] == '-' || str[i] == '+') {
+                if (i != 0 && str[i - 1] != 'e' && str[i - 1] != 'E') {
                     return false;
                 }
             } else {
                 return false;
             }
         }
-      return isnume;
+        return isnume;
     }
 }
 ```
+
+#### 更优雅的写法
+
+````java
+class Solution {
+    public boolean isNumber(String s) {
+        Map[] states = {
+            new HashMap<>() {{ put(' ', 0); put('s', 1); put('d', 2); put('.', 4); }}, // 0.
+            new HashMap<>() {{ put('d', 2); put('.', 4); }},                           // 1.
+            new HashMap<>() {{ put('d', 2); put('.', 3); put('e', 5); put(' ', 8); }}, // 2.
+            new HashMap<>() {{ put('d', 3); put('e', 5); put(' ', 8); }},              // 3.
+            new HashMap<>() {{ put('d', 3); }},                                        // 4.
+            new HashMap<>() {{ put('s', 6); put('d', 7); }},                           // 5.
+            new HashMap<>() {{ put('d', 7); }},                                        // 6.
+            new HashMap<>() {{ put('d', 7); put(' ', 8); }},                           // 7.
+            new HashMap<>() {{ put(' ', 8); }}                                         // 8.
+        };
+        int p = 0;
+        char t;
+        for (char c : s.toCharArray()) {
+            if (c >= '0' && c <= '9') {
+                t = 'd';
+            } else if (c == '+' || c == '-') {
+                t = 's';
+            } else if (c == 'e' || c == 'E') {
+                t = 'e';
+            } else if (c == '.' || c == ' ') {
+                t = c;
+            } else {
+                t = '?';
+            }
+            if (!states[p].containsKey(t)) {
+                return false;
+            }
+            p = (int) states[p].get(t);
+        }
+        return p == 2 || p == 3 || p == 7 || p == 8;
+    }
+}
+````
