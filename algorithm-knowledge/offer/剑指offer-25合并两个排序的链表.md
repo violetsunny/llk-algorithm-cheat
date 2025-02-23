@@ -41,21 +41,17 @@ class Solution {
         ListNode dummy = new ListNode(-1);
         ListNode cur = dummy;
         while (p != null && q != null) {
-            if (p.val < q.val) {
-                ListNode t = p.next;
+            if (p.val < q.val) {//小的先放
                 cur.next = p;
-                p.next = null;
-                p = t;
+                p = p.next;
             } else {
-                ListNode t = q.next;
                 cur.next = q;
-                q.next = null;
-                q = t;
+                q = q.next;
             }
             cur = cur.next;
         }
-        cur.next = p == null ? q : p;
-        return dummy.next;
+        cur.next = p == null ? q : p;//将没有结束的放入
+        return dummy.next;//下一个，当前不是
     }
 }
 ```

@@ -11,6 +11,7 @@
 接下来，我们从左到右遍历数组，当 $nums[i]$ 是奇数时，我们将其与 $nums[j]$ 交换，然后指针 $j$ 向右移动一位。指针 $i$ 每次向右移动一位，直到遍历完整个数组。
 
 时间复杂度 $O(n)$，空间复杂度 $O(1)$。其中 $n$ 是数组的长度。
+
 ```java
 class Solution {
     public int[] exchange(int[] nums) {
@@ -94,18 +95,18 @@ public class Solution {
 import java.util.Arrays;
 
 public class Solution {
-    
+
     public void reOrderArray(int[] array) {
-        if(array==null||array.length==0){
+        if (array == null || array.length == 0) {
             return;
         }
         int left = 0;
-        int right = array.length-1;
-        while(left<right){
-            while(left<right&&array[left]%2!=0){
+        int right = array.length - 1;
+        while (left < right) {
+            while (left < right && array[left] % 2 != 0) {
                 left++;
             }
-            while(left<right&&array[right]%2!=1){
+            while (left < right && array[right] % 2 != 1) {
                 right--;
             }
             int temp = array[right];

@@ -55,20 +55,21 @@ public class Solution {
 }
 ```
 
-### 解法二：有限状态机
+### 解法二：归纳法
 针对情况赋值变量
 
 ```java
 public class Solution {
     /**
      * 判断是否是数字
-     * @param str
+     * @param s
      * @return
      */
-    public boolean isNumeric(char[] str) {
-        if (str == null || str.length == 0) {
+    public boolean isNumber(String s) {
+        if (s == null || s.length() == 0) {
             return false;
         }
+        char[] str = s.trim().toCharArray();
         int n = str.length;
         boolean isdot = false;
         boolean iseorE = false;
@@ -89,7 +90,7 @@ public class Solution {
                     return false;
                 }
                 iseorE = true;
-                isnume = false;
+                isnume = false;//重置下，例如11E++
             } else if (str[i] == '-' || str[i] == '+') {
                 if (i != 0 && str[i - 1] != 'e' && str[i - 1] != 'E') {
                     return false;
@@ -103,7 +104,7 @@ public class Solution {
 }
 ```
 
-#### 更优雅的写法
+### 解法三：有限状态机
 
 ````java
 class Solution {

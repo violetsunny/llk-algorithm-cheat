@@ -56,13 +56,13 @@ class Solution {
             return head;
         }
         ListNode node = reverseList(head.next);//递归到最后
-        head.next.next = head;//当前下一个的下一个指向当前，
-        head.next = null;//当前的下一个改为null
-        return node;//返回最后节点
+        head.next.next = head;//当前下一个的下一个指向当前，比如2.next指向1
+        head.next = null;//当前的下一个改为null，比如：1.next指向null
+        return node;//返回最后节点,不能是head，因为此时的head指向的null
     }
 }
 ```
-#### 解法三：原地排序
+#### 解法三：原地反转
 
 ```java
 /**
