@@ -1,5 +1,5 @@
 ## [15. 二进制中 1 的个数](https://leetcode.cn/problems/er-jin-zhi-zhong-1de-ge-shu-lcof/)
-
+同：[位1的个数](https://leetcode.cn/problems/number-of-1-bits/description/)
 
 ### 题目描述
 

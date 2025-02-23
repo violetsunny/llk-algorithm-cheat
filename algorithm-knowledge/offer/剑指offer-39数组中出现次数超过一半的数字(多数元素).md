@@ -1,5 +1,5 @@
 ## [39. 数组中出现次数超过一半的数字](https://leetcode.cn/problems/shu-zu-zhong-chu-xian-ci-shu-chao-guo-yi-ban-de-shu-zi-lcof/)
-
+同：[169. 多数元素](https://leetcode.cn/problems/majority-element/description/)
 
 ### 题目描述
 

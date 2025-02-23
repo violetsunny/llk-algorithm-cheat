@@ -1,6 +1,5 @@
 ## [09.2 用两个队列实现栈](https://leetcode.cn/problems/implement-stack-using-queues/description/)
-
-来源：[LeetCode](https://leetcode.cn/problems/implement-stack-using-queues/)
+同：[225. 用队列实现栈](https://leetcode.cn/problems/implement-stack-using-queues/description/)
 
 ### 题目描述
 

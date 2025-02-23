@@ -1,5 +1,5 @@
 ## [56 - I. 数组中数字出现的次数](https://leetcode.cn/problems/single-number-iii/description/)
-
+同：[260. 只出现一次的数字 III](https://leetcode.cn/problems/single-number-iii/description/)
 ### 题目描述
 
 一个整型数组里除了两个数字之外，其他的数字都出现了两次。
