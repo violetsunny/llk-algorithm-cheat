@@ -1,5 +1,5 @@
-## [3.2不修改数组找出重复的数字](https://leetcode.cn/problems/find-the-duplicate-number/description/)
-
+## [3.2不修改数组找出重复的数字](https://leetcode.cn/problems/shu-zu-zhong-zhong-fu-de-shu-zi-lcof/)
+同：[287. 寻找重复数](https://leetcode.cn/problems/find-the-duplicate-number/description/)
 ### 题目描述
 
 给定一个长度为 `n+1` 的数组 `nums`，数组中所有的数均在 `1∼n` 的范围内，其中 `n≥1`。

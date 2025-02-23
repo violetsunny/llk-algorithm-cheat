@@ -1,6 +1,5 @@
 ## [27. 二叉树的镜像](https://leetcode.cn/problems/er-cha-shu-de-jing-xiang-lcof/)
-同[翻转二叉树
-](https://leetcode.cn/problems/invert-binary-tree/description/)
+同:[226. 翻转二叉树](https://leetcode.cn/problems/invert-binary-tree/description/)
 
 ### 题目描述
 

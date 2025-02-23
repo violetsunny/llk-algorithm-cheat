@@ -1,5 +1,5 @@
 ## [28. 对称的二叉树](https://leetcode.cn/problems/dui-cheng-de-er-cha-shu-lcof/)
-同[101. 对称二叉树](https://leetcode.cn/problems/symmetric-tree/description/)
+同:[101. 对称二叉树](https://leetcode.cn/problems/symmetric-tree/description/)
 
 ### 题目描述
 

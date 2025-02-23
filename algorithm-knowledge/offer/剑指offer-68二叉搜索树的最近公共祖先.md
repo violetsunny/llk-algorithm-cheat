@@ -1,5 +1,5 @@
 # [68 - I. 二叉搜索树的最近公共祖先](https://leetcode.cn/problems/er-cha-sou-suo-shu-de-zui-jin-gong-gong-zu-xian-lcof/)
-
+同：[235. 二叉搜索树的最近公共祖先](https://leetcode.cn/problems/lowest-common-ancestor-of-a-binary-search-tree/description/)
 ## 题目描述
 
 <p>给定一个二叉搜索树, 找到该树中两个指定节点的最近公共祖先。</p>

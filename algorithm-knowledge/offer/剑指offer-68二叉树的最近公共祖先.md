@@ -1,5 +1,5 @@
 # [68 - II. 二叉树的最近公共祖先](https://leetcode.cn/problems/er-cha-shu-de-zui-jin-gong-gong-zu-xian-lcof/)
-
+同：[236. 二叉树的最近公共祖先](https://leetcode.cn/problems/lowest-common-ancestor-of-a-binary-tree/description/)
 ## 题目描述
 
 <p>给定一个二叉树, 找到该树中两个指定节点的最近公共祖先。</p>

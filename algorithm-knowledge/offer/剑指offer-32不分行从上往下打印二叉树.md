@@ -1,5 +1,5 @@
 ## [32 - I. 从上到下打印二叉树](https://leetcode.cn/problems/cong-shang-dao-xia-da-yin-er-cha-shu-lcof/)
-
+同：[102. 二叉树的层序遍历](https://leetcode.cn/problems/binary-tree-level-order-traversal/description/)
 
 ### 题目描述
 
@@ -58,7 +58,7 @@ public class Solution {
 ```
 
 ## [32 - II. 从上到下打印二叉树 II](https://leetcode.cn/problems/binary-tree-level-order-traversal/description/)
-
+同:[103. 二叉树的锯齿形层序遍历](https://leetcode.cn/problems/binary-tree-zigzag-level-order-traversal/description/)
 
 ### 题目描述
 

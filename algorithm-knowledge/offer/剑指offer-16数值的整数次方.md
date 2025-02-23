@@ -1,5 +1,6 @@
 ## [16. 数值的整数次方](https://leetcode.cn/problems/shu-zhi-de-zheng-shu-ci-fang-lcof/)
-同[50. Pow(x, n)](https://leetcode.cn/problems/powx-n/description/)
+同:[50. Pow(x, n)](https://leetcode.cn/problems/powx-n/description/)
+
 ### 题目描述
 
 实现函数 double Power(double base, int exponent)，求 base 的 exponent 次方。
