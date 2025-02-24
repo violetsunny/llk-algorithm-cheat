@@ -1,5 +1,5 @@
 ## [36. 二叉搜索树与双向链表](https://leetcode.cn/problems/er-cha-sou-suo-shu-yu-shuang-xiang-lian-biao-lcof/)
-
+同：[426.将二叉搜索树转化为排序是双向链表](https://leetcode.cn/problems/convert-binary-search-tree-to-sorted-doubly-linked-list/)
 
 ### 题目描述
 

@@ -31,7 +31,7 @@
 1. f(i):设前i+1个数字的和为f(i)；
 2. 转移方程：$f(i)=f(i−1)+nums[i]；$
 3. 初始状态： $f(0)=nums[0]；$
-4. 
+
 ````java
 class Solution {
     public int[] runningSum(int[] nums) {
