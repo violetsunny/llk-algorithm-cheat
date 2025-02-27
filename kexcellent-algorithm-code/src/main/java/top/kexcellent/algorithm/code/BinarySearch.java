@@ -6,6 +6,21 @@ package top.kexcellent.algorithm.code;
 
 /**
  * 二分查找
+
+ * int search(int left, int right) {
+ *     while (left < right) {
+ *         int mid = (left + right) >> 1;
+ *         if (check(mid)) {
+ *             right = mid;
+ *         } else {
+ *             left = mid + 1;
+ *         }
+ *     }
+ *     return left;
+ * }
+ * boolean check(int x) {
+ * }
+ *
  * @author kanglele
  * @version $Id: BinarySearch, v 0.1 2024/10/16 上午10:50 kanglele Exp $
  */

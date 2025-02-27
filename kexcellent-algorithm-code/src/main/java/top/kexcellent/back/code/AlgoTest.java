@@ -48,5 +48,6 @@ public class AlgoTest {
         System.out.println(algoTest.maxProfit(nums));
         System.out.println(algoTest.maxProfit2(nums));
         System.out.println(algoTest.maxProfit3(nums));
+
     }
 }
