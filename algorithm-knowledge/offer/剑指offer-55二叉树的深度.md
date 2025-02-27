@@ -22,7 +22,7 @@
 
 ### 解法：深度优先搜索（DFS）
 
-递归即可。
+递归即可。后序遍历
 
 ```java
 /**
@@ -52,7 +52,61 @@ class Solution {
 }
 ```
 
-### 测试用例
+#### 从上到下，前序遍历
+````java
+class Solution {
+    // 全局变量，存放结果
+    int res = 0;    
+    public int maxDepth(TreeNode root) {
+        // 深度遍历，一开始的深度为 0
+        dfs(root, 0);    
+        // 返回结果
+        return this.res;     
+    }
 
-1. 功能测试（输入普通的二叉树；二叉树中所有节点都没有左/右子树）；
-2. 特殊输入测试（二叉树只有一个节点；二叉树的头节点为空指针）。
+    public void dfs(TreeNode root, int length){
+        // 如果到达叶子节点，就更新结果
+        if (root == null){      
+            // 选取最深的叶子节点作为结果
+            res = Math.max(this.res, length);
+            return;
+        }
+        // 由于当前节点有值，故深度要+1
+        dfs(root.left, length+1);    // 查找左节点
+        dfs(root.right, length+1);   // 查找右节点
+    }
+}
+````
+
+### 解法：层序遍历
+1. 使用队列来存放节点
+
+2. 一开始先知道当前层数的节点个数，然后根据个数出队，并对其孩子节点入队
+````java
+class Solution {
+    public int maxDepth(TreeNode root) {
+        if (root == null) return 0;
+        // 创建一个队列
+        Deque<TreeNode> deque = new LinkedList<>(); 
+        // 根结点入队列，对应第一层
+        deque.offer(root);                          
+        int res = 0;
+        // 如果队列不为空
+        while (!deque.isEmpty()){
+            // 层数
+            res += 1;          
+            // 找到当前层的节点数
+            int length = deque.size();       
+            // 清空当前层，并把孩子节点入队
+            for (int i=0; i < length; i++){     
+                TreeNode node = deque.pollFirst(); 
+                if (node.left != null)
+                    deque.offer(node.left);
+                if (node.right != null)
+                    deque.offer(node.right);
+            }
+        }
+        return res;
+    }
+}
+````
