@@ -40,6 +40,7 @@ class Solution {
         // 终止条件
         if (cur.size() == nums.length) {
             res.add(new ArrayList<>(cur));
+            return;
         }
         // 处理逻辑
         for (int i = 0; i < nums.length; i++) {

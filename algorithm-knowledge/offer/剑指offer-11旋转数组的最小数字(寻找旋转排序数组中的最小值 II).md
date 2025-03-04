@@ -76,9 +76,9 @@ class Solution {
             if (nums[m] > nums[l]) {
                 l = m + 1;
             } else if (nums[m] < nums[l]) {
-                r = m;//不能m+1，因为m本身可能是旋转点
+                r = m;//不能m-1，因为m本身可能是旋转点
             } else {
-                ++l;//往右移动，也可以认为剪枝
+                ++l;//往右移动，也可以认为剪枝。不能直接l=m+1跨过去，因为 2 1 2 2 2
             }
         }
         return nums[l];

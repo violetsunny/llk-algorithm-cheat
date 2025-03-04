@@ -82,9 +82,17 @@ class Solution {
 
 ### 方法二：数学公式
 ````
-bit 是当前位；cur = (n / bit) % 10 , low = n % bit, high = n / bit / 10 
+bit 是当前位；
+当前位的数：cur = (n / bit) % 10 ;
+低位数（当前位到个位）： low = n % bit;
+高位数（前面位到当前位）： high = n / bit / 10; 
+
 501223中1.
-如果bit是百位上，cur=(501223/100)%10=2,low=501223%100=223,high=501223/100/10=501;
+如果bit是百位上:
+cur=(501223/100)%10=2;
+low=501223%100=223;
+high=501223/100/10=501;
+
 5 0 1 2 2 3
      cur
 0-501 * 0-99
@@ -111,25 +119,25 @@ $cur = (n / bit) \% 10 $, $low = n \% bit$, $high = n / bit / 10$
 ````java
 class Solution {
 
-  public int countDigitOne(int n) {
-    long bit = 1;
-    long sum = 0;
-    while (bit <= n) {
-      long cur = (n / bit) % 10;//当前位
-      long low = n % bit;//低位
-      long high = (n / bit) / 10;//高位
+    public int countDigitOne(int n) {
+        long bit = 1;
+        long sum = 0;
+        while (bit <= n) {
+            long cur = (n / bit) % 10;//当前位
+            long low = n % bit;//低位
+            long high = (n / bit) / 10;//高位
 
-      if (cur > 1) {
-        sum += (high + 1) * bit;
-      } else if (cur == 1) {
-        sum += (high * bit) + (1 + low);
-      } else {
-        sum += high * bit;
-      }
-      bit = bit * 10;
+            if (cur > 1) {
+                sum += (high + 1) * bit;
+            } else if (cur == 1) {
+                sum += (high * bit) + (1 + low);
+            } else {
+                sum += high * bit;
+            }
+            bit = bit * 10;
+        }
+        return (int) sum;
     }
-    return (int) sum;
-  }
 }
 ````
 
