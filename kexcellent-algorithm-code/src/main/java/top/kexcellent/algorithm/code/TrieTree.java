@@ -6,9 +6,10 @@ package top.kexcellent.algorithm.code;
 
 /**
  * 前缀树
- *     []
- *  [] [] [] [] [] ... 26
+ * []
+ * [] [] [] [] [] ... 26
  * [][][].. [][][]..  26*26
+ *
  * @author kanglele
  * @version $Id: Trie, v 0.1 2024/11/6 11:34 kanglele Exp $
  */
@@ -17,12 +18,14 @@ public class TrieTree {
     private TrieTree[] children;//都是小写可以这样，如果有其他字符可以使用Map<Character,TrieTree>
     //该字母是否为最后一个字母
     private boolean isEnd;
+
     public TrieTree() {
         //初始化26个字母
         children = new TrieTree[26];
         //默认为不是最后一个字母
         isEnd = false;
     }
+
     public void insert(String word) {
         //得到字典树根节点
         TrieTree node = this;
@@ -31,7 +34,7 @@ public class TrieTree {
             //得到该字符在数组中的坐标
             int index = c - 'a';
             //如果正在遍历的该字母节点的数组坐标中没有记录，就新建一个字母节点在字典树中
-            if(node.children[index] == null){
+            if (node.children[index] == null) {
                 node.children[index] = new TrieTree();
             }
             //每一次生成字母都移动指针到下一个字母节点
@@ -40,6 +43,7 @@ public class TrieTree {
         //最后一个字母节点设置为最后一个字母
         node.isEnd = true;
     }
+
     public boolean search(String word) {
         //返回检索到的最后一个字母节点
         TrieTree node = searchPrefix(word);
@@ -51,15 +55,16 @@ public class TrieTree {
         //只要前缀匹配存在于字典树中就返回true
         return searchPrefix(prefix) != null;
     }
+
     //前缀搜索 还是 全文搜索都是调用此方法，区别在于前缀搜索只要前缀匹配就返回true，全文搜索则要匹配到最后一个字母才返回true，所以这里返回的是最后一个字母节点
-    public TrieTree searchPrefix(String word){
+    public TrieTree searchPrefix(String word) {
         //得到字典树根节点
         TrieTree node = this;
         //开始验证字符串在字典树中是否存在
         for (char c : word.toCharArray()) {
             //得到该字符在数组中的坐标
             int index = c - 'a';
-            if(node.children[index] == null){
+            if (node.children[index] == null) {
                 //如果在此过程中没有找到待搜索的其中一个字母节点，就返回null，代表该字母不存在于字典树中
                 return null;
             }

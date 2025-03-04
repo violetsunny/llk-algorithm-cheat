@@ -14,6 +14,7 @@ public class MergeSort {
 
     /**
      * mergeSort 递归 对两个有序节点序列进行合并来实现排序，分治思想
+     *
      * @param arr
      * @return
      */
@@ -64,7 +65,7 @@ public class MergeSort {
 
         // 将临时数组 t 中的元素复制回原始数组 nums 的相应位置
         k = 0;
-        for(int m = left; m <= right; m++) {
+        for (int m = left; m <= right; m++) {
             arr[m] = temp[k++];
         }
     }

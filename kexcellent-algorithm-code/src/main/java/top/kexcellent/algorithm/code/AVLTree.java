@@ -11,6 +11,7 @@ import java.util.List;
  * 平衡二叉搜索树中每个结点的左子树和右子树的高度最多相差 1；
  * 平衡二叉搜索树的子树也是平衡二叉搜索树；
  * 一棵存有 n 个结点的平衡二叉搜索树的高度是 O(logn)。
+ *
  * @author kanglele
  * @version $Id: AVLTree, v 0.1 2025/2/13 11:50 kanglele Exp $
  */
@@ -267,7 +268,7 @@ public class AVLTree {
 
 /**
  * 平衡二叉搜索树结点
-  */
+ */
 class Node {
     int val;
     Node parent;

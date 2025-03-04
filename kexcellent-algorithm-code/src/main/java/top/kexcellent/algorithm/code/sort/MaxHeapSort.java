@@ -6,6 +6,7 @@ package top.kexcellent.algorithm.code.sort;
 
 /**
  * 大顶堆
+ *
  * @author kanglele
  * @version $Id: MaxHeapSort, v 0.1 2024/10/16 上午11:13 kanglele Exp $
  */
@@ -48,7 +49,7 @@ public class MaxHeapSort {
         }
 
         // 如果最大节点不是当前节点，则交换它们，并继续调整子树
-        if (largest!= i) {
+        if (largest != i) {
             int temp = arr[i];
             arr[i] = arr[largest];
             arr[largest] = temp;

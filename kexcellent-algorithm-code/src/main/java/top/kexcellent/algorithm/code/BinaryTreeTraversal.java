@@ -10,6 +10,7 @@ import java.util.Stack;
 
 /**
  * 前序遍历、中序遍历、后序遍历和层序遍历  广度优先搜索（BFS） 深度优先搜索（DFS）
+ *
  * @author kanglele
  * @version $Id: BinaryTreeTraversal, v 0.1 2024/10/16 下午4:15 kanglele Exp $
  */
@@ -17,6 +18,7 @@ public class BinaryTreeTraversal {
 
     /**
      * 前序遍历
+     *
      * @param root
      */
     public void preOrderTraversal(TreeNode root) {
@@ -28,6 +30,7 @@ public class BinaryTreeTraversal {
 
     /**
      * 中序遍历
+     *
      * @param root
      */
     public void inOrderTraversal(TreeNode root) {
@@ -39,6 +42,7 @@ public class BinaryTreeTraversal {
 
     /**
      * 后序遍历
+     *
      * @param root
      */
     public void postOrderTraversal(TreeNode root) {
@@ -50,10 +54,13 @@ public class BinaryTreeTraversal {
 
     /**
      * 层序遍历
+     *
      * @param root
      */
     public void levelOrderTraversal(TreeNode root) {
-        if (root == null) {return;}
+        if (root == null) {
+            return;
+        }
         Queue<TreeNode> queue = new LinkedList<>();
         queue.add(root);
         while (!queue.isEmpty()) {
@@ -67,6 +74,7 @@ public class BinaryTreeTraversal {
             }
         }
     }
+
     /**
      * 二叉树的S形层次遍历
      */
@@ -105,6 +113,7 @@ public class BinaryTreeTraversal {
 
     /**
      * 广度优先搜索（BFS）,时间复杂度：O(n),空间复杂度：O(1)-O(w)，其中 w 是树的最大宽度
+     *
      * @param root
      */
     public void breadthFirstSearch(TreeNode root) {
@@ -152,6 +161,9 @@ public class BinaryTreeTraversal {
         int val;
         TreeNode left;
         TreeNode right;
-        TreeNode(int x) { val = x; }
+
+        TreeNode(int x) {
+            val = x;
+        }
     }
 }

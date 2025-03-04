@@ -8,6 +8,7 @@ import java.util.Arrays;
 
 /**
  * 插入排序的时间复杂度为 O(n^2),稳定的排序算法
+ *
  * @author kanglele
  * @version $Id: InsertionSort, v 0.1 2024/10/16 下午3:31 kanglele Exp $
  */

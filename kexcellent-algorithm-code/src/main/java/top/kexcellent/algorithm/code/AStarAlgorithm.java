@@ -11,6 +11,7 @@ import java.util.PriorityQueue;
 /**
  * A*搜索算法，A* 算法结合了最好优先搜索和迪杰斯特拉算法的特点，通过使用启发式函数来减少搜索空间，从而提高效率。
  * 通过优先队列来管理待探索的节点，根据节点的总代价fCost进行排序。算法在搜索过程中不断更新节点的代价，并记录节点的父节点以便最后重构路径。
+ *
  * @author kanglele
  * @version $Id: AStarAlgorithm, v 0.1 2024/11/6 14:16 kanglele Exp $
  */
@@ -65,7 +66,7 @@ public class AStarAlgorithm {
                 int newX = current.x + direction[0];
                 int newY = current.y + direction[1];
 
-                if (isValidPosition(grid, newX, newY) &&!isInClosedSet(closedSet, newX, newY)) {
+                if (isValidPosition(grid, newX, newY) && !isInClosedSet(closedSet, newX, newY)) {
                     // 创建新的邻居节点
                     Node neighbor = new Node(newX, newY);
                     // 计算从起点到邻居节点的临时实际代价（假设每个移动的代价为 1）
@@ -93,7 +94,7 @@ public class AStarAlgorithm {
 
     private static boolean isValidPosition(int[][] grid, int x, int y) {
         // 判断给定坐标是否在网格内且不是障碍物（这里假设值为 1 表示障碍物）
-        return x >= 0 && x < grid.length && y >= 0 && y < grid[0].length && grid[x][y]!= 1;
+        return x >= 0 && x < grid.length && y >= 0 && y < grid[0].length && grid[x][y] != 1;
     }
 
     private static boolean isInClosedSet(List<Node> closedSet, int x, int y) {
@@ -114,7 +115,7 @@ public class AStarAlgorithm {
     private static List<Node> reconstructPath(Node end) {
         List<Node> path = new ArrayList<>();
         Node current = end;
-        while (current!= null) {
+        while (current != null) {
             path.add(0, current);
             // 从终点回溯，将节点依次加入路径列表的开头
             current = current.parent;
@@ -132,7 +133,7 @@ public class AStarAlgorithm {
         Node start = new Node(0, 0);
         Node end = new Node(3, 4);
         List<Node> path = AStarAlgorithm.findPath(grid, start, end);
-        if (path!= null) {
+        if (path != null) {
             for (Node node : path) {
                 System.out.println("(" + node.x + ", " + node.y + ")");
             }

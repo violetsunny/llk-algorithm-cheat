@@ -6,6 +6,7 @@ package top.kexcellent.algorithm.code.sort;
 
 /**
  * 小顶堆
+ *
  * @author kanglele
  * @version $Id: MinHeapSort, v 0.1 2024/10/16 上午11:14 kanglele Exp $
  */
@@ -47,7 +48,7 @@ public class MinHeapSort {
         }
 
         // 如果最小节点不是当前节点，则交换它们，并继续调整子树
-        if (smallest!= i) {
+        if (smallest != i) {
             int temp = arr[i];
             arr[i] = arr[smallest];
             arr[smallest] = temp;
