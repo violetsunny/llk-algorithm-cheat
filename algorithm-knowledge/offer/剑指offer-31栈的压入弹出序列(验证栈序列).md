@@ -18,6 +18,10 @@
       [4,5,3,2,1]
 
 输出：true
+解释：我们可以按以下顺序执行：
+push(1), push(2), push(3), push(4), pop() -> 4,
+push(5), pop() -> 5, pop() -> 3, pop() -> 2, pop() -> 1
+
 ```
 
 ### 解法
@@ -67,7 +71,7 @@ public class Solution {
 ```
 
 #### 更好的写法
-如果压入和弹出相等，那按照push压入就能按照pop弹出。
+如果压入后的数和需要弹出的数相等，就说明可以弹出。如果压入后最后都能弹出，就是正确顺序。
 ```java
 import java.util.Deque;
 import java.util.ArrayDeque;
