@@ -84,7 +84,7 @@ class Solution {
     }
 
     private void dfs(int i, int[] visited, Stack<Integer> stack) {
-        visited[i] = 1;
+        visited[i] = 1;//标记搜索
         for (int neighbor : adj.get(i)) {
             if (visited[neighbor] == 0) {
                 dfs(neighbor, visited, stack);
@@ -92,8 +92,8 @@ class Solution {
                 return;
             }
         }
-        visited[i] = 2;
-        stack.push(i);//最后没有指向别的节点了，就是出度为0放入栈中
+        stack.push(i);//最后没有指向别的节点了，就是出度为0(adj.get(i)为空或者所有对应的visited[ne]==2)放入栈中
+        visited[i] = 2;//标记完成
     }
 }
 ````

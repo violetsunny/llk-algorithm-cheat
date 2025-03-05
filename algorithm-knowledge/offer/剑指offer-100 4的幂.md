@@ -45,7 +45,7 @@ class Solution {
 ````java
 class Solution {
     public boolean isPowerOfFour(int n) {
-        return n > 0 && (n & -n)== n && (n % 3) == 1;
+        return n > 0 && (n & -n) == n && (n % 3) == 1;// 2的幂中找出除3余1的数
     }
 }
 ````
