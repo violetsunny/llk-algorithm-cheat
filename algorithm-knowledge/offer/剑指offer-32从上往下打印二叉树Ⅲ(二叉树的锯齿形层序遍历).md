@@ -112,14 +112,14 @@ class Solution {
         if (root != null) {
             queue.add(root);
         }
-        int sum = 0;
+        int sum = 1;
         while (!queue.isEmpty()) {
-            List<Integer> tmp = new LinkedList<>();
+            LinkedList<Integer> tmp = new LinkedList<>();
             for (int i = queue.size(); i > 0; i--) {
                 TreeNode node = queue.poll();
-                if (sum % 2 == 0) {
+                if (sum % 2 == 1) {//奇数不变
                     tmp.addLast(node.val);
-                } else {
+                } else {//偶数放前面
                     tmp.addFirst(node.val);
                 }
                 if (node.left != null) {

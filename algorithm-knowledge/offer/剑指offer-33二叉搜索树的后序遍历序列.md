@@ -5,7 +5,7 @@
 
 输入一个整数数组，判断该数组是不是某二叉搜索树的后序遍历的结果。如果是则输出`Yes`,否则输出`No`。假设输入的数组的任意两个数字都互不相同。
 
-### 解法
+### 解法一：递归
 
 序列的最后一个元素是二叉搜索树的根节点。根据二叉搜索树的性质，根节点左边的元素都小于根节点，根节点右边的元素都大于根节点。
 
@@ -34,7 +34,7 @@ public class Solution {
             return true;
         }
         int root = sequence[end];
-        int i = start;
+        int i = start;//标记第一个大于根节点的位置
         for (; i <= end; ++i) {
             if (sequence[i] >= root) {//往右挪动找到第一个大于根节点的就是右子树
                 break;
@@ -53,16 +53,16 @@ public class Solution {
     }
 }
 ```
-### 方法二：单调栈
-从右往左，按照搜索树和后序遍历特性。如果array[i] < array[i+1]，则i+1是i的右节点。
-array[i] > array[i+1]那么i+1是0....i中某个root的左节点， 并且root一定是0....i中大于array[i+1]中最小的那个。
-
-从根节点开始逐渐增大然后开始降低就是左子树。
-右子树会压栈，如果栈顶元素大于当前值是左子树会出栈。
-如果当前值大于(之前节点的父节点)，那就是false;
-
+### 解法二：单调栈
 - 2 6 5 9 8 11 13 12 10  左右根
 - 10 12 13 11 8 9 5 6 2  根右左
+
+1. 从右往左，按照搜索树和后序遍历特性。如果$array[i] < array[i+1]$，则$i+1$是 $i$ 的右节点。
+
+2. $array[i] > array[i+1]$那么$i+1$是$0....i$中某个`root`的左节点， 并且`root`一定是$0....i$中大于$array[i+1]$中最小的那个。
+
+右子树会先压栈，如果栈顶元素大于当前值，则当前为某个的左子树，右子树会出栈。 如果当前值大于右子树的根，那就是false;
+
 
 
 ```java
@@ -72,13 +72,13 @@ class Solution {
         Deque<Integer> stk = new ArrayDeque<>();
         for (int i = postorder.length - 1; i >= 0; --i) {
             int x = postorder[i];
-            if (x > mx) {
+            if (x > mx) {//左子树小于右子树和根，如果大于说明有问题
                 return false;
             }
-            while (!stk.isEmpty() && stk.peek() > x) {
-                mx = stk.pop();
+            while (!stk.isEmpty() && stk.peek() > x) {//大于x为左子树
+                mx = stk.pop();//右子树及其根节点会出栈
             }
-            stk.push(x);
+            stk.push(x);//一开始是放入跟和右，等pop出栈了，当前x是左，但是出栈了就是剩下的二叉树的根和右了
         }
         return true;
     }
