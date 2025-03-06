@@ -39,6 +39,7 @@ class Solution {
     if(head == null){
       return null;
     }
+    //复制链表节点
     Node preHead = head;
     while(preHead!=null){
       Node node = new Node(preHead.val);
@@ -49,6 +50,7 @@ class Solution {
       preHead = temp;
     }
 
+    //复制random节点
     preHead = head;
     while(preHead!=null){
       Node random = preHead.random;
@@ -58,15 +60,16 @@ class Solution {
       preHead = preHead.next.next;
     }
 
+    //拆分
     preHead = head;
     Node pre = head.next;//这个必须要写，不然就找不到克隆的头了
     Node pretemp = pre;
     while(preHead!=null){
       Node temp = preHead.next.next;//下下一个就是原来的节点
-      preHead.next = temp;//给原来的上个节点
+      preHead.next = temp;//原来节点给原来的下个节点，重新next
       preHead = temp;//原来节点的替换
       if(temp!=null){
-        pretemp.next = temp.next;//复制的节点给复制的上个节点
+        pretemp.next = temp.next;//复制的节点给复制的下个节点
         pretemp = temp.next;//复制节点的替换
       }
     }

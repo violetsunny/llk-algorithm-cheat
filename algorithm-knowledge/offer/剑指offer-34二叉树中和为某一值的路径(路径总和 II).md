@@ -40,12 +40,11 @@ public class Solution {
         list.add(root.val);
         targetSum = targetSum - root.val;
         if(targetSum==0 && root.left==null && root.right==null){//必须从根节点到叶节点
-            res.add(new ArrayList<>(list));
-        } else {
-            //深度搜索
-            findPath(root.left,targetSum);
-            findPath(root.right,targetSum);
+            res.add(new ArrayList<>(list));//不能在这里直接return,因为需要回溯，不然会重复
         }
+        //深度搜索
+        findPath(root.left,targetSum);
+        findPath(root.right,targetSum);
         list.remove(list.size()-1);//回溯
     }
 }
