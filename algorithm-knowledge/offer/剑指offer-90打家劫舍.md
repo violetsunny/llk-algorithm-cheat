@@ -51,15 +51,15 @@ class Solution {
 ````java
 class Solution {
     public int rob(int[] nums) {
-        if(nums.length==1){
+        if (nums.length == 1) {
             return nums[0];
         }
         //f(n) = max(f(n-2)+nums[n],f(n-1));
         int a = nums[0];
-        int b = Math.max(nums[0],nums[1]);//f(n)是第一个和第二个最大的那个
-        for(int i=2;i<nums.length;i++){
+        int b = Math.max(nums[0], nums[1]);//f(n)是第一个和第二个最大的那个
+        for (int i = 2; i < nums.length; i++) {
             int temp = b;//临时f(n-1)
-            b = Math.max(a+nums[i],b);//a+nums[i]和f(n-1)比较，给f(n)也就是下次的f(n-1)了。
+            b = Math.max(a + nums[i], b);//a+nums[i]和f(n-1)比较，给f(n)也就是下次的f(n-1)了。
             a = temp;//f(n-1)给f(n-2),也就是下次的f(n-2)了
         }
         return b;

@@ -64,9 +64,9 @@ class Solution {
         int n = nums.length;
         int m = 1;
         int res = 0;
-        for(int i = 0;i<32;i++) {
+        for(int i = 0;i < 32;i++) {
             int total = 0;
-            for(int num:nums) {
+            for(int num : nums) {
                 if((num & m) != 0){//不等于0加1。就是第1位多少个1加上，第2位多少个1加上
                     total++;
                 }

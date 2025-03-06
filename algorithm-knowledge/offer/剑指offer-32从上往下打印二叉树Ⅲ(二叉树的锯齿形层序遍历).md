@@ -37,17 +37,18 @@
 ```java
 import java.util.ArrayList;
 import java.util.Stack;
-/**
-public class TreeNode {
-    int val = 0;
-    TreeNode left = null;
-    TreeNode right = null;
 
-    public TreeNode(int val) {
-        this.val = val;
-    }
-}
-*/
+/**
+ public class TreeNode {
+ int val = 0;
+ TreeNode left = null;
+ TreeNode right = null;
+
+ public TreeNode(int val) {
+ this.val = val;
+ }
+ }
+ */
 public class Solution {
     /**
      * 按之字形打印二叉树
@@ -76,7 +77,7 @@ public class Solution {
                     stack2.push(ptr.right);
                 }
             }
-            if(!array.isEmpty()){
+            if (!array.isEmpty()) {
                 list.add(array);
             }
 
@@ -91,7 +92,7 @@ public class Solution {
                     stack1.push(ptr.left);
                 }
             }
-            if(!array2.isEmpty()){
+            if (!array2.isEmpty()) {
                 list.add(array2);
             }
 

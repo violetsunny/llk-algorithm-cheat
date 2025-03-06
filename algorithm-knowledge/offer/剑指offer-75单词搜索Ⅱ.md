@@ -112,46 +112,46 @@ class Solution {
         //用回溯的方法对二维数组进行不断的移动和TrieTree进行匹配，如果前缀匹配上需要再进行上下左右移动将结果收集
         Set<String> res = new HashSet<>();//避免重复
         //二维数组循环
-        for(int i=0;i<board.length;i++){
-            for(int j=0;j<board[i].length;j++){
-                dfs(board,i,j,now,res);
+        for (int i = 0; i < board.length; i++) {
+            for (int j = 0; j < board[i].length; j++) {
+                dfs(board, i, j, now, res);
             }
         }
-        
+
         return new ArrayList<>(res);
     }
-    
-    void dfs(char[][] board,int i,int j,TrieTree node,Set<String> res){
+
+    void dfs(char[][] board, int i, int j, TrieTree node, Set<String> res) {
         int index = board[i][j] - 'a';
-        if(index < 0 || node.children[index] == null){
+        if (index < 0 || node.children[index] == null) {
             return;
         }
         TrieTree next = node.children[index];
-        if(next.isEnd && next.word != null){
+        if (next.isEnd && next.word != null) {
             res.add(next.word);
             next.word = null;//用完就删除
         }
-        
-        if(next.children != null && next.children.length != 0){
+
+        if (next.children != null && next.children.length != 0) {
             char ch = board[i][j];
             board[i][j] = '#';//用过就不能再用了，不然就重复使用。
             //上下左右
-            if(i-1>=0){
-                dfs(board,i-1,j,next,res);
+            if (i - 1 >= 0) {
+                dfs(board, i - 1, j, next, res);
             }
-            if(i+1<board.length){
-                dfs(board,i+1,j,next,res);
+            if (i + 1 < board.length) {
+                dfs(board, i + 1, j, next, res);
             }
-            if(j-1>=0){
-                dfs(board,i,j-1,next,res);
+            if (j - 1 >= 0) {
+                dfs(board, i, j - 1, next, res);
             }
-            if(j+1<board[i].length){
-                dfs(board,i,j+1,next,res);
+            if (j + 1 < board[i].length) {
+                dfs(board, i, j + 1, next, res);
             }
             board[i][j] = ch;//走完还要还原回去
         }
-        
-        if(next.children == null || next.children.length == 0){
+
+        if (next.children == null || next.children.length == 0) {
             node.children[index] = null;//单词匹配完了就删除，剪枝
         }
     }

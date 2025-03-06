@@ -16,7 +16,7 @@ public class UnionFind {
     // 存储树的高度
     private int[] heights;
 
-    UnionFind(int n) {
+    public UnionFind(int n) {
         elements = new int[n];
         heights = new int[n];
         for (int i = 0; i < n; i++) {

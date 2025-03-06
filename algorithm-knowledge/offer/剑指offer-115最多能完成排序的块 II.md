@@ -34,11 +34,11 @@
 class Solution {
     public int maxChunksToSorted(int[] arr) {
         Deque<Integer> queue = new LinkedList<Integer>();
-        for(int i=0;i<arr.length;i++){
-            if(!queue.isEmpty() && arr[i] < queue.peek()){
+        for (int i = 0; i < arr.length; i++) {
+            if (!queue.isEmpty() && arr[i] < queue.peek()) {
                 int head = queue.poll();//要先取出来防止poll删除了
                 // 把逆序的也就是需要排序的删除，剩下的自然就是不需要排序的，就是可以都分开的
-                while(!queue.isEmpty() && arr[i] < queue.peek()){
+                while (!queue.isEmpty() && arr[i] < queue.peek()) {
                     queue.poll();
                 }
                 queue.push(head);//一定要放入头部，因为是跟peek头部比较

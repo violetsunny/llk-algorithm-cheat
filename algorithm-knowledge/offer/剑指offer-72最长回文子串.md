@@ -54,7 +54,7 @@ class Solution {
     public String longestPalindrome(String s) {
         int n = s.length();
         boolean[][] f = new boolean[n][n];
-        for (var g : f) {
+        for (boolean[] g : f) {
             Arrays.fill(g, true);
         }
         int k = 0, mx = 1;

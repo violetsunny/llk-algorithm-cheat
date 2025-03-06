@@ -39,13 +39,13 @@
 ````java
 class Solution {
     public int[] twoSum(int[] nums, int target) {
-        Map<Integer,Integer> map = new HashMap<>();
-        for(int i = 0;i<nums.length;i++){
+        Map<Integer, Integer> map = new HashMap<>();
+        for (int i = 0; i < nums.length; i++) {
             int c = target - nums[i];
-            if(map.containsKey(c)){
-                return new int[]{map.get(c),i};
+            if (map.containsKey(c)) {
+                return new int[]{map.get(c), i};
             }
-            map.put(nums[i],i);
+            map.put(nums[i], i);
         }
         return new int[0];
     }
@@ -60,11 +60,11 @@ class Solution {
     public int[] twoSum(int[] numbers, int target) {
         int start = 0;
         int end = numbers.length - 1;
-        while(start<end){
-            int sum = numbers[start]+numbers[end];
-            if(sum == target){
-                return new int[]{start,end};
-            } else if(sum > target){
+        while (start < end) {
+            int sum = numbers[start] + numbers[end];
+            if (sum == target) {
+                return new int[]{start, end};
+            } else if (sum > target) {
                 end--;
             } else {
                 start++;

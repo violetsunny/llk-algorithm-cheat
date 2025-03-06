@@ -64,7 +64,7 @@ class Solution {
         int max = 1;
         for (int i = 0; i < m; ++i) {
             for (int j = 0; j < n; ++j) {//如果找不到需要回溯
-                max = Math.max(max,hasPath(matrix, i, j, visited));//每次的值都可以是一个起点，所以每次统计的结果都要比大小
+                max = Math.max(max, hasPath(matrix, i, j, visited));//每次的值都可以是一个起点，所以每次统计的结果都要比大小
             }
         }
 
@@ -73,20 +73,20 @@ class Solution {
 
 
     private int hasPath(int[][] matrix, int i, int j, int[][] visited) {
-        if(visited[i][j] != 0) return visited[i][j];//可能上次已经计算过
+        if (visited[i][j] != 0) return visited[i][j];//可能上次已经计算过
 
         int hasPath = 1;//至少一个，让四个方向的结果依次比大小
         if (i + 1 < matrix.length && matrix[i + 1][j] > matrix[i][j]) {
-            hasPath = Math.max(hasPath,hasPath(matrix, i + 1, j, visited)+1);//如果是上次计算过可以拿结果+1
+            hasPath = Math.max(hasPath, hasPath(matrix, i + 1, j, visited) + 1);//如果是上次计算过可以拿结果+1
         }
         if (i - 1 >= 0 && matrix[i - 1][j] > matrix[i][j]) {
-            hasPath = Math.max(hasPath,hasPath(matrix, i - 1, j, visited)+1);
+            hasPath = Math.max(hasPath, hasPath(matrix, i - 1, j, visited) + 1);
         }
         if (j + 1 < matrix[0].length && matrix[i][j + 1] > matrix[i][j]) {
-            hasPath = Math.max(hasPath,hasPath(matrix, i, j + 1, visited)+1);
+            hasPath = Math.max(hasPath, hasPath(matrix, i, j + 1, visited) + 1);
         }
         if (j - 1 >= 0 && matrix[i][j - 1] > matrix[i][j]) {
-            hasPath = Math.max(hasPath,hasPath(matrix, i, j - 1, visited)+1);
+            hasPath = Math.max(hasPath, hasPath(matrix, i, j - 1, visited) + 1);
         }
 
         visited[i][j] = hasPath;//当前计算过的结果存下来
@@ -121,7 +121,7 @@ class Solution {
         }
         int rows = matrix.length;// 矩阵的行数
         int columns = matrix[0].length;// 矩阵的列数
-        
+
         // 存储每个位置的出度，出度表示可以向比它大的元素移动的方向的数量
         int[][] outdegrees = new int[rows][columns];
         // 计算每个位置的出度

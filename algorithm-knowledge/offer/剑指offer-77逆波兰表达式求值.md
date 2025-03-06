@@ -61,8 +61,8 @@
 public class EvalRPN {
     public int evalRPN(String[] tokens) {
         Stack<Integer> stack = new Stack<>();
-        for(String token:tokens){
-            switch(token){
+        for (String token : tokens) {
+            switch (token) {
                 case "+":
                     int numA = stack.pop() + stack.pop();
                     stack.push(numA);

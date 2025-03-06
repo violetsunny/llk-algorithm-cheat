@@ -33,13 +33,13 @@
 class Solution {
     public void wiggleSort(int[] nums) {
         int n = nums.length;
-        int[] clone = Arrays.copyOf(nums,n);
+        int[] clone = Arrays.copyOf(nums, n);
         Arrays.sort(clone);
-        int x = (n+1)/2;//奇数才能执行中间
-        for(int i =0,j=x-1,k=n-1;i<n;i=i+2,j--,k--){
+        int x = (n + 1) / 2;//奇数才能执行中间
+        for (int i = 0, j = x - 1, k = n - 1; i < n; i = i + 2, j--, k--) {
             nums[i] = clone[j];//第一位中间开始
-            if(i+1<n){
-                nums[i+1] = clone[k];//第二位最后开始
+            if (i + 1 < n) {
+                nums[i + 1] = clone[k];//第二位最后开始
             }
         }
     }

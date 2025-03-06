@@ -34,17 +34,17 @@
 ````java
 class Solution {
     public int fourSumCount(int[] nums1, int[] nums2, int[] nums3, int[] nums4) {
-        Map<Integer,Integer> mapping = new HashMap<>();
-        for(int a:nums1){
-            for(int b:nums2){
-                mapping.put(a+b,mapping.getOrDefault(a+b,0)+1);//num1 + num2
+        Map<Integer, Integer> mapping = new HashMap<>();
+        for (int a : nums1) {
+            for (int b : nums2) {
+                mapping.put(a + b, mapping.getOrDefault(a + b, 0) + 1);//num1 + num2
             }
         }
 
-        int res=0;
-        for(int a:nums3){
-            for(int b:nums4){
-                res += mapping.getOrDefault(-a-b,0);//-num3 -num4 组成key如果能找到,说明相加后是负数的相等
+        int res = 0;
+        for (int a : nums3) {
+            for (int b : nums4) {
+                res += mapping.getOrDefault(-a - b, 0);//-num3 -num4 组成key如果能找到,说明相加后是负数的相等
             }
         }
         return res;

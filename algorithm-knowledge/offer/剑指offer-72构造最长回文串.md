@@ -32,19 +32,19 @@
 class Solution {
     public int longestPalindrome(String s) {
         int[] count = new int[58];
-        for(char c:s.toCharArray()){
-            count[c-'A']++;
+        for (char c : s.toCharArray()) {
+            count[c - 'A']++;
         }
         int sum = 0;
-        for(int c:count){
-            if(c>1 && (c&1)==0){
+        for (int c : count) {
+            if (c > 1 && (c & 1) == 0) {
                 sum += c;
             }
-            if(c>1 && (c&1)==1){
-                sum += c-1;
+            if (c > 1 && (c & 1) == 1) {
+                sum += c - 1;
             }
         }
-        return s.length()>sum?sum+1:sum;
+        return s.length() > sum ? sum + 1 : sum;
     }
 }
 ````

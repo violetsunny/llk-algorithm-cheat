@@ -37,11 +37,11 @@ class Solution {
         int max = 0;
         int n = height.length;
         int l = 0;
-        int r = n-1;
-        while(l < r){
-            int area = (r-l)*Math.min(height[r],height[l]);
-            max = Math.max(area,max);//比较最大的面积
-            if(height[r] > height[l]){
+        int r = n - 1;
+        while (l < r) {
+            int area = (r - l) * Math.min(height[r], height[l]);
+            max = Math.max(area, max);//比较最大的面积
+            if (height[r] > height[l]) {
                 l++;//因为height[r]大于height[l]，要想max更大，只能l往右移动知道更大的边
             } else {
                 r--;

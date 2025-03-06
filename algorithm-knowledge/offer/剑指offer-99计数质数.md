@@ -28,19 +28,19 @@
 ````java
 class Solution {
     public int countPrimes(int n) {
-        if(n < 2){
+        if (n < 2) {
             return 0;
         }
         int res = 0;
-        for(int i=2;i<n;i++){//质数从2开始
+        for (int i = 2; i < n; i++) {//质数从2开始
             boolean flag = true;
-            for(int j=2;j*j<=i;j++){
-                if(i%j == 0){
+            for (int j = 2; j * j <= i; j++) {
+                if (i % j == 0) {
                     flag = false;//有能整除的就不行
                     break;
                 }
             }
-            if(flag){
+            if (flag) {
                 res++;
             }
         }

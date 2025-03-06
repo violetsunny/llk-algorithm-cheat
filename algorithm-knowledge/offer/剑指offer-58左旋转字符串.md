@@ -61,7 +61,7 @@ class Solution {
 ```
 
 #### 帅地简单写法
-```java
+````java
 class Solution {
 
     /**
@@ -87,8 +87,9 @@ class Solution {
     }
 
 }
-```
-```java
+````
+
+````java
 class Solution {
 
     /**
@@ -112,4 +113,4 @@ class Solution {
     }
 
 }
-```
+````

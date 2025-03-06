@@ -42,7 +42,7 @@ class Solution {
     public List<Integer> grayCode(int n) {
         List<Integer> list = new ArrayList<>();
         int m = (1 << n);
-        for(int i = 0;i < m;i++){
+        for (int i = 0; i < m; i++) {
             int res = (i >> 1) ^ i;//(i >> 1) ^ i，i>>1其实将i每一位向右移动一位，这时和i取异或，相当于和自己的后一位取余
             list.add(res);
         }

@@ -61,10 +61,10 @@ public class Solution {
 ````java
 public class Solution {
     PriorityQueue<Integer> min = new PriorityQueue<>();
-    PriorityQueue<Integer> max = new PriorityQueue<>((x,y)->y-x);
-    
-    public void addNum(int num){
-        if(min.size() = max.size()){
+    PriorityQueue<Integer> max = new PriorityQueue<>((x, y) -> y - x);
+
+    public void addNum(int num) {
+        if (min.size() = max.size()) {
             min.add(num);
             max.add(min.poll());
         } else {
@@ -72,12 +72,12 @@ public class Solution {
             min.add(max.poll());
         }
     }
-    
-    public int findMedian(){
-        if(min.size() = max.size()){
-            return (min.peek() + max.peek())/2.0;
+
+    public int findMedian() {
+        if (min.size() = max.size()) {
+            return (min.peek() + max.peek()) / 2.0;
         } else {
-            return (double)max.peek();
+            return (double) max.peek();
         }
     }
 }

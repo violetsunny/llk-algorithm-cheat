@@ -36,39 +36,40 @@ class Node {
 
 class Solution {
   public Node copyRandomList(Node head) {
-    if(head == null){
+    if (head == null) {
       return null;
     }
     //复制链表节点
     Node preHead = head;
-    while(preHead!=null){
+    while (preHead != null) {
       Node node = new Node(preHead.val);
       Node temp = preHead.next;
       preHead.next = node;//复制节点
       node.next = temp;//原来的下一个接着复制节点后面
 
-      preHead = temp;
+      preHead = temp;//替换
     }
 
     //复制random节点
     preHead = head;
-    while(preHead!=null){
+    while (preHead != null) {
       Node random = preHead.random;
-      if(random!=null){
+      if (random != null) {
         preHead.next.random = random.next;//必须是random.next 这才是复制的那个node
       }
-      preHead = preHead.next.next;
+      
+      preHead = preHead.next.next;//替换
     }
 
     //拆分
     preHead = head;
     Node pre = head.next;//这个必须要写，不然就找不到克隆的头了
     Node pretemp = pre;
-    while(preHead!=null){
+    while (preHead != null) {
       Node temp = preHead.next.next;//下下一个就是原来的节点
       preHead.next = temp;//原来节点给原来的下个节点，重新next
       preHead = temp;//原来节点的替换
-      if(temp!=null){
+      if (temp != null) {
         pretemp.next = temp.next;//复制的节点给复制的下个节点
         pretemp = temp.next;//复制节点的替换
       }

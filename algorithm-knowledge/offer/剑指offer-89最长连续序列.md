@@ -45,21 +45,21 @@
 class Solution {
     public int longestConsecutive(int[] nums) {
         Set<Integer> set = new HashSet<>();
-        for(int num:nums){
+        for (int num : nums) {
             set.add(num);//去重
         }
 
         int max = 0;//最大的数
-        for(int num:set){
-            if(!set.contains(num-1)){//判断当前是不是头，不是头就跳过
+        for (int num : set) {
+            if (!set.contains(num - 1)) {//判断当前是不是头，不是头就跳过
                 int cur = 1;//头
                 int curNum = num;
 
-                while(set.contains(++curNum)){//是否包含num的下一个数
+                while (set.contains(++curNum)) {//是否包含num的下一个数
                     cur++;//包括+1
                 }
 
-                max = Math.max(cur,max);//最大值
+                max = Math.max(cur, max);//最大值
             }
         }
 

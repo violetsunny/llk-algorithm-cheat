@@ -36,22 +36,22 @@
  */
 class Solution {
     public ListNode oddEvenList(ListNode head) {
-        if(head==null || head.next==null){
+        if (head == null || head.next == null) {
             return head;
         }
         ListNode d = head;//奇数
         ListNode dHead = d;
         ListNode o = head.next;//偶数
         ListNode oHead = o;
-        while(d!=null&&o!=null&&o.next!=null){//o.next!=null才能让d是最后一个
+        while (d != null && o != null && o.next != null) {//o.next!=null才能让d是最后一个
             d.next = o.next;
             d = o.next;
-            if(d!=null){
+            if (d != null) {
                 o.next = d.next;
                 o = d.next;
             }
         }
-        
+
         d.next = oHead;//奇数的最后一个重新指向偶数的头
         return dHead;
     }

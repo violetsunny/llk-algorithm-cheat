@@ -26,7 +26,7 @@
 class Solution {
     public int[] printMatrix(int[][] matrix) {
         if (matrix == null || matrix.length < 1) {
-            return new int[] {};
+            return new int[]{};
         }
         int m = matrix.length, n = matrix[0].length;
         int[] res = new int[m * n];

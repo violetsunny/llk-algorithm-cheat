@@ -41,21 +41,22 @@ class Solution {
             Arrays.fill(row, -1); // -1 表示没有计算过
         }
 
-        return min(grid,0, 0,dp);
+        return min(grid, 0, 0, dp);
     }
 
-    private int min(int[][] grid,int i,int j,int[][] dp){
-        if(i > grid.length-1 || j > grid[0].length-1){
+    private int min(int[][] grid, int i, int j, int[][] dp) {
+        if (i > grid.length - 1 || j > grid[0].length - 1) {
             return Integer.MAX_VALUE;
         }
-        if(i == grid.length-1 && j == grid[0].length-1){
+        if (i == grid.length - 1 && j == grid[0].length - 1) {
             return grid[i][j];
         }
-        if(dp[i][j] != -1){
+        if (dp[i][j] != -1) {
             return dp[i][j];
         }
 
-        dp[i][j] = Math.min(min(grid,i+1,j,dp),min(grid,i,j+1,dp)) + grid[i][j];;
+        dp[i][j] = Math.min(min(grid, i + 1, j, dp), min(grid, i, j + 1, dp)) + grid[i][j];
+        ;
         return dp[i][j];
     }
 }
@@ -99,10 +100,10 @@ class Solution {
         int rows = grid.length;
         int columns = grid[0].length;
         int[] dp = new int[columns];
-        Arrays.fill(dp,Integer.MAX_VALUE);//需要初始化，不然选不到最小的
+        Arrays.fill(dp, Integer.MAX_VALUE);//需要初始化，不然选不到最小的
         dp[0] = 0;
         for (int i = 0; i < rows; i++) {
-            dp[0]=dp[0]+grid[i][0];//初始化第一个值，这样才好选择最小
+            dp[0] = dp[0] + grid[i][0];//初始化第一个值，这样才好选择最小
             for (int j = 1; j < columns; j++) {
                 dp[j] = Math.min(dp[j], dp[j - 1]) + grid[i][j];
             }

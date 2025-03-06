@@ -49,25 +49,25 @@ class Solution {
 ````java
 class Solution {
     public int maxProduct(int[] nums) {
-        if(nums.length ==1){
+        if (nums.length == 1) {
             return nums[0];
         }
         int a = 1;
         int n = nums.length;
         int max = nums[0];
-        for(int i=0;i<n;i++){ //正着来一遍
+        for (int i = 0; i < n; i++) { //正着来一遍
             a *= nums[i];
-            max = Math.max(a,max);
-            if(a == 0){//等于0了，a需要重新计算
+            max = Math.max(a, max);
+            if (a == 0) {//等于0了，a需要重新计算
                 a = 1;
             }
         }
 
         a = 1;
-        for(int i=n-1;i>=0;i--){//反着再来一遍，为了在有负数的情况可以负负得正
+        for (int i = n - 1; i >= 0; i--) {//反着再来一遍，为了在有负数的情况可以负负得正
             a *= nums[i];
-            max = Math.max(a,max);
-            if(a == 0){
+            max = Math.max(a, max);
+            if (a == 0) {
                 a = 1;
             }
         }

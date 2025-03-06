@@ -74,7 +74,7 @@ public class Solution {
 }
 ```
 
-快排第二个写法
+#### 快排第二个写法
 ````java
 class Solution {
     private int[] arr;
@@ -88,7 +88,7 @@ class Solution {
     }
 
     private int[] quickSort(int l, int r) {
-        int i = partition(arr,l,r);//找到排序后的中间点
+        int i = partition(arr, l, r);//找到排序后的中间点
         if (k < i) {
             return quickSort(l, i - 1);
         }
@@ -98,7 +98,7 @@ class Solution {
         return Arrays.copyOf(arr, k);
     }
 
-    private int partition(int[] arr,int l,int r){
+    private int partition(int[] arr, int l, int r) {
         int i = l, j = r;
         while (i < j) {
             while (i < j && arr[j] >= arr[l]) {
@@ -112,7 +112,7 @@ class Solution {
         swap(i, l);
         return i;
     }
-    
+
     private void swap(int i, int j) {
         int t = arr[i];
         arr[i] = arr[j];

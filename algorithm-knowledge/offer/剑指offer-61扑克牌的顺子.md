@@ -44,7 +44,7 @@ class Solution {
      * @param numbers 数组
      * @return 是否是顺子
      */
-    public boolean isContinuous(int [] numbers) {
+    public boolean isContinuous(int[] numbers) {
         if (numbers == null || numbers.length == 0) {
             return false;
         }
@@ -93,13 +93,13 @@ class Solution {
      */
     public boolean isContinuous(int[] numbers) {
         Set<Integer> visted = new HashSet<>();
-        int min=20;
-        int max=-1;
-        for(int num:numbers){
-            if(num==0){
+        int min = 20;
+        int max = -1;
+        for (int num : numbers) {
+            if (num == 0) {
                 continue;
             }
-            if(visted.contains(num)){
+            if (visted.contains(num)) {
                 return false;
             }
             visted.add(num);

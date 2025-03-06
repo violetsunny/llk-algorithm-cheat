@@ -9,10 +9,10 @@
 ````java
 class Solution {
     public int[] countNumbers(int cnt) {
-        int n = (int)Math.pow(10,cnt);
-        int[] res = new int[n-1];
-        for(int i=1;i<n;i++){
-            res[i-1]=i;
+        int n = (int) Math.pow(10, cnt);
+        int[] res = new int[n - 1];
+        for (int i = 1; i < n; i++) {
+            res[i - 1] = i;
         }
         return res;
     }

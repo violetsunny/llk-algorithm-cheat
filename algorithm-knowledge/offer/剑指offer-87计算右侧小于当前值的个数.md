@@ -35,9 +35,7 @@ import java.util.*;
 class Solution {
 
     private List<Integer> res;
-    
     private int[] index;
-    
     private int[] ans;
 
     public List<Integer> countSmaller(int[] nums) {
@@ -47,39 +45,39 @@ class Solution {
         res = new ArrayList<>();
         ans = new int[nums.length];
         index = new int[nums.length];//存储下标，防止交换的时候失去数据位置
-        for(int i=0;i<nums.length;i++){
+        for (int i = 0; i < nums.length; i++) {
             index[i] = i;
         }
         mergeSort(nums, 0, nums.length - 1);
-        
-        for(int an : ans){
+
+        for (int an : ans) {
             res.add(an);
         }
         return res;
     }
 
-    private void mergeSort(int[] nums,int left,int right){
-        if(left >= right){
+    private void mergeSort(int[] nums, int left, int right) {
+        if (left >= right) {
             return;
         }
-        int mid = left + (right-left)/2;
-        mergeSort(nums,left,mid);
-        mergeSort(nums,mid+1,right);
-        merge(nums,left,mid,right);
+        int mid = left + (right - left) / 2;
+        mergeSort(nums, left, mid);
+        mergeSort(nums, mid + 1, right);
+        merge(nums, left, mid, right);
     }
-    
-    private void merge(int[] nums,int left,int mid,int right){
-        int[] temp = new int[right-left+1];
-        int[] tempIndex = new int[right-left+1];//同temp，跟着交换
+
+    private void merge(int[] nums, int left, int mid, int right) {
+        int[] temp = new int[right - left + 1];
+        int[] tempIndex = new int[right - left + 1];//同temp，跟着交换
         int i = left;
-        int j = mid+1;
+        int j = mid + 1;
         int k = 0;
-        while(i<=mid && j<=right){
-            if(nums[i]<=nums[j]){
+        while (i <= mid && j <= right) {
+            if (nums[i] <= nums[j]) {
                 temp[k] = nums[i];
                 tempIndex[k] = index[i];
                 //虽然i比j小，但是i比j之前都要大(也就是min+1到j-1的位置)，所以就是j-mid-1
-                ans[index[i]] += (j-mid-1);
+                ans[index[i]] += (j - mid - 1);
                 k++;
                 i++;
             } else {
@@ -89,23 +87,23 @@ class Solution {
                 j++;
             }
         }
-        
+
         //剩余的数字
-        while (i<=mid) {
+        while (i <= mid) {
             temp[k] = nums[i];
             tempIndex[k] = index[i];
-            ans[index[i]] += (j-mid-1);
+            ans[index[i]] += (j - mid - 1);
             k++;
             i++;
         }
-        while (j<=right) {
+        while (j <= right) {
             temp[k] = nums[j];
             tempIndex[k] = index[j];
             k++;
             j++;
         }
-        
-        k=0;
+
+        k = 0;
         for (int m = left; m <= right; m++) {
             index[m] = tempIndex[k];//赋给原来数组
             nums[m] = temp[k];//赋给原来数组

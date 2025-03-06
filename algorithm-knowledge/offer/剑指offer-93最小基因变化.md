@@ -41,6 +41,7 @@
 ````java
 class Solution {
     Map<String, List<String>> edge = new HashMap<>();
+
     public int minMutation(String beginWord, String endWord, String[] wordList) {
         if (beginWord.equals(endWord)) {
             return 0;
@@ -71,7 +72,7 @@ class Solution {
         return -1;
     }
 
-     public void addEdge(String word) {
+    public void addEdge(String word) {
         if (!edge.containsKey(word)) {
             edge.put(word, new ArrayList<>());
         }
@@ -85,7 +86,7 @@ class Solution {
                 edge.put(newWord, new ArrayList<>());
             }
             edge.get(newWord).add(word);//映射字符也放入该单词，才能通过通配符*来反向找到
-            
+
             array[i] = tmp;
         }
     }

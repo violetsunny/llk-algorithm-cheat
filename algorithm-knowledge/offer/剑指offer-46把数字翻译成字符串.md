@@ -41,7 +41,7 @@ class Solution {
     }
 
     private boolean isInRange(char a, char b) {
-        int s = (a - '0') * 10 + (b -'0');
+        int s = (a - '0') * 10 + (b - '0');
         return s >= 10 && s <= 25;
     }
 }

@@ -46,7 +46,7 @@ class Solution {
                 start = mid + 1;
             }
         }
-        return nums[start] == start ? start+1 : start;
+        return nums[start] == start ? start + 1 : start;
 
     }
 }

@@ -104,7 +104,7 @@ class Solution {
 
     private int indexOfM(int val) {
         int m = 1;
-        while((m & val) == 0){
+        while ((m & val) == 0) {
             m = m << 1; //左移找到第一个不同位的位置的数
         }
         return m;
@@ -112,6 +112,6 @@ class Solution {
         // 防止溢出  x 的二进制表示中最低位那个 1
         //return (val == Integer.MIN_VALUE ? val : val & (-val));
     }
-    
+
 }
 ````

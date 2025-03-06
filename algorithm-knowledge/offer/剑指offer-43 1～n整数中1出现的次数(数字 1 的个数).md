@@ -46,38 +46,36 @@
 
 
 时间复杂度: $O(\log n)$。
-
-
-```java
+````java
 class Solution {
     private int[] a = new int[12];//最多12位，每位的数
     private int[][] dp = new int[12][12];
-
+  
     public int countDigitOne(int n) {
         int i = 0;//多少位
         for (; n > 0; n /= 10) {//初始化每位的数
-            a[i++] = n % 10;
+          a[i++] = n % 10;
         }
         return dfs(i, 0, true);
     }
-
+  
     private int dfs(int pos, int cnt, boolean limit) {//是否收到n限制，比如123，如果120了后面只能到121，122，123。否则像10可以到99
         if (pos < 0) {
-            return cnt;
+          return cnt;
         }
         if (!limit && dp[pos][cnt] != 0) {
-            return dp[pos][cnt];
+          return dp[pos][cnt];
         }
         int up = limit ? a[pos] : 9;
         int ans = 0;
         for (int i = 0; i <= up; ++i) {
-            ans += dfs(pos - 1, cnt + (i == 1 ? 1 : 0), limit && i == up);
+          ans += dfs(pos - 1, cnt + (i == 1 ? 1 : 0), limit && i == up);
         }
         dp[pos][cnt] = ans;
         return ans;
     }
 }
-```
+````
 
 
 ### 方法二：数学公式

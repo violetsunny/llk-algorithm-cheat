@@ -5,27 +5,27 @@
 
 ````java
 class Solution {
-    public int indexOf(int[] dist,int[] search){
-        if(dist==null || search == null || dist.length==0 || search.length ==0 || search.length > dist.length){
+    public int indexOf(int[] dist, int[] search) {
+        if (dist == null || search == null || dist.length == 0 || search.length == 0 || search.length > dist.length) {
             return -1;
         }
         int index = -1;
         int j = 0;
-        for(int i=0;i<dist.length;i++){
+        for (int i = 0; i < dist.length; i++) {
             int x = i;//需要一个x下标帮助和j同时移动，但是如果不匹配还要回来重新开始
-            while (j < search.length){
-                if(dist[x]!=search[j]){
-                    j=0;
+            while (j < search.length) {
+                if (dist[x] != search[j]) {
+                    j = 0;
                     break;
                 }
-                if(j==0){//记录初始匹配时的下标
+                if (j == 0) {//记录初始匹配时的下标
                     index = i;
                 }
                 j++;
                 x++;
             }
 
-            if(j == search.length){//当全部匹配到才返回
+            if (j == search.length) {//当全部匹配到才返回
                 return index;
             }
 

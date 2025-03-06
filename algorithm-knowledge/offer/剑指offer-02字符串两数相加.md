@@ -32,13 +32,13 @@
 ```java
 class Solution {
     public String addStrings(String num1, String num2) {
-        int l1 = num1.length()-1;
-        int l2 = num2.length()-1;
+        int l1 = num1.length() - 1;
+        int l2 = num2.length() - 1;
         int carry = 0;//进位
         StringBuilder sb = new StringBuilder();
-        while(l1 >=0 || l2 >=0) {
-            int x = l1>=0 ? num1.charAt(l1)-'0' : 0;
-            int y = l2>=0 ? num2.charAt(l2)-'0' : 0;//超过长度按0处理
+        while (l1 >= 0 || l2 >= 0) {
+            int x = l1 >= 0 ? num1.charAt(l1) - '0' : 0;
+            int y = l2 >= 0 ? num2.charAt(l2) - '0' : 0;//超过长度按0处理
             int sum = x + y + carry;
             carry = sum / 10;//进位
             sum = sum % 10;
@@ -47,7 +47,7 @@ class Solution {
             l2--;
         }
         //有进位
-        if(carry == 1) {
+        if (carry == 1) {
             sb.append(carry);
         }
 

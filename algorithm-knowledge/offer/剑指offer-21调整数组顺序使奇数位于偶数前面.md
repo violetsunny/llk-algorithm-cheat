@@ -67,13 +67,13 @@ public class Solution {
 }
 ```
 
-第二种写法，利用Arrays的方法
+#### 第二种写法，利用Arrays的方法
 
 ```java
 import java.util.Arrays;
 
 public class Solution {
-    public void reOrderArray(int [] array) {
+    public void reOrderArray(int[] array) {
         if (array == null || array.length < 2) {
             return;
         }

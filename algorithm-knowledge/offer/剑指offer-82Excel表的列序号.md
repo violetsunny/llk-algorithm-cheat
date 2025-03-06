@@ -39,10 +39,10 @@ class Solution {
     public int titleToNumber(String columnTitle) {
         int n = columnTitle.length();
         int count = 0;
-        for(int i=0;i<n;i++){
+        for (int i = 0; i < n; i++) {
             char c = columnTitle.charAt(i);
             int num = c - 'A' + 1;
-            count = count*26 + num;
+            count = count * 26 + num;
         }
 
         return count;

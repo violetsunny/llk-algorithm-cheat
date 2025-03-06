@@ -42,7 +42,7 @@ public class Solution {
      * @param popA 弹栈序列
      * @return 是否是弹出序列
      */
-    public boolean IsPopOrder(int[] pushA,int[] popA) {
+    public boolean IsPopOrder(int[] pushA, int[] popA) {
         if (pushA == null || popA == null || pushA.length != popA.length) {
             return false;
         }
@@ -75,6 +75,7 @@ public class Solution {
 ```java
 import java.util.Deque;
 import java.util.ArrayDeque;
+
 class Solution {
     public boolean validateStackSequences(int[] pushed, int[] popped) {
         Deque<Integer> stk = new ArrayDeque<>();

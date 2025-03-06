@@ -56,9 +56,9 @@ class Solution {
     public int maxSubArray(int[] nums) {
         int pre = 0;
         int max = nums[0];
-        for(int num:nums){
-            pre = Math.max(num,pre + num);
-            max = Math.max(max,pre);
+        for (int num : nums) {
+            pre = Math.max(num, pre + num);
+            max = Math.max(max, pre);
         }
         return max;
     }

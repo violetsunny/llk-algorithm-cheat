@@ -25,7 +25,7 @@
 
 - 对于左半部分：$B[i] = B[i - 1] \times A[i - 1]$
 
-```java
+````java
 class Solution {
 
     /**
@@ -36,19 +36,19 @@ class Solution {
      */
     public int[] productExceptSelf(int[] nums) {
         int[] res = new int[nums.length];
-        res[0]=1;
+        res[0] = 1;
         //i 先计算0到i-1的乘积
         for(int i=1;i<nums.length;i++){
-            res[i] = res[i-1]*nums[i-1];
+            res[i] = res[i-1] * nums[i-1];
         }
         //再反哺i+1到n的
         int next = 1;
         for(int i=nums.length-1;i>0;i--){
-            next = next*nums[i];
-            res[i-1] = next*res[i-1];
+            next = next * nums[i];
+            res[i-1] = next * res[i-1];
         }
 
         return res;
     }
 }
-```
+````

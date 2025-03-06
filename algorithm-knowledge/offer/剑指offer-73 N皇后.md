@@ -112,14 +112,14 @@ class Queen8 {
     List<List<String>> ans = new ArrayList<>();
     int max;
     int[] array;
-    
+
     public List<List<String>> solveNQueens(int n) {
         max = n;
         array = new int[max];
         check(0);
         return ans;
     }
-    
+
     void check(int n) {
         //终止条件是最后一行已经摆完，由于每摆一步都会校验是否有冲突，所以只要最后一行摆完，说明已经得到了一个正确解
         if (n == max) {
@@ -144,7 +144,7 @@ class Queen8 {
         return true;
     }
 
-    void print()  {
+    void print() {
         List<String> temp = new ArrayList<>();
         for (int k : array) {
             StringBuilder sb = new StringBuilder();
@@ -159,7 +159,7 @@ class Queen8 {
         }
         ans.add(temp);
     }
-    
+
 }
 ```
 
@@ -267,37 +267,37 @@ class BaHuangHouWenTi {
     //定义数组arry，保存存放的结果
     int[] arr;
     int count = 0;
-    
+
     public int totalNQueens(int n) {
         max = n;
         arr = new int[max];
         check(0);
         return count;
     }
-    
+
     //。编写一个方法，放置第n个皇后
-    private void check(int n){//n表示所在行数，n=0时从 第一行开始
-        if (n == max){//n=8,8个皇后已经放好了
+    private void check(int n) {//n表示所在行数，n=0时从 第一行开始
+        if (n == max) {//n=8,8个皇后已经放好了
             count++;
             return;
         }//n == max
         //依次放入皇后并判断是否冲突
-        for (int i = 0; i < max; i++){
+        for (int i = 0; i < max; i++) {
             //先把当前皇后n，放到该行的第一列（本文创建了一维数组，索引表示行数，值代表列）
-            arr[n]=i;//将当前行的皇后放在不同列
+            arr[n] = i;//将当前行的皇后放在不同列
             //判断是否冲突
-            if(judge(n)){//不冲突
+            if (judge(n)) {//不冲突
                 //接着放
-                check(n+1);//递归，逐行判断（索引代表行，即n）
+                check(n + 1);//递归，逐行判断（索引代表行，即n）
             }
         }//for
     }//check
 
     //。查看当放置第n个皇后，检测是否和前一个已经摆放的皇后冲突
-    private boolean judge(int n){//n表示第n个皇后
+    private boolean judge(int n) {//n表示第n个皇后
         for (int i = 0; i < n; i++) {//从第一行比较到当前行
             //表示第n个皇后和前面n减1个在同一列或者对角线从、
-            if (arr[i] == arr[n] || Math.abs(n-i) == Math.abs(arr[n]-arr[i])){
+            if (arr[i] == arr[n] || Math.abs(n - i) == Math.abs(arr[n] - arr[i])) {
                 return false;
             }//if
         }//for

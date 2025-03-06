@@ -104,16 +104,16 @@ class Solution {
         this.visited = new boolean[s.length()];
         char[] ch = s.toCharArray();
         Arrays.sort(ch);//排序了才知道相邻是否相等
-        
+
         //回溯
-        backtrack(ch,0);
-        
+        backtrack(ch, 0);
+
         String[] ss = new String[ans.size()];
-        for(int i=0;i<ans.size();i++){
+        for (int i = 0; i < ans.size(); i++) {
             ss[i] = ans.get(i);
         }
         return ss;
-    }   
+    }
 
     private void backtrack(char[] arr, int k) {
         if (arr.length == k) {
@@ -121,7 +121,7 @@ class Solution {
             return;
         }
         //进行N叉树搜索
-        for (int i = 0;i<arr.length;i++){
+        for (int i = 0; i < arr.length; i++) {
             // 剪枝，是否相邻字符，并且前一个字符没有访问过，是同一层就不要再递归访问。
             if (i > 0 && arr[i] == arr[i - 1] && visited[i - 1] = false) {
                 continue;

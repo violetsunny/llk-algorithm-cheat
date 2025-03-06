@@ -26,6 +26,7 @@
 class Solution {
     List<List<Integer>> ans = new ArrayList<>();
     List<Integer> path = new ArrayList<>();
+
     public List<List<Integer>> permuteUnique(int[] nums) {
         Arrays.sort(nums);
         boolean[] visited = new boolean[nums.length + 1]; // visited[j] 表示 nums[j] 是否已经填入排列

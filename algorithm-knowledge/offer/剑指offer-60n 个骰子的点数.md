@@ -136,22 +136,24 @@ $dp[1][1]=1;dp[1][2]=1;...dp[1][6]=1;$当一个骰子时投一个点或者两个
 ````java
 class Solution {
     public double[] dicesProbability(int n) {
-        int[][] dp = new int[n+1][6*n+1];
-        for(int i=1;i<=6;i++){
+        int[][] dp = new int[n + 1][6 * n + 1];
+        for (int i = 1; i <= 6; i++) {
             dp[1][i] = 1;
         }
-        for(int i=2;i<=n;i++){
-            for(int j=i;j<=6*n;j++){
-                for(int k=1;k<=6;k++){
-                    if(j<k){break;}
-                    dp[i][j] += dp[i-n][j-k];
+        for (int i = 2; i <= n; i++) {
+            for (int j = i; j <= 6 * n; j++) {
+                for (int k = 1; k <= 6; k++) {
+                    if (j < k) {
+                        break;
+                    }
+                    dp[i][j] += dp[i - n][j - k];
                 }
             }
         }
-        double[] d = new double[6*n - n + 1];
-        double sum = Math.pow(6,n);
-        for(int i=n;i<=6*n;i++){
-            d[i-n] = d[n][i] / sum;
+        double[] d = new double[6 * n - n + 1];
+        double sum = Math.pow(6, n);
+        for (int i = n; i <= 6 * n; i++) {
+            d[i - n] = d[n][i] / sum;
         }
         return d;
     }

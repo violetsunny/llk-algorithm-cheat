@@ -60,7 +60,7 @@ class Solution {
         for (int boundary : boundaries) {
             // 对于一个建筑，如果其左边界在当前判断的边界线左边或重叠，那么向堆加入右边界-高度值对
             while (index < buildings.length && buildings[index][0] <= boundary) {
-                pq.offer(new int[] { buildings[index][1], buildings[index][2] });
+                pq.offer(new int[]{buildings[index][1], buildings[index][2]});
                 index++;
             }
 
@@ -82,5 +82,5 @@ class Solution {
         return ans;
     }
 }
-    
+
 ````

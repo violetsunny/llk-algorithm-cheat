@@ -34,13 +34,13 @@ class Solution {
     }
 
     public int dfs(String s, int l, int r, int k) {
-        if (l>r){
+        if (l > r) {
             return 0;
         }
-        if (r-l+1<k){//长度小于k肯定不符合了
+        if (r - l + 1 < k) {//长度小于k肯定不符合了
             return 0;
         }
-        
+
         int[] cnt = new int[26];
         for (int i = l; i <= r; i++) {//计算字符出现次数
             cnt[s.charAt(i) - 'a']++;
@@ -74,12 +74,12 @@ class Solution {
 //            int length = dfs(s, start, i - 1, k);//第一个到最后一个符合位置的大小
 //            max = Math.max(ret, length);//历次最大的
 //        }
-        
+
         String[] ss = s.split(String.valueOf(split));//分割字符进行统计
         int max = 0;
-        for(String s1:ss){
-            int temp = dfs(s1,0,s1.length()-1,k);//因为有不符合字符，必然不能包含，只能分割重新查找
-            max = Math.max(max,temp);
+        for (String s1 : ss) {
+            int temp = dfs(s1, 0, s1.length() - 1, k);//因为有不符合字符，必然不能包含，只能分割重新查找
+            max = Math.max(max, temp);
         }
         return max;
     }

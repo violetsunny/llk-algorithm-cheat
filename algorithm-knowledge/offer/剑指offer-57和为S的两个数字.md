@@ -41,7 +41,7 @@ class Solution {
         Set<Integer> set = new HashSet<>();
         for (int i = 0; i < n; ++i) {
             if (set.contains(target - nums[i])) {
-                return new int[] {target- nums[i], nums[i]};
+                return new int[]{target - nums[i], nums[i]};
             }
             set.add(nums[i]);
         }

@@ -6,6 +6,7 @@
 
 ### 解法
 快慢指针：
+
 fast 指针走 `k` 步。之后 slow 指针指向 phead，然后两个指针同时走，直至 fast 指针到达尾结点。
 
 > 当用一个指针遍历链表不能解决问题的时候，可以尝试用两个指针来遍历链表。可以让其中一个指针遍历的速度快一些。
@@ -29,7 +30,7 @@ public class Solution {
      * @param k 第k个节点
      * @return 倒数第k个节点
      */
-    public ListNode FindKthToTail(ListNode head,int k) {
+    public ListNode FindKthToTail(ListNode head, int k) {
         if (head == null || k < 1) {
             return null;
         }
@@ -44,7 +45,7 @@ public class Solution {
             }
         }
 
-        
+
         while (fast != null) {
             fast = fast.next;
             slow = slow.next;

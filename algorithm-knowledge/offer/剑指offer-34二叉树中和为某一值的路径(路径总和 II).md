@@ -28,24 +28,25 @@ public class Solution {
 
     List<List<Integer>> res = new ArrayList<>();
     List<Integer> list = new ArrayList<>();
+
     public List<List<Integer>> pathSum(TreeNode root, int targetSum) {
-        findPath(root,targetSum);
+        findPath(root, targetSum);
         return res;
     }
 
-    private void findPath(TreeNode root, int targetSum){
-        if(root == null){
+    private void findPath(TreeNode root, int targetSum) {
+        if (root == null) {
             return;
         }
         list.add(root.val);
         targetSum = targetSum - root.val;
-        if(targetSum==0 && root.left==null && root.right==null){//必须从根节点到叶节点
+        if (targetSum == 0 && root.left == null && root.right == null) {//必须从根节点到叶节点
             res.add(new ArrayList<>(list));//不能在这里直接return,因为需要回溯，不然会重复
         }
         //深度搜索
-        findPath(root.left,targetSum);
-        findPath(root.right,targetSum);
-        list.remove(list.size()-1);//回溯
+        findPath(root.left, targetSum);
+        findPath(root.right, targetSum);
+        list.remove(list.size() - 1);//回溯
     }
 }
 ```

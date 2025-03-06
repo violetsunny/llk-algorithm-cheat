@@ -79,9 +79,9 @@ x ^ 13
 ````
 
 #### 帅地写法
+
 ```java
 class Solution {
-
     /**
      * 计算数值的整数次方
      *
@@ -92,12 +92,12 @@ class Solution {
     public double myPow(double base, int exponent) {
         double res = 1;
         long y = exponent;//如果直接用会把exponent覆盖，影响最后负数判断，而且需要取绝对值才能正常操作
-        if(y < 0){
+        if(y < 0) {
             y = -y;//long y = -exponent;//负数在负可能会超过int最大值，比如int exponent = -2147483648;-exponent =2147483648超过int最大值2147483647。 
             base = 1/base;
         }
-        while(y != 0){
-            if(y % 2 == 1){ // (y & 1) == 1 存在就需要 res * base
+        while(y != 0) {
+            if(y % 2 == 1) { // (y & 1) == 1 存在就需要 res * base
                 res = res * base;
             }
             base = base * base;// base逐渐变大，每移动一次base ^ 2 = base * base;

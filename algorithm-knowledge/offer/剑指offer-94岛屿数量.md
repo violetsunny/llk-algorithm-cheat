@@ -59,7 +59,7 @@ class Solution {
     private void dfs(char[][] grid, int row, int col) {
         if (row >= 0 && row < grid.length && col >= 0 && col < grid[0].length && grid[row][col] == '1') {
             grid[row][col] = '2';
-            
+
             dfs(grid, row - 1, col);
             dfs(grid, row + 1, col);
             dfs(grid, row, col - 1);
@@ -95,29 +95,29 @@ class Solution {
     private void bfs(char[][] grid, int row, int col) {
         if (row >= 0 && row < grid.length && col >= 0 && col < grid[0].length && grid[row][col] == '1') {
             Queue<int[]> queue = new LinkedList<>();
-            queue.offer(new int[]{row,col});
+            queue.offer(new int[]{row, col});
             grid[row][col] = '2';
-            
-            while(!queue.isEmpty()){
+
+            while (!queue.isEmpty()) {
                 int[] cur = queue.poll();
                 int curRow = cur[0];
                 int curCol = cur[1];
-                
-                if(curRow-1>=0 && grid[curRow-1][curCol] == '1'){
-                    queue.offer(new int[]{curRow-1,curCol});
-                    grid[curRow-1][curCol] = '2';//必须放的时候就刷值，不然等到获取再改的话，其他的点可能先拿到造成重复甚至循环
+
+                if (curRow - 1 >= 0 && grid[curRow - 1][curCol] == '1') {
+                    queue.offer(new int[]{curRow - 1, curCol});
+                    grid[curRow - 1][curCol] = '2';//必须放的时候就刷值，不然等到获取再改的话，其他的点可能先拿到造成重复甚至循环
                 }
-                if(curCol-1>=0 && grid[curRow][curCol-1] == '1'){
-                    queue.offer(new int[]{curRow,curCol-1});
-                    grid[curRow][curCol-1] = '2';
+                if (curCol - 1 >= 0 && grid[curRow][curCol - 1] == '1') {
+                    queue.offer(new int[]{curRow, curCol - 1});
+                    grid[curRow][curCol - 1] = '2';
                 }
-                if(curRow+1<grid.length && grid[curRow+1][curCol] == '1'){
-                    queue.offer(new int[]{curRow+1,curCol});
-                    grid[curRow+1][curCol] = '2';
+                if (curRow + 1 < grid.length && grid[curRow + 1][curCol] == '1') {
+                    queue.offer(new int[]{curRow + 1, curCol});
+                    grid[curRow + 1][curCol] = '2';
                 }
-                if(curCol+1<grid[0].length && grid[curRow][curCol+1] == '1'){
-                    queue.offer(new int[]{curRow,curCol+1});
-                    grid[curRow][curCol+1] = '2';
+                if (curCol + 1 < grid[0].length && grid[curRow][curCol + 1] == '1') {
+                    queue.offer(new int[]{curRow, curCol + 1});
+                    grid[curRow][curCol + 1] = '2';
                 }
             }
         }
@@ -139,22 +139,22 @@ class Solution {
         UnionFind(char[][] grid) {
             int m = grid.length;
             int n = grid[0].length;
-            elements = new int[m*n];
-            heights = new int[m*n];
+            elements = new int[m * n];
+            heights = new int[m * n];
             for (int i = 0; i < m; i++) {
                 for (int j = 0; j < n; ++j) {
                     if (grid[i][j] == '1') {
                         // 初始都为-1
-                        elements[i*n+j] = -1;
+                        elements[i * n + j] = -1;
                         // 初始高度1
-                        heights[i*n+j] = 1;
+                        heights[i * n + j] = 1;
                     }
                 }
             }
         }
 
         private int find(int x) {
-            while(elements[x] != -1) {
+            while (elements[x] != -1) {
                 x = elements[x];
             }
             return x;
@@ -167,11 +167,11 @@ class Solution {
             // y的根
             int rooty = find(y);
             // 如果不是同一个根就连起来
-            if(rootx != rooty) {
+            if (rootx != rooty) {
                 // 矮树向高树合并
-                if(heights[rootx] > heights[rooty]) {
+                if (heights[rootx] > heights[rooty]) {
                     elements[rooty] = rootx;
-                } else if(heights[rootx] < heights[rooty]) {
+                } else if (heights[rootx] < heights[rooty]) {
                     elements[rootx] = rooty;
                 } else {
                     // 如果高度相同，随便合并
@@ -186,8 +186,8 @@ class Solution {
         // 计算形成了多少颗树
         public int getCount() {
             int count = 0;
-            for(int i=0; i<elements.length; i++) {
-                if(elements[i] == -1) {//-1就是每个树的根节点
+            for (int i = 0; i < elements.length; i++) {
+                if (elements[i] == -1) {//-1就是每个树的根节点
                     count++;
                 }
             }
@@ -208,16 +208,16 @@ class Solution {
             for (int c = 0; c < n; ++c) {
                 if (grid[r][c] == '1') {
                     grid[r][c] = '0';
-                    if (r - 1 >= 0 && grid[r-1][c] == '1') {
-                        uf.union(r * n + c, (r-1) * n + c);
+                    if (r - 1 >= 0 && grid[r - 1][c] == '1') {
+                        uf.union(r * n + c, (r - 1) * n + c);
                     }
-                    if (r + 1 < m && grid[r+1][c] == '1') {
-                        uf.union(r * n + c, (r+1) * n + c);
+                    if (r + 1 < m && grid[r + 1][c] == '1') {
+                        uf.union(r * n + c, (r + 1) * n + c);
                     }
-                    if (c - 1 >= 0 && grid[r][c-1] == '1') {
+                    if (c - 1 >= 0 && grid[r][c - 1] == '1') {
                         uf.union(r * n + c, r * n + c - 1);
                     }
-                    if (c + 1 < n && grid[r][c+1] == '1') {
+                    if (c + 1 < n && grid[r][c + 1] == '1') {
                         uf.union(r * n + c, r * n + c + 1);
                     }
                 }

@@ -1,6 +1,7 @@
 ## [146. LRU 缓存](https://leetcode.cn/problems/lru-cache/description/)
-````
+
 请你设计并实现一个满足  LRU (最近最少使用) 缓存 约束的数据结构。
+````
 实现 LRUCache 类：
 LRUCache(int capacity) 以 正整数 作为容量 capacity 初始化 LRU 缓存
 int get(int key) 如果关键字 key 存在于缓存中，则返回关键字的值，否则返回 -1 。
@@ -32,7 +33,7 @@ lRUCache.get(4);    // 返回 4
 
 提示：
 
--  1 <= capacity <= 3000
+- 1 <= capacity <= 3000
 - 0 <= key <= 10000
 - 0 <= value <= 105
 - 最多调用 2 * 105 次 get 和 put

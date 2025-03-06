@@ -52,24 +52,24 @@ class Solution {
      */
     public TreeNode inorderSuccessor(TreeNode p) {
         if (p == null) {
-            return null;
+          return null;
         }
-
+      
         TreeNode cur = p.right;
-
+      
         // 右子树不为空
         if (cur != null) {
-            while (cur.left != null) {
-                cur = cur.left;
-            }
-            return cur;
+          while (cur.left != null) {
+            cur = cur.left;
+          }
+          return cur;
         }
-
+      
         // 右子树为空
         TreeNode father = p.father;
         while (father != null && father.left != p) {//不为空，且它不是它父节点的左节点就继续找，否则就结束。
-            p = father;
-            father = p.father;
+          p = father;
+          father = p.father;
         }
         return father;
     }

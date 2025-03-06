@@ -44,15 +44,15 @@
 ````java
 class Solution {
     public boolean isValid(String s) {
-        Map<Character,Character> map = new HashMap<>();
-        map.put('(',')');
-        map.put('{','}');
-        map.put('[',']');
+        Map<Character, Character> map = new HashMap<>();
+        map.put('(', ')');
+        map.put('{', '}');
+        map.put('[', ']');
 
         char[] chars = s.toCharArray();
         Stack<Character> stack = new Stack<>();
-        for(char c : chars){
-            if(!stack.isEmpty() && map.containsKey(stack.peek()) && map.get(stack.peek()) == c){
+        for (char c : chars) {
+            if (!stack.isEmpty() && map.containsKey(stack.peek()) && map.get(stack.peek()) == c) {
                 stack.pop();
             } else {
                 stack.push(c);

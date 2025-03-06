@@ -33,8 +33,8 @@ class Solution {
     public Boolean palindrome(int x) {
         String s = String.valueOf(x);
         char[] chars = s.toCharArray();
-        boolean res= true;
-        for(int i=0;i<(s.length()-1)/2;i++){
+        boolean res = true;
+        for (int i = 0; i < (s.length() - 1) / 2; i++) {
             if (chars[i] != chars[s.length() - 1 - i]) {
                 res = false;
                 break;
@@ -49,10 +49,10 @@ class Solution {
 ````java
 class Solution {
     public Boolean palindrome(int x) {
-        if(x >= 0 && x < 10){
+        if (x >= 0 && x < 10) {
             return true;
         }
-        if(x < 0 || (x%10 == 0)) {
+        if (x < 0 || (x % 10 == 0)) {
             return false;
         }
 

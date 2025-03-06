@@ -60,15 +60,15 @@ class Solution {
 ````java
 class Solution {
     public boolean increasingTriplet(int[] nums) {
-        if(nums.length<3){
+        if (nums.length < 3) {
             return false;
         }
         int first = nums[0];
         int second = Integer.MAX_VALUE;
-        for(int num:nums){
-            if(num>second){
+        for (int num : nums) {
+            if (num > second) {
                 return true;
-            } else if(num>first){
+            } else if (num > first) {
                 second = num;
             } else {
                 first = num;

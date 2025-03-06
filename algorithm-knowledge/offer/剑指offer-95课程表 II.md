@@ -50,7 +50,7 @@ class Solution {
 
         int m = prerequisites.length;
         for (int[] pre : prerequisites) {
-            addEdge(pre[1],pre[0]);
+            addEdge(pre[1], pre[0]);
         }
 
         return topoSort();
@@ -63,7 +63,7 @@ class Solution {
 
     public int[] topoSort() {
         int[] visited = new int[n];// 访问标记数组 0=未搜索，1=搜索中，2=已完成
-        
+
         Stack<Integer> stack = new Stack<>();
         for (int i = 0; i < n; i++) {
             if (visited[i] == 0) {
@@ -104,55 +104,56 @@ class Solution {
 class Solution {
     int n;
     List<List<Integer>> adj;
+
     public int[] findOrder(int numCourses, int[][] prerequisites) {
         n = numCourses;
         adj = new ArrayList<>();
-        for(int i=0;i<numCourses;i++){
+        for (int i = 0; i < numCourses; i++) {
             adj.add(new ArrayList<>());
         }
 
-        for(int[] prerequisite : prerequisites){
-            addEdge(prerequisite[1],prerequisite[0]);
+        for (int[] prerequisite : prerequisites) {
+            addEdge(prerequisite[1], prerequisite[0]);
         }
 
         return topoSort();
     }
 
-    private void addEdge(int k,int v){
+    private void addEdge(int k, int v) {
         adj.get(k).add(v);
     }
 
-    public int[] topoSort(){
+    public int[] topoSort() {
         int[] in = new int[n];
-        for(int i=0;i<n;i++){
+        for (int i = 0; i < n; i++) {
             List<Integer> list = adj.get(i);
-            for(int j : list){
+            for (int j : list) {
                 in[j]++;//入度
             }
         }
 
         Queue<Integer> queue = new LinkedList<>();
         //入度为0
-        for(int i=0;i<n;i++){
-            if(in[i]==0){
+        for (int i = 0; i < n; i++) {
+            if (in[i] == 0) {
                 queue.offer(i);
             }
         }
 
         List<Integer> order = new ArrayList<>();
-        while(!queue.isEmpty()){
+        while (!queue.isEmpty()) {
             int num = queue.poll();
             order.add(num);
 
             List<Integer> list = adj.get(num);
-            for(int i : list){
-                if(--in[i] == 0){//放入节点后，指向节点入度要减去
+            for (int i : list) {
+                if (--in[i] == 0) {//放入节点后，指向节点入度要减去
                     queue.offer(i);
                 }
             }
         }
 
-        if(order.size()!=n){
+        if (order.size() != n) {
             return new int[0];
         }
         return order.stream().mapToInt(Integer::intValue).toArray();

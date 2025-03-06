@@ -28,7 +28,7 @@ class Solution {
                 m = v;
             }
             //相同相加，不同相减。最后大余1的剩下的就是结果
-            if(m == v){
+            if (m == v) {
                 cnt++;
             } else {
                 cnt--;

@@ -51,42 +51,42 @@
 
 ````java
 class Solution {
-	
-	Map<Integer,Integer> map=new HashMap<>();
-	
+
+    Map<Integer, Integer> map = new HashMap<>();
+
     public int superEggDrop(int K, int N) {
-    	
-    	return dp(K,N);
-    	
+        return dp(K, N);
     }
-    
-    private int dp(int k,int n) {
-    	
-    	if(map.containsKey(n*100+k))
-    		return map.get(n*100+k);
-    	
-    	int ans;
-    	if(n==0) ans=0;
-    	else if(k==1) ans=n;
-    	else {
-    		int l=1,r=n;
-    		while(l+1<r) {
-    			int mid=(l+r)/2;
-    			int t1=dp(k-1,mid-1);
-    			int t2=dp(k,n-mid);
-    			if(t1<t2)
-    				l=mid;
-    			else if(t1>t2)
-    				r=mid;
-    			else
-    				l=r=mid;
-    		}
-    		ans=1+Math.min(Math.max(dp(k-1,l-1), dp(k,n-l)),Math.max(dp(k-1,r-1), dp(k,n-r)));
-    	}
-    	
-    	map.put(n*100+k, ans);
-    	
-    	return ans;
+
+    private int dp(int k, int n) {
+        if (map.containsKey(n * 100 + k)) {
+            return map.get(n * 100 + k);
+        }
+        int ans;
+        if (n == 0) {
+            ans = 0;
+        } else if (k == 1) {
+            ans = n;
+        } else {
+            int l = 1, r = n;
+            while (l + 1 < r) {
+                int mid = (l + r) / 2;
+                int t1 = dp(k - 1, mid - 1);
+                int t2 = dp(k, n - mid);
+                if (t1 < t2) {
+                    l = mid;
+                } else if (t1 > t2) {
+                    r = mid;
+                } else {
+                    l = r = mid;
+                }
+            }
+            ans = 1 + Math.min(Math.max(dp(k - 1, l - 1), dp(k, n - l)), Math.max(dp(k - 1, r - 1), dp(k, n - r)));
+        }
+
+        map.put(n * 100 + k, ans);
+
+        return ans;
     }
 }
 ````

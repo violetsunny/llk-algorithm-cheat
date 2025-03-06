@@ -40,24 +40,24 @@ class Solution {
      *
      * @param val 要删除的节点
      */
-    public void deleteNode(ListNode head,int val) {
-        if(head == null){
+    public void deleteNode(ListNode head, int val) {
+        if (head == null) {
             return null;
         }
-        if(head.val==val){
+        if (head.val == val) {
             return head.next;
         }
         ListNode temp = head.next;
         ListNode pre = head;
-        while(temp!=null){
-            if(temp.val == val){
+        while (temp != null) {
+            if (temp.val == val) {
                 pre.next = temp.next;
                 return head;
             }
             temp = temp.next;
             pre = pre.next;
         }
-        
+
         return head;
     }
 }

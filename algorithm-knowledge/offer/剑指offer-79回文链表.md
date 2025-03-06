@@ -40,20 +40,21 @@
  */
 class Solution {
     ListNode org;
+
     public boolean isPalindrome(ListNode head) {
         //先把头给一个全局变量。然后进入递归到最后，然后往后弹和全局变量进行比较。也就前面和后面比较，然后往中间移动。
         org = head;
         return resver(head);
     }
 
-    public boolean resver(ListNode head){
-        if(head==null){
+    public boolean resver(ListNode head) {
+        if (head == null) {
             return true;
         }
-        if(!resver(head.next)){//递归到最后一个节点
+        if (!resver(head.next)) {//递归到最后一个节点
             return false;
         }
-        if(head.val!=org.val){//头节点和最后节点比较
+        if (head.val != org.val) {//头节点和最后节点比较
             return false;
         }
         org = org.next;//头往后，递归会弹出往前

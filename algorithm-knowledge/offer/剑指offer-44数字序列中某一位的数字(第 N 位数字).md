@@ -99,7 +99,7 @@ class Solution {
         int i = 1;
         long count = 9;
         while (count < n) {
-            n = (int)(n - count);//找到减去后剩下的n
+            n = (int) (n - count);//找到减去后剩下的n
             bit = bit * 10;
             i++;//第几位
             count = bit * i * 9;//比如10-99 180个

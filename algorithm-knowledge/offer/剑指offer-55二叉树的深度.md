@@ -56,24 +56,25 @@ class Solution {
 ````java
 class Solution {
     // 全局变量，存放结果
-    int res = 0;    
+    int res = 0;
+
     public int maxDepth(TreeNode root) {
         // 深度遍历，一开始的深度为 0
-        dfs(root, 0);    
+        dfs(root, 0);
         // 返回结果
-        return this.res;     
+        return this.res;
     }
 
-    public void dfs(TreeNode root, int length){
+    public void dfs(TreeNode root, int length) {
         // 如果到达叶子节点，就更新结果
-        if (root == null){      
+        if (root == null) {
             // 选取最深的叶子节点作为结果
             res = Math.max(this.res, length);
             return;
         }
         // 由于当前节点有值，故深度要+1
-        dfs(root.left, length+1);    // 查找左节点
-        dfs(root.right, length+1);   // 查找右节点
+        dfs(root.left, length + 1);    // 查找左节点
+        dfs(root.right, length + 1);   // 查找右节点
     }
 }
 ````
@@ -87,23 +88,25 @@ class Solution {
     public int maxDepth(TreeNode root) {
         if (root == null) return 0;
         // 创建一个队列
-        Deque<TreeNode> deque = new LinkedList<>(); 
+        Deque<TreeNode> deque = new LinkedList<>();
         // 根结点入队列，对应第一层
-        deque.offer(root);                          
+        deque.offer(root);
         int res = 0;
         // 如果队列不为空
-        while (!deque.isEmpty()){
+        while (!deque.isEmpty()) {
             // 层数
-            res += 1;          
+            res += 1;
             // 找到当前层的节点数
-            int length = deque.size();       
+            int length = deque.size();
             // 清空当前层，并把孩子节点入队
-            for (int i=0; i < length; i++){     
-                TreeNode node = deque.pollFirst(); 
-                if (node.left != null)
+            for (int i = 0; i < length; i++) {
+                TreeNode node = deque.pollFirst();
+                if (node.left != null) {
                     deque.offer(node.left);
-                if (node.right != null)
+                }
+                if (node.right != null) {
                     deque.offer(node.right);
+                }
             }
         }
         return res;

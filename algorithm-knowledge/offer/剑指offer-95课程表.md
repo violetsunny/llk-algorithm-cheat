@@ -43,8 +43,8 @@ class Solution {
         }
 
         int m = prerequisites.length;
-        for(int[] pre : prerequisites){
-            addEdge(pre[1],pre[0]);//pre[0]依赖pre[1]
+        for (int[] pre : prerequisites) {
+            addEdge(pre[1], pre[0]);//pre[0]依赖pre[1]
         }
 
         return topoSort();
@@ -146,8 +146,8 @@ class Solution {
             }
         }
 
-        visited[i] = 2;
         stack.push(i);
+        visited[i] = 2;
     }
 }
 ````

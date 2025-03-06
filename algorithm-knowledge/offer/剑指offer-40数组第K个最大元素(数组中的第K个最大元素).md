@@ -69,14 +69,14 @@ class Solution {
     public void buildMaxHeap(int[] a, int heapSize) {
         for (int i = heapSize / 2 - 1; i >= 0; --i) {
             maxHeapify(a, i, heapSize);
-        } 
+        }
     }
 
     public void maxHeapify(int[] a, int i, int heapSize) {
         int l = i * 2 + 1, r = i * 2 + 2, largest = i;
         if (l < heapSize && a[l] > a[largest]) {
             largest = l;
-        } 
+        }
         if (r < heapSize && a[r] > a[largest]) {
             largest = r;
         }
