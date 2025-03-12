@@ -36,6 +36,8 @@
 
 <img src="../images/42-接雨水题解.png">
 
+时间复杂度：`O(n)`，空间复杂度：`O(n)`
+
 ````java
 class Solution {
    public int trap(int[] height) {
@@ -63,6 +65,8 @@ class Solution {
 
 ### 解法二：双指针
 注意 while 循环可以不加等号，因为在「谁小移动谁」的规则下，相遇的位置一定是最高的柱子，这个柱子是无法接水的。
+
+时间复杂度：`O(n)`，空间复杂度：`O(1)`
 ````java
 class Solution {
    public int trap(int[] height) {
@@ -92,6 +96,7 @@ class Solution {
 
 注意 while 中加了等号，这可以让栈中没有重复元素，从而在有很多重复元素的情况下，使用更少的空间。
 
+时间复杂度：`O(n)`，空间复杂度：`O(n)`
 ````java
 class Solution {
    public int trap(int[] height) {
