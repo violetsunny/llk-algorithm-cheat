@@ -30,8 +30,6 @@
 时间复杂度 O(n)，空间复杂度 O(n)。其中 n 为二叉树的节点个数。
 
 
-#### Java
-
 ```java
 /**
  * Definition for a binary tree node.

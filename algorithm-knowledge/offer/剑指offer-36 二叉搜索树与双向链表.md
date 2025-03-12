@@ -70,34 +70,44 @@ public class Solution {
 }
 ```
 
-dfs实现中序遍历(inorder)
-````java
-class Solution {
+#### dfs实现中序遍历(inorder) - 帅地实现
 
-    private Node pre;
+````java
+import java.util.*;
+
+class Solution {
 
     public Node treeToDoublyList(Node root) {
         if (root == null) {
             return null;
         }
-        dfs(root);
-        root.left = pre;//pre为最后节点，并指向头节点的左
-        pre.right = root;
+
+        Queue<Node> queue = new LinkedList<>();
+        inOrder(root, queue);
+
+        Node head = queue.poll();
+        Node pre = head;
+        while (!queue.isEmpty()) {
+            Node cur = queue.poll();
+            pre.right = cur;//当前给前一个节点的右
+            cur.left = pre;//前一个节点给当前的左
+            pre = cur;//当前为下一次的前
+        }
+        
+        pre.right = head;
+        head.left = pre;
+        
         return head;
     }
 
-    private void dfs(Node cur) {
+    private void inOrder(Node cur, Queue<Node> queue) {
         if (cur == null) {
             return;
         }
         //左中右
-        dfs(cur.left);
-        if (pre != null) {
-            pre.right = cur;//当前给前一个节点的右
-        }
-        cur.left = pre;//前一个节点给当前的左
-        pre = cur;//当前为下一次的前
-        dfs(cur.right);
+        inOrder(cur.left, queue);
+        queue.add(cur);
+        inOrder(cur.right, queue);
     }
 }
 ````
