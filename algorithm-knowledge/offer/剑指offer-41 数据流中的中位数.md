@@ -8,6 +8,8 @@
 
 利用大根堆存放较小的一半元素，小根堆存放较大的一半元素。维持大小堆的元素个数差不超过 1。
 
+时间复杂度`O(logn)`,空间复杂度`O(n)`
+
 ```java
 import java.util.Comparator;
 import java.util.PriorityQueue;
@@ -15,7 +17,7 @@ import java.util.PriorityQueue;
 public class Solution {
 
     private PriorityQueue<Integer> minHeap = new PriorityQueue<>();
-    private PriorityQueue<Integer> maxHeap = new PriorityQueue<>(Comparator.reverseOrder());
+    private PriorityQueue<Integer> maxHeap = new PriorityQueue<>((x, y) -> y - x);
 
     /**
      * 插入一个数
@@ -58,6 +60,7 @@ public class Solution {
 }
 ```
 
+#### 其他写法
 ````java
 public class Solution {
     PriorityQueue<Integer> min = new PriorityQueue<>();
@@ -73,7 +76,7 @@ public class Solution {
         }
     }
 
-    public int findMedian() {
+    public double findMedian() {
         if (min.size() = max.size()) {
             return (min.peek() + max.peek()) / 2.0;
         } else {

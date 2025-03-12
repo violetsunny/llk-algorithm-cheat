@@ -99,7 +99,7 @@ class Solution {
         this.path = new ArrayList<>();
         this.visited = new boolean[s.length()];
         char[] ch = s.toCharArray();
-        Arrays.sort(ch);//排序了才知道相邻是否相等
+        Arrays.sort(ch);//排序了才知道相邻是否是重复
 
         //回溯
         backtrack(ch, 0);
@@ -122,15 +122,15 @@ class Solution {
             if (i > 0 && arr[i] == arr[i - 1] && visited[i - 1] = false) {
                 continue;
             }
-            if (visited) {//没有访问才行
+            if (visited[i]) {//没有访问才行
                 continue;
             }
-            visited = true;
+            visited[i] = true;
             path.add(arr[i]);
             backtrack(arr, k + 1);
             //回溯
             path.remove(path.size() - 1);
-            visited = false;
+            visited[i] = false;
         }
     }
 

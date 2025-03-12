@@ -150,7 +150,7 @@ public class Solution {
             return res;
         }
 
-        PriorityQueue<Integer> maxHeap = new PriorityQueue<>(k, Comparator.reverseOrder());//大根堆
+        PriorityQueue<Integer> maxHeap = new PriorityQueue<>(k, (x,y)->y-x);//大根堆
         System.out.println(maxHeap.size());
         for (int e : input) {
             if (maxHeap.size() < k) {
