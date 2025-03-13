@@ -90,7 +90,13 @@ res = 3;
 ````
 公式： 
 
-找到`i(第几位)`和`n(减去后剩下的n)`后, $num = 10^{i-1} + (n - 1) / i;$ $index = (n - 1) \% i;$
+找到`i(第几位)`和`n(减去后剩下的n)`后
+
+$num = 10^{i-1} + (n - 1) / i;$ 
+
+$index = (n - 1) \% i + 1;$
+
+$res = String(num).charAt(index-1); $
 
 ```java
 class Solution {
@@ -105,9 +111,9 @@ class Solution {
             count = bit * i * 9;//比如10-99 180个
         }
         long num = bit + (n - 1) / i;//找到哪个数字，因为从0开始所以当前n-1，i表示当前几位数字：3位，每个数字长度3，所以要/3。又是从第几位的数字往后数
-        int idx = (n - 1) % i;//找到下标，比如3位，肯定是3的余数
-        int res = String.valueOf(num).charAt(idx) - '0';
-//        int res = (int)(num / Math.pow(10, i - idx - 1)) % 10;
+        int idx = (n - 1) % i + 1;//找到下标，比如3位，肯定是3的余数
+        int res = String.valueOf(num).charAt(idx - 1) - '0';
+//        int res = (int)(num / Math.pow(10, i - idx)) % 10;
         return res;
     }
 }
