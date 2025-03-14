@@ -11,11 +11,14 @@
 请编程实现一个函数用来计算一个数字有多少种不同的翻译方法。
 
 ### 解法：动态规划
+1. `res[i]`是 长度为 `i`时有多少种方案。
 
-先写入递推式，res 表示共有多少种翻译方法。看最后一个字符，判断它与前一个字符能否构成有效翻译，计算 res[i]：
+2. 先写入递推式，res 表示共有多少种翻译方法。看最后一个字符，判断它与前一个字符能否构成有效翻译，计算 res[i]：
 
-- 能，那么 `res[i] = res[i - 1] + res[i - 2]`；
-- 不能，那么 `res[i] = res[i - 1]`。
+   - `10 - 25` 能，那么 `res[i] = res[i - 1] + res[i - 2]`；
+   - 不能，那么 `res[i] = res[i - 1]`。
+
+3. 边界值，`res[0] = 1`
 
 ```java
 class Solution {
@@ -53,11 +56,16 @@ class Solution {
     public int translateNum(int num) {
         char[] s = String.valueOf(num).toCharArray();
         int n = s.length;
-        int a = 1, b = 1;
+        if(n < 2){
+            return 1;
+        }
+        
+        int a = 1, b = 1, c = 1;
         for (int i = 1; i < n; ++i) {
-            int c = b;
-            if (s[i - 1] == '1' || (s[i - 1] == '2' && s[i] < '6')) {
-                c += a;
+            if (s[i - 1] == '1' || (s[i - 1] == '2' && s[i] < '6')) {// 10 - 25
+                c = a + b;
+            } else {
+                c = b;
             }
             a = b;
             b = c;
