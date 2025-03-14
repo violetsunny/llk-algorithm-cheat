@@ -1,4 +1,4 @@
-# [322.硬币找零](https://leetcode.cn/problems/coin-change/description/)
+## [322.零钱兑换](https://leetcode.cn/problems/coin-change/description/)
 
 给你一个整数数组 coins ，表示不同面额的硬币；以及一个整数 amount ，表示总金额。
 
@@ -30,7 +30,7 @@
 0 <= amount <= 104
 </pre>
 
-## 解法：动态规划
+### 解法：动态规划
 对于金额 i，我们可以从任意一个面值的硬币 cj 出发（只要 i≥cj），如果选择了面值为 cj 的硬币，则问题转化为子问题，即剩下的金额 i−cj：
 <pre>
 dp[i]=min(dp[i],dp[i−cj]+1)  for each cj in coins
@@ -55,13 +55,24 @@ class Solution {
         int[] dp = new int[amount + 1];
         Arrays.fill(dp, max);//初始化最大值，最大肯定amount+1
         dp[0] = 0;//从1开始，0位置要初始为0
-        for (int i = 1; i <= amount; i++) {//先填充amount之前的数，才能计算amount
-            for (int j = 0; j < coins.length; j++) {
-                if (i >= coins[j]) {
-                    dp[i] = Math.min(dp[i], dp[i - coins[j]] + 1);//各个面值比较,注意当前选择了coins[j]，所以是要 +1
-                }
+        
+        // 先循环容量、再循环物品
+//        for (int i = 1; i <= amount; i++) {//先填充amount之前的数，才能计算amount
+//            for (int j = 0; j < coins.length; j++) {
+//                if (i >= coins[j]) {
+//                    dp[i] = Math.min(dp[i], dp[i - coins[j]] + 1);//各个面值比较,注意当前选择了coins[j]，所以是要 +1
+//                }
+//            }
+//        }
+
+        // 先循环物品、再循环容量
+        for (int i = 0; i < coins.length; i++) {
+            // 正序遍历容量，允许重复选择
+            for (int j = coins[i]; j <= amount; j++) {
+                dp[i] = Math.min(dp[i], dp[i - coins[j]] + 1);//各个面值比较,注意当前选择了coins[j]，所以是要 +1
             }
         }
+
         return dp[amount] > amount ? -1 : dp[amount];
     }
 }
