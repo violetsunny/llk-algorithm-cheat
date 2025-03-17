@@ -8,6 +8,7 @@
 2. 状态转移方程：
     - 不选第 i 个物品：$dp[i][j] = dp[i-1][j]$
     - 选第 i 个物品（需满足 $j >= weight[i-1]$）：
+      
       $dp[i][j] = max(dp[i-1][j], dp[i-1][j - weight[i-1]] + value[i-1])$
 
 ````java
@@ -37,7 +38,7 @@ class Solution {
 class Solution {
    public int knapsack(int[] weight, int[] value, int capacity) {
       int[] dp = new int[capacity + 1];
-
+      // 外层遍历物品 → 组合数（不考虑顺序）
       for (int i = 0; i < weight.length; i++) {
          // 逆序遍历容量，防止重复计算
          for (int j = capacity; j >= weight[i]; j--) {
