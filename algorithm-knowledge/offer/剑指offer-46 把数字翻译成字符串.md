@@ -50,7 +50,7 @@ class Solution {
 }
 ```
 
-最优写法：优化
+#### 最优写法：优化
 ```java
 class Solution {
     public int translateNum(int num) {

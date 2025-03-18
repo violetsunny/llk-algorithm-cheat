@@ -26,11 +26,11 @@
 - 0 <= grid[i][j] <= 200
 
 ### 解法：动态规划
+1. 定义$res[i][j]$ ：
 
-```java
-res[i][j] = Math.min(res[i - 1][j], res[i][j - 1]) + grid[i][j];
-```
+2. 关系转移：$res[i][j] = Math.min(res[i - 1][j], res[i][j - 1]) + grid[i][j];$
 
+3. 边界值 
 ````java
 class Solution {
     public int minPathSum(int[][] grid) {
@@ -56,7 +56,7 @@ class Solution {
         }
 
         dp[i][j] = Math.min(min(grid, i + 1, j, dp), min(grid, i, j + 1, dp)) + grid[i][j];
-        ;
+
         return dp[i][j];
     }
 }
