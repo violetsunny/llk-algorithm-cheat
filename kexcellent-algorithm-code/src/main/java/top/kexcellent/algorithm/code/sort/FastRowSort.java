@@ -4,6 +4,8 @@
  */
 package top.kexcellent.algorithm.code.sort;
 
+import java.util.Arrays;
+
 /**
  * 快排,时间平均O(nlogn)，空间O(1)
  * ①找基准点：一般是数组的第一个元素来充当；
@@ -24,6 +26,12 @@ package top.kexcellent.algorithm.code.sort;
  * @version $Id: FastRow, v 0.1 2022/6/9 10:49 kanglele Exp $
  */
 public class FastRowSort {
+
+    private int count;//交换次数
+
+    public int getCount() {
+        return count;
+    }
 
     public void sort(int[] arr){
         qsort(arr, 0, arr.length - 1);
@@ -83,9 +91,15 @@ public class FastRowSort {
             while (i < j && arr[j] >= baseVal) {//从右侧找到第一个小于基准点的数
                 j--;
             }
-            swap(arr,i, j);//交换
+            if(i!=j){
+                swap(arr,i, j);//交换
+            }
+
         }
-        swap(arr,i, high);//partition和基准位交换
+        if(i!=high){
+            swap(arr,i, high);//partition和基准位交换
+        }
+
         return i;
     }
 
@@ -93,6 +107,16 @@ public class FastRowSort {
         int temp = arr[i];
         arr[i] = arr[j];
         arr[j] = temp;
+
+        count++;
     }
 
+
+    public static void main(String[] args) {
+        FastRowSort f = new FastRowSort();
+        int[] num = new int[]{2,3};
+        f.sort(num);
+        System.out.println(Arrays.toString(num));
+        System.out.println(f.getCount());
+    }
 }

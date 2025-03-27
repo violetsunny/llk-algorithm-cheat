@@ -50,5 +50,10 @@ public class AlgoTest {
         System.out.println(algoTest.maxProfit3(nums));
 
         PriorityQueue<Integer> maxHeap = new PriorityQueue<>(5, (x,y)->y-x);//大根堆
+
+        List<Integer> list = new LinkedList<>();
+        for(int i:list){
+            System.out.print(i);
+        }
     }
 }
