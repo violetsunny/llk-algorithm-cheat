@@ -91,7 +91,7 @@ class Solution {
                 dp[j] = Math.max(dp[j], dp[j - 1]) + grid[i - 1][j - 1];
             }
         }
-        return dp[n];//m+1 多用一位计算，可以不用初始计算，直接 grid[i - 1][j - 1]
+        return dp[n];//n+1 多用一位计算，可以不用初始计算，直接 grid[i - 1][j - 1]
     }
 }
 ```

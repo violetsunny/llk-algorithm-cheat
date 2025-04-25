@@ -20,61 +20,6 @@
 
 **注意**，这种方法会修改输入的数组。时间复杂度为 `O(n)`。
 
-```java
-import java.util.ArrayList;
-
-public class Solution {
-
-    /**
-     * 获取数组中最小的k个数
-     *
-     * @param input 输入的数组
-     * @param k 元素个数
-     * @return 最小的k的数列表
-     */
-    public ArrayList<Integer> GetLeastNumbers_Solution(int[] input, int k) {
-        ArrayList<Integer> res = new ArrayList<>();
-        if (input == null || input.length == 0 || input.length < k || k < 1) {
-            return res;
-        }
-        int n = input.length;
-        int start = 0, end = n - 1;
-        int index = partition(input, start, end);
-        while (index != k - 1) {
-            if (index > k - 1) {
-                end = index - 1;
-            } else {
-                start = index + 1;
-            }
-            index = partition(input, start, end);
-        }
-        for (int i = 0; i < k; ++i) {
-            res.add(input[i]);
-        }
-        return res;
-    }
-
-    private int partition(int[] input, int start, int end) {
-        int index = start - 1;
-        for (int i = start; i < end; ++i) {
-            if (input[i] < input[end]) {
-                swap(input, i, ++index);
-            }
-        }
-        ++index;
-        swap(input, index, end);
-        return index;
-    }
-
-    private void swap(int[] array, int i, int j) {
-        int t = array[i];
-        array[i] = array[j];
-        array[j] = t;
-    }
-}
-```
-
-#### 快排第二个写法
 ````java
 class Solution {
     private int[] arr;
@@ -89,23 +34,24 @@ class Solution {
 
     private int[] quickSort(int l, int r) {
         int i = partition(arr, l, r);//找到排序后的中间点
-        if (k < i) {
+        if (i > k - 1) {
             return quickSort(l, i - 1);
         }
-        if (k > i) {
+        if (i < k - 1) {
             return quickSort(i + 1, r);
         }
         return Arrays.copyOf(arr, k);
     }
 
     private int partition(int[] arr, int l, int r) {
+        int base = arr[l];
         int i = l, j = r;
         while (i < j) {
-            while (i < j && arr[j] >= arr[l]) {
-                --j;
+            while (i < j && arr[i] <= base) {
+                i++;
             }
-            while (i < j && arr[i] <= arr[l]) {
-                ++i;
+            while (i < j && arr[j] >= base) {
+                j--;
             }
             swap(i, j);
         }
@@ -114,9 +60,9 @@ class Solution {
     }
 
     private void swap(int i, int j) {
-        int t = arr[i];
+        int temp = arr[i];
         arr[i] = arr[j];
-        arr[j] = t;
+        arr[j] = temp;
     }
 }
 ````
@@ -134,7 +80,6 @@ import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.PriorityQueue;
 
-
 public class Solution {
 
     /**
@@ -144,7 +89,7 @@ public class Solution {
      * @param k 元素个数
      * @return 最小的k的数列表
      */
-    public ArrayList<Integer> GetLeastNumbers_Solution(int[] input, int k) {
+    public ArrayList<Integer> getLeastNumbers(int[] input, int k) {
         ArrayList<Integer> res = new ArrayList<>();
         if (input == null || input.length < k || k < 1) {
             return res;

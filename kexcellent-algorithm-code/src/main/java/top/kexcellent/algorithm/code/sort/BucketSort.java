@@ -11,6 +11,7 @@ import java.util.List;
 
 /**
  * 桶排序，时间复杂度可以达到 O(n)-O(n^2)
+ * 桶排序非常适合，001310120323002311  这种有0123而且重复的数组排序，只要分为0 1 2 3四个桶就可以了，桶有序放入的元素自然有序。
  *
  * @author kanglele
  * @version $Id: BucketSort, v 0.1 2024/10/16 下午3:11 kanglele Exp $
