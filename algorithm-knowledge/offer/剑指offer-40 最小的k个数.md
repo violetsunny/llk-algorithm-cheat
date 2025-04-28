@@ -101,7 +101,8 @@ public class Solution {
             if (maxHeap.size() < k) {
                 maxHeap.add(e);
             } else {
-                if (maxHeap.peek() > e) {//如果比堆顶数据大的数就丢弃，比堆顶小就将堆顶弹出后放入。
+                //如果比堆顶数据大的数就丢弃，比堆顶小就将堆顶弹出后放入。
+                if (maxHeap.peek() > e) {
                     maxHeap.poll();
                     maxHeap.add(e);
                 }
