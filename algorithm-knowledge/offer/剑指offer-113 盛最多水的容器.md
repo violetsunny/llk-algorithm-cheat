@@ -35,9 +35,8 @@
 class Solution {
     public int maxArea(int[] height) {
         int max = 0;
-        int n = height.length;
         int l = 0;
-        int r = n - 1;
+        int r = height.length - 1;
         while (l < r) {
             int area = (r - l) * Math.min(height[r], height[l]);
             max = Math.max(area, max);//比较最大的面积
