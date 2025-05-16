@@ -28,7 +28,7 @@ queue.pop();   // returns 1
 queue.empty(); // returns false
 ```
 
-### 解法
+### （记住）解法
 
 `push` 操作，每次都存入 `s1`；
 `pop` 操作，每次从 `s2` 取：

@@ -70,7 +70,7 @@ public class Solution {
 }
 ```
 
-#### 更好的写法
+### （记住）更好的写法
 如果压入后的数和需要弹出的数相等，就说明可以弹出。如果压入后最后都能弹出，就是正确顺序。
 ```java
 import java.util.Deque;

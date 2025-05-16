@@ -29,9 +29,9 @@
 
    - 当 $0≤i≤n−2$ 时，$rightMax[i]=max(rightMax[i+1],height[i])。$
 
-    因此可以正向遍历数组 $height$ 得到数组 $leftMax$ 的每个元素值，反向遍历数组 $height$ 得到数组 $rightMax$ 的每个元素值。
+因此可以正向遍历数组 $height$ 得到数组 $leftMax$ 的每个元素值，反向遍历数组 $height$ 得到数组 $rightMax$ 的每个元素值。
 
-    在得到数组 $leftMax$ 和 $rightMax$ 的每个元素值之后，对于$ 0≤i<n$，下标 $i$ 处能接的雨水量等于 $min(leftMax[i],rightMax[i])−height[i]$。遍历每个下标位置即可得到能接的雨水总量。
+在得到数组 $leftMax$ 和 $rightMax$ 的每个元素值之后，对于$ 0≤i<n$，下标 $i$ 处能接的雨水量等于 $min(leftMax[i],rightMax[i])−height[i]$。遍历每个下标位置即可得到能接的雨水总量。
 
 
 <img src="../images/42-接雨水题解.png">
@@ -44,12 +44,14 @@ class Solution {
       int n = height.length;
       int[] preMax = new int[n]; // preMax[i] 表示从 height[0] 到 height[i] 的最大值
       preMax[0] = height[0];
+      // 从左到右遍历，更新 preMax[i]
       for (int i = 1; i < n; i++) {
          preMax[i] = Math.max(preMax[i - 1], height[i]);
       }
 
       int[] sufMax = new int[n]; // sufMax[i] 表示从 height[i] 到 height[n-1] 的最大值
       sufMax[n - 1] = height[n - 1];
+      // 从右到左遍历，更新 sufMax[i]
       for (int i = n - 2; i >= 0; i--) {
          sufMax[i] = Math.max(sufMax[i + 1], height[i]);
       }
@@ -63,7 +65,7 @@ class Solution {
 }
 ````
 
-### 解法二：双指针
+### （记住）解法二：双指针 + 前后缀分解
 注意 while 循环可以不加等号，因为在「谁小移动谁」的规则下，相遇的位置一定是最高的柱子，这个柱子是无法接水的。
 
 时间复杂度：`O(n)`，空间复杂度：`O(1)`
@@ -76,12 +78,17 @@ class Solution {
       int preMax = 0; // 前缀最大值，随着左指针 left 的移动而更新
       int sufMax = 0; // 后缀最大值，随着右指针 right 的移动而更新
       while (left < right) {
-         preMax = Math.max(preMax, height[left]);
-         sufMax = Math.max(sufMax, height[right]);
-         if (height[left] < height[right]) {
+         preMax = Math.max(preMax, height[left]);// 选取最大前缀
+         sufMax = Math.max(sufMax, height[right]);// 选取最大后缀
+         if (height[left] < height[right]) {// 谁小移动谁
+            // 前缀最大值小于后缀最大值，说明前缀最大值是瓶颈，接水高度由前缀最大值决定
+            // 前缀最大值减去当前柱子高度，就是当前柱子能接的水的高度
             ans += preMax - height[left];
             ++left;
          } else {
+            // 后缀最大值小于前缀最大值，说明后缀最大值是瓶颈，接水高度由后缀最大值决定
+            // 后缀最大值减去当前柱子高度，就是当前柱子能接的水的高度
+            // 注意：这里是 sufMax - height[right]，而不是 preMax - height[right]
             ans += sufMax - height[right];
             --right;
          }
@@ -105,7 +112,7 @@ class Solution {
       for (int i = 0; i < height.length; i++) {
          while (!stack.isEmpty() && height[i] >= height[stack.peek()]) {
             int bottomH = height[stack.pop()];
-            if (st.isEmpty()) {
+            if (stack.isEmpty()) {
                break;
             }
             int left = stack.peek();

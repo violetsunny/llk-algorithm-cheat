@@ -76,7 +76,7 @@ public class Solution {
 }
 ```
 
-### 解法：哈希表
+### （记住）解法：哈希表
 
 ````java
 public class Solution {

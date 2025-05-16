@@ -23,7 +23,7 @@
 - -10 <= nums[i] <= 10
 - nums 的任何子数组的乘积都 保证 是一个 32-位 整数
 
-### 解法：动态规划
+### （记住）解法：动态规划
 题解: 由于当前最小可能是负数，再下一次有负数的情况相乘后可能就是最大。
 ````java
 class Solution {
@@ -35,7 +35,7 @@ class Solution {
             long mx = maxF, mn = minF;
             maxF = Math.max(mx * nums[i], Math.max(nums[i], mn * nums[i]));
             minF = Math.min(mn * nums[i], Math.min(nums[i], mx * nums[i]));
-            if (minF < -1 << 31) {
+            if (minF < Integer.MIN_VALUE) {
                 minF = nums[i];
             }
             ans = Math.max((int) maxF, ans);

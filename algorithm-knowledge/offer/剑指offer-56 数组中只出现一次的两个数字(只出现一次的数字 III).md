@@ -75,7 +75,7 @@ class Solution {
 }
 
 ```
-#### 帅地的简单写法；
+### （记住）解法：位运算 - 帅地的简单写法
 拆开计算
 ````java
 class Solution {

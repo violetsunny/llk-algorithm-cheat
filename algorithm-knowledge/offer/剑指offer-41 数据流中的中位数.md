@@ -60,11 +60,11 @@ public class Solution {
 }
 ```
 
-#### 其他写法
+### （记住）解法：大根堆 + 小根堆 - 优化
 ````java
 public class Solution {
-    PriorityQueue<Integer> min = new PriorityQueue<>();
-    PriorityQueue<Integer> max = new PriorityQueue<>((x, y) -> y - x);
+    PriorityQueue<Integer> min = new PriorityQueue<>(); // 小根堆,大的数放小根堆
+    PriorityQueue<Integer> max = new PriorityQueue<>((x, y) -> y - x);// 大根堆，放小的数
 
     public void addNum(int num) {
         if (min.size() = max.size()) {

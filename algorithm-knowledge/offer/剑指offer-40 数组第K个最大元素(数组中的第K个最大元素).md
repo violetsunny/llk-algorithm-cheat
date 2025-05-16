@@ -22,6 +22,8 @@
 -104 <= nums[i] <= 104
 ````
 
+### 解法：大根堆
+
 ````java
 class Solution {
     public int findKthLargest(int[] nums, int k) {
@@ -37,10 +39,12 @@ class Solution {
     }
 }
 ````
+
+### （记住）解法：小根堆
 ````java
 class Solution {
     public int findKthLargest(int[] nums, int k) {
-        Queue<Integer> min = new PriorityQueue<>();
+        PriorityQueue<Integer> min = new PriorityQueue<>();
         for (int num : nums) {
             min.add(num);
             if (min.size() > k) {
@@ -52,7 +56,7 @@ class Solution {
 }
 ````
 
-自己实现堆排序
+### 解法：自己实现堆排序
 ````java
 class Solution {
     public int findKthLargest(int[] nums, int k) {

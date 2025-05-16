@@ -40,7 +40,7 @@
 >进阶：你可以设计实现一个时间复杂度为 O(m + n) 的算法解决此问题吗？
 
 
-### 解法一: 双指针
+### （记住）解法一: 双指针
 ````java
 class Solution {
     public void merge(int[] nums1, int m, int[] nums2, int n) {

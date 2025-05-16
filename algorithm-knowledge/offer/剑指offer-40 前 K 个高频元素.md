@@ -19,7 +19,7 @@
 
 进阶：你所设计算法的时间复杂度 必须 优于 O(n log n) ，其中 n 是数组大小。
 
-### 解法：哈希映射 + 大根堆
+### （记住）解法：哈希映射 + 大根堆
 ````java
 class Solution {
     public int[] topKFrequent(int[] nums, int k) {

@@ -28,7 +28,7 @@
 - 0 <= Node.val <= 9
 - 题目数据保证列表表示的数字不含前导零
 
-### 解法：遍历+除法取余
+### （记住）解法：遍历+除法取余
 ````java
 /**
  * Definition for singly-linked list.

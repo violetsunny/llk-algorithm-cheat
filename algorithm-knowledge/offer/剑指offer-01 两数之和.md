@@ -53,7 +53,7 @@ class Solution {
 
 ````
 
-### 解法：双指针
+### （记住）解法：双指针
 
 ````java
 class Solution {

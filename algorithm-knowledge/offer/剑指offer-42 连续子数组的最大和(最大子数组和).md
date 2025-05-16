@@ -9,7 +9,6 @@
 
 ### 解法: 动态规划
 
-
 $res[i]$ 表示以第 $i$ 个数字结尾的子数组的最大和，那么求出 $max(res[i])$ 即可。
 
 - if `res[i - 1] < 0`,`res[i] = array[i]`,
@@ -37,7 +36,7 @@ public class Solution {
 }
 ```
 
-#### 最优写法：O(1)
+### （记住）最优写法：O(1)
 ```java
 class Solution {
     public int maxSubArray(int[] nums) {

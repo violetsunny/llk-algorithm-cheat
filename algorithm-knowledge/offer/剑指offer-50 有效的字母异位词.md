@@ -15,7 +15,7 @@
 
 进阶: 如果输入字符串包含 unicode 字符怎么办？你能否调整你的解法来应对这种情况？
 
-### 解法：哈希表（消消乐）
+### （记住）解法：哈希表（消消乐）
 由于字符串只包含 26 个小写字母，因此我们可以维护一个长度为 26 的频次数组 table
 ````java
 class Solution {
@@ -42,5 +42,16 @@ class Solution {
 ````
 
 ### 解法：排序后是否相等
+````java
+class Solution {
+    public boolean isAnagram(String s, String t) {
+        char[] s1 = s.toCharArray();
+        char[] s2 = t.toCharArray();
+        Arrays.sort(s1);
+        Arrays.sort(s2);
+        return Arrays.equals(s1, s2);
+    }
+}
+````
 
 进阶：Unicode 一个字符可能对应多个字节的问题，可以用Map<Character, Integer>维护，这样避免字符造成的 **离散未知** 的问题。

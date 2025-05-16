@@ -63,7 +63,7 @@ class Solution {
 }
 ```
 
-### 解法: 替换
+### （记住）解法: 替换
 同：[237. 删除链表中的节点](https://leetcode.cn/problems/delete-node-in-a-linked-list/description/)
 
 这个是只给要删除节点

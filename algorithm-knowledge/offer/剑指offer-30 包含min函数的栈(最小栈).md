@@ -23,7 +23,7 @@ minStack.top();      --> Returns 3.
 minStack.getMin();   --> Returns -1.
 ```
 
-### 解法
+### （记住）解法
 
 定义两个`stack`。
 

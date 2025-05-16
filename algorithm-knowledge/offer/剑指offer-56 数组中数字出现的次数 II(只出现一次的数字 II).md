@@ -48,7 +48,7 @@ class Solution {
     }
 }
 ```
-#### 帅地写法
+### （记住）解法：数学-帅地写法
 ```java
 class Solution {
     /**

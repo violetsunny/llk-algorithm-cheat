@@ -30,39 +30,7 @@
 
 2. 关系转移：$res[i][j] = Math.min(res[i - 1][j], res[i][j - 1]) + grid[i][j];$
 
-3. 边界值 
-````java
-class Solution {
-    public int minPathSum(int[][] grid) {
-        int m = grid.length;
-        int n = grid[0].length;
-        int[][] dp = new int[m][n];
-        for (int[] row : dp) {
-            Arrays.fill(row, -1); // -1 表示没有计算过
-        }
-
-        return min(grid, 0, 0, dp);
-    }
-
-    private int min(int[][] grid, int i, int j, int[][] dp) {
-        if (i > grid.length - 1 || j > grid[0].length - 1) {
-            return Integer.MAX_VALUE;
-        }
-        if (i == grid.length - 1 && j == grid[0].length - 1) {
-            return grid[i][j];
-        }
-        if (dp[i][j] != -1) {
-            return dp[i][j];
-        }
-
-        dp[i][j] = Math.min(min(grid, i + 1, j, dp), min(grid, i, j + 1, dp)) + grid[i][j];
-
-        return dp[i][j];
-    }
-}
-````
-
-#### 其他写法
+3. 边界值  ：$res[0][0] = grid[0][0];$
 
 ````java
 class Solution {
@@ -89,8 +57,30 @@ class Solution {
 }
 ````
 
-#### 空间优化
+### （记住）解法：动态规划-其他写法
 
+````java
+class Solution {
+    public int minPathSum(int[][] grid) {
+        if (grid == null || grid.length == 0 || grid[0].length == 0) {
+            return 0;
+        }
+        int rows = grid.length, columns = grid[0].length;
+        int[][] dp = new int[rows+1][columns+1];
+        Arrays.fill(dp[0], Integer.MAX_VALUE);
+        dp[0][1] = 0;// 初始化第一行，第一列
+        for (int i = 1; i <= rows; i++) {
+            dp[i][0] = Integer.MAX_VALUE;
+            for (int j = 1; j <= columns; j++) {
+                dp[i][j] = Math.min(dp[i - 1][j], dp[i][j - 1]) + grid[i-1][j-1];
+            }
+        }
+        return dp[rows][columns];
+    }
+}
+````
+
+#### 空间优化
 ````java
 class Solution {
     public int minPathSum(int[][] grid) {

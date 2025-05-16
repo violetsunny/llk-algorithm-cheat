@@ -26,7 +26,7 @@
 - 0 <= strs[i].length <= 100
 - strs[i] 仅包含小写字母
 
-### 解法：排序
+### （记住）解法：排序
 ````java
 class Solution {
     public List<List<String>> groupAnagrams(String[] strs) {

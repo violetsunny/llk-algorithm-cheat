@@ -47,11 +47,13 @@ class Solution {
     }
 }
 ```
-#### 优化版本
+
+### （记住）解法：动态规划+最值-优化版本
 ```java
 class Solution {
     public int maxValue(int[][] grid) {
-        int m = grid.length, n = grid[0].length;
+        int m = grid.length;
+        int n = grid[0].length;
         int[][] f = new int[m + 1][n + 1];
         for (int i = 1; i <= m; ++i) {
             for (int j = 1; j <= n; ++j) {
@@ -62,6 +64,7 @@ class Solution {
     }
 }
 ```
+
 空间优化，只能往右和往下，所以可以用个两行数组即可。i & 1 偶数为0奇数为1，再^1则偶数为1奇数为0。
 
 ```java

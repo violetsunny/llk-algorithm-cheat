@@ -37,7 +37,7 @@ class Solution {
 }
 ```
 
-#### 解法二：直接用变量存储结果
+#### （记住）解法二：直接用变量存储结果
 
 ```java
 class Solution {

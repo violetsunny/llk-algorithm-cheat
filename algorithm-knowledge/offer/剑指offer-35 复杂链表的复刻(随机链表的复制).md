@@ -9,7 +9,7 @@
 
 ![random-list](../images/random-list.png)
 
-### 解法：复制 + 拆分
+### （记住）解法：复制 + 拆分
 
 - 第一步，在每个节点的后面插入复制的节点；
   ![random-list-step1.png](../images/random-list-step1.png)

@@ -28,7 +28,7 @@
 - num1 和num2 都只包含数字 0-9
 - num1 和num2 都不包含任何前导零
 
-### 解法：遍历
+### （记住）解法：遍历
 ```java
 class Solution {
     public String addStrings(String num1, String num2) {

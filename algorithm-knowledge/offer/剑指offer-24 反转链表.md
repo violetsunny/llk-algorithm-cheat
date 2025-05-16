@@ -4,13 +4,11 @@
 
 输入一个链表，反转链表后，输出新链表的表头。
 
-### 解法
-
-#### 解法一
+### 解法一: 头插法
 
 利用头插法解决。
 
-```java
+````java
 /**
  * Definition for singly-linked list.
  * public class ListNode {
@@ -37,11 +35,11 @@ class Solution {
         return p;
     }
 }
-```
+````
 
-#### 解法二：递归
+### 解法二：递归
 
-```java
+````java
 /**
  * Definition for singly-linked list.
  * public class ListNode {
@@ -61,9 +59,9 @@ class Solution {
         return node;//返回最后节点,不能是head，因为此时的head指向的null
     }
 }
-```
-#### 解法三：原地反转
+````
 
+### （记住）解法三：原地反转
 ```java
 /**
  * Definition for singly-linked list.

@@ -45,7 +45,8 @@ class Solution {
         if (nums == null || nums.length < 2) {
             return 0;
         }
-        int start = 1, end = nums.length - 1;
+        int start = 1;
+        int end = nums.length - 1;
         while (start <= end) {
             int mid = start + ((end - start) >> 1);
             int cnt = 0;

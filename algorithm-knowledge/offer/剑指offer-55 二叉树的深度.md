@@ -20,7 +20,7 @@
 输出：3
 ```
 
-### 解法：深度优先搜索（DFS）
+### （记住）解法：深度优先搜索（DFS）
 
 递归即可。后序遍历
 
@@ -52,7 +52,7 @@ class Solution {
 }
 ```
 
-#### 从上到下，前序遍历
+### 解法：从上到下，前序遍历
 ````java
 class Solution {
     // 全局变量，存放结果
@@ -69,7 +69,7 @@ class Solution {
         // 如果到达叶子节点，就更新结果
         if (root == null) {
             // 选取最深的叶子节点作为结果
-            res = Math.max(this.res, length);
+            this.res = Math.max(this.res, length);
             return;
         }
         // 由于当前节点有值，故深度要+1

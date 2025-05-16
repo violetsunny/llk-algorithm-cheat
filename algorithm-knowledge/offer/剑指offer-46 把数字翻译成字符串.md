@@ -50,8 +50,8 @@ class Solution {
 }
 ```
 
-#### 最优写法：优化
-```java
+### （记住）解法：动态规划-优化
+````java
 class Solution {
     public int translateNum(int num) {
         char[] s = String.valueOf(num).toCharArray();
@@ -60,7 +60,9 @@ class Solution {
             return 1;
         }
         
-        int a = 1, b = 1, c = 1;
+        int a = 1;
+        int b = 1;
+        int c = 1;
         for (int i = 1; i < n; ++i) {
             if (s[i - 1] == '1' || (s[i - 1] == '2' && s[i] < '6')) {// 10 - 25
                 c = a + b;
@@ -73,4 +75,4 @@ class Solution {
         return b;
     }
 }
-```
+````
