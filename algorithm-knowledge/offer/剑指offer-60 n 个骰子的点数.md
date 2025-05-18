@@ -6,7 +6,7 @@ edit_url: https://github.com/doocs/leetcode/edit/main/lcof/%E9%9D%A2%E8%AF%95%E9
 
 <!-- problem:start -->
 
-# [n 个骰子的点数](https://leetcode.cn/problems/nge-tou-zi-de-dian-shu-lcof/)
+## [n 个骰子的点数](https://leetcode.cn/problems/nge-tou-zi-de-dian-shu-lcof/)
 
 ## 题目描述
 
@@ -38,8 +38,6 @@ edit_url: https://github.com/doocs/leetcode/edit/main/lcof/%E9%9D%A2%E8%AF%95%E9
 <p><code>1 &lt;= n &lt;= 11</code></p>
 
 <!-- description:end -->
-
-## 解法
 
 ### 方法一：动态规划
 
@@ -116,7 +114,7 @@ class Solution {
 }
 ```
 
-#### 帅地解法
+### （记住）解法：动态规划 - 帅地写法
 <p>定义：</p>
 
 dp[i][j] 是 当骰子的个数为i，点数为j,有dp[i][j]种组合。

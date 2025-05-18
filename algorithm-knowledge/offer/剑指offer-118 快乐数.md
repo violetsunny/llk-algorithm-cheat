@@ -30,7 +30,7 @@
 
 - 1 <= n <= 231 - 1
 
-### 解法：遍历 + 去重
+### （记住）解法：遍历 + 去重
 1. 第一种情况结果为1
 2. 第二种情况结果死循环
 3. 第三种情况无限计算：不会出现，因为按照快乐数的计算方式，计算结果会往下掉要么循环要么为1。比如999999=486
@@ -38,7 +38,7 @@
 class Solution {
     public boolean isHappy(int n) {
         Set<Integer> visited = new HashSet<>();
-        while (n != 1 && !visited.contains(n)) {
+        while (n != 1 && !visited.contains(n)) {//为了避免进入死循环，需要对计算结果进行去重
             visited.add(n);
             int total = 0;
             while (n > 0) {

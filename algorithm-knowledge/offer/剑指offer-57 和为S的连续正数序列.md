@@ -67,7 +67,7 @@ class Solution {
     }
 }
 ```
-#### 帅地简单写法
+### （记住）解法：双指针-帅地简单写法
 ```java
 class Solution {
 

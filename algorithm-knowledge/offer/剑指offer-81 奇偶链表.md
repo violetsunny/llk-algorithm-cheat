@@ -22,7 +22,7 @@
 - 0 <= n <= 104
 - -106 <= Node.val <= 106
 
-## 解法：双指针
+## （记住）解法：双指针
 ````java
 /**
  * Definition for singly-linked list.

@@ -40,6 +40,7 @@ P     I
 - s 由英文字母（小写和大写）、',' 和 '.' 组成
 - 1 <= numRows <= 1000
 
+### （记住）解法：遍历
 ````java
 class Solution {
     public String convert(String s, int numRows) {

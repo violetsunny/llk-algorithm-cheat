@@ -16,6 +16,8 @@
 - 1 <= s.length <= 16
 - s 仅由小写英文字母组成
 
+### （记住）解法：回溯
+
 ````java
 class Solution {
     private List<List<String>> reslist = new ArrayList<>();

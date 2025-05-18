@@ -32,7 +32,7 @@ candidates 中的 同一个 数字可以 无限制重复被选取 。如果至�
 - candidates 的所有元素 互不相同
 - 1 <= target <= 40
 
-### 解法：回溯
+### （记住）解法：回溯
 
 ````java
 class Solution {

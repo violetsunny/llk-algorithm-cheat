@@ -38,7 +38,7 @@ randomizedSet.getRandom(); // 由于 2 是集合中唯一的数字，getRandom �
 - 最多调用 insert、remove 和 getRandom 函数 2 * 105 次
 - 在调用 getRandom 方法时，数据结构中 至少存在一个 元素。
 
-### 解法：末尾替换
+### （记住）解法：末尾替换
 由于List删除不是O(1)，所以当前val和末尾替换，这样List直接删除末尾就行。
 
 ````java

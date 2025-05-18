@@ -27,7 +27,7 @@
 1 <= bad <= n <= 2^31 - 1
 
 
-### 解法：二分查找
+### （解法）解法：二分查找
 ````java
 /* The isBadVersion API is defined in the parent class VersionControl.
       boolean isBadVersion(int version); */

@@ -28,7 +28,7 @@
 - 0 <= ai, bi < numCourses
 - prerequisites[i] 中的所有课程对 互不相同
 
-### 解法：拓扑排序+BFS
+### （记住）解法：拓扑排序+BFS
 
 ````java
 class Solution {

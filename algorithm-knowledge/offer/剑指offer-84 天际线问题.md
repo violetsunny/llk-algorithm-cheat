@@ -34,7 +34,7 @@ heighti 是第 i 座建筑物的高度。
 - 1 <= heighti <= 231 - 1
 - buildings 按 lefti 非递减排序
 
-### 解法：扫描线 + 优先队列
+### （记住）解法：扫描线 + 优先队列
 
 ````java
 class Solution {

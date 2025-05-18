@@ -22,7 +22,8 @@
 - points[i].length == 2
 - 0 <= xi, yi <= 100
 
-### 解法：数学-向量叉积
+### （记住）解法：数学-向量叉积
+两个向量叉积为0 ，表示共线。
 ````java
 class Solution {
     public boolean isBoomerang(int[][] points) {

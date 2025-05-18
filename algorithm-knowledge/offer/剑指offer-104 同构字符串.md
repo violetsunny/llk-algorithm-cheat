@@ -29,7 +29,7 @@
 - t.length == s.length
 - s 和 t 由任意有效的 ASCII 字符组成
 
-### 解法：下标法
+### （记住）解法：下标法
 
 ````java
 class Solution {

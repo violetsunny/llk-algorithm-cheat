@@ -40,7 +40,7 @@
 - 1 <= s.length <= 104
 - s 仅由括号 '()[]{}' 组成
 
-### 解法：栈 + 哈希映射
+### （记住）解法：栈 + 哈希映射
 ````java
 class Solution {
     public boolean isValid(String s) {

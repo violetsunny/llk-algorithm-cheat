@@ -38,7 +38,7 @@ lRUCache.get(4);    // 返回 4
 - 0 <= value <= 105
 - 最多调用 2 * 105 次 get 和 put
 
-### 解法：LinkedHashMap
+### （记住）解法：LinkedHashMap
 ````java
 class LRUCache {
     private final int capacity;

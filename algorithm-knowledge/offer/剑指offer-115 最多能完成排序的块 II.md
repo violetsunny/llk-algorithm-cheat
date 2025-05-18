@@ -28,7 +28,7 @@
 - 1 <= arr.length <= 2000
 - 0 <= arr[i] <= 10^8
 
-### 解法：栈
+### （记住）解法：栈
 
 ````java
 class Solution {

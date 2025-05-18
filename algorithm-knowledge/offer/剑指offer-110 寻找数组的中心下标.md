@@ -39,7 +39,7 @@
 - 1 <= nums.length <= 10^4
 - -1000 <= nums[i] <= 1000
 
-### 解法：前缀和
+### （解法）解法：前缀和
 
 ````java
 class Solution {

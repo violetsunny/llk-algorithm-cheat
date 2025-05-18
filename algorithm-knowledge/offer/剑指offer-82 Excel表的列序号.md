@@ -33,7 +33,7 @@ AB -> 28
 - columnTitle 仅由大写英文组成
 - columnTitle 在范围 ["A", "FXSHRXW"] 内
 
-### 解法：26进制转10进制
+### （记住）解法：26进制转10进制
 ````java
 class Solution {
     public int titleToNumber(String columnTitle) {

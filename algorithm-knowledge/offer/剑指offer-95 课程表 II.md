@@ -32,7 +32,7 @@
 - ai != bi
 - 所有[ai, bi] 互不相同
 
-### 解法：拓扑排序 + DFS
+### （记住）解法：拓扑排序 + DFS
 
 ````java
 import java.util.ArrayList;

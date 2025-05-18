@@ -50,7 +50,8 @@ class Solution {
     }
 }
 ```
-空间优化
+
+### 解法：动态规划 - 空间优化
 ```java
 class Solution {
     

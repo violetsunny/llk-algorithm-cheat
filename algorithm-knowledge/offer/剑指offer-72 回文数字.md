@@ -45,7 +45,8 @@ class Solution {
 }
 
 ````
-第二种写法，不转成字符串
+
+### （记住）解法：不转成字符串
 ````java
 class Solution {
     public Boolean palindrome(int x) {

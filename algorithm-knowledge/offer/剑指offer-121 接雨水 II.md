@@ -22,7 +22,7 @@
 - 1 <= m, n <= 200
 - 0 <= heightMap[i][j] <= 2 * 10^4
 
-### 解法：小根堆
+### （记住）解法：小根堆
 时间复杂度：`O(mnlog(mn))`，空间复杂度：`O(mn)`
 ````java
 class Solution {

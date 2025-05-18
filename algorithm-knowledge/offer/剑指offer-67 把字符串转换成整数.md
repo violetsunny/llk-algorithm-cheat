@@ -25,7 +25,7 @@
 <strong>输出:</strong> 42
 </pre>
 
-## 解法
+### （记住）解法
 ```java
 class Solution {
     public int strToInt(String str) {

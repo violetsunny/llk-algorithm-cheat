@@ -125,7 +125,7 @@ class Solution {
 }
 ````
 
-### 解法：并查集
+### （记住）解法：并查集
 通过并查集的union来合并树，最后多少树就是多少岛屿
 ````java
 class Solution {

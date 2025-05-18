@@ -26,7 +26,7 @@
 - -100 <= Node.val <= 100
 - -200 <= x <= 200
 
-### 解法：遍历
+### （记住）解法：遍历
 ````java
 /**
  * Definition for singly-linked list.

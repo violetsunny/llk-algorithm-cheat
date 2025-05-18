@@ -55,7 +55,7 @@ class Solution {
 }
 ````
 
-### 解法二：贪心
+### （记住）解法二：贪心
 遍历过程中将最小的给first，次小的给second，找到比second大的就行
 ````java
 class Solution {

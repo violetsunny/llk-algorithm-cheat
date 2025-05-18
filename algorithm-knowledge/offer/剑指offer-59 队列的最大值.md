@@ -1,4 +1,4 @@
-# [59 - II. 队列的最大值](https://leetcode.cn/problems/dui-lie-de-zui-da-zhi-lcof/)
+## [59 - II. 队列的最大值](https://leetcode.cn/problems/dui-lie-de-zui-da-zhi-lcof/)
 
 ## 题目描述
 
@@ -35,11 +35,9 @@
 
 <!-- description:end -->
 
-## 解法
-
 <!-- solution:start -->
 
-### 方法一：双队列
+### （记住）方法一：双队列
 
 我们维护两个队列 $q_1$ 和 $q_2$，其中 $q_1$ 用于存储所有元素，而 $q_2$ 用于存储当前队列中的最大值。
 

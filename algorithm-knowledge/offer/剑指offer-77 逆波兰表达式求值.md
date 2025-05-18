@@ -1,4 +1,4 @@
-# 逆波兰表达式求值
+## [逆波兰表达式求值](https://leetcode.cn/problems/evaluate-reverse-polish-notation/description/)
 给你一个字符串数组 tokens ，表示一个根据 逆波兰表示法 表示的算术表达式。
 
 请你计算该表达式。返回一个表示表达式值的整数。
@@ -55,7 +55,7 @@
 适合用栈操作运算：遇到数字则入栈；遇到算符则取出栈顶两个数字进行计算，并将结果压入栈中.
 ````
 
-## 解法：栈
+### （记住）解法：栈
 遇到计算符号就弹出计算
 ````java
 public class EvalRPN {

@@ -101,7 +101,7 @@ class Solution {
 }
 ```
 
-#### （记住）帅地易懂写法
+### （记住）解法：数学-帅地易懂写法
 ```java
 class Solution {
     /**

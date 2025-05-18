@@ -43,7 +43,7 @@ class Solution {
 }
 ```
 
-#### 简单写法：
+### 解法：Arrays 简单写法
 ```java
 class Solution {
     public String minNumber(int[] nums) {

@@ -24,7 +24,7 @@
 - 1 <= n <= 20
 - -1000 <= matrix[i][j] <= 1000
 
-### 解法：原地修改
+### （解法）解法：原地修改
 ````java
 class Solution {
     public void rotate(int[][] matrix) {

@@ -24,7 +24,7 @@
 
 进阶：你能尽量减少完成的操作次数吗？
 
-### 解法一: 双指针
+### （记住）解法一: 双指针
 ````java
 class Solution {
     public void moveZeroes(int[] nums) {

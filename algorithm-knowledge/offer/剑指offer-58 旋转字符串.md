@@ -22,6 +22,9 @@ s 的 旋转操作 就是将 s 最左边的字符移动到最右边。
 - 1 <= s.length, goal.length <= 100
 - s 和 goal 由小写英文字母组成
 
+### （记住）解法：字符串匹配
+如果 goal 是 s + s 的子串，则返回 true。
+
 ````java
 class Solution {
     public boolean rotateString(String s, String goal) {

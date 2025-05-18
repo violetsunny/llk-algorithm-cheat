@@ -1,4 +1,4 @@
-# [58.3 轮转数组](https://leetcode.cn/problems/rotate-array/description/)
+## [58.3 轮转数组](https://leetcode.cn/problems/rotate-array/description/)
 
 给定一个整数数组 nums，将数组中的元素向右轮转 k 个位置，其中 k 是非负数。
 
@@ -31,7 +31,7 @@
 - 尽可能想出更多的解决方案，至少有 三种 不同的方法可以解决这个问题。
 - 你可以使用空间复杂度为 O(1) 的 原地 算法解决这个问题吗？
 
-## 解法：翻转整个数组
+### （记住）解法：翻转整个数组
 先翻转整个数组，在翻转k个，再翻转n-k;
 我们以 n=7，k=3 为例进行如下展示：
 ````
@@ -41,6 +41,7 @@
 翻转 [0,kmodn−1] 区间的元素	5 6 7 4 3 2 1
 翻转 [kmodn,n−1] 区间的元素	5 6 7 1 2 3 4
 ````
+
 ````java
 class Solution {
     public void rotate(int[] nums, int k) {

@@ -27,7 +27,7 @@
 - 1 <= nums.length <= 105
 - -104 <= nums[i] <= 104
 
-### 解法：归并排序
+### （记住）解法：归并排序
 
 ````java
 import java.util.*;

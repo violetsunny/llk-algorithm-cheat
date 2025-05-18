@@ -59,7 +59,7 @@ class Solution {
 }
 ````
 
-#### 优化写法
+### （记住）解法：动态规划 - 优化写法
 ````java
 class Solution {
     public int rob(int[] nums) {

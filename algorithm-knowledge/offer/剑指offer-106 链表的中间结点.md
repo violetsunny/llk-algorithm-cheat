@@ -58,11 +58,12 @@ class Solution {
 }
 ````
 
-#### 比较好的写法
+### （记住）解法：双指针 - 比较好的写法
 ````java
 class Solution {
     public ListNode middleNode(ListNode head) {
-        ListNode slow = head, fast = head;
+        ListNode slow = head;
+        ListNode fast = head;
         while (fast != null && fast.next != null) {
             slow = slow.next;
             fast = fast.next.next;

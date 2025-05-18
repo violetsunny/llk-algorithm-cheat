@@ -1,4 +1,4 @@
-# 回文链表
+## [回文链表](https://leetcode.cn/problems/palindrome-linked-list/description/)
 给你一个单链表的头节点 head ，请你判断该链表是否为回文链表。如果是，返回 true ；否则，返回 false 。
 
  
@@ -19,9 +19,28 @@
 进阶：你能否用 O(n) 时间复杂度和 O(1) 空间复杂度解决此题？
 
 ## 解法：取出+双指针
-
+取出值，然后双指针头尾比较。
 ````java
-
+class Solution {
+    public boolean isPalindrome(ListNode head) {
+        //取出+双指针
+        List<Integer> list = new ArrayList<>();
+        while (head != null) {
+            list.add(head.val);
+            head = head.next;
+        }
+        int left = 0;
+        int right = list.size() - 1;
+        while (left < right) {
+            if (!list.get(left).equals(list.get(right))) {
+                return false;
+            }
+            left++;
+            right--;
+        }
+        return true;
+    }
+}
 ````
 
 ## 解法：递归

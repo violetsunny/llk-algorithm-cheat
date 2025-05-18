@@ -30,7 +30,7 @@ sk == endWord
 - beginWord != endWord
 - wordList 中的所有字符串 互不相同
 
-### 解法： 广度优先搜索(BFS) + 优化建图 + 哈希映射
+### （记住）解法： 广度优先搜索(BFS) + 优化建图 + 哈希映射
 时间复杂度：$O(N×C^2)$,N 为 wordList 的长度，C 为单词的长度。
 ````java
 class Solution {

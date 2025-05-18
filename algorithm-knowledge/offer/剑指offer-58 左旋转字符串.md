@@ -60,7 +60,7 @@ class Solution {
 }
 ```
 
-#### 帅地简单写法
+### （记住）解法：两次遍历-帅地简单写法
 ````java
 class Solution {
 

@@ -34,7 +34,7 @@ candidates 中的每个数字在每个组合中只能使用 一次 。
 - 1 <= candidates[i] <= 50
 - 1 <= target <= 30
 
-### 解法：回溯
+### （记住）解法：回溯
 ````java
 class Solution {
     List<List<Integer>> res = new ArrayList<>();
