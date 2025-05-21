@@ -1,4 +1,4 @@
-# [删除链表中的节点](https://leetcode.cn/problems/delete-node-in-a-linked-list/description/)
+## [删除链表中的节点](https://leetcode.cn/problems/delete-node-in-a-linked-list/description/)
 有一个单链表的 head，我们想删除它其中的一个节点 node。
 
 给你一个需要删除的节点 node 。你将 无法访问 第一个节点  head。
@@ -33,7 +33,7 @@ node 后面的所有值顺序相同。
 - 链表中每个节点的值都是 唯一 的
 - 需要删除的节点 node 是 链表中的节点 ，且 不是末尾节点
 
-## （记住）解法：复制 + 替换
+### （记住）解法：复制 + 替换
 想删除当前，但是不知道前面的没办法重新指向。那我们就把后面那个顶替当前的，删后面那个。
 ````java
 /**

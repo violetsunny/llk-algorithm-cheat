@@ -104,7 +104,7 @@ public class Solution {
 }
 ```
 
-（记住）
+### （记住）解法：S型遍历（锯齿形层序遍历）
 ps: 也可以在第二个上面直接用标记sum++，根据sum%2==0,偶数可以LinkedList.addFirst();操作
 
 ````java
