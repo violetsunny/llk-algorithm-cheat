@@ -66,7 +66,7 @@ class Solution {
         qSort(nums, 0, nums.length - 1);
         String res = "";
         for (int num : nums) {
-            if (!res.equals("0")) {
+            if (!res.equals("0")) {//[0,0]
                 res += num;
             }
         }

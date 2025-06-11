@@ -1,4 +1,4 @@
-## [计算右侧小于当前元素的个数](https://leetcode.cn/problems/count-of-smaller-numbers-after-self/description/)
+## [315.计算右侧小于当前元素的个数](https://leetcode.cn/problems/count-of-smaller-numbers-after-self/description/)
 给你一个整数数组 nums ，按要求返回一个新数组 counts 。数组 counts 有该性质： counts[i] 的值是  nums[i] 右侧小于 nums[i] 的元素的数量。
 
 
@@ -76,7 +76,7 @@ class Solution {
             if (nums[i] <= nums[j]) {
                 temp[k] = nums[i];
                 tempIndex[k] = index[i];
-                //虽然i比j小，但是i比j之前都要大(也就是min+1到j-1的位置)，所以就是j-mid-1
+                //虽然i比j小，但是i比j之前都要大，因为如果j往右挪动了而i没有，说明j之前的都要小于当前i(也就是min+1到j-1的位置)，所以就是j-mid-1
                 ans[index[i]] += (j - mid - 1);
                 k++;
                 i++;
@@ -88,7 +88,7 @@ class Solution {
             }
         }
 
-        //剩余的数字
+        //剩余的数字 先放了右所以剩下左，说明右比左小
         while (i <= mid) {
             temp[k] = nums[i];
             tempIndex[k] = index[i];

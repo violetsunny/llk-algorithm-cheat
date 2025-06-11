@@ -72,7 +72,7 @@ class Solution {
             }
             int m = (l + r) >>> 1;
             if (nums[m] > nums[l]) {
-                l = m + 1;
+                l = m;
             } else if (nums[m] < nums[l]) {
                 r = m;//不能m-1，因为m本身可能是旋转点
             } else {
