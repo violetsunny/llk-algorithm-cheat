@@ -11,6 +11,7 @@
       
       $dp[i][j] = max(dp[i-1][j], dp[i-1][j - weight[i-1]] + value[i-1])$
 
+时间复杂度：$O(M \times N)$,空间复杂度：$O(M \times N)$
 ````java
 class Solution {
    public int knapsack(int[] weight, int[] value, int capacity) {
@@ -33,7 +34,7 @@ class Solution {
 ````
 
 ### （记住）解法：动态规划 - 空间优化
-逆序遍历容量以避免重复计算。
+逆序遍历容量以避免重复计算。时间复杂度：$O(M \times N)$,空间复杂度：$O(N)$
 ````java
 class Solution {
    public int knapsack(int[] weight, int[] value, int capacity) {
