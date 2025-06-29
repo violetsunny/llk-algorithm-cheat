@@ -61,7 +61,7 @@ class Solution {
 - 如果此时 `nums[mid] >= nums[start]`，说明 `mid` 位于左边的递增数组中，最小值在右边，因此，把 `start` 指向 `mid`，此时保持了 `start` 指向左边递增子数组；
 - 如果此时 `nums[mid] <= nums[end]`，说明 `mid` 位于右边的递增数组中，最小值在左边，因此，把 `end` 指向 `mid`，此时保持了 `end` 指向右边递增子数组。
 
-时间复杂度$O(logn)-O(n)$
+*时间复杂度$O(logn)-O(n)$*
 ```java
 class Solution {
     public int findMin(int[] nums) {

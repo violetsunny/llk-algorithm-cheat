@@ -73,8 +73,7 @@ class Solution {
 
 最后返回 $dp[n - 1]$ 即可。
 
-时间复杂度 $O(n)$，空间复杂度 $O(n)$。
-
+*时间复杂度 $O(n)$，空间复杂度 $O(n)$*
 
 ```java
 class Solution {

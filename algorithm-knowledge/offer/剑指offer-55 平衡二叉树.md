@@ -81,14 +81,9 @@ class Solution {
  * }
  */
 class Solution {
+    
     private boolean isBalanced = true;
-
-    /**
-     * 判断是否是平衡二叉树
-     *
-     * @param root 二叉树根结点
-     * @return 是否是平衡二叉树
-     */
+    
     public boolean isBalanced(TreeNode root) {
         if (root == null) {
             return true;

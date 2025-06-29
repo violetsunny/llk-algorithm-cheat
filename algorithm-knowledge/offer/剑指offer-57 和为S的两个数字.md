@@ -21,6 +21,7 @@
 
 利用 set 记录元素即可。
 
+*时间复杂度：$O(n)$*
 ```java
 import java.util.HashSet;
 import java.util.Set;
@@ -52,6 +53,8 @@ class Solution {
 
 ### （记住）解法：双指针
 左右指针移动，但是前提是必须有序。
+
+*时间复杂度：$O(n)$*
 ```java
 
 import java.util.Arrays;

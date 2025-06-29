@@ -68,13 +68,15 @@ class Solution {
 }
 ```
 ### （记住）解法：双指针-帅地简单写法
+
+*时间复杂度：$O(n)$*
 ```java
 class Solution {
 
     /**
      * 找出和为sum的连续正整数序列
      *
-     * @param sum 和
+     * @param target 和
      * @return 结果列表
      */
     public List<List<Integer>> findContinuousSequence(int target) {
@@ -90,7 +92,7 @@ class Solution {
                 sum = sum - i;//减去左边
                 i++;//左边移动
             }else {
-                res.add(getList(i,j));
+                res.add(getList(i,j));//相等就可以取出当前i到j之间的数
                 sum = sum - i;//减去左边
                 i++;//都移动检查下一个窗口
                 j++;

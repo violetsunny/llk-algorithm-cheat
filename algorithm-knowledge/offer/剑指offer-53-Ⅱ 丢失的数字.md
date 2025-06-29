@@ -53,6 +53,44 @@ class Solution {
     }
 }
 ````
+
+### 解法：二分查找
+
+找出第一个与下标不对应的数字即可。
+
+特殊情况：
+
+- 下标都对应，那么应该返回 `最后一个数+1`；
+- 缺失的数字是第一个，那么返回 0。
+
+```java
+class Solution {
+    /**
+     * 获取0~n-1缺失的数字
+     *
+     * @param nums 数组
+     * @return 缺失的数字
+     */
+    public int missingNumber(int[] nums) {
+        if (nums == null || nums.length == 0) {
+            return 0;
+        }
+        int n = nums.length;
+        int start = 0, end = n - 1;
+        while (start <= end) {
+            int mid = start + ((end - start) >> 1);
+            if (nums[mid] != mid) {
+                end = mid - 1;
+            } else {
+                start = mid + 1;
+            }
+        }
+        return nums[start] == start ? start + 1 : start;
+
+    }
+}
+```
+
 ### 解法：位运算
 通过a ^ a = 0;的特性，对0 - n的数和nums的数进行异或，那最后剩下的就是单独存在的数就是缺失的数
 ````java

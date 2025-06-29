@@ -29,6 +29,7 @@
 这样两个数组再异或后就是两个不同的数。
 ````
 
+时间复杂度：$O(n)$
 ```java
 class Solution {
     /**
@@ -77,6 +78,8 @@ class Solution {
 ```
 ### （记住）解法：位运算 - 帅地的简单写法
 拆开计算
+
+时间复杂度：$O(n)$
 ````java
 class Solution {
 
@@ -91,7 +94,7 @@ class Solution {
         int[] res = new int[2];
         int m = indexOfM(xorRes);//找下标
         for (int e : nums) {
-            if ((e & m) == 1) {//然后进行与&操作看是否为1，然后就可以拆开了
+            if ((e & m) == 1) {//然后进行与&操作看是否为1，然后就可以拆开成两个数组进行^操作，相同的会消掉，留下不同的，两个数组不同的就是两个不同的数
                 res[0] ^= e;//拆开计算
             } else {
                 res[1] ^= e;//也可以：res[1] = res[0] ^ xorRes,因为xorRes本来就是e0 ^ e1来的
@@ -105,7 +108,7 @@ class Solution {
     private int indexOfM(int val) {
         int m = 1;
         while ((m & val) == 0) {
-            m = m << 1; //左移找到第一个不同位的位置的数
+            m = m << 1; //左移找到第一个不同位的位置的数，是最低位不相等的位置
         }
         return m;
 

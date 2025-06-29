@@ -51,3 +51,17 @@ class Solution {
     }
 }
 ```
+
+### $高斯求和公式： total = n*(n+1)/2$
+```java
+class Solution {
+    public int missingNumber(int[] nums) {
+        int n = nums.length;
+        int total = n * (n + 1) / 2;
+        for (int num : nums) {
+            total -= num;
+        }
+        return total;
+    }
+}
+```

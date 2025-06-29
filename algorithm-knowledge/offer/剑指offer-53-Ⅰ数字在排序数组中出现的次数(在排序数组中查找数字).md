@@ -32,59 +32,60 @@ class Solution {
      * @param k 数字k
      * @return k在数组中出现的次数
      */
-    public int getNumberOfK(int[] nums, int k) {
+    public int getNumberOfK(int[] nums, int target) {
         if (nums == null || nums.length == 0) {
             return 0;
         }
         int start = 0, end = nums.length - 1;
-        int first = getFirstK(nums, start, end, k);
-        int last = getLastK(nums, start, end, k);
+        int first = getFirstK(nums, start, end, target);
+        int last = getLastK(nums, start, end, target);
         if (first > -1 && last > -1) {
             return last - first + 1;
         }
         return 0;
     }
 
-    private int getFirstK(int[] nums, int start, int end, int k) {
-        if (start > end) {
+    private int getFirstK(int[] nums, int left, int right, int target) {
+        if (left > right) {
             return -1;
         }
-        int m = start + ((end - start) >> 1);
-        if (nums[m] == k) {
-            if (m == 0 || (m > 0 && nums[m - 1] != k)) {
-                return m;
+        int result = -1; // 初始化结果为 -1，若未找到则返回该值
+        while (left <= right) {
+            int mid = left + (right - left) / 2;
+
+            if (arr[mid] == target) {
+                result = mid;
+                right = mid - 1;
+            } else if (arr[mid] < target) {
+                left = mid + 1;
             } else {
-                end = m - 1;
-            }
-        } else {
-            if (nums[m] > k) {
-                end = m - 1;
-            } else {
-                start = m + 1;
+                right = mid - 1;
             }
         }
-        return getFirstK(nums, start, end, k);
+
+        return result;
     }
 
-    private int getLastK(int[] nums, int start, int end, int k) {
-        if (start > end) {
+    private int getLastK(int[] nums, int left, int right, int target) {
+        if (left > right) {
             return -1;
         }
-        int m = start + ((end - start) >> 1);
-        if (nums[m] == k) {
-            if (m == nums.length - 1 || (m < nums.length - 1 && nums[m + 1] != k)) {
-                return m;
+        int result = -1; // 初始化结果为 -1，若未找到则返回该值
+
+        while (left <= right) {
+            int mid = left + (right - left) / 2;
+
+            if (arr[mid] == target) {
+                result = mid;
+                left = mid + 1;
+            } else if (arr[mid] < target) {
+                left = mid + 1;
             } else {
-                start = m + 1;
-            }
-        } else {
-            if (nums[m] > k) {
-                end = m - 1;
-            } else {
-                start = m + 1;
+                right = mid - 1;
             }
         }
-        return getLastK(nums, start, end, k);
+
+        return result;
 
     }
 }

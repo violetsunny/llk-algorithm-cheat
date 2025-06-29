@@ -14,7 +14,7 @@ package top.kexcellent.algorithm.code;
  * @author kanglele
  * @version $Id: SearchNum, v 0.1 2024/11/28 09:11 user Exp $
  */
-public class SearchNum {
+public class SearchNumTemplate {
 
     // 寻找第一个大于等于target的数
     public static int findFirstGreaterEqual(int[] arr, int target) {
@@ -101,7 +101,7 @@ public class SearchNum {
     }
 
     public static void main(String[] args) {
-        int[] arr = {1, 3, 5, 5, 5, 7, 9};
+        int[] arr = {1, 3,3, 5, 5, 5, 7,9, 9};
         int target = 5;
 
         System.out.println("寻找第一个大于等于 " + target + " 的数：" + findFirstGreaterEqual(arr, target));
