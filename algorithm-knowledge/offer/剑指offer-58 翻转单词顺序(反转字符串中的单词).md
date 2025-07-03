@@ -51,6 +51,8 @@ class Solution {
 ```
 
 ### （记住）解法: 双指针
+
+*时间复杂度：$O(n)$，空间复杂度：$O(n)$*
 ```java
 class Solution {
     /**

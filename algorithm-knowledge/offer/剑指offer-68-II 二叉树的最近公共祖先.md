@@ -34,7 +34,7 @@
 -   如果左子树没找到，递归函数返回 `null`，证明 $p$ 和 $q$ 同在 $root$ 的右侧，那么最终的公共祖先就是右子树找到的结点；
 -   如果右子树没找到，递归函数返回 `null`，证明 $p$ 和 $q$ 同在 $root$ 的左侧，那么最终的公共祖先就是左子树找到的结点。
 
-时间复杂度 $O(n)$，空间复杂度 $O(n)$。其中 $n$ 是二叉树的节点数。
+*时间复杂度 $O(n)$，空间复杂度 $O(n)$。其中 $n$ 是二叉树的节点数*
 ```java
 /**
  * Definition for a binary tree node.
@@ -47,11 +47,17 @@
  */
 class Solution {
     public TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
-        if (root == null || root == p || root == q) return root;
+        if (root == null || root == p || root == q) {
+            return root;
+        }
         TreeNode left = lowestCommonAncestor(root.left, p, q);//通过null判断是否找到
         TreeNode right = lowestCommonAncestor(root.right, p, q);
-        if (left == null) return right;//不在左，就都是右
-        if (right == null) return left;//不在右，就都是左
+        if (left == null) {
+            return right;//不在左，就都是右
+        }
+        if (right == null) {
+            return left;//不在右，就都是左
+        }
         return root;//左右，返回root
     }
 }

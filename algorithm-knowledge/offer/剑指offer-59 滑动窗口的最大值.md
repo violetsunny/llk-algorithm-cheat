@@ -100,6 +100,8 @@ class Solution {
  1  3  -1  -3 [5  3  6] 7       6               [6]
  1  3  -1  -3  5 [3  6  7]      7               [7]
 </pre>
+
+*时间复杂度：$O(n)$，空间复杂度：$O(k)$*
 ```java
 class Solution {
     public int[] maxSlidingWindow(int[] nums, int k) {

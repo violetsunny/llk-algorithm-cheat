@@ -17,6 +17,7 @@
 
 遍历链表，每个链表结点值 `push` 进栈，最后将栈中元素依次 `pop` 到数组中。
 
+*时间复杂度$O(n)$，空间复杂度$O(n)$*
 ```java
 /**
  * Definition for singly-linked list.

@@ -61,6 +61,8 @@ class Solution {
 ```
 
 ### （记住）解法：两次遍历-帅地简单写法
+
+*时间复杂度：$O(n)$，空间复杂度：$O(n)$*
 ````java
 class Solution {
 

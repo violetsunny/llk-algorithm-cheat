@@ -38,7 +38,7 @@ class Solution {
 ````
 
 ### 解法二：递归
-
+*时间复杂度$O(n)$，空间复杂度$O(n)$*
 ````java
 /**
  * Definition for singly-linked list.
@@ -62,6 +62,7 @@ class Solution {
 ````
 
 ### （记住）解法三：原地反转
+*时间复杂度$O(n)$，空间复杂度$O(1)$*
 ```java
 /**
  * Definition for singly-linked list.

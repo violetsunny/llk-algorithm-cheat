@@ -32,7 +32,7 @@
 - 从第一个不是 0 的数字开始遍历，与后一个数字比较，如果相等，直接返回 `false`；否则累计 `gap`；
 - 判断 `zeroCount` 是否大于等于 `gap`。
 
-$O(n*logn)$
+*时间复杂度：$O(n log n)$*
 ```java
 import java.util.Arrays;
 
@@ -79,6 +79,7 @@ class Solution {
 1. 不存在重复的数，大小王除外
 2. 最大值 - 最小值 < 5,大小王除外
 
+*时间复杂度：$O(n log n)$*
 ```java
 import java.util.*;
 
