@@ -67,16 +67,16 @@ class Solution {
     public int findMin(int[] nums) {
         int l = 0, r = nums.length - 1;
         while (l < r) {
-            if (nums[l] < nums[r]) {//l r内单调递增，就可以跳出。
+            if (nums[l] < nums[r]) {//l r内单调递增，就可以跳出。不能是等于 2 1 2 2 2
                 break;
             }
-            int m = (l + r) >>> 1;
-            if (nums[m] > nums[l]) {
-                l = m;
-            } else if (nums[m] < nums[l]) {
-                r = m;//不能m-1，因为m本身可能是旋转点
+            int mid = l + (r - l) / 2;
+            if (nums[mid] > nums[l]) {
+                l = mid;
+            } else if (nums[mid] < nums[l]) {
+                r = mid;//不能m-1，因为mid本身可能是旋转点
             } else {
-                ++l;//往右移动，也可以认为剪枝。不能直接l=m+1跨过去，因为 2 1 2 2 2
+                ++l;//往右移动，也可以认为剪枝。不能直接l=mid+1跨过去，因为 2 1 2 2 2
             }
         }
         return nums[l];

@@ -102,6 +102,15 @@ class Solution {
 ```
 
 ### （记住）解法：数学-帅地易懂写法
+- 当 n>5 时，可以把它尽量剪成长度为 3 的绳子段就是$3^m$，剪完后可能会余1或2，
+  - （1）余1的时候因该和3合并，就是$3^{(m-1)} \times 4$；$（3 \times 3 \times 1 < 3 \times 4）$
+  - （2）余2的时候就是5的情况，还是不合并，就是 $3^m \times 2$。$（3 \times 3 \times 2 > 3 \times 1 \times 4）$
+- 当 n=5 时，应该尽可能多地剪长度为 3 的绳子段，所以剪成$3 \times 2$。
+- 当 n=4 时，剪成两根长度为 2 的绳子，其实没必要剪，只是题目的要求是至少要剪一刀。
+- 当 n=3或者2时，n-1;
+- 总结：将绳子尽量切分成 `2,3,4` 段，也就是和`3`的余数`2,0,1`.
+
+*时间复杂度$O(1)$，空间复杂度$O(1)$*
 ```java
 class Solution {
     /**
@@ -114,14 +123,14 @@ class Solution {
             return length - 1;
         }
 
-        int timesOf3 = length / 3;//能有多少个3
+        int times = length / 3;//能有多少个3
         int mod = length % 3;
         if(mod == 0){
-            return (int)Math.pow(3, timesOf3);//刚好都是3
+            return (int)Math.pow(3, times);//刚好都是3
         } else if(mod == 1){
-            return (int)Math.pow(3, timesOf3 - 1) * 4;//余1，和3合并
+            return (int)Math.pow(3, times - 1) * 4;//余1，和3合并
         } else {
-            return (int)Math.pow(3, timesOf3) * 2;//余2，拆开不合并
+            return (int)Math.pow(3, times) * 2;//余2，拆开不合并
         }
     }
 }
@@ -168,6 +177,7 @@ class Solution {
 <!-- solution:start -->
 
 ### 方法一：数学（快速幂）
+和上面不一样的就是要取余
 
 当 $n \lt 4$，此时 $n$ 不能拆分成至少两个正整数的和，因此 $n - 1$ 是最大乘积。当 $n \ge 4$ 时，我们尽可能多地拆分 $3$，当剩下的最后一段为 $4$ 时，我们将其拆分为 $2 + 2$，这样乘积最大。
 
@@ -181,18 +191,18 @@ class Solution {
         if (n < 4) {
             return n - 1;
         }
-        int timesOf3 = n / 3;
+        int times = n / 3;
         if (n % 3 == 0) {
-            return (int) qpow(3, timesOf3);
+            return (int) qpow(3, times);
         }
         if (n % 3 == 1) {//结果可能超过
-            return (int) (4L * qpow(3, timesOf3 - 1) % mod);
+            return (int) (4L * qpow(3, times - 1) % mod);
         }
-        return (int) (2L * qpow(3, timesOf3) % mod);
+        return (int) (2L * qpow(3, times) % mod);
     }
 
     /**
-     * 有个推导公式： 必要条件 a < mod
+     * 有个推导公式： 必要条件 a < mod，现在题目中mod非常大所以成立
      * res(n) = a^n % mod = ((a^(n-1) % mod) * (a % mod)) % mod
      *        = ((a^(n-1) % mod) * a) % mod  而其中 res(n-1) = a^(n-1) % mod
      * 所以：
@@ -221,7 +231,7 @@ class Solution {
     // O(n)
     private long qpow2(int a,int n){
         long res = 1;
-        for(int i=1;i<=n;i++){
+        for(int i = 1;i <= n;i++) {
             res = res * a % mod;
         }
         return res;

@@ -39,6 +39,7 @@
 
 从坐标(0, 0) 开始移动，当它准备进入坐标(i, j)，判断是否能进入，如果能，再判断它能否进入 4 个相邻的格子 (i-1, j), (i+1, j), (i, j-1), (i, j+1)。
 
+*时间复杂度$O(m*n)$，空间复杂度$O(m*n)$*
 ```java
 class Solution {
 
@@ -56,15 +57,15 @@ class Solution {
     }
 
     private int getCount(int threshold, int rows, int cols, int i, int j, boolean[][] visited) {
-        if (i < 0 || i >= rows || j < 0 && j >= cols
+        if (i < 0 || i >= rows || j < 0 || j >= cols
                 || visited[i][j] || (getDigitSum(i) + getDigitSum(j) > threshold)) {
             return 0;
         }
         
         visited[i][j] = true;//因为是能访问到所有格子，所以不能还原，会重复加
         return 1 + getCount(threshold, rows, cols, i + 1, j, visited)
-                + getCount(threshold, rows, cols, i - 1, j, visited)
-                + getCount(threshold, rows, cols, i, j + 1, visited)//i-1 j-1 可以不用搜索，因为这个threshold规则
+                + getCount(threshold, rows, cols, i - 1, j, visited)//i-1 j-1 可以不用搜索，因为这个threshold规则
+                + getCount(threshold, rows, cols, i, j + 1, visited)
                 + getCount(threshold, rows, cols, i, j - 1, visited);
     }
 

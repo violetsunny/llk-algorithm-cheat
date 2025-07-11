@@ -85,22 +85,22 @@ class Solution {
 ### （记住）解法：动态规划 - 帅地的比较好理解的写法
 
 判断字符串是否与模式串匹配
-- $p[j] == '.' || p[j] == s[i]$ : 
+- $p[j] == '.' || s[i] == p[j]$ : 
    - $dp[i][j]=dp[i-1][j-1]$;
 
 - $p[j] == '*'$ ：
-   - $p[j-1] != s[i]$ : 
+   - $s[i] != p[j-1]$ : 
       - $dp[i][j]=dp[i][j-2];$ //`*`代表 0 个，就是 i 和 j-2 比,例如 a 和 as`*`
-   - $p[j-1] == s[i] || p[j-1] == '.' $:
-      - $dp[i][j]=dp[i][j-1];$ //`*`代表 1 个，就是 i 和 j-1 比,例如 aa 和 aa`*`
+   - $s[i] == p[j-1] || p[j-1] == '.' $:
+      - $dp[i][j]=dp[i][j-1];$ //`*`代表 1 个，就是 i 和 j-1 比,例如 aa 和 aa`*` 或者 aa 和 a`.``*`
       - $dp[i][j]=dp[i][j-2];$ //`*`代表 0 个，例如a 和 aa`*`
       - $dp[i][j]=dp[i-1][j];$ //`*`代表多个，就是`*`可以指向多个 j-1 的字符，
                                           i 和 j 的相等就是 i-1 和 j 的相等，因为 j 又是`*`所以看的是 i-1 和 j-1 ，
                                           因为会有多个，所以是 i-1 和 `*` 比，
                                           所以应该 i-1 往前走，一直到 `*` 代表 0 或 1 为止。
-                                          例如：aaaa 和 a`*`
+                                          例如：aaaaa 和 a`*`
 
-
+*时间复杂度：$O(m * n)$，空间复杂度：$O(m + n)$*
 ````java
 class Solution {
     public boolean isMatch(String s, String p) {
@@ -117,13 +117,14 @@ class Solution {
         // 循环匹配 从1 - length
         for (int i = 1; i <= m; i++) {
             for (int j = 1; j <= n; j++) {
+                //匹配相等的情况
                 if (s.charAt(i - 1) == p.charAt(j - 1) || p.charAt(j - 1) == '.') {
                     dp[i][j] = dp[i - 1][j - 1];
                 }
                 if (p.charAt(j - 1) == '*') {
-                    dp[i][j] = dp[i][j - 2];
+                    dp[i][j] = dp[i][j - 2];//0个，等或不相等都可以有0个
                     if (s.charAt(i - 1) == p.charAt(j - 2) || p.charAt(j - 2) == '.') {
-                        dp[i][j] = dp[i][j] || dp[i][j - 1] || dp[i - 1][j];
+                        dp[i][j] = dp[i][j] || dp[i][j - 1] || dp[i - 1][j];// 1个 多个
                     }
                 }
             }

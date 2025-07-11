@@ -29,38 +29,49 @@ class Solution {
 数据大用这个，效率更好
 ```java
 class Solution {
-    int[] res;
-    int count;
+    // 用于存储最终结果的列表
+    StringBuilder result = new StringBuilder();
     int n;
     char[] num;
     char[] loop = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9'};
 
-    public int[] countNumbers(int n) {
+    public String countNumbers(int n) {
         this.n = n;
-        this.count = 0;
-        //用来保存最终数字结果的
-        res = new int[(int) Math.pow(10, n) - 1];
+        
         //num数组用来表示字符串，比如n等于2，则num数组为['0''0']、['0''1']、['0''2']...后边是将它转为字符串并按照左边界的位置进行截取的
         num = new char[n];
         dfs(0);//从char数组的第0位开始
-        return res;
+        // 去除最后一个逗号
+        if (result.length() > 0) {
+            result.deleteCharAt(result.length() - 1);
+        }
+        return result.toString();
     }
 
     private void dfs(int x) {
         //结束条件：当前x的下标越过char数组的最后一位下标n-1，此时记录结果
         if (x == n) {
-            String s = String.valueOf(num);
-            int cur = Integer.parseInt(s);
-            if (cur != 0) {//防止将"0"、"00"、"000"加进来
-                res[count++] = Integer.parseInt(s);
+            String s = removeLeadingZeros(String.valueOf(num));//防止将"0"、"00"、"000"加进来
+            // 过滤掉 0
+            if (!s.isEmpty()) {
+                result.append(s).append(",");
             }
             return;
         }
-        //给char数组第x位添加数字，添加完后进入下一位
+        //为当前位设置 0 - 9 的数字，添加完后进入下一位
         for (char i : loop) {// 比如x=2,运行：0 0,0 1,0 2,0 3,0 4....
             num[x] = i;
             dfs(x + 1);
         }
+    }
+
+    // 去除字符串前导零的方法
+    private String removeLeadingZeros(String s) {
+        int i = 0;
+        while (i < s.length() - 1 && s.charAt(i) == '0') {
+            i++;
+        }
+        return s.substring(i);
     }
 }
 ```

@@ -63,7 +63,7 @@ class Solution {
         }
 
         int i = s2, cnt = 0;
-        for (; i <= e2; ++i) {
+        for (; i <= e2; ++i) {// 遍历中序遍历找到s2到根节点的左子树节点数
             if (inorder[i] == rootVal) {//找到根节点在中序遍历的位置 i
                 break;
             }
