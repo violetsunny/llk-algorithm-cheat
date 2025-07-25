@@ -88,6 +88,7 @@ class Solution {
 `4 2 3 1` </br>
 `就是 x1(42的逆序) + x2(31的逆序) + x3(整体的24对13)`
 
+*时间复杂度 $O(n \times \log n)$，空间复杂度 $O(n)$。其中 $n$ 为数组长度*
 ````java
 class Solution {
 

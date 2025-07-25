@@ -45,9 +45,11 @@ class Solution {
     }
 
     private boolean isSymmetric(TreeNode root1, TreeNode root2) {
+        //如果都为空，返回true
         if (root1 == null && root2 == null) {
             return true;
         }
+        //如果一个为空，一个不为空，或者 值不一样 返回false
         if (root1 == null || root2 == null || root1.val != root2.val) {
             return false;
         }

@@ -64,12 +64,19 @@ class Solution {
     }
 
     private boolean isSame(TreeNode root1, TreeNode root2) {
+        //如果root2为空，说明已经比较完了，返回true
         if (root2 == null) {
             return true;
         }
-        if (root1 == null || root1.val != root2.val) {
+        //如果root1为空，说明root2还没有比较完，返回false
+        if (root1 == null) {
             return false;
         }
+        //如果root1和root2的值不相等，返回false
+        if (root1.val!= root2.val) {
+            return false;
+        }
+        //继续检查左右子树是否相等
         return isSame(root1.left, root2.left) && isSame(root1.right, root2.right);
     }
 }

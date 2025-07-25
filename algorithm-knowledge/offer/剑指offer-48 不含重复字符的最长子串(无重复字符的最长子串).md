@@ -51,7 +51,8 @@ class Solution {
 }
 ```
 
-### 解法：动态规划 - 空间优化
+### （记住）解法：动态规划 - 空间优化
+*时间复杂度：$O(n)$，空间复杂度：$O(1)$*
 ```java
 class Solution {
     
@@ -84,6 +85,7 @@ class Solution {
 
 滑动窗口：l,r r右移动，如果有重复字符l右移动
 
+*时间复杂度：$O(n log n)$，空间复杂度：$O(1)$*
 ```java
 class Solution {
     public int lengthOfLongestSubstring(String s) {

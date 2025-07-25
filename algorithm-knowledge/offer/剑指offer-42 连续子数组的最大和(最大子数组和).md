@@ -56,7 +56,7 @@ class Solution {
         int pre = 0;
         int max = nums[0];
         for (int num : nums) {
-            pre = Math.max(num, pre + num);
+            pre = Math.max(num, pre + num);// pre = Math.max(pre,0) + num;
             max = Math.max(max, pre);
         }
         return max;

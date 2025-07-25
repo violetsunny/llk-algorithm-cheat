@@ -59,7 +59,7 @@ class Solution {
 ### （记住）解法：快排
 代码按照快排模板。
 
-时间复杂度：`O(logn)`，空间复杂度：`O(n)`
+*时间复杂度：$O(logn)$，空间复杂度：$O(n)$*
 ```java
 class Solution {
     public String minNumber(int[] nums) {
@@ -87,12 +87,15 @@ class Solution {
         int i = low;
         int j = high;
         while (i < j) {
+            //找到大的放右边
             while (i < j && (nums[i] + "" + base).compareTo(base + "" + nums[i]) <= 0) {
                 i++;
             }
+            //找到小的放左边
             while (i < j && (nums[j] + "" + base).compareTo(base + "" + nums[j]) >= 0) {
                 j--;
             }
+            //交换,就是小的在左边
             swap(nums, i, j);
         }
         swap(nums, i, high);

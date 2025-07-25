@@ -42,8 +42,8 @@ class MinStack {
 
     /** initialize your data structure here. */
     public MinStack() {
-        stack1 = new Stack<>();
-        stack2 = new Stack<>();
+        stack1 = new Stack<>();//stack1正常存放数据
+        stack2 = new Stack<>();//stack2存放当前最小值
     }
 
     public void push(int x) {
@@ -52,7 +52,8 @@ class MinStack {
         if (stack2.isEmpty() || stack2.peek() > x) {
             stack2.push(x);
         } else {
-            stack2.push(stack2.peek());//为了stack1和stack2数目相等，这样pop就不用判断。所以会有重复的最小值，这样同时stack1.pop(),stack2.pop()不用判断
+            //为了stack1和stack2数目相等，这样pop就不用判断。所以会有重复的最小值，这样同时stack1.pop(),stack2.pop()不用判断
+            stack2.push(stack2.peek());
         }
     }
 

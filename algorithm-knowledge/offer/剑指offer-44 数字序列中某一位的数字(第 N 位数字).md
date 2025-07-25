@@ -108,11 +108,11 @@ class Solution {
             n = (int) (n - count);//找到减去后剩下的n
             bit = bit * 10;// 1 10 100 1000 ...
             i++;//第几位 十位是2位 百位是3位 千位是4位
-            count = bit * i * 9;//当前位多少数，比如十位：10-99 180个
+            count = bit * i * 9;//当前位多少数，比如十位：10-99 10*2*9=180个
         }
-        long num = bit + (n - 1) / i;//找到哪个数字，因为从0开始所以当前n-1，i表示当前几位数字：3位，每个数字长度3，所以要/3。又是从第几位的数字往后数
-        int idx = (n - 1) % i + 1;//找到下标，比如3位，肯定是3的余数
-        int res = String.valueOf(num).charAt(idx - 1) - '0';
+        long num = bit + (n - 1) / i;//找到哪个数字，因为从0开始所以当前n-1，i表示当前几位数字：3位，每个数字长度3，所以要/3。就是从第几位的数字往后数
+        int idx = (n - 1) % i + 1;//找到下标，比如3位，肯定是3的余数,+1标识第几个数
+        int res = String.valueOf(num).charAt(idx - 1) - '0';//比如num=370，idx=1，就是3
 //        int res = (int)(num / Math.pow(10, i - idx)) % 10;
         return res;
     }
