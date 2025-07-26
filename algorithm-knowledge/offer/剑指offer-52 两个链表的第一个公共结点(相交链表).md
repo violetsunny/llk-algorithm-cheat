@@ -81,6 +81,8 @@ class Solution {
 A 到头走 B;</br>
 B 到头走 A;</br>
 最终会相遇
+
+*时间复杂度 $O(m + n)$，空间复杂度 $O(1)$*
 ````java
 class Solution {
 

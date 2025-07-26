@@ -23,13 +23,14 @@
 
 找最后一个 k 也同理。
 
+*时间复杂度 $O(log n)$*
 ```java
 class Solution {
     /**
      * 求数字k在排序数组中出现的次数
      *
      * @param nums 数组
-     * @param k 数字k
+     * @param target 数字k
      * @return k在数组中出现的次数
      */
     public int getNumberOfK(int[] nums, int target) {
@@ -53,10 +54,10 @@ class Solution {
         while (left <= right) {
             int mid = left + (right - left) / 2;
 
-            if (arr[mid] == target) {
+            if (nums[mid] == target) {
                 result = mid;
                 right = mid - 1;
-            } else if (arr[mid] < target) {
+            } else if (nums[mid] < target) {
                 left = mid + 1;
             } else {
                 right = mid - 1;
@@ -75,10 +76,10 @@ class Solution {
         while (left <= right) {
             int mid = left + (right - left) / 2;
 
-            if (arr[mid] == target) {
+            if (nums[mid] == target) {
                 result = mid;
                 left = mid + 1;
-            } else if (arr[mid] < target) {
+            } else if (nums[mid] < target) {
                 left = mid + 1;
             } else {
                 right = mid - 1;

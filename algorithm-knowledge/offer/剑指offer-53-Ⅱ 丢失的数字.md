@@ -63,6 +63,7 @@ class Solution {
 - 下标都对应，那么应该返回 `最后一个数+1`；
 - 缺失的数字是第一个，那么返回 0。
 
+*时间复杂度 $O(log n)$*
 ```java
 class Solution {
     /**
@@ -126,7 +127,8 @@ class Solution {
 ````
 
 ### （记住）$高斯求和公式： total = n*(n+1)/2$
-````java
+*时间复杂度 $O(n)$*
+```java
 class Solution {
     public int missingNumber(int[] nums) {
         int n = nums.length;
