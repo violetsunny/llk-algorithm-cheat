@@ -24,6 +24,7 @@
 
 递归即可。后序遍历
 
+*时间复杂度 $O(n)$，空间复杂度 $O(n)$*
 ```java
 /**
  * Definition for a binary tree node.

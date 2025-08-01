@@ -79,7 +79,7 @@ class Solution {
 1. 不存在重复的数，大小王除外
 2. 最大值 - 最小值 < 5,大小王除外
 
-*时间复杂度：$O(n log n)$*
+*时间复杂度：$O(n)$，空间复杂度：$O(n)$*
 ```java
 import java.util.*;
 
@@ -96,15 +96,15 @@ class Solution {
         int min = 20;
         int max = -1;
         for (int num : numbers) {
-            if (num == 0) {
+            if (num == 0) {// 大小王除外
                 continue;
             }
-            if (visted.contains(num)) {
+            if (visted.contains(num)) {// 不重复
                 return false;
             }
             visted.add(num);
-            min = Math.min(min,num);
-            max = Math.max(max,num);
+            min = Math.min(min,num);//找到最小值
+            max = Math.max(max,num);//找到最大值
         }
         return max - min < 5;// 0 6 7 0 9 true. 9-6=3 < 5
     }

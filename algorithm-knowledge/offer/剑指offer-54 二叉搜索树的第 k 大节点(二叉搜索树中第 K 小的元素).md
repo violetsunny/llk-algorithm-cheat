@@ -66,7 +66,7 @@
  反序中序遍历(右中左)：6 5 4 3 2 1
 ````
 
-时间复杂度 $O(n)$，空间复杂度 $O(n)$。其中 $n$ 是二叉搜索树的节点个数。
+*时间复杂度 $O(n)$，空间复杂度 $O(n)$。其中 $n$ 是二叉搜索树的节点个数。*
 
 <!-- tabs:start -->
 
@@ -92,7 +92,7 @@ class Solution {
     }
 
     private void dfs(TreeNode root) {
-        if (root == null || k == 0) {
+        if (root == null || k <= 0) {
             return;
         }
         dfs(root.right);
