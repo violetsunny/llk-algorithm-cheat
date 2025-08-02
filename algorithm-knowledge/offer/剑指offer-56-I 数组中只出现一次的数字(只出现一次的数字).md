@@ -28,7 +28,7 @@
 - 除了某个元素只出现一次以外，其余每个元素均出现两次。
 
 ### （记住）解法：位运算
-
+*时间复杂度 $O(n)$，空间复杂度 $O(1)$*
 ````java
 class Solution {
     public int singleNumber(int[] nums) {

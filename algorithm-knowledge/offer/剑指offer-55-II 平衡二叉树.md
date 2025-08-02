@@ -69,7 +69,7 @@ class Solution {
 ```
 
 ### （记住）解法：DFS - 优化，如果有子树不符合没必要继续递归
-
+*时间复杂度 $O(n)$，空间复杂度 $O(n)$*
 ```java
 /**
  * Definition for a binary tree node.

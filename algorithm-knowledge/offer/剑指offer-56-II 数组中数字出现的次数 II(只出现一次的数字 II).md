@@ -49,6 +49,7 @@ class Solution {
 }
 ```
 ### （记住）解法：数学-帅地写法
+*时间复杂度 $O(n)$，空间复杂度 $O(1)$*
 ```java
 class Solution {
     /**
@@ -61,7 +62,7 @@ class Solution {
         if (nums == null || nums.length == 0) {
             return 0;
         }
-        int n = nums.length;
+        
         int m = 1;
         int res = 0;
         for(int i = 0;i < 32;i++) {
@@ -81,7 +82,8 @@ class Solution {
 ```
 
 ### 解法：数字电路设计优化(有限状态自动机)
-O(n) O(1)
+*时间复杂度 $O(n)$，空间复杂度 $O(1)$*
+
 ````
 按照和3取余数为 0,1,2 即：00 01 10
 异或运算：x ^ 0 = x​ ， x ^ 1 = ~x

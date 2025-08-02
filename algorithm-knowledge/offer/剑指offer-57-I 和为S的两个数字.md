@@ -71,7 +71,7 @@ class Solution {
         if (nums == null || nums.length < 2) {
             return null;
         }
-        Arrays.sort(nums);//先排序
+        Arrays.sort(nums);//先排序才能用双指针
         int i = 0;
         int j = nums.length - 1;
         while (i < j) {

@@ -54,8 +54,8 @@ class Solution {
         int minprice = Integer.MAX_VALUE;
         int maxprofit = Integer.MIN_VALUE;
         for (int i = 0; i < prices.length; i++) {
-            minprice = Math.min(minprice,prices[i]);
-            maxprofit = Math.max(maxprofit,prices[i] - minprice);
+            minprice = Math.min(minprice,prices[i]);// 记录当前最低价格
+            maxprofit = Math.max(maxprofit,prices[i] - minprice);// 记录当前最大利润
         }
         return maxprofit;
     }
