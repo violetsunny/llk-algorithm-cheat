@@ -59,6 +59,7 @@ class Solution {
 ```
 
 ### 解法：反向输出数组
+*时间复杂度$O(n)$，空间复杂度$O(n)$*
 ```java
 /**
  * Definition for singly-linked list.

@@ -70,10 +70,12 @@ class Solution {
 ````
 x ^ 13
 13 =  1   1   0   1
-   = x^8 x^4 x^0 x^1
-   
-通过 x >> 1 来移动，然后通过 x & 1 判断是否有1。
-等于1，res * x; 过程中x也是变大的，每一次移动 x = x ^ 2 = x * x;
+   = x^8 x^4  1  x^1
+
+通过 n >> 1 来移动，然后通过 n & 1 判断是否有 1。
+如果等于1，res * x; 
+如果是0，res * 1;
+过程中 x 也是变大的，每一次移动 x = x * x;
 ````
 
 ### （记住）解法：帅地写法-快速幂
@@ -92,13 +94,13 @@ class Solution {
         long y = exponent;//如果直接用会把exponent覆盖，影响最后负数判断，而且需要取绝对值才能正常操作
         if(y < 0) {
             y = -y;//long y = -exponent;//负数在负可能会超过int最大值，比如int exponent = -2147483648;-exponent =2147483648超过int最大值2147483647。 
-            base = 1/base;
+            base = 1 / base;
         }
-        while(y != 0) {
-            if(y % 2 == 1) { // (y & 1) == 1 存在就需要 res * base
+        while(y > 0) {
+            if(y % 2 == 1) { // (y & 1) == 1 存在就需要乘 res * base
                 res = res * base;
             }
-            base = base * base;// base逐渐变大，每移动一次base ^ 2 = base * base;
+            base = base * base;// base逐渐变大，每移动一次base ^ 2 == base * base;
             y = y / 2;// y = y >> 1;
         }
         return res;

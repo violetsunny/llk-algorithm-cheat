@@ -36,6 +36,7 @@
 
 ### （记住）解法：深度优先搜索(DFS)+回溯
 
+*时间复杂度$O(3^{len}*m*n)$，空间复杂度$O(m*n)$*
 ````java
 class Solution {
     public boolean exist(char[][] board, String word) {

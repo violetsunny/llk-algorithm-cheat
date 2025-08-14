@@ -32,7 +32,7 @@ str="ASAE" , return "false"
 
 回溯法。首先，任选一个格子作为路径起点。假设格子对应的字符为 ch，并且对应路径上的第 i 个字符。若相等，到相邻格子寻找路径上的第 i+1 个字符。重复这一过程。
 
-*时间复杂度$O(m*n*3*len)$，空间复杂度$O(m*n)$*
+*时间复杂度$O(m*n*3^{len})$，空间复杂度$O(m*n)$*
 ```java
 class Solution {
 
@@ -73,10 +73,10 @@ class Solution {
 
         visited[i][j] = true;
         //matrix[i][j] = '*';//也可以通过修改值来判断，减少开辟visited空间
-        boolean hasPath = hasPath(matrix, str, i + 1, j, visited, pathLength+1)
-                || hasPath(matrix, str, i - 1, j, visited, pathLength+1)
-                || hasPath(matrix, str, i, j + 1, visited, pathLength+1)
-                || hasPath(matrix, str, i, j - 1, visited, pathLength+1);
+        boolean hasPath = hasPath(matrix, str, i + 1, j, visited, pathLength+1) //下
+                || hasPath(matrix, str, i - 1, j, visited, pathLength+1) //上
+                || hasPath(matrix, str, i, j + 1, visited, pathLength+1) //右
+                || hasPath(matrix, str, i, j - 1, visited, pathLength+1); //左
         visited[i][j] = false;
         //matrix[i][j] = str.charAt(pathLength);
         return hasPath;

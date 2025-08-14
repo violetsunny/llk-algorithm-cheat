@@ -28,6 +28,7 @@
 
 注意添加特殊情况的 `if` 判断。
 
+*时间复杂度$O(n)$，空间复杂度$O(n)$*
 ```java
 /**
  * Definition for a binary tree node.
@@ -62,12 +63,12 @@ class Solution {
             return root;
         }
 
-        int i = s2, cnt = 0;
+        int i = s2, cnt = 0;//左的节点数
         for (; i <= e2; ++i) {// 遍历中序遍历找到s2到根节点的左子树节点数
             if (inorder[i] == rootVal) {//找到根节点在中序遍历的位置 i
                 break;
             }
-            ++cnt;//左的节点数 或 cnt = i-s2
+            ++cnt;//cnt = i - s2
         }
 
         root.left = cnt > 0 ? build(preorder, inorder, s1 + 1, s1 + cnt, s2, i - 1) : null;//s1+1--s1+cnt是根的右到左子树节点数就是前序的左边，s2--i-1是s2到i根左侧是中序的左边

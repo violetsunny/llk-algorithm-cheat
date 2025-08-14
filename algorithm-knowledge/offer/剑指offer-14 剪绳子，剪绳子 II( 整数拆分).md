@@ -212,22 +212,20 @@ class Solution {
      * 所以，在求a^n % mod时，可以在循环中直接res = res * a % mod;
      * 
      * O(logN)
-     * @param a
-     * @param n
-     * @return
      */
     private int qpow(long a, long n) {
         long ans = 1;
-        for (; n > 0; n >>= 1) {
-            if ((n & 1) == 1) {
-                ans = ans * a % mod;
+        while (n > 0) {
+            if ((n & 1) == 1) {// 判断二进制的 1 是否存在
+                ans = ans * a % mod;// 存在，需要乘上当前的a
             }
             a = a * a % mod;
+            n >>= 1;// n 每次右移一位
         }
         return (int) ans;
     }
     
-    //有个推导公式： res(n) = res(n-1) * a % mod;
+    // a^n % mod 有个推导公式： res(n) = res(n-1) * a % mod;
     // O(n)
     private long qpow2(int a,int n){
         long res = 1;

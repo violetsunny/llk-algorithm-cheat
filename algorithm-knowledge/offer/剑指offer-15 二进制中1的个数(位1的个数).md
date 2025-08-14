@@ -47,10 +47,33 @@ class Solution {
         int i = 1;
         int cnt = 0;
         while (i != 0) {
-            if ((n & i) != 0) {
+            if ((n & i) != 0) {//判断第i位是否为1
                 ++cnt;
             }
             i <<= 1;//左移1位替换
+        }
+        return cnt;
+    }
+}
+```
+### 解法一：位运算-右移
+
+```java
+class Solution {
+
+    /**
+     * 求二进制中1的个数
+     *
+     * @param n 整数
+     * @return 该整数的二进制中1的个数
+     */
+    public int NumberOf1(int n) {
+        int cnt = 0;
+        while (n > 0) {
+            if ((n & 1) == 1) {//判断最右边的位是否为1
+                ++cnt;
+            }
+            n >>= 1;//右移1位替换
         }
         return cnt;
     }

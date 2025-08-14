@@ -62,7 +62,7 @@ class Solution {
             return 0;
         }
         
-        visited[i][j] = true;//因为是能访问到所有格子，所以不能还原，会重复加
+        visited[i][j] = true;//因为访问过的格子不需要重新开始，所以不能还原，会重复访问
         return 1 + getCount(threshold, rows, cols, i + 1, j, visited)
                 + getCount(threshold, rows, cols, i - 1, j, visited)//i-1 j-1 可以不用搜索，因为这个threshold规则
                 + getCount(threshold, rows, cols, i, j + 1, visited)
