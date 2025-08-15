@@ -20,6 +20,7 @@
 - 第三步，分离两个链表。
   ![random-list-step3.png](../images/random-list-step3.png)
 
+*时间复杂度 O(N),空间复杂度 O(1)*
 ````java
 /*
 // Definition for a Node.

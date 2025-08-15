@@ -69,7 +69,7 @@ public class Solution {
         if (s == null || s.length() == 0) {
             return false;
         }
-        char[] str = s.trim().toCharArray();
+        char[] str = s.trim().toCharArray();//取出空格
         int n = str.length;
         boolean isdot = false;
         boolean iseorE = false;

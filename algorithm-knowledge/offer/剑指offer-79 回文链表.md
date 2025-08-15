@@ -46,6 +46,7 @@ class Solution {
 ### （记住）解法：递归
 先把头给一个全局变量。然后进入递归到最后，然后往后弹和全局变量进行比较。也就前面和后面比较，然后往中间移动。
 
+*时间复杂度 O(n),空间复杂度 O(n)*
 ````java
 /**
  * Definition for singly-linked list.

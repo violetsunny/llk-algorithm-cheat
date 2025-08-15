@@ -34,7 +34,7 @@ nums[0] + nums[3] + nums[4] = (-1) + 2 + (-1) = 0 。
 - -10^5 <= nums[i] <= 10^5
 
 ### （记住）解法-：排序+双指针
-
+*时间复杂度 O(N^2),空间复杂度 O(1)*
 ````java
 class Solution {
     public List<List<Integer>> threeSum(int[] nums) {
