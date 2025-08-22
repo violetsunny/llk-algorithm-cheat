@@ -73,12 +73,9 @@ public class Solution {
 ### （记住）更好的写法
 如果压入后的数和需要弹出的数相等，就说明可以弹出。如果压入后最后都能弹出，就是正确顺序。
 ```java
-import java.util.Deque;
-import java.util.ArrayDeque;
-
 class Solution {
     public boolean validateStackSequences(int[] pushed, int[] popped) {
-        Deque<Integer> stk = new ArrayDeque<>();
+        Deque<Integer> stk = new LinkedList<>();
         int j = 0;
         for (int v : pushed) {
             //压入栈中，按照相等就弹出，就是弹出序列

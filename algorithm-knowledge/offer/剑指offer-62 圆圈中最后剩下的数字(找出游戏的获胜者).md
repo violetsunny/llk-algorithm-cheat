@@ -188,7 +188,7 @@ class Solution {
 ````java
 class Solution {
     public int findTheWinner(int n, int k) {
-        Queue<Integer> queue = new ArrayDeque<Integer>();
+        Queue<Integer> queue = new LinkedList<>();
         for (int i = 1; i <= n; i++) {
             queue.offer(i);// 先放入
         }

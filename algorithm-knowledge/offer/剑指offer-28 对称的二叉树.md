@@ -49,8 +49,12 @@ class Solution {
         if (root1 == null && root2 == null) {
             return true;
         }
-        //如果一个为空，一个不为空，或者 值不一样 返回false
-        if (root1 == null || root2 == null || root1.val != root2.val) {
+        //如果一个为空，一个不为空，返回false
+        if (root1 == null || root2 == null) {
+            return false;
+        }
+        //值不一样 返回false
+        if(root1.val != root2.val){
             return false;
         }
         //root1的左和root2右比，root1的右和root2的左比

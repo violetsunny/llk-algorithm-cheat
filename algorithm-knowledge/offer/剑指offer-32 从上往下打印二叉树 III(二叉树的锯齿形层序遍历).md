@@ -120,10 +120,10 @@ class Solution {
             LinkedList<Integer> tmp = new LinkedList<>();
             for (int i = queue.size(); i > 0; i--) {
                 TreeNode node = queue.poll();
-                if (sum % 2 == 1) {//奇数不变
-                    tmp.addLast(node.val);
+                if (sum % 2 == 1) {//奇数不变 sum & 1 = 1
+                    tmp.addLast(node.val);//temp.add()
                 } else {//偶数放前面
-                    tmp.addFirst(node.val);
+                    tmp.addFirst(node.val);//temp.add(0,node.val);
                 }
                 if (node.left != null) {
                     queue.add(node.left);

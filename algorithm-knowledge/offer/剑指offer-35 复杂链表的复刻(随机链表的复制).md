@@ -64,7 +64,7 @@ class Solution {
             preHead = preHead.next.next;//替换
         }
 
-        //拆分
+        //拆分 A->A1->B->B1 拆 A->B A1->B1
         preHead = head;
         Node pre = head.next;//这个必须要写，不然就找不到克隆的头了
         Node pretemp = pre;

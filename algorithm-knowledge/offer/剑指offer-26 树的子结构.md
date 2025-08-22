@@ -53,9 +53,10 @@ class Solution {
         boolean res = false;
         if (pRoot1 != null && pRoot2 != null) {
             if (pRoot1.val == pRoot2.val) {
+                // 相等就看当前树结构
                 res = isSame(pRoot1, pRoot2);
             } else {
-                //不相等就继续看左右子树是否有
+                // 不相等就继续看左右子树是否有
                 res = hasSubtree(pRoot1.left, pRoot2) || hasSubtree(pRoot1.right, pRoot2);
             }
         }

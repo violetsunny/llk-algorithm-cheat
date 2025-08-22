@@ -104,7 +104,7 @@ class Solution {
         if (cur == null) {
             return;
         }
-        //左中右
+        //中序遍历 左中右
         inOrder(cur.left, queue);
         queue.add(cur);
         inOrder(cur.right, queue);

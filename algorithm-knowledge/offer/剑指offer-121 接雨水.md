@@ -108,7 +108,7 @@ class Solution {
 class Solution {
    public int trap(int[] height) {
       int ans = 0;
-      Deque<Integer> stack = new ArrayDeque<>();
+      Deque<Integer> stack = new LinkedList<>();
       for (int i = 0; i < height.length; i++) {
          while (!stack.isEmpty() && height[i] >= height[stack.peek()]) {
             int bottomH = height[stack.pop()];

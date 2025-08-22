@@ -3062,8 +3062,6 @@ public class Solution {
 }
 ```
 ```java
-import java.util.Deque;
-import java.util.ArrayDeque;
 class Solution {
     public boolean validateStackSequences(int[] pushed, int[] popped) {
         Deque<Integer> stk = new ArrayDeque<>();

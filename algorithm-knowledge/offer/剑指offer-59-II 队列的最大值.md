@@ -53,8 +53,8 @@
 
 ```java
 class MaxQueue {
-    private Deque<Integer> q1 = new ArrayDeque<>();
-    private Deque<Integer> q2 = new ArrayDeque<>();
+    private Deque<Integer> q1 = new LinkedList<>();
+    private Deque<Integer> q2 = new LinkedList<>();
 
     public MaxQueue() {
     }

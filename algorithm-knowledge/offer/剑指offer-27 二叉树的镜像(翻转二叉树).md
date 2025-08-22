@@ -74,7 +74,7 @@ class Solution {
 class Solution {
     public TreeNode invertTree(TreeNode root) {
         if(root == null){
-            return root;
+            return null;
         }
         TreeNode right = invertTree(root.right);
         TreeNode left = invertTree(root.left);
