@@ -19,12 +19,14 @@ class Solution {
 
 ### （记住）解法二: 数学-摩尔斯投票法（Boyer-Moore）
 是众数，既然众数是超过一半，那就计数，相同的相加，那不同的相减抵消，最后众数肯定大于0。众数可以抵消其他所有数。
+
+*时间复杂度：$O(n)$，空间复杂度：$O(1)$*
 ```java
 class Solution {
     public int majorityElement(int[] nums) {
         int cnt = 0, m = 0;
         for (int v : nums) {
-            if (cnt == 0) {
+            if (cnt == 0) {// 计数为0，说明之前的数都被抵消了，重置为当前值
                 m = v;
             }
             //相同相加，不同相减。最后大余1的剩下的就是结果
@@ -50,7 +52,9 @@ class Solution {
 - 如果 `index > n/2`，那么接着在 index 的左边进行 partition。
 - 如果 `index < n/2`，则在 index 的右边继续进行 partition。
 
-**注意：** 这种方法会修改输入的数组。时间复杂度为 `O(n)`。
+**注意：** 这种方法会修改输入的数组。
+
+*时间复杂度为 $O(n)$*
 
 ```java
 

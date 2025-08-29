@@ -92,7 +92,7 @@ public class Solution {
 
 ### （记住）解法三：双指针交换（快排）
 
-*时间复杂度 $O(log n)$，空间复杂度 $O(1)$*
+*时间复杂度 $O(\log n)$，空间复杂度 $O(1)$*
 ```java
 import java.util.Arrays;
 

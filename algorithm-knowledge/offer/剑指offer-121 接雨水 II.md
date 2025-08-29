@@ -23,7 +23,7 @@
 - 0 <= heightMap[i][j] <= 2 * 10^4
 
 ### （记住）解法：小根堆
-时间复杂度：`O(mnlog(mn))`，空间复杂度：`O(mn)`
+*时间复杂度：$O(m * n * \log(m * n))$，空间复杂度：$O(m * n)$*
 ````java
 class Solution {
     private static final int[][] DIRS = {{0, -1}, {0, 1}, {-1, 0}, {1, 0}};

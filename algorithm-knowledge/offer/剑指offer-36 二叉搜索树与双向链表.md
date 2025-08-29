@@ -71,7 +71,7 @@ public class Solution {
 ```
 
 ### （记住）解法：dfs实现中序遍历(inorder) - 帅地实现
-
+二叉搜索树，使用中序遍历是有序的
 ````java
 import java.util.*;
 

@@ -37,6 +37,7 @@ public class Solution {
 ```
 
 ### （记住）最优写法：O(1)
+*时间复杂度$O(n)$,空间复杂度$O(1)$*
 ```java
 class Solution {
     public int maxSubArray(int[] nums) {

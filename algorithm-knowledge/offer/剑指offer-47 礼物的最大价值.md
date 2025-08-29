@@ -49,6 +49,7 @@ class Solution {
 ```
 
 ### （记住）解法：动态规划+最值-优化版本
+*时间复杂度：$O(M * N)$,空间复杂度：$O(M * N)$*
 ```java
 class Solution {
     public int maxValue(int[][] grid) {
@@ -85,6 +86,7 @@ class Solution {
 }
 ```
 但是其只需要一行即可，当前计算用过去的那一行。
+*时间复杂度：$O(M * N)$,空间复杂度：$O(N)$*
 ```java
 class Solution {
     public int maxValue(int[][] grid) {

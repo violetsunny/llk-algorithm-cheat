@@ -58,7 +58,7 @@ class Solution {
 ````
 
 ### （记住）解法：动态规划-其他写法
-
+*时间复杂度：$O(M * N)$,空间复杂度：$O(M * N)$*
 ````java
 class Solution {
     public int minPathSum(int[][] grid) {
@@ -81,6 +81,7 @@ class Solution {
 ````
 
 ### 解法：动态规划 - 空间优化
+*时间复杂度：$O(M * N)$,空间复杂度：$O(N)$*
 ````java
 class Solution {
     public int minPathSum(int[][] grid) {

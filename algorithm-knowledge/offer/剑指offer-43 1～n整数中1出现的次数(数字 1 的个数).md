@@ -112,6 +112,7 @@ high = 501223 / 100 / 10 = 501;
 <P>$cur = (n / bit) \% 10 $;</P>
 <P>$low = n \% bit$;</P>
 <P>$high = n / bit / 10$;</P>
+
 - cur > 1  => $(high + 1) * bit$
 - cur == 1 => $(high * bit)+(1 + low)$
 - cur == 0 => $high * bit$

@@ -8,7 +8,7 @@
 
 利用大根堆存放较小的一半元素，小根堆存放较大的一半元素。维持大小堆的元素个数差不超过 1。
 
-时间复杂度`O(logn)`,空间复杂度`O(n)`
+*时间复杂度$O(log n)$,空间复杂度$O(n)$*
 
 ```java
 import java.util.Comparator;
@@ -61,6 +61,8 @@ public class Solution {
 ```
 
 ### （记住）解法：大根堆 + 小根堆 - 优化
+*时间复杂度$O(log n)$,空间复杂度$O(n)$*
+
 ````java
 public class Solution {
     PriorityQueue<Integer> min = new PriorityQueue<>(); // 小根堆,大的数放小根堆
@@ -69,7 +71,7 @@ public class Solution {
     public void addNum(int num) {
         if (min.size() = max.size()) {
             min.add(num);
-            max.add(min.poll());
+            max.add(min.poll());// 因为相等的时候，会多方一个进max里，所以不相等时候直接取max
         } else {
             max.add(num);
             min.add(max.poll());

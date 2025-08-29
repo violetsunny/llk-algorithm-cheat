@@ -59,7 +59,7 @@ class Solution {
 ### （记住）解法：快排
 代码按照快排模板。
 
-*时间复杂度：$O(logn)$，空间复杂度：$O(n)$*
+*时间复杂度：$O(n \log n)$，空间复杂度：$O(n)$*
 ```java
 class Solution {
     public String minNumber(int[] nums) {
