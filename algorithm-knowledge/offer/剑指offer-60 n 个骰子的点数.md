@@ -62,7 +62,7 @@ class Solution {
         for (int j = 1; j <= 6; ++j) {
             f[1][j] = 1;//初始值
         }
-        for (int i = 2; i <= n; ++i) {//n个
+        for (int i = 2; i <= n; ++i) {//n个骰子
             for (int j = i; j <= 6 * i; ++j) {//6n可能性
                 for (int k = 1; k <= 6; ++k) {//1-6
                     if (k > j) {
@@ -115,18 +115,18 @@ class Solution {
 ```
 
 ### （记住）解法：动态规划 - 帅地写法
-<p>定义：</p>
+- 定义：
 
 $dp[i][j]$ 是 当骰子的个数为`i`，点数为`j`,有$dp[i][j]$种组合。
 
 $\frac{dp[i][j]}{6^n}$
 
-<p>状态转移公式：</p>
+- 状态转移公式：
 
 $dp[i][j] = dp[i-1][j-1] + dp[i-1][j-2] + dp[i-1][j-3] + dp[i-1][j-4] + dp[i-1][j-5] + dp[i-1][j-6];$
 就是`i`比`i-1`多一个骰子，投一个点或者两个点，三个点...六个点等等。
 
-<p>初始值：</p>
+- 初始值：
 
 $dp[1][1]=1;dp[1][2]=1;...dp[1][6]=1;$当一个骰子时投一个点或者两个点，三个点。。。其实只有一种组合。
 
@@ -138,20 +138,20 @@ class Solution {
         for (int i = 1; i <= 6; i++) {
             dp[1][i] = 1;
         }
-        for (int i = 2; i <= n; i++) {
-            for (int j = i; j <= 6 * i; j++) {
+        for (int i = 2; i <= n; i++) {//n个骰子
+            for (int j = i; j <= 6 * i; j++) {//6n可能性
                 for (int k = 1; k <= 6; k++) {
-                    if (j < k) {
+                    if (j < k) {//j是当前的点数，k是当前骰子的点数，j必须大于k
                         break;
                     }
                     dp[i][j] += dp[i - 1][j - k];
                 }
             }
         }
-        double[] d = new double[6 * n - n + 1];
-        double sum = Math.pow(6, n);
+        double[] d = new double[6 * n - n + 1];//n-6n
+        double sum = Math.pow(6, n);//组合数
         for (int i = n; i <= 6 * n; i++) {
-            d[i - n] = d[n][i] / sum;
+            d[i - n] = dp[n][i] / sum;//n个骰子，点数为i的组合数，i就是n-6n的点数
         }
         return d;
     }

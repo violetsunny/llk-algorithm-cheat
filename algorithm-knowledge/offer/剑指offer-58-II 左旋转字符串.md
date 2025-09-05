@@ -79,10 +79,10 @@ class Solution {
         }
         StringBuilder sb = new StringBuilder();
         int len = str.length();
-        for(int i=n;i<len;i++){
+        for(int i=n;i < len;i++){//先取n - len
             sb.append(str.charAt(i));
         }
-        for(int i=0;i<n;i++){
+        for(int i=0;i < n;i++){//再取0 - n
             sb.append(str.charAt(i));
         }
         return sb.toString();
@@ -108,8 +108,8 @@ class Solution {
         StringBuilder sb = new StringBuilder();
         int len = str.length();
         //另一个种方式
-        for(int i=n;i<len+n;i++){
-            sb.append(str.charAt(i%len));//len取余，超过len的i又回到n之前
+        for(int i=n;i < (len+n);i++) {
+            sb.append(str.charAt(i % len));//len取余，超过len的i又回到n之前
         }
         return sb.toString();
     }

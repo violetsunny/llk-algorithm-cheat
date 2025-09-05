@@ -92,17 +92,18 @@ class Solution {
      * @return 是否是顺子
      */
     public boolean isContinuous(int[] numbers) {
-        Set<Integer> visted = new HashSet<>();
+        Set<Integer> visited = new HashSet<>();
         int min = 20;
         int max = -1;
+        // 不存在重复的数（大小王除外），最大值 - 最小值 < 5 
         for (int num : numbers) {
             if (num == 0) {// 大小王除外
                 continue;
             }
-            if (visted.contains(num)) {// 不重复
+            if (visited.contains(num)) {// 不重复
                 return false;
             }
-            visted.add(num);
+            visited.add(num);
             min = Math.min(min,num);//找到最小值
             max = Math.max(max,num);//找到最大值
         }

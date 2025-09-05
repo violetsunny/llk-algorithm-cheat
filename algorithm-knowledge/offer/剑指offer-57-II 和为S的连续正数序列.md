@@ -84,7 +84,7 @@ class Solution {
         int i = 1;
         int j = 1;
         int sum = 1;
-        while(i<target/2){
+        while(i <= target/2){
             if(sum < target){
                 j++;//右边移动
                 sum = sum + j;//加上右边
@@ -94,7 +94,7 @@ class Solution {
             }else {
                 res.add(getList(i,j));//相等就可以取出当前i到j之间的数
                 sum = sum - i;//减去左边
-                i++;//都移动检查下一个窗口
+                i++;//因为减去i后肯定不等于target，直接移动检查下一个窗口
                 j++;
                 sum = sum + j;//加上右边
             }

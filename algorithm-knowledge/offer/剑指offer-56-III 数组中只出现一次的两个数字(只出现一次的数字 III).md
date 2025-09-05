@@ -102,7 +102,7 @@ class Solution {
                 y = y ^ e;//也可以：y = x ^ z,因为 z 本来就是e0 ^ e1来的
             }
         }
-        return res;
+        return new int[]{x,y};
 
 
     }

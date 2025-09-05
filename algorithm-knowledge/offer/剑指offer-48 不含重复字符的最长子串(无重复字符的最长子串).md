@@ -42,7 +42,7 @@ class Solution {
         for (int i = 1; i < n; ++i) {
             int index = t[chars[i] - 'a'];
             int d = i - index;
-            res[i] = (index == -1 || d > res[i - 1]) ? res[i - 1] + 1 : d;//没有出现过和d>res[i - 1]上次结果，都要+1
+            res[i] = (index == -1 || d > res[i - 1]) ? res[i - 1] + 1 : d;//没有出现过和d>res[i - 1]不在范围内，都要+1
             t[chars[i] - 'a'] = i;//更新下标，出现过也会更新到最新的下标值
             max = Math.max(max, res[i]);
         }
@@ -52,7 +52,7 @@ class Solution {
 ```
 
 ### （记住）解法：动态规划 - 空间优化
-*时间复杂度：$O(n)$，空间复杂度：$O(1)$*
+*时间复杂度：$O(n)$，空间复杂度：$O(n)$*
 ```java
 class Solution {
     
@@ -72,7 +72,7 @@ class Solution {
         for (int i = 1; i < n; ++i) {
             int index = t[chars[i] - 'a'];
             int d = i - index;
-            a = (index == -1 || d > a) ? a + 1 : d;//用之前a判断后，再重新赋值给当前a
+            a = (index == -1 || d > a) ? a + 1 : d;//用之前a判断后，不存在和不在范围内都要重新赋值给当前a
             t[chars[i] - 'a'] = i;//更新下标，出现过也会更新到最新的下标值
             max = Math.max(max, a);
         }
