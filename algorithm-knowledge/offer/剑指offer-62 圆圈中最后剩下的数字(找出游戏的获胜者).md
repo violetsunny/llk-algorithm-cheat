@@ -161,7 +161,6 @@ class Solution {
 ```
 
 ### 解法：递归 - 帅地写法
-
 *时间复杂度为 $O(n)$，空间复杂度为 $O(n)$*
 ```java
 class Solution {
@@ -183,8 +182,8 @@ class Solution {
 }
 ```
 
-### 解法三：模拟 + 队列
-
+### （记住）解法三：模拟 + 队列 - 这个好懂一点
+*时间复杂度为 $O(n*k)$，空间复杂度为 $O(n)$*
 ````java
 class Solution {
     public int findTheWinner(int n, int k) {
@@ -193,10 +192,10 @@ class Solution {
             queue.offer(i);// 先放入
         }
         while (queue.size() > 1) {
-            for (int i = 1; i < k; i++) {//跳到第k个删掉
-                queue.offer(queue.poll());
+            for (int i = 1; i < k; i++) {
+                queue.offer(queue.poll());// 模拟删除再放入
             }
-            queue.poll();
+            queue.poll();// 跳到第k个才删掉
         }
         return queue.peek();
     }

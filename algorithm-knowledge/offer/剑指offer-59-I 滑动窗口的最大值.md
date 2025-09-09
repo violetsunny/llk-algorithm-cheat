@@ -107,7 +107,7 @@ class Solution {
     public int[] maxSlidingWindow(int[] nums, int k) {
         int n = nums.length;
         int[] ans = new int[n - k + 1];//大小为n-k+1,本身还有一个最大值，所以要多出一个
-        Deque<Integer> q = new LinkedList<>();//为了计算大小，这个放的是下标
+        Deque<Integer> q = new LinkedList<>();//为了计算大小，这个放的是下标，重点就是这个存下标才好计算是否大于k
         for (int i = 0; i < n; ++i) {
             if (!q.isEmpty() && i - q.peek() + 1 > k) {
                 q.poll();//如果i和头元素下标大于k,右移，剔除左边元素
@@ -115,7 +115,7 @@ class Solution {
             while (!q.isEmpty() && nums[i] >= nums[q.peekLast()]) {
                 q.pollLast();//从后往前，剔除小于nums[i]的数。这样当前数就是后面窗口最大值，保证头元素最大
             }
-            q.offer(i);//末尾放入,放的是下标
+            q.add(i);//末尾放入,放的是下标
             if (i + 1 - k >= 0) {//因为i从0开始
                 ans[i + 1 - k] = nums[q.peek()];//头元素最大
             }
