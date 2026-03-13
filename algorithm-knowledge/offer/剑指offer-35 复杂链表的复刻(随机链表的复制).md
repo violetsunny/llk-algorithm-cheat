@@ -74,7 +74,7 @@ class Solution {
             preHead = temp;//原来节点的替换
             if (temp != null) {
                 pretemp.next = temp.next;//复制的节点给复制的下个节点
-                pretemp = temp.next;//复制节点的替换
+                pretemp = pretemp.next;//复制节点的替换
             }
         }
 

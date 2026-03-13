@@ -53,17 +53,14 @@ class Solution {
                     // 说明位置i与位置nums[i]上的元素相同，直接返回该重复元素
                     return nums[i];
                 }
-                swap(nums, i, nums[i]);
+                
+                int t = nums[i];
+                nums[i] = nums[nums[i]];
+                nums[nums[i]] = t;
             }
         }
         return -1;
 
-    }
-
-    private void swap(int[] nums, int i, int j) {
-        int t = nums[i];
-        nums[i] = nums[j];
-        nums[j] = t;
     }
 }
 ```

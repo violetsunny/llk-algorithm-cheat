@@ -38,15 +38,18 @@ public class Solution {
         if (root == null) {
             return;
         }
-        list.add(root.val);
-        targetSum = targetSum - root.val;
-        if (targetSum == 0 && root.left == null && root.right == null) {//必须从根节点到叶节点
+        list.add(root.val);//放走过的
+        targetSum = targetSum - root.val;//减去走过的，这减的当前的
+        //必须从根节点到叶子节点
+        if (targetSum == 0 && root.left == null && root.right == null) {
             res.add(new ArrayList<>(list));//不能在这里直接return,因为需要回溯，不然会重复
         }
         //深度搜索
         findPath(root.left, targetSum);//走左边
         findPath(root.right, targetSum);//走右边
-        list.remove(list.size() - 1);//走完回溯回去
+
+        //走完回溯回去，targetSum不需要加回去，因为回溯回去的时候targetSum还是原来值
+        list.remove(list.size() - 1);
     }
 }
 ```

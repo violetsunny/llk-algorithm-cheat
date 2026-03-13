@@ -70,6 +70,7 @@ public class Solution {
             while (!stack1.isEmpty()) {
                 TreeNode ptr = stack1.pop();
                 array.add(ptr.val);
+                // 遍历栈1的时候，左右节点放入栈2中
                 if (ptr.left != null) {
                     stack2.push(ptr.left);
                 }
@@ -80,11 +81,12 @@ public class Solution {
             if (!array.isEmpty()) {
                 list.add(array);
             }
-
+            // 交叉遍历
             List<Integer> array2 = new ArrayList<>();
             while (!stack2.isEmpty()) {
                 TreeNode ptr = stack2.pop();
                 array2.add(ptr.val);
+                // 遍历栈2的时候，左右节点放入栈1中
                 if (ptr.right != null) {
                     stack1.push(ptr.right);
                 }
@@ -118,7 +120,8 @@ class Solution {
         int sum = 1;
         while (!queue.isEmpty()) {
             LinkedList<Integer> tmp = new LinkedList<>();
-            for (int i = queue.size(); i > 0; i--) {
+            int num = queue.size();//拿到queue队列中的数量
+            for (int i = 0; i < num; ++i) {
                 TreeNode node = queue.poll();
                 if (sum % 2 == 1) {//奇数不变 sum & 1 = 1
                     tmp.addLast(node.val);//temp.add()

@@ -59,7 +59,7 @@ class Solution {
 ```
 
 ### 解法：反向输出数组
-*时间复杂度$O(n)$，空间复杂度$O(n)$*
+*时间复杂度$O(n)$，空间复杂度$O(1)$*
 ```java
 /**
  * Definition for singly-linked list.
@@ -89,7 +89,7 @@ class Solution {
         }
         int[] res = new int[count];
         while(head != null) {
-            res[--count]=head.val;//从后往前赋值，--count因为下标从0开始
+            res[--count] = head.val;//数组从后往前赋值，--count因为下标从0开始
             head = head.next;
         }
         return res;

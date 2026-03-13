@@ -98,7 +98,7 @@ public class Solution {
         Queue<TreeNode> queue = new LinkedList<>();
         queue.offer(pRoot);
         while (!queue.isEmpty()) {
-            int num = queue.size();
+            int num = queue.size();//拿到queue队列中的数量
             List<Integer> res = new ArrayList<>();
             for (int i = 0; i < num; ++i) {
                 TreeNode node = queue.poll();

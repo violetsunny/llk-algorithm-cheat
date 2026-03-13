@@ -38,6 +38,7 @@
 - 在树 A 中找到和树 B 的根结点值一样的结点 R；
 - 判断树 A 以 R 为根结点的子树是否包含与树 B 一样的结构。
 
+*时间复杂度$O(n)$，空间复杂度$O(n)$*
 ```java
 /**
  * Definition for a binary tree node.
@@ -73,8 +74,8 @@ class Solution {
         if (root1 == null) {
             return false;
         }
-        //如果root1和root2的值不相等，返回false
-        if (root1.val!= root2.val) {
+        //如果root1和root2的值不相等，返回false。相等不一定是，还要循环到最后
+        if (root1.val != root2.val) {
             return false;
         }
         //继续检查左右子树是否相等

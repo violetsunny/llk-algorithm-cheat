@@ -83,7 +83,7 @@ class Solution {
         }
 
         Queue<Node> queue = new LinkedList<>();
-        inOrder(root, queue);
+        inOrder(root, queue);//中序遍历就是有序的
 
         Node head = queue.poll();
         Node pre = head;
@@ -94,8 +94,8 @@ class Solution {
             pre = cur;//当前为下一次的前
         }
         
-        pre.right = head;
-        head.left = pre;
+        pre.right = head;//尾指向头
+        head.left = pre;//头指向尾
         
         return head;
     }

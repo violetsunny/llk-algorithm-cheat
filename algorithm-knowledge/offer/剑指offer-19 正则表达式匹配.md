@@ -123,6 +123,7 @@ class Solution {
                 if (s.charAt(i - 1) == p.charAt(j - 1) || p.charAt(j - 1) == '.') {
                     dp[i][j] = dp[i - 1][j - 1];
                 }
+                //匹配*的情况
                 if (p.charAt(j - 1) == '*') {
                     dp[i][j] = dp[i][j - 2];//0次，等或不相等都可以有0次
                     if (j > 1 && (s.charAt(i - 1) == p.charAt(j - 2) || p.charAt(j - 2) == '.')) {

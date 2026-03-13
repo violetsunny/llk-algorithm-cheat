@@ -64,7 +64,7 @@ class Solution {
             return n;
         }
 
-        int a = 1, b = 1;
+        int a = 1, b = 1;//a是第一个，b是第二个
         for (int i = 3; i <= n; i++) {
             b = a + b;//b最新位置
             a = b - a;//a为上次位置

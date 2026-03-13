@@ -50,16 +50,17 @@ class Solution {
         if (array == null || array.length < 1) {
             return false;
         }
-        int m = array.length, n = array[0].length;
-        int i = 0, j = n - 1;
+        int m = array.length;//行
+        int n = array[0].length;//列
+        int i = 0, j = n - 1;//右上角
         while (i < m && j >= 0) {
             if (array[i][j] == target) {
                 return true;
             }
             if (array[i][j] < target) {
-                ++i;
+                ++i;//往下
             } else {
-                --j;
+                --j;//往左
             }
         }
         return false;

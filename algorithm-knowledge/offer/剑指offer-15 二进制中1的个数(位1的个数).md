@@ -47,7 +47,7 @@ class Solution {
         int i = 1;
         int cnt = 0;
         while (i != 0) {
-            if ((n & i) != 0) {//判断第i位是否为1
+            if ((n & i) == 1) {//判断第i位是否为1
                 ++cnt;
             }
             i <<= 1;//左移1位替换
@@ -70,7 +70,7 @@ class Solution {
     public int NumberOf1(int n) {
         int cnt = 0;
         while (n > 0) {
-            if ((n & 1) == 1) {//判断最右边的位是否为1
+            if ((n & 1) == 1) {//判断最右边的位是否为1，奇数
                 ++cnt;
             }
             n >>= 1;//右移1位替换

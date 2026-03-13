@@ -34,9 +34,9 @@ class Solution {
      */
     public int JumpFloor(int target) {
         if (target < 2) {
-            return target;
+            return 1;
         }
-        int a = 1, b = 2;
+        int a = 1, b = 2;//a是第一个，b是第二个
         for (int i = 3; i <= target; ++i) {
             b = a + b;
             a = b - a;

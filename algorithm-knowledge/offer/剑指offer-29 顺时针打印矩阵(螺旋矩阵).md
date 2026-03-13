@@ -18,55 +18,6 @@
 输出：[1,2,3,4,8,12,11,10,9,5,6,7]
 ```
 
-### 解法
-
-由外往里，一圈圈打印矩阵即可。
-
-```java
-class Solution {
-    public int[] printMatrix(int[][] matrix) {
-        if (matrix == null || matrix.length < 1) {
-            return new int[]{};
-        }
-        int m = matrix.length, n = matrix[0].length;
-        int[] res = new int[m * n];
-        int[] index = new int[1];
-        index[0] = 0;
-        int i = 0, j = 0, p = m - 1, q = n - 1;
-        while (i <= p && j <= q) {
-            add(matrix, res, index, i++, j++, p--, q--);
-        }
-        return res;
-    }
-
-    private void add(int[][] matrix, int[] res, int[] index, int i, int j, int p, int q) {
-        if (i == p) {
-            for (int m = j; m <= q; ++m) {
-                res[index[0]++] = matrix[i][m];
-            }
-        } else if (j == q) {
-            for (int m = i; m <= p; ++m) {
-                res[index[0]++] = matrix[m][j];
-            }
-        } else {
-            for (int m = j; m < q; ++m) {
-                res[index[0]++] = matrix[i][m];
-            }
-            for (int m = i; m < p; ++m) {
-                res[index[0]++] = matrix[m][q];
-            }
-            for (int m = q; m > j; --m) {
-                res[index[0]++] = matrix[p][m];
-            }
-            for (int m = p; m > i; --m) {
-                res[index[0]++] = matrix[m][j];
-            }
-        }
-
-    }
-}
-```
-
 ### （记住）解法二
 
 左l=0 右r=n-1 上t=0 下b=m-1

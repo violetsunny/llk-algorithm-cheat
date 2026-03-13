@@ -57,7 +57,7 @@ public class Codec {
                 q.offer(node.left);
                 q.offer(node.right);
             } else {
-                ans.add("#");
+                ans.add("#");//空的放入#标记
             }
         }
         return String.join(",", ans);
@@ -77,13 +77,13 @@ public class Codec {
         while (!q.isEmpty()) {
             TreeNode node = q.poll();
             if (!"#".equals(vals[i])) {
-                node.left = new TreeNode(Integer.valueOf(vals[i]));
-                q.offer(node.left);
+                node.left = new TreeNode(Integer.valueOf(vals[i]));//构建左节点
+                q.offer(node.left);//放入节点
             }
             ++i;
             if (!"#".equals(vals[i])) {
-                node.right = new TreeNode(Integer.valueOf(vals[i]));
-                q.offer(node.right);
+                node.right = new TreeNode(Integer.valueOf(vals[i]));//构建右节点
+                q.offer(node.right);//放入节点
             }
             ++i;
         }

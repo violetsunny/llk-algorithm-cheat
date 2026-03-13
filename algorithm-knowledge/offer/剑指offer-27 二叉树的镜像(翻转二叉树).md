@@ -26,7 +26,7 @@
  [8,10,6,11,9,7,5,null,null,null,null,null,null,null,null]
 ```
 
-### 解法
+### 解法：递归
 
 将根结点的左右孩子互换，之后递归左右孩子。
 
@@ -54,7 +54,7 @@ class Solution {
 }
 ```
 
-### （记住）解法
+### （记住）解法：递归
 ```java
 /**
  * Definition for a binary tree node.
@@ -78,8 +78,8 @@ class Solution {
         }
         TreeNode right = invertTree(root.right);
         TreeNode left = invertTree(root.left);
-        root.left = right;
-        root.right = left;
+        root.left = right;//右给左
+        root.right = left;//左给右
         return root;
     }
 }

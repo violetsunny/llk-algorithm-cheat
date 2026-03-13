@@ -37,13 +37,13 @@ public class Solution {
         ListNode slow = head;
         for (int i = 0; i < k; ++i) {
             if (fast != null) {
-                fast = fast.next;
+                fast = fast.next;//提前走k步
             } else {
                 return null;
             }
         }
 
-
+        //再一起走
         while (fast != null) {
             fast = fast.next;
             slow = slow.next;

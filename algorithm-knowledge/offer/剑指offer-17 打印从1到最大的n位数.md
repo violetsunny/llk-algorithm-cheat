@@ -40,7 +40,10 @@ class Solution {
         
         //num数组用来表示字符串，比如n等于2，则num数组为['0''0']、['0''1']、['0''2']...后边是将它转为字符串并按照左边界的位置进行截取的
         num = new char[n];
-        dfs(0);//从char数组的第0位开始
+
+        //从char数组的第0位开始
+        dfs(0);
+        
         // 去除最后一个逗号
         if (result.length() > 0) {
             result.deleteCharAt(result.length() - 1);

@@ -91,17 +91,21 @@ class Solution {
      */
     public double myPow(double base, int exponent) {
         double res = 1;
-        long y = exponent;//如果直接用会把exponent覆盖，影响最后负数判断，而且需要取绝对值才能正常操作
+        //如果直接用会把exponent覆盖，影响最后负数判断，而且需要取绝对值才能正常操作
+        long y = exponent;
         if(y < 0) {
-            y = -y;//long y = -exponent;//负数在负可能会超过int最大值，比如int exponent = -2147483648;-exponent =2147483648超过int最大值2147483647。 
-            base = 1 / base;
+        //long y = -exponent;//负数在负可能会超过int最大值，比如int exponent = -2147483648;-exponent =2147483648超过int最大值2147483647。 
+            y = -y;
+            base = 1 / base;//base^-3==(1/base)^3
         }
+        
+        // 快速幂的这个过程：13 == 1101;base^13 = base^1 * base^4 * base^8
         while(y > 0) {
-            if(y % 2 == 1) { // (y & 1) == 1 存在就需要乘 res * base
-                res = res * base;
+            if(y % 2 == 1) { // (y & 1) == 1，判断二进制中最后一位是否为1，1101->110->11->1, 13->6->3->1
+                res = res * base;//其实是先res = base^1，再res * base^4，最后res * base^8把res返回
             }
-            base = base * base;// base逐渐变大，每移动一次base ^ 2 == base * base;
-            y = y / 2;// y = y >> 1;
+            base = base * base;// base逐渐变大，每移动一次base^2 == base * base;base^4 == base^2 * base^2;base^8 == base^4 * base^4; 
+            y = y / 2;// y = y >> 1;需要右移一位挪到新位置,1101->110->11->1, 13->6->3->1
         }
         return res;
     }

@@ -57,7 +57,8 @@ class MyQueue {
     }
 
     public int peek() {
-        if(stack2.isEmpty()){//空的才需要将stack1放入，否则stack2还是之前的队列顺序不能放入
+        //空的才需要将stack1放入，否则stack2还是之前的队列顺序不能放入
+        if(stack2.isEmpty()){
             while(!stack1.isEmpty()){
                 stack2.push(stack1.pop());
             }

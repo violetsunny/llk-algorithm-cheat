@@ -24,61 +24,19 @@ push(5), pop() -> 5, pop() -> 3, pop() -> 2, pop() -> 1
 
 ```
 
-### 解法
+### （记住）更好的写法：模拟
+如果压入后的数和需要弹出的数相等，就说明可以弹出；
 
-判断下一个要弹出的元素：
+如果不相等就压栈，然后再继续比较是否相等；
 
-- 如果刚好是栈顶元素，直接弹出。
-- 如果不在栈顶，则把压栈序列中还没有入栈的数字压入栈，直到待弹出的数字压入栈顶。
-- 如果所有数字都压入栈顶后依然没有后找到下一个弹出的数字，则不可能是弹出序列。
-
-```java
-import java.util.Stack;
-
-public class Solution {
-    /**
-     * 判断是否是弹出序列
-     * @param pushA 压栈序列
-     * @param popA 弹栈序列
-     * @return 是否是弹出序列
-     */
-    public boolean IsPopOrder(int[] pushA, int[] popA) {
-        if (pushA == null || popA == null || pushA.length != popA.length) {
-            return false;
-        }
-
-        Stack<Integer> stack = new Stack<>();
-        int i = 0;
-        int n = pushA.length;
-        boolean flag = false;
-        for (int val : popA) {
-            while (stack.isEmpty() || stack.peek() != val) {
-                if (i >= n) {
-                    flag = true;
-                    break;
-                }
-                stack.push(pushA[i++]);
-            }
-            if (flag) {
-                break;
-            }
-            stack.pop();
-        }
-
-        return stack.isEmpty();
-    }
-}
-```
-
-### （记住）更好的写法
-如果压入后的数和需要弹出的数相等，就说明可以弹出。如果压入后最后都能弹出，就是正确顺序。
+最后stk为空，就是pushed压入后最后popped都能弹出，就是正确顺序。
 ```java
 class Solution {
     public boolean validateStackSequences(int[] pushed, int[] popped) {
         Deque<Integer> stk = new LinkedList<>();
         int j = 0;
         for (int v : pushed) {
-            //压入栈中，按照相等就弹出，就是弹出序列
+            //压入栈中，按照相等就弹出，不相等就压栈，这就是弹出序列
             stk.push(v);
             while (!stk.isEmpty() && stk.peek() == popped[j]) {
                 stk.pop();

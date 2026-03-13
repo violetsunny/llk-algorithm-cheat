@@ -128,7 +128,7 @@ class Solution {
         if(mod == 0){
             return (int)Math.pow(3, times);//刚好都是3
         } else if(mod == 1){
-            return (int)Math.pow(3, times - 1) * 4;//余1，和3合并
+            return (int)Math.pow(3, times - 1) * 4;//余1，就和3合并，所以*4
         } else {
             return (int)Math.pow(3, times) * 2;//余2，拆开不合并
         }
@@ -214,15 +214,16 @@ class Solution {
      * O(logN)
      */
     private int qpow(long a, long n) {
-        long ans = 1;
+        // 快速幂的这个过程：13 == 1101;a^13 = a^1 * a^4 * a^8
+        long res = 1;
         while (n > 0) {
-            if ((n & 1) == 1) {// 判断二进制的 1 是否存在
-                ans = ans * a % mod;// 存在，需要乘上当前的a
+            if ((n & 1) == 1) {//判断二进制中最后一位是否为1，1101->110->11->1
+                res = res * a % mod;//其实是先res = a^1，再res * a^4，最后res * a^8把res返回
             }
-            a = a * a % mod;
-            n >>= 1;// n 每次右移一位
+            a = a * a % mod;//a^2 == a * a;a^4 == a^2 * a^2;a^8 == a^4 * a^4;
+            n >>= 1;// n 每次右移一位，是除以2的次方,1101->110->11->1
         }
-        return (int) ans;
+        return (int) res;
     }
     
     // a^n % mod 有个推导公式： res(n) = res(n-1) * a % mod;

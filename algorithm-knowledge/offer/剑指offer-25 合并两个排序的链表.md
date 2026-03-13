@@ -17,6 +17,7 @@
 
 同时遍历两链表进行 `merge`。
 
+*时间复杂度$O(n)$，空间复杂度$O(n)$*
 ```java
 /**
  * Definition for singly-linked list.
@@ -37,7 +38,7 @@ class Solution {
         ListNode p = l1;
         ListNode q = l2;
         ListNode dummy = new ListNode(-1);
-        ListNode cur = dummy;
+        ListNode cur = dummy;//辅助节点，是要变动的
         while (p != null && q != null) {
             if (p.val < q.val) {//小的先放
                 cur.next = p;
@@ -49,7 +50,7 @@ class Solution {
             cur = cur.next;
         }
         cur.next = p == null ? q : p;//将没有结束的放入
-        return dummy.next;//下一个，当前不是
+        return dummy.next;//下一个，当前是-1
     }
 }
 ```

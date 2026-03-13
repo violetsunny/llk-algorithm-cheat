@@ -67,7 +67,8 @@ class Solution {
     public int findMin(int[] nums) {
         int l = 0, r = nums.length - 1;
         while (l < r) {
-            if (nums[l] < nums[r]) {//l r内单调递增，就可以跳出。不能是等于 2 1 2 2 2
+            //l r内单调递增，就可以跳出。不能是等于 2 1 2 2 2
+            if (nums[l] < nums[r]) {
                 break;
             }
             int mid = l + (r - l) / 2;

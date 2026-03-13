@@ -53,26 +53,28 @@ class Solution {
             return null;
         }
 
-        return build(preorder, inorder, 0, preorder.length - 1, 0, inorder.length - 1);
+        return build(preorder, 0, preorder.length - 1,inorder, 0, inorder.length - 1);
     }
 
-    private TreeNode build(int[] preorder, int[] inorder, int s1, int e1, int s2, int e2) {
-        int rootVal = preorder[s1];
+    private TreeNode build(int[] preorder, int s1, int e1, int[] inorder, int s2, int e2) {
+        int rootVal = preorder[s1];//前序的第一个是根
         TreeNode root = new TreeNode(rootVal);
         if (s1 == e1) {
             return root;
         }
 
-        int i = s2, cnt = 0;//左的节点数
-        for (; i <= e2; ++i) {// 遍历中序遍历找到s2到根节点的左子树节点数
-            if (inorder[i] == rootVal) {//找到根节点在中序遍历的位置 i
+        int i = s2;
+        int cnt = 0;//左子树节点数
+        for (; i <= e2; ++i) {//遍历中序遍历找到s2到根节点就是左子树节点数
+            if (inorder[i] == rootVal) {//i是找到根节点在中序遍历的位置
                 break;
             }
             ++cnt;//cnt = i - s2
         }
-
-        root.left = cnt > 0 ? build(preorder, inorder, s1 + 1, s1 + cnt, s2, i - 1) : null;//s1+1--s1+cnt是根的右到左子树节点数就是前序的左边，s2--i-1是s2到i根左侧是中序的左边
-        root.right = i < e2 ? build(preorder, inorder, s1 + cnt + 1, e1, i + 1, e2) : null;//同理前序的右边，中序的右边。并且i < e2说明右边还有节点
+        //(s1+1)--(s1+cnt)是根+1到左子树节点数就是前序的左边，s2--(i-1)是s2到根-1是中序的左边。cnt>0说明左节点还有
+        root.left = cnt > 0 ? build(preorder, s1 + 1, s1 + cnt, inorder, s2, i - 1) : null;
+        //同理前序的右边，中序的右边。并且i < e2说明右边还有节点
+        root.right = i < e2 ? build(preorder, s1 + cnt + 1, e1, inorder, i + 1, e2) : null;
         return root;
     }
 }

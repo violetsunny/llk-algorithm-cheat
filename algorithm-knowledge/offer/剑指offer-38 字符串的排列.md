@@ -114,13 +114,13 @@ class Solution {
     }
 
     private void backtrack(char[] arr, int k) {
-        if (arr.length == k) {
+        if (arr.length == k) {//k是访问到全部元素了
             ans.add(listToString(path));
             return;
         }
         //进行N叉树搜索
         for (int i = 0; i < arr.length; i++) {
-            // 剪枝，是否相邻字符，并且前一个字符没有访问过(回溯会重置)，是同一层就不要再递归访问。
+            //剪枝，是否相邻字符，并且前一个字符没有访问过(回溯会重置)，是同一层就不要再递归访问。因为同一路径的话，前面那个应该是访问过的。
             if (i > 0 && arr[i] == arr[i - 1] && visited[i - 1] = false) {
                 continue;
             }
