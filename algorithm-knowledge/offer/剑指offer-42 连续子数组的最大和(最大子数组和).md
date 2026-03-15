@@ -41,20 +41,20 @@ public class Solution {
 ```java
 class Solution {
     public int maxSubArray(int[] nums) {
-        int ans = Integer.MIN_VALUE;
+        int max = Integer.MIN_VALUE;
         int f = 0;
-        for (int x : nums) {
-            f = Math.max(f, 0) + x;//f为上一个值，Math.max(f, 0) 也是 f>0?f:0
-            ans = Math.max(ans, f);
+        for (int num : nums) {
+            f = Math.max(f, 0) + num;//f为上一个值，Math.max(f, 0) 也是 f>0?f:0
+            max = Math.max(max, f);//max保存是最大和的值
         }
-        return ans;
+        return max;
     }
 }
 ```
 ```java
 class Solution {
     public int maxSubArray(int[] nums) {
-        int pre = 0;
+        int pre = 0;//因为负数没有用，会减少和，所以和0比较就行
         int max = nums[0];
         for (int num : nums) {
             pre = Math.max(num, pre + num);// pre = Math.max(pre,0) + num;

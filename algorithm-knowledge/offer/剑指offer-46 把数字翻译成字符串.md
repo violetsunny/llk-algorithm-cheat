@@ -51,6 +51,8 @@ class Solution {
 ```
 
 ### （记住）解法：动态规划-优化
+*时间复杂度：$O(n)$，空间复杂度：$O(n)$*
+
 ````java
 class Solution {
     public int translateNum(int num) {
@@ -73,7 +75,7 @@ class Solution {
             a = b;
             b = c;
         }
-        return b;
+        return c;
     }
 }
 ````

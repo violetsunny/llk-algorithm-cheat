@@ -86,7 +86,7 @@ class Solution {
 ### （记住）好理解点 解法：归并排序
 
 `4 2 3 1` </br>
-`就是 x1(42的逆序) + x2(31的逆序) + x3(整体的24对13)`
+`就是 x1(4 2的逆序) + x2(3 1的逆序) + x3(整体的2 4对1 3)`
 
 *时间复杂度 $O(n \times \log n)$，空间复杂度 $O(n)$。其中 $n$ 为数组长度*
 ````java
@@ -117,8 +117,9 @@ class Solution {
         int j = l2;
         int k = 0;
         while (i <= r1 && j <= r2) {
+            //如果j小于i,说明i到r1的位置都是比j大。
             if (nums[i] > nums[j]) {
-                count = count + (l2 - i);//如果j小于i,说明i到r1之间位置都是比j大。
+                count = count + (l2 - i);
                 temp[k++] = nums[j++];
             } else {
                 temp[k++] = nums[i++];

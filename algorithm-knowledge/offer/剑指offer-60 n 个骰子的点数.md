@@ -140,8 +140,8 @@ class Solution {
         }
         for (int i = 2; i <= n; i++) {//n个骰子
             for (int j = i; j <= 6 * i; j++) {//6n可能性
-                for (int k = 1; k <= 6; k++) {
-                    if (j < k) {//j是当前的点数，k是当前骰子的点数，j必须大于k
+                for (int k = 1; k <= 6; k++) {//k是dp公式中多一个骰子的1-6的点数
+                    if (j < k) {//j是6n可能的点数，k是当前骰子的点数，j必须大于k
                         break;
                     }
                     dp[i][j] += dp[i - 1][j - k];
@@ -149,9 +149,9 @@ class Solution {
             }
         }
         double[] d = new double[6 * n - n + 1];//n-6n
-        double sum = Math.pow(6, n);//组合数
-        for (int i = n; i <= 6 * n; i++) {
-            d[i - n] = dp[n][i] / sum;//n个骰子，点数为i的组合数，i就是n-6n的点数
+        double sum = Math.pow(6, n);//n个骰子总共点数的组合数
+        for (int i = n; i <= 6 * n; i++) {//从n开始
+            d[i - n] = dp[n][i] / sum;//求n个骰子，点数为i的组合数，i就是n-6n的点数
         }
         return d;
     }

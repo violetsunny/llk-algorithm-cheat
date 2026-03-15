@@ -87,15 +87,15 @@ class Solution {
         int i = low;
         int j = high;
         while (i < j) {
-            //找到大的放右边
+            //右移找到大的
             while (i < j && (nums[i] + "" + base).compareTo(base + "" + nums[i]) <= 0) {
                 i++;
             }
-            //找到小的放左边
+            //左移找到小的
             while (i < j && (nums[j] + "" + base).compareTo(base + "" + nums[j]) >= 0) {
                 j--;
             }
-            //交换,就是小的在左边
+            //交换,就是小的在左边，大的放右边
             swap(nums, i, j);
         }
         swap(nums, i, high);

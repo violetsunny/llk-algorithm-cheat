@@ -42,7 +42,7 @@ class Solution {
         for (int i = 1; i < n; ++i) {
             int index = t[chars[i] - 'a'];
             int d = i - index;
-            res[i] = (index == -1 || d > res[i - 1]) ? res[i - 1] + 1 : d;//没有出现过和d>res[i - 1]不在范围内，都要+1
+            res[i] = (index == -1 || d > res[i - 1]) ? res[i - 1] + 1 : d;//没有出现过或字符不在范围内(d>res[i - 1])，都要+1
             t[chars[i] - 'a'] = i;//更新下标，出现过也会更新到最新的下标值
             max = Math.max(max, res[i]);
         }
@@ -61,7 +61,9 @@ class Solution {
             return 0;
         }
         char[] chars = s.toCharArray();
+        //用于判断字符是否出现过
         int[] t = new int[26];
+        //Arrays.fill(t, -1);//赋初始值
         for (int i = 0; i < 26; ++i) {
             t[i] = -1;
         }
@@ -72,7 +74,7 @@ class Solution {
         for (int i = 1; i < n; ++i) {
             int index = t[chars[i] - 'a'];
             int d = i - index;
-            a = (index == -1 || d > a) ? a + 1 : d;//用之前a判断后，不存在和不在范围内都要重新赋值给当前a
+            a = (index == -1 || d > a) ? a + 1 : d;//用之前a判断后，不存在(index == -1)或字符不在范围内(d > a)都要重新赋值给当前a
             t[chars[i] - 'a'] = i;//更新下标，出现过也会更新到最新的下标值
             max = Math.max(max, a);
         }

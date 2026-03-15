@@ -52,7 +52,7 @@ class Solution {
      */
     public int maxProfit(int[] prices) {
         int minprice = Integer.MAX_VALUE;
-        int maxprofit = Integer.MIN_VALUE;
+        int maxprofit = 0;
         for (int i = 0; i < prices.length; i++) {
             minprice = Math.min(minprice,prices[i]);// 记录当前最低价格
             maxprofit = Math.max(maxprofit,prices[i] - minprice);// 记录当前最大利润

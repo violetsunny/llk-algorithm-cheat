@@ -76,9 +76,9 @@ class Solution {
         int j = nums.length - 1;
         while (i < j) {
             if (nums[i] + nums[j] < target) {
-                i++;
+                i++;//小就右移
             } else if (nums[i] + nums[j] > target) {
-                j--;
+                j--;//大就左移
             } else {
                 return new int[]{nums[i], nums[j]};
             }

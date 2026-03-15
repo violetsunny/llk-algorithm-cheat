@@ -68,6 +68,7 @@ class Solution {
         int i = s.length() - 1;
         int j = s.length() - 1;
         StringBuilder sb = new StringBuilder();
+        //从后往前
         while(i >= 0) {
             while(i >= 0 && s.charAt(i) == ' '){//去除空格
                 i--;

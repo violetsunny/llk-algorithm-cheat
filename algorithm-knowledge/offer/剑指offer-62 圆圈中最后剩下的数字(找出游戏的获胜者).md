@@ -177,6 +177,7 @@ class Solution {
             return 0;
         }
         //递归从上往下 f(i) = (f(i - 1) + m) % i;
+        //i就是n,n没递归都n-1
         return (lastRemaining(n-1,m) + m) % n;
     }
 }
@@ -186,16 +187,16 @@ class Solution {
 *时间复杂度为 $O(n*k)$，空间复杂度为 $O(n)$*
 ````java
 class Solution {
-    public int findTheWinner(int n, int k) {
+    public int findTheWinner(int n, int m) {
         Queue<Integer> queue = new LinkedList<>();
         for (int i = 1; i <= n; i++) {
             queue.offer(i);// 先放入
         }
         while (queue.size() > 1) {
-            for (int i = 1; i < k; i++) {
-                queue.offer(queue.poll());// 模拟删除再放入
+            for (int i = 1; i < m; i++) {
+                queue.offer(queue.poll());//模拟删除再放入，放入末尾
             }
-            queue.poll();// 跳到第k个才删掉
+            queue.poll();//跳到第m个才删掉，这时候要删除的数就在头部了
         }
         return queue.peek();
     }

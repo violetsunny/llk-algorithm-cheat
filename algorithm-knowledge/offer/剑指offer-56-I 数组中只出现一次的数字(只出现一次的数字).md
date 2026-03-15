@@ -34,7 +34,7 @@ class Solution {
     public int singleNumber(int[] nums) {
         int res = 0;
         for (int num : nums) {
-            res ^= num;
+            res ^= num;//异或会抵消两个相同的数
         }
         return res;
     }

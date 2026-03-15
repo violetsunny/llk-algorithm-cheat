@@ -48,10 +48,9 @@ class Solution {
 //        if(n==1){
 //            return 1;
 //        }
-        //不能使用if,只能使用与或来操作
+        //不能使用if,只能使用与或来操作；n + getSum(n-1)是计算，其他是用来让判断能执行
         boolean flag = n > 0 && (n = n + getSum(n-1)) > 0;
         return n;
     }
 }
-```
 ```

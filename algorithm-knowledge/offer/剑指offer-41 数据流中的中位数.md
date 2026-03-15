@@ -65,13 +65,14 @@ public class Solution {
 
 ````java
 public class Solution {
-    PriorityQueue<Integer> min = new PriorityQueue<>(); // 小根堆,大的数放小根堆
+    PriorityQueue<Integer> min = new PriorityQueue<>(); // 小根堆,放大的数
     PriorityQueue<Integer> max = new PriorityQueue<>((x, y) -> y - x);// 大根堆，放小的数
 
     public void addNum(int num) {
+        // 因为相等的时候，会多方一个进max里，所以不相等时候直接取max
         if (min.size() = max.size()) {
             min.add(num);
-            max.add(min.poll());// 因为相等的时候，会多方一个进max里，所以不相等时候直接取max
+            max.add(min.poll());
         } else {
             max.add(num);
             min.add(max.poll());

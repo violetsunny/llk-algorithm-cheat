@@ -4,13 +4,13 @@
 
 在一个 `m×n` 的棋盘的每一格都放有一个礼物，每个礼物都有一定的价值（价值大于 0）。
 
-你可以从棋盘的左上角开始拿格子里的礼物，并每次向左或者向下移动一格直到到达棋盘的右下角。
+你可以从棋盘的左上角开始拿格子里的礼物，并每次向右或者向下移动一格直到到达棋盘的右下角。
 
 给定一个棋盘及其上面的礼物，请计算你最多能拿到多少价值的礼物？
 
 ### 解法：动态规划+最值
 
-写出递推式，res 表示获得的最大礼物。
+写出递推式，res 表示获得的最大礼物，只能往右往下，那就取上边i-1和左边j-1中最大价值。
 
 ```java
 res[i][j] = Math.max(res[i - 1][j], res[i][j - 1]) + grid[i][j];
@@ -28,8 +28,8 @@ class Solution {
         if (grid == null || grid.length == 0) {
             return 0;
         }
-        int m = grid.length;
-        int n = grid[0].length;
+        int m = grid.length;//行
+        int n = grid[0].length;//列
         int[][] res = new int[m][n];
         res[0][0] = grid[0][0];
         for (int j = 1; j < n; ++j) {
@@ -40,6 +40,7 @@ class Solution {
         }
         for (int i = 1; i < m; ++i) {
             for (int j = 1; j < n; ++j) {
+                //只能往右往下，那就取上边i-1和左边j-1中最大价值
                 res[i][j] = Math.max(res[i - 1][j], res[i][j - 1]) + grid[i][j];
             }
         }
@@ -53,11 +54,14 @@ class Solution {
 ```java
 class Solution {
     public int maxValue(int[][] grid) {
-        int m = grid.length;
-        int n = grid[0].length;
+        int m = grid.length;//行
+        int n = grid[0].length;//列
+        //不需要初始化，0就是最小的
         int[][] f = new int[m + 1][n + 1];
         for (int i = 1; i <= m; ++i) {
             for (int j = 1; j <= n; ++j) {
+                //只能往右往下，那就取上边i-1和左边j-1中最大价值
+                //grid[i - 1][j - 1]需要m+1,n+1开始赋值
                 f[i][j] = Math.max(f[i - 1][j], f[i][j - 1]) + grid[i - 1][j - 1];
             }
         }
@@ -68,13 +72,61 @@ class Solution {
 
 ### 解法：动态规划 - 空间优化
 
+但是其只需要一行即可，当前计算用过去的那一行。
+
+*时间复杂度：$O(M * N)$,空间复杂度：$O(N)$*
+```java
+class Solution {
+    public int maxValue(int[][] grid) {
+        int m = grid.length;//行
+        int n = grid[0].length;//列
+        //过程中只需要用到前一次的数据即可。按照行计算,不需要初始化，0就是最小的
+        int[] dp = new int[n + 1];
+        for (int i = 1; i <= m; ++i) {
+            for (int j = 1; j <= n; ++j) {
+                dp[j] = Math.max(dp[j], dp[j - 1]) + grid[i - 1][j - 1];
+            }
+        }
+        return dp[n];//n+1 多用一位计算，可以不用初始计算，直接 grid[i - 1][j - 1]
+    }
+}
+```
+````java
+class Solution {
+    
+    public int getMaxValue(int[][] grid) {
+        if (grid == null || grid.length == 0) {
+            return 0;
+        }
+        int m = grid.length;//行
+        int n = grid[0].length;//列
+        int[] res = new int[n];
+        res[0] = grid[0][0];
+        for (int j = 1; j < n; ++j) {
+            res[j] = res[j - 1] + grid[0][j];
+        }
+        for (int i = 1; i < m; ++i) {
+            //每次都对新的行进行初始化
+            res[0] = res[0] + grid[i][0];
+            for (int j = 1; j < n; ++j) {
+                //只能往右往下，那就取上边i-1和左边j-1中最大价值
+                res[j] = Math.max(res[j], res[j - 1]) + grid[i][j];
+            }
+        }
+        return res[n - 1];
+    }
+}
+````
+
+参考：
+
 只能往右和往下，所以可以用个两行数组即可。i & 1 偶数为0奇数为1，再^1则偶数为1奇数为0。
 
 ```java
 class Solution {
     public int maxValue(int[][] grid) {
-        int m = grid.length;
-        int n = grid[0].length;
+        int m = grid.length;//行
+        int n = grid[0].length;//列
         int[][] f = new int[2][n + 1];//过程中只需要用到上面一行的数据即可，因为上面已经是累加后的结果，所以用2行数据操作即可。
         for (int i = 1; i <= m; ++i) {
             for (int j = 1; j <= n; ++j) {
@@ -82,25 +134,6 @@ class Solution {
             }
         }
         return f[m & 1][n];//m & 1其实是计算奇偶数
-    }
-}
-```
-
-但是其只需要一行即可，当前计算用过去的那一行。
-
-*时间复杂度：$O(M * N)$,空间复杂度：$O(N)$*
-```java
-class Solution {
-    public int maxValue(int[][] grid) {
-        int m = grid.length;
-        int n = grid[0].length;
-        int[] dp = new int[n + 1];//过程中只需要用到前一次的数据即可。按照行计算,不需要初始化，0就是最小的
-        for (int i = 1; i <= m; ++i) {
-            for (int j = 1; j <= n; ++j) {
-                dp[j] = Math.max(dp[j], dp[j - 1]) + grid[i - 1][j - 1];
-            }
-        }
-        return dp[n];//n+1 多用一位计算，可以不用初始计算，直接 grid[i - 1][j - 1]
     }
 }
 ```

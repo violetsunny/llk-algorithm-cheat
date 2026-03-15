@@ -91,11 +91,11 @@ res = 3;
 ````
 公式： 
 
-找到`i(第几位)`和`n(减去后剩下的n)`后
+找到`i(几位)`和`n(减去后剩下的n)`后
 
-$num = 10^{i-1} + (n - 1) / i;$ 
+哪个数字：$num = 10^{i-1} + (n - 1) / i;$
 
-$index = (n - 1) \% i + 1;$
+第几个字符：$index = (n - 1) \% i + 1;$
 
 $res = String(num).charAt(index-1); $
 
@@ -103,8 +103,8 @@ $res = String(num).charAt(index-1); $
 class Solution {
     public int findNthDigit(int n) {
         long bit = 1;
-        int i = 1;//第几位 十位是2位 百位是3位 千位是4位
-        long count = 9;
+        int i = 1;//几位 十位是2位 百位是3位 千位是4位
+        long count = 9;//个位有9个数
         while (count < n) {
             n = (int) (n - count);//找到减去后剩下的n
             bit = bit * 10;// 1 10 100 1000 ...

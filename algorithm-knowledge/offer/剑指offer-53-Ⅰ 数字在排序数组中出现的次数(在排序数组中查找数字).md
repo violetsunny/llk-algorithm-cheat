@@ -15,7 +15,7 @@
 输出：4
 ```
 
-### （记住）解法：找数模板
+### （记住）解法：找数模板，二分查找
 
 找出第一个 k 和最后一个 k 出现的位置。
 
@@ -56,7 +56,7 @@ class Solution {
 
             if (nums[mid] == target) {
                 result = mid;
-                right = mid - 1;
+                right = mid - 1;//往左找第一个
             } else if (nums[mid] < target) {
                 left = mid + 1;
             } else {
@@ -78,7 +78,7 @@ class Solution {
 
             if (nums[mid] == target) {
                 result = mid;
-                left = mid + 1;
+                left = mid + 1;//往右找最后一个
             } else if (nums[mid] < target) {
                 left = mid + 1;
             } else {

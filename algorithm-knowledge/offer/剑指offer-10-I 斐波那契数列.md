@@ -65,6 +65,7 @@ class Solution {
         }
 
         int a = 1, b = 1;//a是第一个，b是第二个
+        //算出1-2，就从第三个开始
         for (int i = 3; i <= n; i++) {
             b = a + b;//b最新位置
             a = b - a;//a为上次位置

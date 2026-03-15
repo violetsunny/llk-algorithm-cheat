@@ -32,13 +32,13 @@ class Solution {
 
     private int[] quickSort(int l, int r) {
         int i = partition(arr, l, r);//找到排序后的中间点
-        if (i > k - 1) {
+        if (i > k - 1) {//i > k，就对i进行缩小，往左
             return quickSort(l, i - 1);
         }
-        if (i < k - 1) {
+        if (i < k - 1) {//i < k，就对i进行扩大，往右
             return quickSort(i + 1, r);
         }
-        return Arrays.copyOf(arr, k);
+        return Arrays.copyOf(arr, k);//直到i = k，输出
     }
 
     private int partition(int[] arr, int l, int r) {
@@ -67,7 +67,7 @@ class Solution {
 
 ### （记住）解法二：大根堆
 
-利用大根堆，存储最小的 k 个数，最后返回即可。
+利用大根堆（根是最大的数），存储最小的 k 个数，最后返回即可。
 
 此方法虽然慢一点，但是它不会改变输入的数组，并且它**适合海量数据的输入**。
 

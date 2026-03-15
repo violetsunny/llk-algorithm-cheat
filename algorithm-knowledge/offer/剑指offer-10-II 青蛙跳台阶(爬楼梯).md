@@ -37,6 +37,7 @@ class Solution {
             return 1;
         }
         int a = 1, b = 2;//a是第一个，b是第二个
+        //算出1-2，就从第三个开始
         for (int i = 3; i <= target; ++i) {
             b = a + b;
             a = b - a;

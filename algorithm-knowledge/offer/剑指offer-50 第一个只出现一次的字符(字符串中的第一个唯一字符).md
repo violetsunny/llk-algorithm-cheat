@@ -42,6 +42,7 @@ edit_url: https://github.com/doocs/leetcode/edit/main/lcof/%E9%9D%A2%E8%AF%95%E9
 class Solution {
     public char firstUniqChar(String s) {
         int[] cnt = new int[26];
+        //数组统计次数
         for (int i = 0; i < s.length(); ++i) {
             ++cnt[s.charAt(i) - 'a'];
         }
@@ -57,8 +58,29 @@ class Solution {
 }
 ```
 
+```java
+import java.util.HashMap;
+
+class Solution {
+    public char firstUniqChar(String s) {
+        Map<Character, Boolean> map = new HashMap<>();
+        //统计是否存在过
+        for (int i = 0; i < s.length(); ++i) {
+            map.put(s.charAt(i),map.containsKey(s.charAt(i)));
+        }
+        //按s遍历，不会乱。按map的会乱
+        for (int i = 0; i < s.length(); ++i) {
+            if(!map.get(s.charAt(i))){
+                return s.charAt(i);
+            }
+        }
+        return ' ';
+    }
+}
+```
+
 ### 方法二：下标法
-遍历字符串如果当前字符的第一个索引和最后一个索引不是同一个则继续遍历，是同一个返回即可。
+遍历字符串如果当前字符的第一个索引和最后一个索引，不是同一个则继续遍历，是同一个返回即可。
 
 因为如果只有一个，那第一个和最后一个索引下标相同，如果不是只有一个就不同。
 

@@ -88,9 +88,12 @@ class Solution {
             int f2 = dp[p2] * 2;
             int f3 = dp[p3] * 3;
             int f5 = dp[p5] * 5;
-            int f = Math.min(f2, Math.min(f3, f5));//获得当前最小的放入，按照从小到大
+            //获得当前最小的放入，按照从小到大
+            int f = Math.min(f2, Math.min(f3, f5));
+            //放入dp中下次用
             dp[i] = f;
-            if (f == f2) {//哪个是说明当前使用了，加1后进入下一次
+            //哪个是说明当前使用了，加1后进入下一次
+            if (f == f2) {
                 p2++;
             }
             if (f == f3) {
