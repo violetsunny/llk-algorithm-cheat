@@ -18,8 +18,7 @@ class Solution {
         int j = 0;
         for (int i = 0; i < nums.length; ++i) {
             //如果是偶数，i移动j不动
-            if ((nums[i] & 1) == 1) {
-                //如果是奇数，i和j都移动并交换
+            if ((nums[i] & 1) == 1) {//如果是奇数，i和j都移动并交换
                 int t = nums[i];
                 nums[i] = nums[j];
                 nums[j] = t;
@@ -106,12 +105,13 @@ public class Solution {
         int left = 0;
         int right = array.length - 1;
         while (left < right) {
-            while (left < right && array[left] % 2 != 0) {
+            while (left < right && array[left] % 2 != 0) {//从左往右找到偶数
                 left++;
             }
-            while (left < right && array[right] % 2 != 1) {
+            while (left < right && array[right] % 2 != 1) {//从右往左找到奇数
                 right--;
             }
+            //奇数和偶数交换
             int temp = array[right];
             array[right] = array[left];
             array[left] = temp;

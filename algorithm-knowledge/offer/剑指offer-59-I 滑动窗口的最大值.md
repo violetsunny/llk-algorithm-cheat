@@ -101,6 +101,8 @@ class Solution {
  1  3  -1  -3  5 [3  6  7]      7               [7]
 </pre>
 
+**保证头元素最大，才好计算，窗口移动依赖存的下标来计算。**
+
 *时间复杂度：$O(n)$，空间复杂度：$O(k)$*
 ```java
 class Solution {
@@ -110,7 +112,7 @@ class Solution {
         Deque<Integer> q = new LinkedList<>();//为了计算大小，这个放的是下标，重点就是这个存下标才好计算是否大于k
         for (int i = 0; i < n; ++i) {
             if (!q.isEmpty() && i - q.peek() + 1 > k) {//q.peekLast()-q.peek()==k
-                //如果i和头元素下标大于k,右移，剔除左边元素
+                //如果i和头元素下标大于k,右移，剔除头元素
                 q.poll();
             }
             while (!q.isEmpty() && nums[i] >= nums[q.peekLast()]) {
